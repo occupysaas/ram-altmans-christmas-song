@@ -83,7 +83,7 @@ Success looks like this:
   - film-weave jitter (±1 px per frame)
   - light noise and vignette
   - an occasional vertical-hold roll as a transition (used 2–3 times, not as a gimmick)
-- **Titles:** an opening title card in the style of an old special: "RAM ALTMAN'S CHRISTMAS" in hand-lettered, code-rendered type over the snowy hill, with a "Byteville Broadcasting" style ident (original, no real network logos).
+- **Titles:** the video opens on a vintage 1960s station-ident card reading **"Occupy SaaS presents"** (the client, Occupy Saas Inc), hand-lettered style rendered in code, then the title "RAM ALTMAN'S CHRISTMAS" in hand-lettered, code-rendered type over the snowy hill (shot 1). No real network logos.
 
 ## 6. Cast
 
@@ -328,6 +328,8 @@ Times are rough Whisper segment times; the build re-derives them from forced ali
 - Codex generates stills, with a stills sample before animation.
 - Lyric typos are fixed in the on-screen text (some were only there for the AI singer's pronunciation).
 - The data center on the hill grows bigger, smokier and sparkier as the story goes on and bumps with the drums. It collapses in on itself during the final silence.
+
+- The video is made for **Occupy Saas Inc** (3 or fewer people, so Remotion's free licence applies); branding is a "Occupy SaaS presents" station ident at the start.
 
 ## 13. Left to the builder
 
