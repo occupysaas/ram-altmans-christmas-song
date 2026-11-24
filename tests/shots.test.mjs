@@ -9,10 +9,10 @@ const byId = id => shots().find(x => x.id === id);
 const lyr = () => read('src/timing/lyrics-aligned.json');
 const impact = () => read('src/timing/impact.json');
 
-test('64 shots (57 removed in pass 3) plus sub-shot 13b tile 0..259.6 with no gaps', () => {
+test('63 shots (57 removed in pass 3, 13 in pass 4) plus 13b tile 0..259.6 with no gaps', () => {
   const s = shots();
-  const expected = Array.from({length: 65}, (_, i) => String(i + 1).padStart(2, '0')).filter(id => id !== '57');
-  expected.splice(13, 0, '13b');
+  const expected = Array.from({length: 65}, (_, i) => String(i + 1).padStart(2, '0')).filter(id => id !== '57' && id !== '13');
+  expected.splice(12, 0, '13b');
   assert.deepEqual(s.map(x => x.id), expected);
   assert.equal(s[0].start, 0);
   assert.equal(s.at(-1).end, DUR);

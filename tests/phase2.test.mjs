@@ -19,12 +19,10 @@ test('every shot has a motion tier and tier-A shots name their puppets', () => {
   }
 });
 
-test('shot 13 cuts to the 13b back shot on "down below"', () => {
-  const s13 = shots().find(x => x.id === '13'), b = shots().find(x => x.id === '13b');
-  const down = lyr()[8].words.find(w => w.w === 'down');
-  assert.equal(s13.end, b.start);
-  assert.ok(Math.abs(b.start - (down.s - 0.25)) < 1e-6, `13b starts ${b.start}`);
-  assert.equal(b.plate, 'plates/13b.png');
+test('13b (the back shot) now covers the whole window line 8 (shot 13 removed in pass 4)', () => {
+  const ids = shots().map(x => x.id), b = shots().find(x => x.id === '13b');
+  assert.ok(!ids.includes('13') && ids[ids.indexOf('13b') - 1] === '12');
+  assert.ok(b.lyrics.some(e => e.line === 8 && e.from === 0));
 });
 
 test('ident then title play over shot 1 before the first sung word', () => {
@@ -94,7 +92,7 @@ test('star shows its pixelated back during the spin', () => {
 });
 
 import {CHOREO} from '../src/shots/index.ts';
-export const DONE_A = ['08', '10', '13', '15', '16', '21', '22', '24', '40', '49', '61', '25', '26', '27', '31', '34', '39', '43', '46', '47', '48', '58', '59', '63'];
+export const DONE_A = ['08', '10', '15', '16', '21', '22', '24', '40', '49', '61', '25', '26', '27', '31', '34', '39', '43', '46', '47', '48', '58', '59', '63'];
 
 test('every tier-A shot has a plate, its puppets and a choreography module', () => {
   for (const id of DONE_A) {

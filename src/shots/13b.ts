@@ -18,7 +18,9 @@ export const shot13b: Choreo = (_t, frame, shot) => {
   const tilt = 5 * clamp01(lt / 1.4) - 1.6 * sway;            // slow satisfied tilt, counter to the sway
   const sq = squashAt(t);
   const body = parts.body, head = parts.head;
-  const bodyAt: [number, number] = [FEET[0], FEET[1] + bob + chuckle * 0.5];
+  // he walks up into frame from below (with a walking bob), then stops and looks out
+  const rise = 1 - Math.pow(1 - clamp01(lt / 1.6), 3), walk = lt < 1.6 ? 14 * Math.abs(Math.sin(lt * 9)) : 0;
+  const bodyAt: [number, number] = [FEET[0], FEET[1] + bob + chuckle * 0.5 + 520 * (1 - rise) - walk];
   const neckWorld: [number, number] = [bodyAt[0] + (body.neck[0] - body.feet[0]) * S, bodyAt[1] + (body.neck[1] - body.feet[1]) * S * sq];
   const steps = beat(t).i - beat(shot.start).i;               // the town's lights go out a step per beat
   const items: Item[] = [{shade: {x: 0, y: 560, w: 1600, h: 640, opacity: Math.min(0.45, 0.07 * Math.max(0, steps))}}];

@@ -29,9 +29,7 @@ shots:
    brief: "Over Ram Altman's shoulder typing furiously at a glowing terminal, moon in the window on the left, morning sun in another window on the right, racks multiplying around him; a blank black terminal pane low in frame."}
 - {n: 12, name: howling-fans, anchor: {line: 7}, cam: fanShake, tower: null, surf: [0.11, 0.17, 0.79, 0.35, 0], style: narration,
    brief: "Close on a wall of big server fans spinning wildly with cartoon wind-lines and snow blowing off them, the fan grilles shaped like howling mouths."}
-- {n: 13, name: window-sneak, anchor: {line: 8}, cam: panRight, tower: null, surf: [0.22, 0.12, 0.55, 0.29, 0], style: narration,
-   brief: "The server hall with the big arched window over the snowy hill and Byteville below (as the spike background): Ram Altman sneaking on tiptoe left to right past the window."}
-- {n: 13, id: 13b, still: plates/13b.png, name: window-back, anchor: {line: 8, word: 8}, cam: [[0.5, 0.52, 1.04, 0], [0.5, 0.46, 1.2, 0]], tower: null, surf: [0.12, 0.05, 0.76, 0.26, 0], style: narration,
+- {n: 13, id: 13b, still: plates/13b.png, name: window-back, anchor: {line: 8}, cam: [[0.5, 0.5, 1.0, 0], [0.5, 0.47, 1.22, 0]], tower: null, surf: [0.12, 0.04, 0.76, 0.34, 0], style: narration,
    brief: "Back shot (callback to the window scene in We Dug Our Own Grave): from behind Ram Altman, the back of his head and shoulders big in the foreground, looking head-on out of the arched window down at Byteville; he is scheming, hands clasped behind his back."}
 - {n: 14, name: kid-laptop, anchor: {line: 9}, cam: pushIn, tower: 2, surf: [0.08, 0.62, 0.84, 0.3, 0], style: tech,
    brief: "Byteville kitchen at night: a kid at the table staring at a frozen old laptop with a spinning cursor, chin on hands, bored; the data-center tower (bigger, extra wings, two smokestacks) visible through the window."}

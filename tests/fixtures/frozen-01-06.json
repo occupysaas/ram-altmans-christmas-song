@@ -119,9 +119,13 @@
    }
   ],
   "sfx": [],
-  "tier": "C",
+  "tier": "A",
   "fx": [],
   "action": "living room; cat already mid-stride (still)",
+  "plate": "plates/03.png",
+  "puppets": [
+   "layers-03"
+  ],
   "indoor": true
  },
  {

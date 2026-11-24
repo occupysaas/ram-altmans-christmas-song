@@ -36,9 +36,12 @@ export const shot08: Choreo = (_t, frame, shot) => {
 
 /** 43: "your heart is two DIMMs too small" — clutches his chest in panic while the tiny green heart pulses. */
 export const shot43: Choreo = (_t, frame, shot) => {
-  const t = twos(frame), lt = t - shot.start, who = 'ram-34', S = scaleFor(who, 760), floor = 1310, x = 1300;
+  const t = twos(frame), lt = t - shot.start, who = 'ram-34', S = scaleFor(who, 760), floor = 1310;
   const pulse = 0.5 + 0.5 * Math.sin(lt * 2 * Math.PI * 1.4);
-  const pose = stand(who, {t, x, floor, S, flip: true, lean: 6 + 3 * Math.sin(lt * 3), head: 'head-panic', headRot: 4 * Math.sin(lt * 5), spread: 120,
+  // shock: his jaw flaps open-shut every couple of frames and his whole body trembles
+  const MOUTHS = ['head-panic', 'head-D', 'head-panic', 'head-E'], mouth = MOUTHS[Math.floor(frame / 2) % MOUTHS.length];
+  const shake = 7 * Math.sin(frame * 2.3) + 4 * Math.sin(frame * 5.1), x = 1300 + shake;
+  const pose = stand(who, {t, x, floor, S, flip: true, lean: 6 + 3 * Math.sin(lt * 3), head: mouth, headRot: 4 * Math.sin(lt * 5) + 2 * Math.sin(frame * 3.7), spread: 120,
     hands: sh => ({near: add(sh.neck, [-20 * S, 300 * S]), far: add(sh.neck, [60 * S, 330 * S]), nearPart: 'hand-near-grab', farPart: 'hand-far-grab'})});
   const heart = add(pose.hip, [-10, -330 * S]);
   return [{who, pose, scale: S}, {shade: {x: heart[0] - 70 - 30 * pulse, y: heart[1] - 60 - 25 * pulse, w: 140 + 60 * pulse, h: 120 + 50 * pulse, opacity: 0.55 + 0.35 * pulse, color: '#6dff7a', round: true}}];

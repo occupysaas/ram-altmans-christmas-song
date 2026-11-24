@@ -2,7 +2,7 @@
 # Every shot keeps its camera move, snow and lyrics. scripts/build_shots.py copies these into src/shots.json.
 1:  {tier: B, fx: [tower, ident, title], action: "Occupy SaaS ident, then the title over the snowy hill; tower bumps on kicks"}
 2:  {tier: B, fx: [tower, chimneySmoke], action: "crane down over the rooftops; chimneys smoke"}
-3:  {tier: C, indoor: true, fx: [], action: "living room; cat already mid-stride (still)"}
+3:  {tier: A, indoor: true, puppets: [layers-03], plate: true, fx: [], action: "living room; cat already mid-stride (still)"}
 4:  {tier: C, fx: [], action: "rack row; one light blinks"}
 5:  {tier: B, fx: [dust], action: "dust drifting in the moonbeam"}
 6:  {tier: B, fx: [tower], action: "low angle tower; bumps on kicks, smoke plume"}
@@ -10,11 +10,10 @@
 8:  {tier: A, puppets: [sam-34], fx: [sparkles], action: "Sam turns 3/4, transforms into Ram; hat and scarf drop on"}
 9: {tier: A, puppets: [layers-09], fx: [], action: "grin close-up push; on \"memory!\" he throws his head back cackling, HA!s pop"}
 10: {tier: A, indoor: true, mood: 0.28, puppets: [ram-side], fx: [], action: "grabs RAM, a chip and a byte off the shelf, one per stressed word"}
-11: {tier: B, indoor: true, fx: [terminal], action: "terminal glyph blocks scroll"}
+11: {tier: B, plate: true, indoor: true, fx: [terminal], action: "terminal glyph blocks scroll"}
 12: {tier: B, indoor: true, plate: true, fx: [fans], action: "three animated fans blast frosty air (blur ghosts, ice-wind lines, snow crystals, frost rims) and boost on kicks"}
-13: {tier: A, puppets: [ram-side], fx: [], action: "the approved rubber-hose sneak to the window, settle, peer at the town"}
 13b: {tier: B, indoor: true, plate: true, fx: [windowsDim], action: "back shot: Ram from behind at the window, scheming; bob and sway, evil-chuckle shoulder shake on 'down below'"}
-14: {tier: B, indoor: true, fx: [spinner], action: "laptop spinner turns"}
+14: {tier: B, plate: true, indoor: true, fx: [spinner], action: "laptop spinner turns"}
 15: {tier: A, puppets: [reindeer, ram-sleigh], fx: [], action: "sleigh launches off the tower roof right-to-left"}
 16: {tier: A, puppets: [reindeer, ram-sleigh], fx: [ramStream], action: "rooftop pass; RAM sucked out of chimneys"}
 17: {tier: A, puppets: [layers-17], fx: [], action: "sky streams past the sleigh; Ram snaps the reins on every beat, whip-crack on snares, winks on \"wink\""}
@@ -44,7 +43,7 @@
 41: {tier: C, indoor: true, fx: [], action: "overhead of the bare floor"}
 42: {tier: C, indoor: true, fx: [], action: "cookie crumbs"}
 43: {tier: A, indoor: true, puppets: [ram-34], fx: [heartPulse], action: "clutches chest as the tiny-DIMM heart glows"}
-44: {tier: B, indoor: true, fx: [panic], action: "panic screens flash on snares"}
+44: {tier: B, plate: true, indoor: true, fx: [panic], action: "panic screens flash on snares"}
 45: {tier: B, indoor: true, fx: [lightsOut], action: "lights go out row by row toward camera"}
 46: {tier: A, puppets: [reindeer, ram-sleigh], fx: [tower], action: "overloaded sleigh sags and struggles to lift"}
 47: {tier: A, puppets: [ram-sleigh], fx: [], action: "sleigh tips and sputters"}

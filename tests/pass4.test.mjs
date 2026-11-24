@@ -69,3 +69,48 @@ test('29: the animated receipt lines are gone', () => assert.ok(!shot('29').fx.i
 test('54: the town is redrawn over the tower so the mansion sits behind it', () => {
   assert.ok(shot('54').towerBehind && fs.existsSync('public/plates/54-front.png'));
 });
+
+import {shot03, shot06, shot14, shot18} from '../src/shots/pass4-scenes.ts';
+import {shot13b} from '../src/shots/13b.ts';
+import {shot43} from '../src/shots/ram-34-shots.ts';
+
+test('03: the cat sleeps and breathes; snow only in the window; the data center in the window pulses', () => {
+  const s = shot('03'), at = t => shot03(t, Math.round(t * 24), s);
+  const keys = new Set(); for (let t = s.start; t < s.end; t += 0.2) for (const i of at(t)) if (String(i.layer ?? '').startsWith('03/cat')) keys.add(i.layer);
+  assert.ok(keys.has('03/cat-sleep') && keys.has('03/cat-sleep-b'), 'breathing cycle');
+  const flakes = at(s.start + 1).filter(i => i.draw?.kind === 'dot' && i.draw.snow);
+  assert.ok(flakes.length >= 10 && flakes.every(f => f.draw.at[0] > 1010 && f.draw.at[0] < 1400 && f.draw.at[1] > 120 && f.draw.at[1] < 520), 'snow inside the window only');
+  assert.equal(shot('03').plate, 'plates/03.png');
+});
+
+test('06: two horns pop out of the tower on "He lived in a tower" and blow on the beat', () => {
+  const s = shot('06'), at = t => shot06(t, Math.round(t * 24), s), t0 = L()[2].start;
+  assert.equal(at(t0 - 0.3).filter(i => String(i.sprite ?? '').includes('sprites/horn/')).length, 0);
+  const horns = at(t0 + 0.8).filter(i => String(i.sprite ?? '').includes('sprites/horn/'));
+  assert.equal(horns.length, 2);
+  assert.ok(horns[0].at[0] < 800 && horns[1].at[0] > 800, 'one each side');
+  assert.ok(at(t0 + 0.8).some(i => i.draw?.kind === 'note'), 'notes blasting');
+});
+
+test('13 removed: 13b starts at line 8 and Ram rises into frame, then looks out', () => {
+  assert.ok(!shots().some(s => s.id === '13'));
+  const s = shot('13b'); assert.ok(Math.abs(s.start - L()[8].start) < 0.3 || s.start <= L()[8].words[0].s, `13b starts ${s.start}`);
+  assert.ok(s.lyrics.some(e => e.line === 8 && e.from === 0), 'line 8 in this shot');
+  const bodyY = t => shot13b(t, Math.round(t * 24), s).find(i => String(i.sprite).endsWith('ram-back/body')).at[1];
+  assert.ok(bodyY(s.start + 0.05) > bodyY(s.start + 1.8) + 250, 'rises from below');
+});
+
+test('14: the girl blinks every few seconds; 18: the lyric sits on a scroll', () => {
+  const s = shot('14'); let blinks = 0, prev = false;
+  for (let f = Math.round(s.start * 24); f < s.end * 24; f++) { const b = shot14(f / 24, f, s).some(i => i.layer === '14/girl-blink'); if (b && !prev) blinks++; prev = b; }
+  assert.ok(blinks >= 2 && blinks <= 3, `${blinks} blinks`);
+  const s18 = shot('18'); assert.ok(shot18(s18.start + 1, Math.round((s18.start + 1) * 24), s18).some(i => String(i.sprite ?? '').endsWith('scroll/scroll')));
+  assert.ok(!shot18(s18.start + 1, Math.round((s18.start + 1) * 24), s18).some(i => i.layer === '18/tag'), 'old tag gone');
+});
+
+test('43: Ram\'s mouth flaps rapidly in shock and he shakes', () => {
+  const s = shot('43'), heads = new Set(), xs = [];
+  for (let f = Math.round((s.start + 1) * 24); f < Math.round((s.start + 2) * 24); f++) { const p = shot43(f / 24, f, s).find(i => i.who).pose; heads.add(p.head); xs.push(p.hip[0]); }
+  assert.ok(heads.size >= 2, `heads ${[...heads]}`);
+  assert.ok(Math.max(...xs) - Math.min(...xs) >= 8, 'shakes');
+});
