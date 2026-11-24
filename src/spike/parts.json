@@ -1,0 +1,108 @@
+{
+ "torso": {
+  "size": [
+   369,
+   673
+  ],
+  "neck": [
+   296,
+   54
+  ],
+  "shoulderNear": [
+   217,
+   155
+  ],
+  "shoulderFar": [
+   253,
+   136
+  ],
+  "hipNear": [
+   293,
+   482
+  ],
+  "hipFar": [
+   184,
+   482
+  ]
+ },
+ "head-smirk": {
+  "size": [
+   498,
+   561
+  ],
+  "neck": [
+   228,
+   537
+  ]
+ },
+ "head-squint": {
+  "size": [
+   498,
+   561
+  ],
+  "neck": [
+   228,
+   537
+  ]
+ },
+ "head-cackle": {
+  "size": [
+   498,
+   561
+  ],
+  "neck": [
+   228,
+   537
+  ]
+ },
+ "hand-near-open": {
+  "size": [
+   304,
+   212
+  ],
+  "wrist": [
+   16,
+   141
+  ]
+ },
+ "hand-near-grab": {
+  "size": [
+   277,
+   203
+  ],
+  "wrist": [
+   17,
+   119
+  ]
+ },
+ "hand-far-open": {
+  "size": [
+   349,
+   273
+  ],
+  "wrist": [
+   16,
+   164
+  ]
+ },
+ "foot-near": {
+  "size": [
+   349,
+   191
+  ],
+  "ankle": [
+   76,
+   22
+  ]
+ },
+ "foot-far": {
+  "size": [
+   350,
+   192
+  ],
+  "ankle": [
+   74,
+   22
+  ]
+ }
+}

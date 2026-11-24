@@ -10,7 +10,7 @@ export type Shot = {id: string; start: number; end: number; still: string; camer
   surface: {x: number; y: number; w: number; h: number; rot: number}}[]};
 
 /** A still under an eased camera move, with its in-world lyrics painted onto it. */
-export function Still({shot, t, frame}: {shot: Shot; t: number; frame: number}) {
+export function Still({shot, t, frame, image, children}: {shot: Shot; t: number; frame: number; image?: string; children?: React.ReactNode}) {
   const p = interpolate(t, [shot.start, shot.end], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
     easing: Easing.inOut(Easing.sin)});
   const {from: a, to: b} = shot.camera;
@@ -22,7 +22,8 @@ export function Still({shot, t, frame}: {shot: Shot; t: number; frame: number}) 
   return (
     <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, transformOrigin: '0 0',
       transform: `translate(${PROG_W / 2 + weave.x}px, ${PROG_H / 2 + weave.y}px) rotate(${rot}deg) scale(${scale}) translate(${-cx * STILL_W}px, ${-cy * STILL_H}px)`}}>
-      <Img src={staticFile(shot.still)} style={{width: STILL_W, height: STILL_H, display: 'block'}} />
+      <Img src={staticFile(image ?? shot.still)} style={{width: STILL_W, height: STILL_H, display: 'block'}} />
+      {children}
       {inWorld.map((e, i) => {
         const s = e.surface, bh = s.h * STILL_H / inWorld.length;
         return (

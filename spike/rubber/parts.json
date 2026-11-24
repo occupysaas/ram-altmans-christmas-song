@@ -1,0 +1,108 @@
+{
+  "torso.png": {
+    "width": 369,
+    "height": 673,
+    "anchors": {
+      "neck": [
+        296,
+        54
+      ],
+      "shoulderNear": [
+        217,
+        155
+      ],
+      "shoulderFar": [
+        253,
+        136
+      ],
+      "hipNear": [
+        293,
+        482
+      ],
+      "hipFar": [
+        184,
+        482
+      ]
+    }
+  },
+  "head-smirk.png": {
+    "width": 498,
+    "height": 561,
+    "anchors": {
+      "neck": [
+        228,
+        537
+      ]
+    }
+  },
+  "head-squint.png": {
+    "width": 498,
+    "height": 561,
+    "anchors": {
+      "neck": [
+        228,
+        537
+      ]
+    }
+  },
+  "head-cackle.png": {
+    "width": 498,
+    "height": 561,
+    "anchors": {
+      "neck": [
+        228,
+        537
+      ]
+    }
+  },
+  "hand-near-open.png": {
+    "width": 304,
+    "height": 212,
+    "anchors": {
+      "wrist": [
+        16,
+        141
+      ]
+    }
+  },
+  "hand-near-grab.png": {
+    "width": 277,
+    "height": 203,
+    "anchors": {
+      "wrist": [
+        17,
+        119
+      ]
+    }
+  },
+  "hand-far-open.png": {
+    "width": 349,
+    "height": 273,
+    "anchors": {
+      "wrist": [
+        16,
+        164
+      ]
+    }
+  },
+  "foot-near.png": {
+    "width": 349,
+    "height": 191,
+    "anchors": {
+      "ankle": [
+        76,
+        22
+      ]
+    }
+  },
+  "foot-far.png": {
+    "width": 350,
+    "height": 192,
+    "anchors": {
+      "ankle": [
+        74,
+        22
+      ]
+    }
+  }
+}
