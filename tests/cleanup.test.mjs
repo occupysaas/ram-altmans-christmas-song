@@ -123,3 +123,24 @@ test('12: fan blades spin faster just after a kick than between kicks', () => {
   const rate = t => (fanSpin(t + 0.01) - fanSpin(t)) / 0.01;
   assert.ok(rate(k + 0.05) > 1.4 * rate(k - 0.15), `kick ${rate(k + 0.05)} vs before ${rate(k - 0.15)}`);
 });
+
+import {shot18, shot19, TEAR_EYES} from '../src/shots/sad-shots.ts';
+
+test('18: everyone sobs on beats and tears fall from each face', () => {
+  const s = shot('18'), beats = audioJ.beats.filter(b => b > s.start + 0.2 && b < s.end - 0.4);
+  const at = t => shot18(t, Math.round(t * 24), s);
+  for (const who of Object.keys(TEAR_EYES)) {
+    const sobbing = beats.map(b => at(b + 0.05).some(i => i.layer === `18/${who}-sob`));
+    assert.ok(sobbing.some(Boolean) && sobbing.some(x => !x), `${who} never alternates sob/rest on beats`);
+  }
+  const mid = at(s.start + 2);
+  assert.ok(mid.filter(i => i.draw?.kind === 'drop').length >= 8, 'tears');
+  assert.ok(mid.some(i => i.layer === '18/tag' && (i.sx ?? 1) >= 1.6), 'tag enlarged');
+});
+
+test('19: shoppers recoil into shock after the price flips', () => {
+  const s = shot('19'), at = t => shot19(t, Math.round(t * 24), s);
+  assert.ok(at(s.start + 0.1).every(i => !String(i.layer ?? '').endsWith('-shock')));
+  assert.ok(at(s.end - 0.3).filter(i => String(i.layer ?? '').endsWith('-shock')).length >= 3);
+  assert.ok(at(s.end - 0.3).some(i => i.draw?.kind === 'text'), 'price drawn on the tag');
+});

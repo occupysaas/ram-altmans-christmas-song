@@ -18,8 +18,8 @@
 15: {tier: A, puppets: [reindeer, ram-sleigh], fx: [], action: "sleigh launches off the tower roof right-to-left"}
 16: {tier: A, puppets: [reindeer, ram-sleigh], fx: [ramStream], action: "rooftop pass; RAM sucked out of chimneys"}
 17: {tier: A, puppets: [ram-sleigh], fx: [], action: "whip crack, wink on 'wink'"}
-18: {tier: C, fx: [], action: "family at the empty tree"}
-19: {tier: B, fx: [tagFlip], action: "price tag flips to bigger numbers on beats"}
+18: {tier: A, puppets: [layers-18], fx: [], action: "family (cut-out layers) sobs on alternating beats, tears fall and splash, blank tag drawn 2x for a big lyric; slow push-in"}
+19: {tier: A, puppets: [layers-19], fx: [], action: "shoppers bob up to the window, recoil in shock as the red price sticker flips higher on each beat"}
 20: {tier: B, fx: [tower], action: "tower in the cyan cloud; bumps, smoke"}
 21: {tier: A, puppets: [ram-34], fx: [coins], action: "flings tokens up on each beat"}
 22: {tier: A, puppets: [ram-34], fx: [], action: "cackle, head thrown back on snares"}

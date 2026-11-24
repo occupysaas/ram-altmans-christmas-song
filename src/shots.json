@@ -843,14 +843,14 @@
   "camera": {
    "from": {
     "x": 0.5,
-    "y": 0.42,
-    "zoom": 1.2,
+    "y": 0.52,
+    "zoom": 1.05,
     "rot": 0
    },
    "to": {
-    "x": 0.5,
-    "y": 0.58,
-    "zoom": 1.2,
+    "x": 0.52,
+    "y": 0.56,
+    "zoom": 1.3,
     "rot": 0
    }
   },
@@ -862,20 +862,24 @@
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.35,
-     "y": 0.45,
-     "w": 0.31,
-     "h": 0.21,
-     "rot": 4
+     "x": 0.25,
+     "y": 0.49,
+     "w": 0.39,
+     "h": 0.26,
+     "rot": 0
     },
     "style": "narration",
     "tone": "light"
    }
   ],
   "sfx": [],
-  "tier": "C",
+  "tier": "A",
   "fx": [],
-  "action": "family at the empty tree"
+  "action": "family (cut-out layers) sobs on alternating beats, tears fall and splash, blank tag drawn 2x for a big lyric; slow push-in",
+  "plate": "plates/18.png",
+  "puppets": [
+   "layers-18"
+  ]
  },
  {
   "id": "19",
@@ -917,11 +921,13 @@
    }
   ],
   "sfx": [],
-  "tier": "B",
-  "fx": [
-   "tagFlip"
-  ],
-  "action": "price tag flips to bigger numbers on beats"
+  "tier": "A",
+  "fx": [],
+  "action": "shoppers bob up to the window, recoil in shock as the red price sticker flips higher on each beat",
+  "plate": "plates/19.png",
+  "puppets": [
+   "layers-19"
+  ]
  },
  {
   "id": "20",

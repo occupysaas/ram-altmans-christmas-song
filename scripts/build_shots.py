@@ -21,6 +21,7 @@ CAMERAS = {
     'tiltUp':    [[.50, .58, 1.20, 0], [.50, .42, 1.20, 0]],
     'tiltDown':  [[.50, .42, 1.20, 0], [.50, .58, 1.20, 0]],
     'starHold':  [[.45, .435, 1.15, 0], [.48, .47, 1.12, 0]],   # 32: stay on the star through the spin; it falls out the bottom
+    'sadPush':   [[.50, .52, 1.05, 0], [.52, .56, 1.30, 0]],   # 18: everyone in view, then push toward the tag and the bare tree skirt
     'fanShake':  [[.50, .50, 1.05, 2], [.505, .50, 1.06, -2]],   # 12: wide enough to see all three fans whole
     'craneDown': [[.50, .42, 1.20, 0], [.50, .58, 1.30, 0]],
     'craneUp':   [[.50, .58, 1.30, 0], [.50, .42, 1.20, 0]],
