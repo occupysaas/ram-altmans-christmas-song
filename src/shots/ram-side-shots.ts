@@ -29,14 +29,15 @@ export const shot10: Choreo = (_t, frame) => {
   const items: Item[] = [];
   for (const it of SHELF10) if (t < it.at) items.push({...prop(it.sprite, it.pos, it.scale, it.rot), shelf: true} as Item);
   SHELF10.forEach((it, i) => {
-    const near = i % 2 === 0, root: P = near ? [-60, 120] : [-60, 260], tgt = it.pos;
+    // grab each item 80 px up from its foot (its middle); the item then hangs from the hand
+    const near = i % 2 === 0, root: P = near ? [-60, 120] : [-60, 260], tgt: P = [it.pos[0], it.pos[1] - 80];
     const u = clamp01((t - (it.at - 0.3)) / 0.3), back = clamp01((t - it.at - 0.08) / 0.4);
     if (t < it.at - 0.3 || back >= 1) return;
     const out = easeOutBack(u), ret = easeInOut(back);
     const hand: P = [lerp(root[0] + 120, tgt[0], out) + lerp(0, -tgt[0] - 260, ret), lerp(root[1] + 60, tgt[1], out) + lerp(0, -200, ret)];
     const L = r.armLen * S * 2.6;
     items.push({hose: {a: root, b: hand, L, side: 1, width: r.armW * S, fill: near ? c.sleeve : c.sleeveFar, ink: c.ink}});
-    if (t >= it.at) items.push(prop(it.sprite, hand, it.scale, it.rot + 30 * back));
+    if (t >= it.at) items.push(prop(it.sprite, add(hand, [0, 80]), it.scale, it.rot + 30 * back));
     const hp = t >= it.at ? 'hand-near-grab' : 'hand-near-open';
     items.push({sprite: `puppets/ram-side/${hp}`, at: hand, scale: S, rot: hoseEndAngle(root, hand, L, 1), anchor: PARTS[W][hp].wrist, size: PARTS[W][hp].size});
   });

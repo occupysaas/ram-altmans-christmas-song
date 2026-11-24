@@ -37,7 +37,7 @@ shots:
    brief: "The ornate sleigh stacked with server racks launching off the tower roof, swooping right to left across a starry sky, two reindeer straining, Ram Altman cracking a cable whip; a long blank banner on the sleigh's side."}
 - {n: 16, name: rooftop-vacuum, anchor: {line: 10, word: 4}, cam: drift, tower: 2, surf: [0.04, 0.03, 0.62, 0.22, 0], style: hook,
    brief: "Sleigh flying low over Byteville roofs: streams of glowing green RAM sticks being sucked up out of the chimneys into the sleigh like a vacuum."}
-- {n: 17, name: wink, anchor: {line: 11}, cam: punch, tower: null, surf: [0.11, 0.58, 0.69, 0.36, 0], style: narration,
+- {n: 17, name: wink, anchor: {line: 11}, cam: punch, tower: null, surf: [0.19625, 0.625, 0.5175, 0.27, 0], style: narration,
    brief: "Close on Ram Altman at the sleigh's reins, winking at the viewer, scarf streaming, a curling vapour trail behind the sleigh."}
 - {n: 18, name: empty-tree, anchor: {line: 12}, cam: sadPush, tower: 2, surf: [0.27, 0.575, 0.46, 0.145, 0], style: narration,
    brief: "A Byteville family (dad, mum, two kids) staring sadly at the empty space under their tree, a blank gift tag hanging from a branch at the middle; the tower glows through the window."}
@@ -67,7 +67,7 @@ shots:
    brief: "Four little data-center elves in green hoodies with headsets in a row, a giant mechanical press stamping down on them, the right half of the image showing them squashed into one blocky, smeared, low-quality picture."}
 - {n: 31, name: reindeer-buffering, anchor: {line: 23}, cam: drift2, tower: 3, surf: [0.08, 0.42, 0.84, 0.36, 0], style: tech,
    brief: "Two reindeer frozen mid-leap in the night sky pulling the sleigh, with the mega-tower smoking in the background."}
-- {n: 32, name: star, anchor: {line: 24}, cam: starHold, tower: 3, surf: [0.2, 0.49333, 0.6, 0.26, 0], style: narration,
+- {n: 32, name: star, anchor: {line: 24}, cam: starHold, tower: 3, surf: [0.22, 0.51283, 0.51, 0.221, 0], style: narration,
    brief: "Byteville's big town-square Christmas tree from below, camera rising to the shining gold star at the top, with a little blank velvet ribbon tied under the star; the mega-tower on the hill behind."}
 - {n: 33, name: register, anchor: {line: 25}, cam: punch, tower: null, surf: [0.215, 0.285, 0.48, 0.17, 0], style: tech,
    brief: "An ornate old brass cash register with its drawer springing open, a row of blank display tiles across its top."}

@@ -28,7 +28,7 @@ test('lyric nudges land where the notes asked (on-screen px x1.6 in still px)', 
   assert.ok(near(surf('19').y, 0.385 + 40 / 1200), '19 down');
   assert.ok(near(surf('29').y, 0.1 + 160 / 1200), '29 down');
   assert.ok(surf('30').y >= 0.45 && surf('30').y + surf('30').h <= 0.58, '30 on the middle belts');
-  assert.ok(near(surf('32').y, 0.56 - 80 / 1200), '32 up');
+  assert.ok(near(surf('32').y + surf('32').h / 2, 0.56 - 80 / 1200 + 0.13), '32 up (centre; pass 5 shrank it about its centre)');
   assert.ok(surf('33').w <= 0.7 * 0.8 + 1e-6 && surf('33').h <= 0.22 * 0.8 + 1e-6, '33 smaller');
 });
 

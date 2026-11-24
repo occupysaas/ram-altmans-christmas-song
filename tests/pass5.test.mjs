@@ -17,3 +17,20 @@ test('06: the horns are out for the intro blast run and blast on every horn hit'
     assert.ok(blasted, `no blast on the hit at ${h}`);
   }
 });
+
+import {shot10, SHELF10} from '../src/shots/ram-side-shots.ts';
+test('10: the hands grab 80 px higher on each item (its middle), and the item hangs from the hand', () => {
+  const s = shot('10');
+  for (const it of SHELF10) {
+    let best = 1e9;
+    for (let f = Math.floor((it.at - 0.2) * 24); f <= Math.ceil((it.at + 0.2) * 24); f++)
+      for (const i of shot10(f / 24, f, s)) if (i.hose) best = Math.min(best, Math.hypot(i.hose.b[0] - it.pos[0], i.hose.b[1] - (it.pos[1] - 80)));
+    assert.ok(best < 20, `hand misses the raised grab point by ${best.toFixed(0)}`);
+  }
+});
+
+test('17 text 25% smaller; 32 text 15% smaller and 40 px left', () => {
+  const a = shot('17').lyrics[0].surface, b = shot('32').lyrics[0].surface;
+  assert.ok(Math.abs(a.w - 0.69 * 0.75) < 1e-3 && Math.abs(a.h - 0.36 * 0.75) < 1e-3);
+  assert.ok(Math.abs(b.w - 0.6 * 0.85) < 1e-3 && Math.abs(b.x + b.w / 2 - (0.5 - 40 / 1600)) < 1e-3);
+});
