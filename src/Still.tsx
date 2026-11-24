@@ -6,7 +6,7 @@ import {Tower} from './fx/Tower';
 import {Star} from './fx/Star';
 import {CHOREO} from './shots';
 import {Puppet} from './puppet/Puppet';
-import {isSprite, isHose, isShade, isTeam} from './shots/types';
+import {isSprite, isHose, isShade, isTeam, isFront} from './shots/types';
 import {SleighTeam} from './puppet/Quadruped';
 import {Hose} from './puppet/Hose';
 import {doorShake} from './fx/door';
@@ -36,6 +36,8 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
       {shot.fx?.includes('star') && <Star t={t} />}
       {CHOREO[shot.id] && <svg width={STILL_W} height={STILL_H} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
         {CHOREO[shot.id](t, frame, shot).map((p, i) => {
+          if (isFront(p)) return <g key={i}><clipPath id={`front-${shot.id}`}><rect x={0} y={p.front.y} width={STILL_W} height={STILL_H - p.front.y} /></clipPath>
+            <image href={staticFile(shot.plate!)} width={STILL_W} height={STILL_H} clipPath={`url(#front-${shot.id})`} /></g>;
           if (isTeam(p)) return <SleighTeam key={i} state={p.sleighTeam.state} scale={p.sleighTeam.scale} t={p.sleighTeam.t} deerOn={p.sleighTeam.deer} />;
           if (isHose(p)) return <Hose key={i} {...p.hose} />;
           if (isShade(p)) return p.shade.round

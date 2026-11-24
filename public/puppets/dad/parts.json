@@ -1,0 +1,114 @@
+{
+ "torso": {
+  "size": [
+   295,
+   600
+  ],
+  "neck": [
+   156,
+   39
+  ],
+  "shoulderNear": [
+   109,
+   120
+  ],
+  "shoulderFar": [
+   208,
+   120
+  ],
+  "hipNear": [
+   175,
+   538
+  ],
+  "hipFar": [
+   114,
+   538
+  ]
+ },
+ "head-happy": {
+  "size": [
+   276,
+   350
+  ],
+  "neck": [
+   135,
+   330
+  ]
+ },
+ "head-worried": {
+  "size": [
+   272,
+   350
+  ],
+  "neck": [
+   133,
+   330
+  ]
+ },
+ "hand-near-open": {
+  "size": [
+   150,
+   127
+  ],
+  "wrist": [
+   15,
+   71
+  ]
+ },
+ "hand-far-open": {
+  "size": [
+   150,
+   143
+  ],
+  "wrist": [
+   15,
+   80
+  ]
+ },
+ "hand-near-grab": {
+  "size": [
+   150,
+   123
+  ],
+  "wrist": [
+   15,
+   69
+  ]
+ },
+ "foot-near": {
+  "size": [
+   240,
+   154
+  ],
+  "ankle": [
+   74,
+   23
+  ]
+ },
+ "foot-far": {
+  "size": [
+   240,
+   155
+  ],
+  "ankle": [
+   74,
+   24
+  ]
+ },
+ "_rig": {
+  "armLen": 433,
+  "legLen": 677,
+  "armW": 64,
+  "legW": 76,
+  "reach": 377,
+  "hipHeight": 564,
+  "lift": 206,
+  "colors": {
+   "sleeve": "#5a7fa8",
+   "sleeveFar": "#43607f",
+   "leg": "#3d4f6a",
+   "legFar": "#2d3b50",
+   "ink": "#17121c"
+  }
+ }
+}

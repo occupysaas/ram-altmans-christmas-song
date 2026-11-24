@@ -1908,7 +1908,10 @@
   "action": "family runs downstairs left to right",
   "plate": "plates/40.png",
   "puppets": [
-   "townsfolk"
+   "dad",
+   "mum",
+   "kid1",
+   "kid2"
   ]
  },
  {
@@ -2353,7 +2356,10 @@
   "action": "march up the hill with lanterns",
   "plate": "plates/49.png",
   "puppets": [
-   "townsfolk",
+   "dad",
+   "mum",
+   "kid1",
+   "kid2",
    "elf"
   ]
  },

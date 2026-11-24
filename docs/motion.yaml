@@ -40,7 +40,7 @@
 37: {tier: C, fx: [], action: "facts scroll"}
 38: {tier: C, fx: [], action: "throne of GPUs low angle"}
 39: {tier: A, puppets: [ram-side], fx: [], action: "stamp slams on 'Squashing'; little guys scatter"}
-40: {tier: A, puppets: [townsfolk], fx: [], action: "family runs downstairs left to right"}
+40: {tier: A, puppets: [dad, mum, kid1, kid2], fx: [], action: "family runs downstairs left to right"}
 41: {tier: C, fx: [], action: "overhead of the bare floor"}
 42: {tier: C, fx: [], action: "cookie crumbs"}
 43: {tier: A, puppets: [ram-34], fx: [heartPulse], action: "clutches chest as the tiny-DIMM heart glows"}
@@ -49,7 +49,7 @@
 46: {tier: A, puppets: [reindeer, ram-sleigh], fx: [tower], action: "overloaded sleigh sags and struggles to lift"}
 47: {tier: A, puppets: [ram-sleigh], fx: [], action: "sleigh tips and sputters"}
 48: {tier: A, puppets: [reindeer, ram-sleigh], fx: [ramFountain, vroll], action: "nose-dive crash; RAM fountain over Byteville"}
-49: {tier: A, puppets: [townsfolk, elf], fx: [tower], action: "march up the hill with lanterns"}
+49: {tier: A, puppets: [dad, mum, kid1, kid2, elf], fx: [tower], action: "march up the hill with lanterns"}
 50: {tier: B, fx: [coins], action: "tokens spill as the rope tears"}
 51: {tier: C, fx: [], action: "band-aid patch"}
 52: {tier: B, fx: [tower], action: "building open boxes; tower looms"}

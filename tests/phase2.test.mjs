@@ -103,7 +103,7 @@ test('collapse is complete before the TV switches off', () => {
 });
 
 import {CHOREO} from '../src/shots/index.ts';
-export const DONE_A = ['08', '10', '13', '15', '16', '21', '22', '24', '25', '26', '27', '31', '34', '39', '43', '46', '47', '48', '58', '59', '63'];
+export const DONE_A = ['08', '10', '13', '15', '16', '21', '22', '24', '40', '49', '61', '25', '26', '27', '31', '34', '39', '43', '46', '47', '48', '58', '59', '63'];
 
 test('every tier-A shot has a plate, its puppets and a choreography module', () => {
   for (const id of DONE_A) {

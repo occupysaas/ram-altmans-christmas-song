@@ -11,7 +11,10 @@ export type HoseItem = {hose: {a: P; b: P; L: number; side: 1 | -1; width: numbe
 export type ShadeItem = {shade: {x: number; y: number; w: number; h: number; opacity: number; color?: string; round?: boolean}};
 import type {PathState} from './sleigh.ts';
 export type TeamItem = {sleighTeam: {state: PathState; scale: number; t: number; deer: boolean}};
-export type Item = Placed | SpriteItem | HoseItem | ShadeItem | TeamItem;
+/** Redraw the shot's plate below `y` (still px) in front of what came before — e.g. a counter or belt the puppets stand behind. */
+export type FrontItem = {front: {y: number}};
+export type Item = Placed | SpriteItem | HoseItem | ShadeItem | TeamItem | FrontItem;
+export const isFront = (i: Item): i is FrontItem => (i as FrontItem).front !== undefined;
 export const isTeam = (i: Item): i is TeamItem => (i as TeamItem).sleighTeam !== undefined;
 export const isShade = (i: Item): i is ShadeItem => (i as ShadeItem).shade !== undefined;
 export const isHose = (i: Item): i is HoseItem => (i as HoseItem).hose !== undefined;
