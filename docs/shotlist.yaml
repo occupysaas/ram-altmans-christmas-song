@@ -39,7 +39,7 @@ shots:
    brief: "Sleigh flying low over Byteville roofs: streams of glowing green RAM sticks being sucked up out of the chimneys into the sleigh like a vacuum."}
 - {n: 17, name: wink, anchor: {line: 11}, cam: punch, tower: null, surf: [0.19625, 0.625, 0.5175, 0.27, 0], style: narration,
    brief: "Close on Ram Altman at the sleigh's reins, winking at the viewer, scarf streaming, a curling vapour trail behind the sleigh."}
-- {n: 18, name: empty-tree, anchor: {line: 12}, cam: sadPush, tower: 2, surf: [0.27, 0.575, 0.46, 0.145, 0], style: narration,
+- {n: 18, name: empty-tree, anchor: {line: 12}, cam: sadPush, tower: 2, surf: [0.13, 0.452, 0.51, 0.21, 0], style: narration,
    brief: "A Byteville family (dad, mum, two kids) staring sadly at the empty space under their tree, a blank gift tag hanging from a branch at the middle; the tower glows through the window."}
 - {n: 19, name: shop-window, anchor: {line: 13}, cam: pushIn, tower: 2, surf: [0.275, 0.41833, 0.45, 0.27, 0], style: hook,
    brief: "Electronics shop window from the snowy street: a single RAM stick on a velvet cushion with a huge blank price tag; townsfolk with jaws dropped reflected in the glass."}

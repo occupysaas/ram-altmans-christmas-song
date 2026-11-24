@@ -34,3 +34,13 @@ test('17 text 25% smaller; 32 text 15% smaller and 40 px left', () => {
   assert.ok(Math.abs(a.w - 0.69 * 0.75) < 1e-3 && Math.abs(a.h - 0.36 * 0.75) < 1e-3);
   assert.ok(Math.abs(b.w - 0.6 * 0.85) < 1e-3 && Math.abs(b.x + b.w / 2 - (0.5 - 40 / 1600)) < 1e-3);
 });
+
+import {SCROLL18} from '../src/shots/pass4-scenes.ts';
+test('18: the scroll is twice as big, its paper covers the painted tag, and the lyric fills it', () => {
+  const tag = read('public/sprites/layers/layers.json')['18/tag'];
+  assert.ok(SCROLL18.scale >= 1.2, `scroll scale ${SCROLL18.scale}`);
+  const paper = {x0: SCROLL18.x - 560 * SCROLL18.scale, x1: SCROLL18.x + 560 * SCROLL18.scale, y0: SCROLL18.y + (117 - 210) * SCROLL18.scale, y1: SCROLL18.y + (350 - 210) * SCROLL18.scale};
+  assert.ok(paper.x0 <= tag.x && paper.x1 >= tag.x + tag.w && paper.y0 <= tag.y + 2 && paper.y1 >= tag.y + tag.h, `paper ${JSON.stringify(paper)} vs tag ${JSON.stringify(tag)}`);
+  const s = shot('18').lyrics[0].surface;
+  assert.ok(s.w * 1600 >= 800 && s.y * 1200 >= paper.y0 && (s.y + s.h) * 1200 <= paper.y1, 'lyric on the paper, bigger');
+});

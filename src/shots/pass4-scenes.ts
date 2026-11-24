@@ -70,7 +70,8 @@ export const shot14: Choreo = (_t, frame, shot) => {
 
 // 18 — the sad family, as before, but the lyric is on a parchment scroll hung between the tree and the people
 import {shot18 as sad18} from './sad-shots.ts';
-export const SCROLL18 = {x: 800, y: 770, scale: 0.85};   // paper spans about x 400-1200, y 690-860
+// paper spans about x 100-1500, y 524-815: it covers the tree's painted tag
+export const SCROLL18 = {x: 800, y: 640, scale: 1.25};
 export const shot18: Choreo = (t, frame, shot) => {
   const items = sad18(t, frame, shot).filter(i => (i as {layer?: string}).layer !== '18/tag');
   const sway = 1.2 * Math.sin(twos(frame) * 1.4);
