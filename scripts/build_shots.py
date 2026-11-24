@@ -103,6 +103,7 @@ def build():
             pt = imp[s['push']['t']] if isinstance(s['push']['t'], str) else s['push']['t']
             shots[-1]['camera']['push'] = {**dict(zip(('x', 'y', 'zoom', 'rot'), s['push']['to'])), 't': pt, 'dur': s['push'].get('dur', 0.3)}
         if 'split' in s: shots[-1]['_split'] = s['split']
+        if 'breaks' in s: shots[-1]['_breaks'] = s['breaks']
         if s.get('sfx') == 'knocks': shots[-1]['sfx'] += [{'name': 'knock', 't': t} for t in imp['knocks']]
 
     def entry(sh, li, frm, to):
@@ -112,7 +113,7 @@ def build():
             sh['lyrics'].append({'line': li, 'from': frm, 'to': sp['word'], 'surface': sh['_surf'], 'style': sh['_style'], 'tone': sh['_tone']})
             sh['lyrics'].append({'line': li, 'from': sp['word'], 'to': to, 'surface': {'x': x, 'y': y, 'w': w, 'h': h, 'rot': rot}, 'style': sh['_style'], 'tone': sh['_tone'], 'own': True})
             return
-        sh['lyrics'].append({'line': li, 'from': frm, 'to': to, 'surface': sh['_surf'], 'style': sh['_style'], 'tone': sh['_tone']})
+        sh['lyrics'].append({'line': li, 'from': frm, 'to': to, 'surface': sh['_surf'], 'style': sh['_style'], 'tone': sh['_tone'], **({'breaks': sh['_breaks']} if sh.get('_breaks') else {})})
 
     for li, l in enumerate(lyr):
         n = len(l['words'])
@@ -126,7 +127,7 @@ def build():
     next(x for x in shots if x['id'] == '65')['sfx'].append({'name': 'boom', 't': round(imp['silence'] + BOOM_DELAY, 3)})
     for sh in shots:
         del sh['_surf'], sh['_style'], sh['_tone']
-        sh.pop('_split', None)
+        sh.pop('_split', None); sh.pop('_breaks', None)
     return shots
 
 if __name__ == '__main__':

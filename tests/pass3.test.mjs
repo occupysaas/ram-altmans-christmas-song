@@ -75,7 +75,7 @@ test('10: the shelf starts full and loses exactly one item per grab, each grabbe
     assert.equal(onShelf(it.at + 0.15), 5 - k, `after grab ${k}`);
     let best = 1e9;
     for (let f = Math.floor((it.at - 0.2) * 24); f <= Math.ceil((it.at + 0.2) * 24); f++)
-      for (const i of shot10(f / 24, f, s)) if (i.hose) best = Math.min(best, Math.hypot(i.hose.b[0] - it.pos[0], i.hose.b[1] - (it.pos[1] - 80)));   // pass 5: grabs 80 px up
+      for (const i of shot10(f / 24, f, s)) if (i.hose) best = Math.min(best, Math.hypot(i.hose.b[0] - it.pos[0], i.hose.b[1] - (it.pos[1] - (it.sprite === 'ram-stick' ? 80 : 0))));   // pass 6: sticks 80 up, chip/byte level
     assert.ok(best < 20, `hand misses item ${k} by ${best.toFixed(0)}`);
   });
 });

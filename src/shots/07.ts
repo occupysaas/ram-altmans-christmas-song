@@ -34,7 +34,8 @@ export const shot07: Choreo = (_t, frame) => {
     {layer: m[0] < -15 ? '07/sam-head-left' : '07/sam', dy: bob, rot, pivot: SEAT},
     // hand + mouse stay on the desk where they're painted; the sleeve is drawn after, its cuff over the wrist
     {layer: '07/hand', dx: m[0], dy: m[1] + 2 * press, sy: press ? 0.92 : 1, pivot: [1010, 860]},
-    {hose: {a: shoulder, b: wrist, L: 158, side: 1, width: 32, fill: '#9a9aa0', ink: '#17121c'}},
+    // length = the actual reach (+2%) with the elbow bowing UP, so the sleeve never dips into the desk or keyboard
+    {hose: {a: shoulder, b: wrist, L: Math.hypot(wrist[0] - shoulder[0], wrist[1] - shoulder[1]) * 1.02, side: -1, width: 32, fill: '#9a9aa0', ink: '#17121c'}},
     {layer: '07/chair-back'},
     {draw: {kind: 'cursor', at: cursor, size: 46}},
   ];

@@ -64,7 +64,7 @@ export function impactWords(line: number): Set<number> {
   return out;
 }
 
-export function layoutEntry(e: {line: number; from: number; to: number; style: Style; surface?: {lineGap?: number}}, box: {w: number; h: number}, legacy = false): Layout {
+export function layoutEntry(e: {line: number; from: number; to: number; style: Style; surface?: {lineGap?: number}; breaks?: number[]}, box: {w: number; h: number}, legacy = false): Layout {
   const gapK = e.surface?.lineGap ?? LINE_GAP;
   const imp = impactWords(e.line);
   const lead = LEAD[e.style][e.line % LEAD[e.style].length], big = IMP[e.style][e.line % IMP[e.style].length];
@@ -81,7 +81,8 @@ export function layoutEntry(e: {line: number; from: number; to: number; style: S
     const rows: Row[] = [];
     for (const w of words) {
       const r = rows.at(-1), gap = r ? (legacy ? 0.3 * size : wordGap(r.words.at(-1)!, w)) : 0;
-      if (r && r.width + gap + w.width <= box.w) { r.words.push(w); r.width += gap + w.width; r.height = Math.max(r.height, w.size * gapK); }
+      // `breaks`: line word indices that must start a new row (a forced line break)
+      if (r && r.width + gap + w.width <= box.w && !(e.breaks ?? []).includes(w.k)) { r.words.push(w); r.width += gap + w.width; r.height = Math.max(r.height, w.size * gapK); }
       else rows.push({words: [w], width: w.width, height: w.size * gapK});
     }
     const height = rows.reduce((a, r) => a + r.height, 0);

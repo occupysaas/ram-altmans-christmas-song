@@ -29,15 +29,16 @@ export const shot10: Choreo = (_t, frame) => {
   const items: Item[] = [];
   for (const it of SHELF10) if (t < it.at) items.push({...prop(it.sprite, it.pos, it.scale, it.rot), shelf: true} as Item);
   SHELF10.forEach((it, i) => {
-    // grab each item 80 px up from its foot (its middle); the item then hangs from the hand
-    const near = i % 2 === 0, root: P = near ? [-60, 120] : [-60, 260], tgt: P = [it.pos[0], it.pos[1] - 80];
+    // grab the RAM sticks 80 px up from their feet (their middles); the chip and byte at their own height
+    const lift = it.sprite === 'ram-stick' ? 80 : 0;
+    const near = i % 2 === 0, root: P = near ? [-60, 120] : [-60, 260], tgt: P = [it.pos[0], it.pos[1] - lift];
     const u = clamp01((t - (it.at - 0.3)) / 0.3), back = clamp01((t - it.at - 0.08) / 0.4);
     if (t < it.at - 0.3 || back >= 1) return;
     const out = easeOutBack(u), ret = easeInOut(back);
     const hand: P = [lerp(root[0] + 120, tgt[0], out) + lerp(0, -tgt[0] - 260, ret), lerp(root[1] + 60, tgt[1], out) + lerp(0, -200, ret)];
     const L = r.armLen * S * 2.6;
     items.push({hose: {a: root, b: hand, L, side: 1, width: r.armW * S, fill: near ? c.sleeve : c.sleeveFar, ink: c.ink}});
-    if (t >= it.at) items.push(prop(it.sprite, add(hand, [0, 80]), it.scale, it.rot + 30 * back));
+    if (t >= it.at) items.push(prop(it.sprite, add(hand, [0, lift]), it.scale, it.rot + 30 * back));
     const hp = t >= it.at ? 'hand-near-grab' : 'hand-near-open';
     items.push({sprite: `puppets/ram-side/${hp}`, at: hand, scale: S, rot: hoseEndAngle(root, hand, L, 1), anchor: PARTS[W][hp].wrist, size: PARTS[W][hp].size});
   });
@@ -108,12 +109,13 @@ export function vacuum25(t: number, shot: {start: number; end: number}) {
   const aimY = lerp(SHELVES[0] + 10, SHELVES[3] - 30, row / 3) + 6 * Math.sin(t * 9);
   const wandEnd: P = [R25.x - 120, lerp(aimY, 700, 0.4)];
   const grip: P = [wandEnd[0] - 70, wandEnd[1] + 6];
-  const mouth: P = [wandEnd[0] - 330 * NOZ_S, aimY];
+  // the blower tube: half the old length
+  const mouth: P = [wandEnd[0] - 165 * NOZ_S, aimY];
   const pose = stand(W, {t, x: R25.x, floor: R25.floor, S, flip: true, lean: 12 + 8 * hit, head: 'head-grin', headRot: -4 * hit, spread: 220,
     hands: () => ({near: grip, far: add(wandEnd, [14, 16]), nearPart: 'hand-near-grab', farPart: 'hand-far-grab'})});
   const belly = 1 + 0.1 * hit;                                   // the tank swells on each beat
-  // the spout is at sprite x≈185 (the body is centred at 200, the anchor)
-  const socket: P = [CAN_AT[0] + (185 - 200) * CAN_S * 0.45 * belly, CAN_AT[1] - 380 * CAN_S * (2 - belly) * 0.95];
+  // the spout is at sprite x≈185 (the anchor is x 150)
+  const socket: P = [CAN_AT[0] + (185 - 150) * CAN_S * belly, CAN_AT[1] - 380 * CAN_S * (2 - belly) * 0.95];
   const b0 = beat(shot.start + 0.05).i, bN = beat(shot.end - 0.3).i;
   return {socket, wandEnd, grip, mouth, aimY, pose, S, belly, lastBeat: audio.beats[bN], b0, n};
 }
@@ -129,8 +131,7 @@ export const shot25: Choreo = (_t, frame, shot) => {
     items.push({draw: {kind: 'line', at: p, to: q, size: 9, color: '#ffffff', opacity: Math.min(1, 1.3 * Math.sin(Math.PI * u))}});
   }
   // the giant canister, bloated and bouncing, then Ram in front of it, the fat hose and the nozzle
-  // a tall narrow tank (45% of the old width), no backpack straps
-  items.push({sprite: 'sprites/vacuum/canister-nostrap', at: CAN_AT, scale: CAN_S, size: [300, 380], anchor: [200, 380], sx: 0.45 * g.belly, sy: 2 - g.belly} as Item);
+  items.push({sprite: 'sprites/vacuum/canister', at: CAN_AT, scale: CAN_S, size: [300, 380], anchor: [150, 380], sx: g.belly, sy: 2 - g.belly} as Item);
   items.push({who: W, pose: g.pose, scale: S});
   const d = Math.hypot(g.wandEnd[0] - g.socket[0], g.wandEnd[1] - g.socket[1]);
   items.push({hose: {a: g.socket, b: g.wandEnd, L: d * 1.06, side: 1, width: 64, fill: '#6e5536', ink: '#17121c'}});
@@ -145,11 +146,12 @@ export const shot25: Choreo = (_t, frame, shot) => {
   }
   const ang = Math.atan2(g.mouth[1] - g.wandEnd[1], g.wandEnd[0] - g.mouth[0]) * 180 / Math.PI;
   // a leaf-blower tube: straight rigid red tube with brass bands, its round opening facing left at the shelf
-  items.push({draw: {kind: 'line', at: g.wandEnd, to: g.mouth, size: 78, color: '#17121c'}});
-  items.push({draw: {kind: 'line', at: g.wandEnd, to: g.mouth, size: 68, color: '#c8102e'}});
-  for (const u of [0.15, 0.55, 0.92]) items.push({draw: {kind: 'line', at: [lerp(g.wandEnd[0], g.mouth[0], u) - 7, lerp(g.wandEnd[1], g.mouth[1], u)], to: [lerp(g.wandEnd[0], g.mouth[0], u) + 7, lerp(g.wandEnd[1], g.mouth[1], u)], size: 74, color: '#e0b040'}});
-  items.push({draw: {kind: 'ellipse', at: g.mouth, size: 0, w: 46, h: 96, color: '#e0b040', rot: -ang}});
-  items.push({draw: {kind: 'ellipse', at: [g.mouth[0] - 4, g.mouth[1]], size: 0, w: 30, h: 76, color: '#1b0f08', rot: -ang, mouth: true}});
+  // twice as thick as before
+  items.push({draw: {kind: 'line', at: g.wandEnd, to: g.mouth, size: 146, color: '#17121c'}});
+  items.push({draw: {kind: 'line', at: g.wandEnd, to: g.mouth, size: 136, color: '#c8102e'}});
+  for (const u of [0.2, 0.85]) items.push({draw: {kind: 'line', at: [lerp(g.wandEnd[0], g.mouth[0], u) - 8, lerp(g.wandEnd[1], g.mouth[1], u)], to: [lerp(g.wandEnd[0], g.mouth[0], u) + 8, lerp(g.wandEnd[1], g.mouth[1], u)], size: 142, color: '#e0b040'}});
+  items.push({draw: {kind: 'ellipse', at: g.mouth, size: 0, w: 70, h: 192, color: '#e0b040', rot: -ang}});
+  items.push({draw: {kind: 'ellipse', at: [g.mouth[0] - 6, g.mouth[1]], size: 0, w: 46, h: 158, color: '#1b0f08', rot: -ang, mouth: true}});
   for (let k = Math.max(0, g.n - 6); k < g.n; k++) {   // boxes whooshing off the shelf into the mouth
     const bx = BOXES[k], u = clamp01((t - grabTime(k, shot)) / 0.3);
     if (u >= 1) continue;

@@ -58,7 +58,10 @@ const T = (id: string, scale: number, extra?: (t: number, st: PathState, shot: S
   (_t: number, frame: number, shot: Shot2): Item[] => {
     const t = twos(frame), st = SLEIGH_PATHS[id](t, shot);
     const items: Item[] = [{sleighTeam: {state: st, scale, t, deer: true}}];
-    return extra ? [...items, ...extra(t, st, shot)] : items;
+    if (!extra) return items;
+    // shop SOLD signs belong to the town, so they go UNDER the sleigh; everything else (coins, HA!s, RAM) over it
+    const ex = extra(t, st, shot), under = ex.filter(i => (i as {draw?: {text?: string}}).draw?.text === 'SOLD');
+    return [...under, ...items, ...ex.filter(i => !under.includes(i))];
   };
 
 /** RAM sticks streaming up out of the chimneys into the sleigh (16). */

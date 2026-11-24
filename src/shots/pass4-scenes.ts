@@ -38,8 +38,8 @@ const HORNS06: [P, number][] = [[[455, 390], -1], [[1145, 390], 1]];   // mouthp
 // the intro horn blasts (detected in the 'other' stem by scripts/horn_hits.py): out just before the first, a blast on
 // each one, then on the beat through the verse
 import HORN_HITS from '../timing/horns.json' with {type: 'json'};
-// they pop out ON the first blast and slide back into the tower when the verse starts
-const HORN_OUT = (HORN_HITS as number[])[0] - 0.04, HORN_IN = lyrics[2].start, HORN_IN_DUR = 0.35;
+// they pop out ON the first horn hit and stay until the shot cuts away
+const HORN_OUT = (HORN_HITS as number[])[0] - 0.04, HORN_IN = 9999, HORN_IN_DUR = 0.35;
 export const shot06: Choreo = (_t, frame) => {
   // +0.04: held frames lag, so blasts land on the hit
   const t = twos(frame) + 0.04, a = t - HORN_OUT, back = clamp01((t - HORN_IN) / HORN_IN_DUR);
@@ -73,11 +73,11 @@ export const shot14: Choreo = (_t, frame, shot) => {
 // 18 — the sad family, as before, but the lyric is on a parchment scroll hung between the tree and the people
 import {shot18 as sad18} from './sad-shots.ts';
 // paper spans about x 100-1500, y 524-815: it covers the tree's painted tag
-export const SCROLL18 = {x: 800, y: 640, scale: 1.25};
+export const SCROLL18 = {x: 800, y: 640, scale: 1.25, sx: 0.84};   // 33% narrower than before, same height
 export const shot18: Choreo = (t, frame, shot) => {
   const items = sad18(t, frame, shot).filter(i => (i as {layer?: string}).layer !== '18/tag');
   const sway = 1.2 * Math.sin(twos(frame) * 1.4);
-  return [{sprite: 'sprites/scroll/scroll', at: [SCROLL18.x, SCROLL18.y], scale: SCROLL18.scale, size: [1400, 420], rot: sway}, ...items];
+  return [{sprite: 'sprites/scroll/scroll', at: [SCROLL18.x, SCROLL18.y], scale: SCROLL18.scale, sx: SCROLL18.sx, size: [1400, 420], rot: sway}, ...items];
 };
 
 // 11 (0:46) "So he coded all night…": the city behind bounces on the beat (squash/stretch from its base, so no gap
