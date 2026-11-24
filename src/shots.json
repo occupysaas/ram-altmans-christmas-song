@@ -2763,7 +2763,8 @@
   ],
   "tier": "B",
   "fx": [
-   "tower"
+   "tower",
+   "chimneySmoke"
   ],
   "action": "water pours into the tank (streams, ripples, splashes); town windows flicker and black out one by one; tower bumps",
   "plate": "plates/56.png",

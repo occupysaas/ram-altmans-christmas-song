@@ -26,11 +26,11 @@ export const shot56: Choreo = (_t, frame, shot) => {
     const age = (lt * 2.2 + hash(k)) % 1, vx = (hash(k * 3.1) - 0.5) * 160;
     items.push({draw: {kind: 'dot', at: [TANK[0] + vx * age, TANK[1] - 70 * Math.sin(Math.PI * age)], size: 5, color: '#ffffff', opacity: 1 - age}});
   }
-  WIN.forEach(([x, y, w, h], i) => {   // the outage: each window flickers, then goes dark
-    const off = 0.4 + (span - 1.0) * hash(i * 7.3), a = lt - off;
+  WIN.forEach(([x, y, w, h], i) => {   // the outage: windows go dark one by one through the shot; only every 4th gives one blink first
+    const off = 0.6 + (span - 1.2) * hash(i * 7.3), a = lt - off;
     if (a < 0) return;
-    const flicker = a < 0.3 && Math.floor(a * 24 / 2) % 2 === 0;
-    if (!flicker) items.push({draw: {kind: 'rect', at: [x, y], size: 0, w: w + 4, h: h + 4, color: '#161b35', opacity: 0.88}});
+    const blink = i % 4 === 0 && a >= 0.08 && a < 0.17;   // a single brief relight, then dark for good
+    if (!blink) items.push({draw: {kind: 'rect', at: [x, y], size: 0, w: w + 4, h: h + 4, color: '#161b35', opacity: 0.88}});
   });
   for (const [hx, hy, r] of ROTORS) items.push({sprite: 'sprites/windmill/rotor', at: [hx, hy], scale: r / 190, size: [400, 400], anchor: [200, 200], rot: (_t * 160 + hx) % 360});   // smooth time: no strobing
   return items;

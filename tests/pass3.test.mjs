@@ -260,3 +260,15 @@ test('56: the windmill rotors turn; remaining tower shots use the cut-out tower'
   assert.notEqual(rot(s.start + 1)[0].rot, rot(s.start + 1.3)[0].rot);
   for (const id of ['28', '49', '52', '56', '60', '62', '65']) assert.ok(shot(id).towerCut, `shot ${id} still on the old tower bump`);
 });
+
+test('56: the outage is calm (only a few single blinks) and chimneys smoke', () => {
+  const s = shot('56'), n = read('docs/fx-regions.json')['56'].windows.length;
+  let toggles = 0, prev = null;
+  for (let f = Math.round(s.start * 24); f < s.end * 24; f++) {
+    const dark = new Set(shot56(f / 24, f, s).filter(i => i.draw?.kind === 'rect').map(i => i.draw.at.join(',')));
+    if (prev) for (const k of prev) if (!dark.has(k)) toggles++;   // a window that relit
+    prev = dark;
+  }
+  assert.ok(toggles <= n / 3, `${toggles} relights for ${n} windows`);
+  assert.ok(s.fx.includes('chimneySmoke') && read('docs/fx-regions.json')['56'].chimneySmoke.length >= 4);
+});
