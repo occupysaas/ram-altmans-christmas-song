@@ -40,35 +40,29 @@ export function slamTimes(shot: Shot): number[] {
   for (const b of audio.beats) if (b >= first - 0.05 && b < shot.end - 0.3 && (out.length === 0 || b - out[out.length - 1] > 0.9)) out.push(b);
   return out;
 }
-export const STAMP_AT: P = [860, 540];
+/** Ram stands centre stage; the stamp lands well out in front of him (rubber arms), on his right. */
+export const RAM39 = {x: 800, floor: 760};
+export const STAMP_AT: P = [1100, 760];
 const WHO = ['dad', 'mum', 'kid1', 'kid2', 'elf'];
 type Runner = {who: string; x: number; y: number; vx: number; vy: number; flip: boolean; flat: boolean; flatAge: number; dist: number};
 const FLAT = 0.6;
 
+/** The crowd circles Ram on ellipses (some clockwise, some not), never closer than 260 px (y counted double for depth).
+ *  On every slam the whole ring bursts outward and drifts back. Runner 0 is timed to be under the first stamp. */
 export function shot39crowd(t: number, shot: Shot): Runner[] {
   const slams = slamTimes(shot), rs: Runner[] = [];
+  const burst = (q: number) => slams.reduce((k, s) => k + (q >= s ? 0.55 * Math.exp(-(q - s) / 0.5) * Math.min(1, (q - s) / 0.08) : 0), 0);
   for (let i = 0; i < 14; i++) {
-    const victim = i < 3 ? Math.min(i, slams.length - 1) : -1;
-    const sp = 240 + 160 * hash(i * 3.3), dir = hash(i * 1.7) < 0.5 ? -1 : 1;
-    let x = 100 + 1400 * hash(i * 5.9), y = 570 + 480 * hash(i * 9.1), vx = dir * sp, vy = (hash(i * 2.2) - 0.5) * 120;
-    if (victim >= 0) {   // victims run in from the side so they arrive under the stamp exactly on their slam
-      const ts = slams[victim]; vx = dir * 260; vy = 0; y = STAMP_AT[1]; x = STAMP_AT[0] - vx * (ts - shot.start);
-    }
-    let dist = 0, flatAge = -1;
-    for (let tt = shot.start; tt < t; tt += 1 / 24) {
-      const dt = Math.min(1 / 24, t - tt);
-      for (const s of slams) if (s > tt - dt && s <= tt) {
-        if (victim >= 0 && s === slams[victim]) flatAge = 0;
-        else if (Math.hypot(x - STAMP_AT[0], (y - STAMP_AT[1]) * 2) < 500) {   // flee directly away from the slam
-          const a = Math.atan2((y - STAMP_AT[1]) * 2, x - STAMP_AT[0]); vx = Math.cos(a) * 430; vy = Math.sin(a) * 140;
-        }
-      }
-      if (flatAge >= 0 && flatAge < FLAT) { flatAge += dt; continue; }
-      x += vx * dt; y += vy * dt; dist += Math.hypot(vx, vy) * dt;
-      if (x < 40 || x > 1560) vx = -vx;
-      if (y < 560 || y > 1060) vy = -vy;
-    }
-    rs.push({who: WHO[i % 5], x, y, vx, vy, flip: vx < 0, flat: flatAge >= 0 && flatAge < FLAT, flatAge, dist});
+    const victim = i === 0;
+    const rx = victim ? 300 : 400 + 260 * hash(i * 3.3), ry = victim ? 160 : 190 + 90 * hash(i * 5.9);
+    const w = (victim ? -1 : hash(i * 1.7) < 0.5 ? -1 : 1) * (0.7 + 0.6 * hash(i * 2.2));
+    const th0 = victim ? -w * (slams[0] - shot.start) : 2 * Math.PI * hash(i * 9.1);   // victim: at angle 0 (the stamp) on the first slam
+    const flatAge = victim && t >= slams[0] ? t - slams[0] : -1, flat = flatAge >= 0 && flatAge < FLAT;
+    const lt = t - shot.start - (victim && flatAge >= 0 ? Math.min(flatAge, FLAT) : 0);   // the flattened one is stuck for FLAT s
+    const th = th0 + w * lt, k = 1 + burst(t);
+    const x = RAM39.x + rx * k * Math.cos(th), y = RAM39.floor + ry * k * Math.sin(th);
+    const vx = -rx * k * w * Math.sin(th), vy = ry * k * w * Math.cos(th);
+    rs.push({who: WHO[i % 5], x, y, vx, vy, flip: vx < 0, flat, flatAge, dist: Math.abs(w) * (rx + ry) * 0.5 * lt});
   }
   return rs;
 }
@@ -92,10 +86,10 @@ function runPose(r: Runner, S: number, t: number): Pose {
 export function crowdItems(t: number, shot: Shot): {behind: Item[]; front: Item[]} {
   const behind: Item[] = [], front: Item[] = [];
   for (const r of shot39crowd(t, shot).sort((a, b) => a.y - b.y)) {
-    const depth = clamp01((r.y - 540) / 520), kid = r.who.startsWith('kid') || r.who === 'elf';
+    const depth = clamp01((r.y - (RAM39.floor - 340)) / 680), kid = r.who.startsWith('kid') || r.who === 'elf';
     const S = scaleFor(r.who, lerp(200, 520, depth) * (kid ? 0.62 : 1));
     const item: Item = {who: r.who, pose: runPose(r, S, t), scale: S};
-    (r.y < 545 ? behind : front).push(item);
+    (r.y < RAM39.floor ? behind : front).push(item);
   }
   return {behind, front};
 }

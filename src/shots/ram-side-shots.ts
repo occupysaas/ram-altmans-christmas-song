@@ -7,7 +7,7 @@ import shots from '../shots.json' with {type: 'json'};
 import {hash} from '../fx/particles.ts';
 import type {Choreo, Item} from './types.ts';
 import {stand, scaleFor, beat, beatHit, wordAt, twos} from './kit.ts';
-import {slamTimes, crowdItems, STAMP_AT} from './townsfolk.ts';
+import {slamTimes, crowdItems, STAMP_AT, RAM39} from './townsfolk.ts';
 
 const W = 'ram-side';
 const rig = () => PARTS[W]._rig;
@@ -135,15 +135,15 @@ export const shot27: Choreo = (_t, frame) => {
 /** 39: "Squashing all the little guys" — Ram slams the stamp every two beats while the town square panics around
  *  him (crowd in townsfolk.ts); anyone caught under it is flattened. */
 export const shot39: Choreo = (_t, frame, shot) => {
-  const t = twos(frame), S = scaleFor(W, 468), floor = 528, slams = slamTimes(shot);
+  const t = twos(frame), S = scaleFor(W, 600), floor = RAM39.floor, slams = slamTimes(shot);
   const last = slams.filter(x => x <= t).pop(), next = slams.find(x => x > t);
   const down = last !== undefined ? clamp01((t - last) / 0.1) * (1 - clamp01((t - last - 0.3) / 0.35)) : 0;
   const raise = next !== undefined ? easeInOut(clamp01(1 - (next - t) / 0.5)) : 0;
-  const stampY = down > 0 ? lerp(160, 470, down) : lerp(300, 120, raise), stampX = lerp(820, 860, Math.max(down, raise * 0.5));
-  const pose = stand(W, {t, x: 700, floor, S, lean: lerp(-6, 22, down), head: down > 0 ? 'head-grin' : 'head-squint', spread: 160,
+  const stampY = down > 0 ? lerp(300, STAMP_AT[1] - 70, down) : lerp(420, 260, raise), stampX = lerp(STAMP_AT[0] - 60, STAMP_AT[0], Math.max(down, raise * 0.5));
+  const pose = stand(W, {t, x: RAM39.x, floor, S, lean: lerp(-6, 22, down), head: down > 0 ? 'head-grin' : 'head-squint', spread: 160,
     hipBob: last !== undefined && down > 0 ? 18 * Math.exp(-(t - last) * 6) : 0,
     hands: () => ({near: [stampX - 20, stampY + 40], far: [stampX - 60, stampY + 50], nearPart: 'hand-near-fist', farPart: 'hand-far-fist'})});
-  const crowd = crowdItems(t, shot), items: Item[] = [...crowd.behind, {who: W, pose, scale: S}, prop('stamp', [stampX, stampY], 0.55, lerp(-10, 0, down))];
+  const crowd = crowdItems(t, shot), items: Item[] = [...crowd.behind, {who: W, pose, scale: S}, prop('stamp', [stampX, stampY], 0.7, lerp(-10, 0, down))];
   if (last !== undefined && t - last < 0.3) for (let k = 0; k < 10; k++) {   // snow puff on impact
     const a = t - last, th = Math.PI * (k / 9), r = 60 + 420 * a;
     items.push({draw: {kind: 'dot', at: [STAMP_AT[0] + Math.cos(th) * r * (k % 2 ? 1 : -1), STAMP_AT[1] - Math.sin(th) * r * 0.25], size: 22 - 40 * a, color: '#f4f2ff', opacity: 1 - a / 0.3}});

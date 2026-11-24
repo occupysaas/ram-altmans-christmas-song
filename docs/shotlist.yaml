@@ -83,7 +83,7 @@ shots:
    brief: "Close on a long blank parchment scroll held open by mittens, with a blank sticky note slapped on its corner."}
 - {n: 38, name: gpu-throne, anchor: {line: 30}, cam: craneUp, tower: null, surf: [0.15, 0.02, 0.7, 0.3, 0], style: hook,
    brief: "Ram Altman lounging on a towering throne built from stacked graphics cards with glowing fans, seen from a low angle."}
-- {n: 39, name: squash, anchor: {line: 31}, cam: shake, tower: null, surf: [0.03, 0.52, 0.8, 0.36, -3], style: narration,
+- {n: 39, name: squash, anchor: {line: 31}, cam: stampWide, tower: null, surf: [0.05, 0.06, 0.72, 0.28, -2], style: narration,
    brief: "Ram Altman bringing down a giant rubber stamp on tiny townsfolk (a shopkeeper, kids with a garage workbench) scattering; a blank envelope fluttering in the foreground."}
 - {n: 40, name: christmas-morning, anchor: {line: 32}, cam: [[.42, .58, 1.2, 0], [.47, .58, 1.2, 0]], tower: 4, surf: [0.08, 0.22, 0.7, 0.3, 0], style: narration,
    brief: "Christmas morning: the family running downstairs left to right in pyjamas, sunlight through the window where the monstrous tower smokes on the hill."}

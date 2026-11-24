@@ -24,6 +24,7 @@ CAMERAS = {
     'starHold':  [[.45, .435, 1.15, 0], [.48, .47, 1.12, 0]],   # 32: stay on the star through the spin; it falls out the bottom
     'sadPush':   [[.50, .52, 1.05, 0], [.52, .56, 1.30, 0]],   # 18: everyone in view, then push toward the tag and the bare tree skirt
     'boomWide':  [[.60, .50, 1.12, 0], [.52, .50, 1.0, 0]],   # 65: the whole tower in frame as it swells, then wide for the RAM rain
+    'stampWide': [[.50, .52, 1.06, 1.5], [.50, .52, 1.09, -1.5]],   # 39: Ram centre stage, the whole ring of runners in view
     'fanShake':  [[.50, .50, 1.05, 2], [.505, .50, 1.06, -2]],   # 12: wide enough to see all three fans whole
     'craneDown': [[.50, .42, 1.20, 0], [.50, .58, 1.30, 0]],
     'craneUp':   [[.50, .58, 1.30, 0], [.50, .42, 1.20, 0]],
