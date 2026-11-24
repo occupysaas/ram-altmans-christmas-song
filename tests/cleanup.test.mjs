@@ -203,3 +203,47 @@ test('31: a big loading spinner sits over the frozen team after "buffering"', ()
   const team = after.find(i => i.sleighTeam).sleighTeam.state.pos, cx = d.reduce((a, i) => a + i.draw.at[0], 0) / d.length;
   assert.ok(Math.abs(cx - team[0]) < 700 && cx > 100 && cx < 1500, `spinner at ${cx}, team at ${team[0]}`);
 });
+
+import {shot36} from '../src/shots/townsfolk.ts';
+import {shot39crowd, slamTimes} from '../src/shots/townsfolk.ts';
+import {shot40, stairs40} from '../src/shots/crowd.ts';
+
+test('36: carolers open up to sing on the sung words', () => {
+  const s = shot('36'), words = read('src/timing/lyrics-aligned.json')[28].words.filter(w => w.s > s.start && w.s < s.end - 0.1);
+  const sing = t => shot36(t, Math.round(t * 24), s).filter(i => String(i.layer ?? '').endsWith('-sing')).length;
+  for (const w of words) assert.ok(sing(w.s + 0.06) >= 4, `nobody sings "${w.w}"`);
+  assert.ok(shot36(s.start + 1, Math.round((s.start + 1) * 24), s).some(i => i.draw?.kind === 'note'), 'music notes');
+});
+
+test('39: a dozen-plus townsfolk run about, facing where they run, and scatter on each stamp', () => {
+  const s = shot('39'), at = t => shot39crowd(t, s);
+  const r = at(s.start + 1.0);
+  assert.ok(r.length >= 12, `${r.length} runners`);
+  for (const p of r) if (Math.abs(p.vx) > 20 && !p.flat) assert.equal(p.flip, p.vx < 0, `runner ${p.who} faces backwards`);
+  assert.ok(slamTimes(s).length >= 2, 'stamps more than once');
+  const t1 = slamTimes(s)[0], near = q => at(q).filter(p => Math.hypot(p.x - 860, p.y - 700) < 380 && !p.flat).length;
+  assert.ok(near(t1 + 0.6) < near(t1 - 0.02) || near(t1 - 0.02) === 0, 'they scatter from the stamp');
+  assert.ok(slamTimes(s).some(q => at(q + 0.2).some(p => p.flat)), 'someone gets flattened');
+});
+
+test('40: every runner\'s feet stay on the stairs (planted foot on a tread, nobody floats)', () => {
+  const s = shot('40');
+  for (let f = Math.round(s.start * 24); f < s.end * 24; f += 2) for (const it of shot40(f / 24, f, s)) {
+    const {near, far} = it.pose.feet;
+    for (const ft of [near, far]) assert.ok(ft[1] <= stairs40(ft[0]) + 4, `${it.who} f${f} foot below the tread`);
+    const gap = Math.min(Math.abs(near[1] - stairs40(near[0])), Math.abs(far[1] - stairs40(far[0])));
+    assert.ok(gap <= 4, `${it.who} f${f} floating ${gap.toFixed(0)}px above the stairs`);
+  }
+});
+
+import {shot35} from '../src/shots/townsfolk.ts';
+
+test('35: the whole creature chomps shut on each beat (one layer, squashed as a body), open in between', () => {
+  const s = shot('35'), beats = audioJ.beats.filter(b => b > s.start + 0.2 && b < s.end - 0.4);
+  const at = t => shot35(t, Math.round(t * 24), s).filter(i => String(i.layer ?? '').startsWith('35/creature'));
+  for (const b of beats) {
+    const on = at(b + 0.06), off = at(b + 0.32);
+    assert.equal(on.length, 1); assert.equal(on[0].layer, '35/creature-shut'); assert.ok((on[0].sy ?? 1) < 0.97, 'squash on the chomp');
+    assert.equal(off[0].layer, '35/creature');
+  }
+});

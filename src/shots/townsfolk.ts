@@ -1,0 +1,115 @@
+/** 36 (2:23) carolers that actually sing, and 39 (2:35) the town square in a panic while Ram stamps. */
+import {type P, add, clamp01, easeOutBack, lerp} from '../puppet/geom.ts';
+import {hash, cycle} from '../fx/particles.ts';
+import {groove} from '../puppet/groove.ts';
+import {shoulders} from '../puppet/body.ts';
+import {PARTS} from '../puppet/parts.ts';
+import lyrics from '../timing/lyrics-aligned.json' with {type: 'json'};
+import audio from '../timing/audio.json' with {type: 'json'};
+import layers from '../../public/sprites/layers/layers.json' with {type: 'json'};
+import {beat, scaleFor, twos, wordAt} from './kit.ts';
+import type {Choreo, Item, Pose} from './types.ts';
+
+type Shot = {start: number; end: number};
+const IDX = layers as Record<string, {x: number; y: number; w: number; h: number}>;
+
+/** 36: six carolers sway on the bar and bob on the beat; on every sung word their mouths open wide ("O"), the
+ *  songbook tips, and music notes float up out of the group. Not lip-sync: one open shape per word onset. */
+const WORD_TIMES = lyrics.flatMap(l => l.words.map(w => w.s));
+export const shot36: Choreo = (_t, frame, shot) => {
+  const t = twos(frame), g = groove(t, true), items: Item[] = [];
+  const lastWord = WORD_TIMES.filter(w => w <= t + 0.12 && w >= shot.start - 0.3).pop();   // +0.12: held frames can sit up to 3 frames early
+  for (let i = 1; i <= 6; i++) {
+    const key = `36/caroler${i}`, L = IDX[key], feet: P = [L.x + L.w / 2, L.y + L.h];
+    const singing = lastWord !== undefined && t - lastWord < 0.3 + 0.02 * (i % 3);
+    const book = i === 4 ? 3 * Math.sin(t * 7) : 0;
+    items.push({layer: singing ? `${key}-sing` : key, dy: -7 * g.bob, rot: 2.2 * g.sway * (i % 2 ? 1 : 0.8) + book, pivot: feet});
+  }
+  for (let k = 0; k < 9; k++) {
+    const {age} = cycle(k + 50, t, 1.6), who = IDX[`36/caroler${1 + (k % 6)}`];
+    const x = who.x + who.w * 0.6 + 60 * Math.sin(age * 5 + k) + 40 * age, y = who.y + who.h * 0.12 - 320 * age;
+    items.push({draw: {kind: 'note', at: [x, y], size: 54 + 20 * hash(k), text: k % 3 ? '♪' : '♫', opacity: Math.sin(Math.PI * age), rot: 15 * Math.sin(age * 6 + k)}});
+  }
+  return items;
+};
+
+/** 39: Ram stamps every two beats; 14 townsfolk run around the square in panic (arms up), scattering away from each
+ *  slam; three are caught under the stamp, flattened into pancakes, then pop back up and run. */
+export function slamTimes(shot: Shot): number[] {
+  const first = wordAt(31, 0), out: number[] = [];
+  for (const b of audio.beats) if (b >= first - 0.05 && b < shot.end - 0.3 && (out.length === 0 || b - out[out.length - 1] > 0.9)) out.push(b);
+  return out;
+}
+export const STAMP_AT: P = [860, 540];
+const WHO = ['dad', 'mum', 'kid1', 'kid2', 'elf'];
+type Runner = {who: string; x: number; y: number; vx: number; vy: number; flip: boolean; flat: boolean; flatAge: number; dist: number};
+const FLAT = 0.6;
+
+export function shot39crowd(t: number, shot: Shot): Runner[] {
+  const slams = slamTimes(shot), rs: Runner[] = [];
+  for (let i = 0; i < 14; i++) {
+    const victim = i < 3 ? Math.min(i, slams.length - 1) : -1;
+    const sp = 240 + 160 * hash(i * 3.3), dir = hash(i * 1.7) < 0.5 ? -1 : 1;
+    let x = 100 + 1400 * hash(i * 5.9), y = 570 + 480 * hash(i * 9.1), vx = dir * sp, vy = (hash(i * 2.2) - 0.5) * 120;
+    if (victim >= 0) {   // victims run in from the side so they arrive under the stamp exactly on their slam
+      const ts = slams[victim]; vx = dir * 260; vy = 0; y = STAMP_AT[1]; x = STAMP_AT[0] - vx * (ts - shot.start);
+    }
+    let dist = 0, flatAge = -1;
+    for (let tt = shot.start; tt < t; tt += 1 / 24) {
+      const dt = Math.min(1 / 24, t - tt);
+      for (const s of slams) if (s > tt - dt && s <= tt) {
+        if (victim >= 0 && s === slams[victim]) flatAge = 0;
+        else if (Math.hypot(x - STAMP_AT[0], (y - STAMP_AT[1]) * 2) < 500) {   // flee directly away from the slam
+          const a = Math.atan2((y - STAMP_AT[1]) * 2, x - STAMP_AT[0]); vx = Math.cos(a) * 430; vy = Math.sin(a) * 140;
+        }
+      }
+      if (flatAge >= 0 && flatAge < FLAT) { flatAge += dt; continue; }
+      x += vx * dt; y += vy * dt; dist += Math.hypot(vx, vy) * dt;
+      if (x < 40 || x > 1560) vx = -vx;
+      if (y < 560 || y > 1060) vy = -vy;
+    }
+    rs.push({who: WHO[i % 5], x, y, vx, vy, flip: vx < 0, flat: flatAge >= 0 && flatAge < FLAT, flatAge, dist});
+  }
+  return rs;
+}
+
+/** Panicked running pose: legs scissor with distance travelled, both arms flung up. */
+function runPose(r: Runner, S: number, t: number): Pose {
+  const rig = PARTS[r.who]._rig, dir = r.flip ? -1 : 1, ph = r.dist / (rig.legLen * S * 1.2), stride = rig.legLen * S * 0.7;
+  const lift = rig.lift * S * 0.8, bob = Math.abs(Math.sin(ph * Math.PI)) * 12 * S;
+  const hip: P = [r.x, r.y - rig.hipHeight * S - bob], lean = 12;
+  const sh = shoulders(r.who, hip, lean, S, r.flip);
+  const f = (s: number): P => [r.x + dir * stride * 0.5 * Math.sin(Math.PI * ph + s), r.y - lift * Math.max(0, Math.cos(Math.PI * ph + s))];
+  const flail = Math.sin(t * 22 + r.x) * 30 * S;
+  const pop = r.flatAge >= FLAT ? easeOutBack(clamp01((r.flatAge - FLAT) / 0.2)) : 1;
+  return {hip, lean, head: r.who === 'elf' ? 'head-focus' : 'head-worried', headRot: 0, flip: r.flip,
+    feet: {near: f(0), far: f(Math.PI)},
+    hands: {near: add(sh.near, [dir * 30 * S, -rig.armLen * S * 0.9 + flail]), far: add(sh.far, [-dir * 40 * S, -rig.armLen * S * 0.85 - flail]), nearPart: 'hand-near-open', farPart: 'hand-far-open'},
+    squash: r.flat ? 0.22 : lerp(0.7, 1, pop)};
+}
+
+/** Puppet items for the crowd, back to front; `behind` = those further back than Ram's floor line. */
+export function crowdItems(t: number, shot: Shot): {behind: Item[]; front: Item[]} {
+  const behind: Item[] = [], front: Item[] = [];
+  for (const r of shot39crowd(t, shot).sort((a, b) => a.y - b.y)) {
+    const depth = clamp01((r.y - 540) / 520), kid = r.who.startsWith('kid') || r.who === 'elf';
+    const S = scaleFor(r.who, lerp(200, 520, depth) * (kid ? 0.62 : 1));
+    const item: Item = {who: r.who, pose: runPose(r, S, t), scale: S};
+    (r.y < 545 ? behind : front).push(item);
+  }
+  return {behind, front};
+}
+
+/** 35 (2:19) "Fed it all to a model that's dumb as a clam": the golden machine-creature (one cut-out layer, so the
+ *  WHOLE body moves) snaps shut on every beat with a squash, then springs open with a stretch, eyes bulging. */
+export const shot35: Choreo = (_t, frame) => {
+  const t = twos(frame), b = beat(t), L = IDX['35/creature'], feet: P = [L.x + L.w / 2, L.y + L.h];
+  const shut = b.i >= 0 && b.since < 0.18, k = shut ? 1 - b.since / 0.18 : Math.exp(-(b.since - 0.18) / 0.12);
+  const sy = shut ? 1 - 0.1 * k : 1 + 0.06 * k, sx = shut ? 1 + 0.07 * k : 1 - 0.03 * k;
+  const items: Item[] = [{layer: shut ? '35/creature-shut' : '35/creature', sx, sy, pivot: feet, rot: shut ? -1.5 * k : 0}];
+  if (shut && b.since < 0.12) for (let i = 0; i < 6; i++) {   // crumbs of green bills puffing out of the shut jaws
+    const a = b.since / 0.12, th = Math.PI * (0.9 + 0.4 * hash(i + b.i));
+    items.push({draw: {kind: 'dot', at: [L.x + L.w * 0.18 + Math.cos(th) * 120 * a, L.y + L.h * 0.45 - Math.sin(th) * 90 * a], size: 9, color: '#5fd35a', opacity: 1 - a}});
+  }
+  return items;
+};
