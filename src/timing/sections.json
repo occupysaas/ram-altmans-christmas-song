@@ -1,0 +1,47 @@
+[
+ {
+  "name": "Intro",
+  "start": 0,
+  "end": 25.026
+ },
+ {
+  "name": "Verse 1",
+  "start": 25.026,
+  "end": 63.433
+ },
+ {
+  "name": "Chorus 1",
+  "start": 63.433,
+  "end": 98.448
+ },
+ {
+  "name": "Verse 2",
+  "start": 98.448,
+  "end": 134.785
+ },
+ {
+  "name": "Chorus 2",
+  "start": 134.785,
+  "end": 168.699
+ },
+ {
+  "name": "Bridge",
+  "start": 168.699,
+  "end": 187.939
+ },
+ {
+  "name": "Final Chorus",
+  "start": 187.939,
+  "end": 219.089
+ },
+ {
+  "name": "Ending",
+  "start": 219.089,
+  "end": 233.483
+ },
+ {
+  "name": "Outro",
+  "start": 233.483,
+  "end": 259.6
+ }
+]
