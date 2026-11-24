@@ -50,9 +50,9 @@
 47: {tier: A, puppets: [ram-sleigh], fx: [], action: "sleigh tips and sputters"}
 48: {tier: A, puppets: [reindeer, ram-sleigh], fx: [ramFountain, vroll], action: "nose-dive crash; RAM fountain over Byteville"}
 49: {tier: A, puppets: [dad, mum, kid1, kid2, elf], fx: [tower], action: "march up the hill with lanterns"}
-50: {tier: B, fx: [coins], action: "tokens spill as the rope tears"}
+50: {tier: A, puppets: [layers-50], fx: [], action: "elves bob and sway; rope tug-of-war snaps on \"un-paywalled\", tokens burst"}
 51: {tier: C, fx: [], action: "band-aid patch"}
-52: {tier: B, plate: true, towerCut: true, fx: [tower], action: "building open boxes; tower looms"}
+52: {tier: B, fx: [tower], action: "building open boxes; tower looms"}
 53: {tier: B, fx: [confetti], action: "balloon pops, confetti"}
 54: {tier: B, plate: true, towerCut: true, fx: [tower], action: "whole town sings; tower bumps"}
 55: {tier: B, fx: [giftDrop], action: "gifts drop under trees"}

@@ -2460,11 +2460,13 @@
    }
   ],
   "sfx": [],
-  "tier": "B",
-  "fx": [
-   "coins"
-  ],
-  "action": "tokens spill as the rope tears"
+  "tier": "A",
+  "fx": [],
+  "action": "elves bob and sway; rope tug-of-war snaps on \"un-paywalled\", tokens burst",
+  "plate": "plates/50.png",
+  "puppets": [
+   "layers-50"
+  ]
  },
  {
   "id": "51",
@@ -2554,9 +2556,7 @@
   "fx": [
    "tower"
   ],
-  "action": "building open boxes; tower looms",
-  "plate": "plates/52.png",
-  "towerCut": true
+  "action": "building open boxes; tower looms"
  },
  {
   "id": "53",
@@ -2613,15 +2613,15 @@
   "still": "stills/54.png",
   "camera": {
    "from": {
-    "x": 0.47500000000000003,
-    "y": 0.42000000000000004,
-    "zoom": 1.282051282051282,
+    "x": 0.48,
+    "y": 0.52,
+    "zoom": 1.06,
     "rot": 0
    },
    "to": {
     "x": 0.5,
-    "y": 0.42,
-    "zoom": 1.2,
+    "y": 0.5145631067961165,
+    "zoom": 1.03,
     "rot": 0
    }
   },
@@ -2634,9 +2634,9 @@
     "to": 9,
     "surface": {
      "x": 0.1,
-     "y": 0.05,
+     "y": 0.07,
      "w": 0.75,
-     "h": 0.4,
+     "h": 0.3,
      "rot": 0
     },
     "style": "hook",

@@ -173,7 +173,7 @@ test('35: Ram shovels scoop-lift-toss on the beat, RAM arcs into the mouth, and 
 test('tower shots with a cut-out tower draw it over a tower-free plate', () => {
   const layers = read('public/sprites/layers/layers.json'), towers = read('docs/towers.json');
   const cut = shots().filter(s => s.towerCut);
-  assert.ok(['20', '23', '52', '54'].every(id => cut.some(s => s.id === id)), `cut-out shots: ${cut.map(s => s.id)}`);
+  assert.ok(['20', '23', '54'].every(id => cut.some(s => s.id === id)), `cut-out shots: ${cut.map(s => s.id)}`);   // 52 joins when its elf cut-outs exist
   assert.ok(!cut.some(s => ['01', '02', '06'].includes(s.id)), 'intro towers untouched');
   for (const s of cut) {
     assert.ok(layers[`${s.id}/tower`], `shot ${s.id} has no tower layer`);
@@ -182,4 +182,29 @@ test('tower shots with a cut-out tower draw it over a tower-free plate', () => {
     const L = layers[`${s.id}/tower`], [bx, by] = towers[s.id].base;
     assert.ok(bx * 1600 >= L.x - 40 && bx * 1600 <= L.x + L.w + 40 && by * 1200 >= L.y && by * 1200 <= L.y + L.h + 80, `shot ${s.id}: base outside the tower layer`);
   }
+});
+
+import {shot50, shot54, ROPE_SNAP, RING54} from '../src/shots/elves-town.ts';
+
+test('50: everyone bobs on the beat; the rope tug snaps on "un-paywalled" and tokens burst', () => {
+  const s = shot('50'), at = t => shot50(t, Math.round(t * 24), s);
+  assert.ok(Math.abs(ROPE_SNAP - L()[40].words.find(w => w.w === 'un-paywalled').s) < 1e-6);
+  const ropes = t => at(t).filter(i => i.hose);
+  assert.equal(ropes(ROPE_SNAP - 0.15).length, 1, 'one taut rope before the snap');
+  assert.equal(ropes(ROPE_SNAP + 0.3).length, 2, 'two halves after');
+  assert.ok(at(ROPE_SNAP + 0.3).filter(i => String(i.sprite ?? '').endsWith('coin')).length >= 8, 'token burst');
+  const b = audioJ.beats.find(x => x > ROPE_SNAP + 0.3), dyOf = t => at(t).find(i => i.layer === '50/char2').dy ?? 0;
+  assert.ok(Math.abs(dyOf(b + 0.13)) > Math.abs(dyOf(b + 0.45)) + 3, 'bob on the beat');
+});
+
+test('54: the town holds hands in a ring around the giant RAM rising out of the snow', () => {
+  const s = shot('54'), at = t => shot54(t, Math.round(t * 24), s);
+  const early = at(s.start + 0.1), late = at(s.end - 0.2);
+  assert.equal(late.filter(i => String(i.sprite ?? '').includes('townsfolk/ring-')).length, 8, 'eight hand-holding pairs');
+  const ram = t => at(t).find(i => i.ramGiant);
+  assert.ok(ram(s.start + 0.1).at[1] > ram(s.end - 0.2).at[1] + 150, 'the RAM rises');
+  const xs = late.filter(i => String(i.sprite ?? '').includes('townsfolk/ring-')).map(i => i.at[0]);
+  assert.ok(Math.min(...xs) < RING54.cx - 250 && Math.max(...xs) > RING54.cx + 250, 'ring goes around the RAM');
+  assert.ok(late.findIndex(i => i.ramGiant) > late.findIndex(i => String(i.sprite ?? '').includes('ring-back')) &&
+    late.findIndex(i => i.ramGiant) < late.findIndex(i => String(i.sprite ?? '').includes('ring-front')), 'back half behind it, front half in front');
 });
