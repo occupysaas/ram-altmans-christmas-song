@@ -47,15 +47,15 @@ shots:
    brief: "Electronics shop window from the snowy street: a single RAM stick on a velvet cushion with a huge blank price tag; townsfolk with jaws dropped reflected in the glass."}
 - {n: 20, name: tower-cloud, anchor: {line: 14}, cam: tiltUp, tower: 2, surf: [0.06, 0.03, 0.64, 0.25, 0], style: hook,
    brief: "The data-center tower, now bigger with extra floors and side wings, its top piercing a glowing cyan cloud bank, smoke from two stacks."}
-- {n: 21, name: token-mountain, anchor: {line: 15}, cam: craneDown, tower: null, surf: [0.22, 0.02, 0.56, 0.2, 0], style: narration,
+- {n: 21, name: token-mountain, anchor: {line: 15}, cam: [[.48, .5, 1.1, 0], [.52, .5, 1.1, 0]], tower: null, surf: [0.22, 0.02, 0.56, 0.2, 0], style: narration,
    brief: "Ram Altman on top of a mountain of gold tokens with circuit patterns, flinging handfuls into the air, coins raining down."}
-- {n: 22, name: cackle, anchor: {line: 15, word: 5}, cam: lowAngle, tower: 2, surf: [0.12, 0.57, 0.82, 0.18, 0], style: narration,
+- {n: 22, name: cackle, anchor: {line: 15, word: 5}, cam: pushIn, tower: 2, surf: [0.12, 0.04, 0.76, 0.2, 0], style: narration,
    brief: "Low-angle wide shot of Ram Altman cackling with his head thrown back on the tower's balcony, scarf flying, Byteville below."}
 - {n: 23, name: crane-roof, anchor: {line: 16}, cam: craneUp, tower: 2, surf: [0.15, 0.03, 0.7, 0.3, 0], style: hook,
    brief: "Exterior: the tower humming and glowing bright at night, a string of marquee bulbs running around its upper floors, smoke and an occasional spark."}
-- {n: 24, name: vault, anchor: {line: 17}, cam: pushIn, tower: null, surf: [0.29, 0.08, 0.58, 0.8, 0], style: hook,
+- {n: 24, name: vault, anchor: {line: 17}, cam: pushIn, tower: null, surf: [0.16, 0.06, 0.5, 0.26, 0], style: hook,
    brief: "Ram Altman slamming a giant round vault door on a wall of glowing green RAM shelves; the door's big smooth face takes the middle of the frame."}
-- {n: 25, name: grab-vram, anchor: {line: 18}, cam: panRight, tower: null, surf: [0.1, 0.07, 0.76, 0.29, 0], style: narration,
+- {n: 25, name: grab-vram, anchor: {line: 18}, cam: panRight, tower: null, surf: [0.54, 0.04, 0.43, 0.3, 0], style: narration,
    brief: "Side view: Ram Altman's two long arms reaching and yanking a graphics card and a glass cookie-jar full of glowing cache chips off a shelf."}
 - {n: 26, name: stash, anchor: {line: 19}, cam: shake, tower: null, surf: [0.1, 0.63, 0.73, 0.3, 0], style: narration,
    brief: "Ram Altman cramming SSD drives into a bulging sack, then caught mid-shove looking straight at the viewer with a guilty squint, the sack half hidden behind his back."}

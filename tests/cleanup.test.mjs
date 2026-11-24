@@ -144,3 +144,38 @@ test('19: shoppers recoil into shock after the price flips', () => {
   assert.ok(at(s.end - 0.3).filter(i => String(i.layer ?? '').endsWith('-shock')).length >= 3);
   assert.ok(at(s.end - 0.3).some(i => i.draw?.kind === 'text'), 'price drawn on the tag');
 });
+
+import {coinsAt, SHOP_SIGNS} from '../src/shots/sleigh.ts';
+
+test('21/22: a fresh burst of coins pours out of the sleigh on each beat, and shops flip to SOLD', () => {
+  const s = shot('21'), beats = audioJ.beats.filter(b => b > s.start + 0.15 && b < s.end - 0.2);
+  assert.ok(beats.length >= 2);
+  for (const b of beats) {
+    const before = coinsAt('21', b - 0.02, s).filter(c => c.age < 0.1).length, after = coinsAt('21', b + 0.06, s).filter(c => c.age < 0.1).length;
+    assert.ok(after >= before + 6, `beat ${b}: ${before} -> ${after}`);
+  }
+  const items = SLEIGH_CHOREO['21'](s.end - 0.05, Math.round((s.end - 0.05) * 24), s);
+  assert.ok(items.filter(i => i.draw?.text === 'SOLD').length >= 2, 'shops sold');
+  assert.equal(SHOP_SIGNS.length, 5);
+  const s22 = shot('22'), it22 = SLEIGH_CHOREO['22'](s22.start + 0.5, Math.round((s22.start + 0.5) * 24), s22);
+  assert.ok(it22.some(i => i.sleighTeam) && it22.filter(i => i.draw?.text === 'SOLD').length === 5);
+});
+
+import {shot24, shot25, vaultDoorX, spillLanded, shelfLeft} from '../src/shots/ram-side-shots.ts';
+
+test('24: Ram pushes the door from the right and the spilled pile on the floor keeps growing', () => {
+  const s = shot('24'), q = k => s.start + (s.end - s.start) * k;
+  assert.ok(spillLanded(q(0.3)) < spillLanded(q(0.6)) && spillLanded(q(0.6)) < spillLanded(q(0.95)), 'pile grows');
+  assert.ok(spillLanded(q(0.95)) >= 12);
+  const it = shot24(q(0.5), Math.round(q(0.5) * 24), s), ram = it.find(i => i.who);
+  assert.ok(ram.pose.flip && ram.pose.hip[0] > vaultDoorX(q(0.5)), 'Ram is to the right of the door, facing left');
+});
+
+test('25: the shelf empties beat by beat and is bare by the end', () => {
+  const s = shot('25'), beats = audioJ.beats.filter(b => b > s.start && b < s.end - 0.3);   // a beat in the last 0.3 s is cut off
+  let prev = shelfLeft(s.start);
+  assert.ok(prev >= 16);
+  for (const b of beats) { const n = shelfLeft(b + 0.3); assert.ok(n < prev, `no grab on beat ${b}`); prev = n; }
+  assert.equal(shelfLeft(s.end - 0.05), 0);
+  assert.ok(shot25(s.end - 0.2, Math.round((s.end - 0.2) * 24), s).some(i => i.who === 'girl'), 'girl behind him');
+});

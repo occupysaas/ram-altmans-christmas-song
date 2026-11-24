@@ -21,11 +21,11 @@
 18: {tier: A, puppets: [layers-18], fx: [], action: "family (cut-out layers) sobs on alternating beats, tears fall and splash, blank tag drawn 2x for a big lyric; slow push-in"}
 19: {tier: A, puppets: [layers-19], fx: [], action: "shoppers bob up to the window, recoil in shock as the red price sticker flips higher on each beat"}
 20: {tier: B, fx: [tower], action: "tower in the cyan cloud; bumps, smoke"}
-21: {tier: A, puppets: [ram-34], fx: [coins], action: "flings tokens up on each beat"}
-22: {tier: A, puppets: [ram-34], fx: [], action: "cackle, head thrown back on snares"}
+21: {tier: A, puppets: [sleigh], fx: [], action: "shopping spree: sleigh pass over the shop street pouring coins on each beat; shop signs flip to SOLD"}
+22: {tier: A, puppets: [sleigh], fx: [], action: "hovering sleigh over the sold-out street; Ram leans back cackling on snares, HA!s pop"}
 23: {tier: B, fx: [tower], action: "tower humming bright; marquee bulbs chase"}
-24: {tier: A, puppets: [ram-side], fx: [], action: "shoulder-pushes the vault door shut"}
-25: {tier: A, puppets: [ram-side], fx: [], action: "two-arm pull of the GPU and cache jar with elastic overshoot"}
+24: {tier: A, puppets: [ram-side], fx: [], action: "round vault door rolls across the doorway; Ram on its right shoves it on beats, kicks knock it back; RAM spills out of the gap and piles on the floor"}
+25: {tier: A, puppets: [ram-side, girl], fx: [], action: "generic electronics store: Ram sweeps RAM boxes off the shelf into a teetering armful; a girl behind him reaches and is left at a bare shelf"}
 26: {tier: A, puppets: [ram-side], fx: [stashFreeze], action: "shoves SSDs in the sack; freeze and squint at camera on 'umm, stash'"}
 27: {tier: A, puppets: [ram-side], fx: [], action: "jabs at the chart on beats"}
 28: {tier: B, fx: [tower], action: "mega-tower banner; bumps, smoke and sparks"}

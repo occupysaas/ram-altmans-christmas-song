@@ -51,7 +51,7 @@ export function SleighTeam({state, scale, t, deerOn = true}: {state: PathState; 
       {deerOn && g.reins.map((r, i) => <path key={'r' + i} d={`M${r.a[0]},${r.a[1]} Q${r.c[0]},${r.c[1]} ${r.b[0]},${r.b[1]}`}
         stroke="#b3122c" strokeWidth={Math.max(3, 7 * s)} strokeLinecap="round" fill="none" />)}
       <g transform={`rotate(${state.angle})`}>
-        <Img href={`sprites/sleigh/${ramName}.png`} part={g.ram} at={rotAbout(g.seat, [0, 0], -state.angle)} an={g.ram.seat} s={s * 0.9} rot={state.crash ? -20 * state.crash : 0} />
+        <Img href={`sprites/sleigh/${ramName}.png`} part={g.ram} at={rotAbout(g.seat, [0, 0], -state.angle)} an={g.ram.seat} s={s * 0.9} rot={state.crash ? -20 * state.crash : -16 * (state.laugh ?? 0)} />
         <Img href={`sprites/sleigh/${slName}.png`} part={g.sl} at={[0, 0]} an={g.sl.hitch} s={s} />
       </g>
     </g>

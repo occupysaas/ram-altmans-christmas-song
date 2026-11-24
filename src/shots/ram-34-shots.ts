@@ -34,34 +34,6 @@ export const shot08: Choreo = (_t, frame, shot) => {
   return items;
 };
 
-/** 21: "Selling tokens by the thousand" — flings tokens up on every beat. */
-export const shot21: Choreo = (_t, frame, shot) => {
-  const t = twos(frame), who = 'ram-34', S = scaleFor(who, 470), floor = 888, x = 620, hit = beatHit(t, 0.22);
-  const pose = stand(who, {t, x, floor, S, lean: -6 * hit, head: 'head-grin', headRot: -8 * hit, spread: 200,
-    hands: sh => ({near: add(sh.near, [120 * S, lerp(220, -380, hit) * S]), far: add(sh.far, [-120 * S, lerp(240, -360, hit) * S]),
-      nearPart: hit > 0.3 ? 'hand-near-open' : 'hand-near-fist', farPart: hit > 0.3 ? 'hand-far-open' : 'hand-far-fist'})});
-  const items: Item[] = [{who, pose, scale: S}];
-  const b = beat(t);
-  for (let k = 0; k < 3; k++) {                                  // coins from the last three beats, arcing up and away
-    const since = b.since + k * b.period; if (since > 1.6) continue;
-    for (let i = 0; i < 6; i++) {
-      const seed = (b.i - k) * 13 + i, vx = (hash(seed) - 0.5) * 900, vy = -700 - 400 * hash(seed + 1);
-      items.push(prop('coin', [x + vx * since, 520 + vy * since + 900 * since * since], 0.22, since * 600 * (hash(seed + 2) - 0.5)));
-    }
-  }
-  return items;
-};
-
-/** 22: "he laughs right out loud" — a full-body cackle, head snapping back on the snares. */
-export const shot22: Choreo = (_t, frame) => {
-  const t = twos(frame), who = 'ram-34', S = scaleFor(who, 340), floor = 560, x = 560, sn = snareHit(t);
-  const shake = Math.sin(t * 2 * Math.PI * 9) * 5;
-  const pose = stand(who, {t, x: x + shake * 0.4, floor, S, lean: -10 - 8 * sn, head: 'head-cackle', headRot: -14 * sn, spread: 140, hipBob: shake,
-    hands: sh => ({near: add(sh.near, [200 * S, (-60 + 30 * Math.sin(t * 18)) * S]), far: add(sh.far, [-200 * S, (-40 - 30 * Math.sin(t * 18)) * S]),
-      nearPart: 'hand-near-open', farPart: 'hand-far-open'})});
-  return [{who, pose, scale: S}];
-};
-
 /** 43: "your heart is two DIMMs too small" — clutches his chest in panic while the tiny green heart pulses. */
 export const shot43: Choreo = (_t, frame, shot) => {
   const t = twos(frame), lt = t - shot.start, who = 'ram-34', S = scaleFor(who, 760), floor = 1310, x = 1300;
