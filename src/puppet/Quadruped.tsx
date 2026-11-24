@@ -2,14 +2,14 @@
  *  group is mirrored when flying left. Far legs are darker and behind the body. */
 import React from 'react';
 import {staticFile} from 'remotion';
-import {type P, add} from './geom';
+import {type P, add, rotAbout} from './geom';
 import {Hose} from './Hose';
+import {teamGeometry, DEER_SCALE} from './team';
 import deer from '../../public/puppets/reindeer/parts.json';
-import sleighJ from '../../public/sprites/sleigh/sleigh.json';
 import type {PathState} from '../shots/sleigh';
 
 type Part = {size: [number, number]; [k: string]: any};
-const D = deer as Record<string, Part>, SL = sleighJ as Record<string, Part>;
+const D = deer as Record<string, Part>;
 const INK = '#17121c', LEG = '#7a4a2a', LEG_FAR = '#5c3820';
 
 function Img({href, part, at, an, rot = 0, s}: {href: string; part: Part; at: P; an: P; rot?: number; s: number}) {
@@ -40,25 +40,20 @@ export function Deer({phase, s, head, frozen}: {phase: number; s: number; head: 
   </g>;
 }
 
-/** The whole team at a path state: two reindeer ahead (in +x), reins, sleigh and seated Ram behind. */
+/** The whole team at a path state: two reindeer ahead (in +x), reins to their chest harnesses, sleigh and seated Ram behind. */
 export function SleighTeam({state, scale, t, deerOn = true}: {state: PathState; scale: number; t: number; deerOn?: boolean}) {
-  const s = scale, sl = state.sag ? SL['sleigh-loaded'] : SL.sleigh, slName = state.sag ? 'sleigh-loaded' : 'sleigh';
-  const panic = (state.crash ?? 0) > 0 || !!state.sag && Math.sin(t * 7) > 0.6;
-  const ram = panic ? SL['ram-seated-panic'] : SL['ram-seated'], ramName = panic ? 'ram-seated-panic' : 'ram-seated';
-  const phase = (t * 2.2) % 1, gap = 560 * s;
-  const bob = state.frozen ? 0 : 14 * s * Math.sin(2 * Math.PI * phase * 2);
-  const hitch: P = [0, 0];                                     // team origin = sleigh hitch
-  const deerAt = [add(hitch, [gap * 1.15, -60 * s + bob]), add(hitch, [gap * 2.15, -80 * s - bob])];
-  const seat = [ (sl.seat[0] - sl.hitch[0]) * s, (sl.seat[1] - sl.hitch[1]) * s ] as P;
-  const hands = add(seat, [(ram.hands[0] - ram.seat[0]) * s * 0.9, (ram.hands[1] - ram.seat[1]) * s * 0.9]);
+  const s = scale, g = teamGeometry(state, scale, t), slName = state.sag ? 'sleigh-loaded' : 'sleigh';
+  const ramName = g.panic ? 'ram-seated-panic' : 'ram-seated';
   const head = state.crash ? 'head-panic' : state.sag ? 'head-strain' : 'head';
   return (
-    <g transform={`translate(${state.pos[0]},${state.pos[1]}) scale(${state.flip ? -1 : 1},1) rotate(${state.angle})`}>
-      {deerOn && deerAt.map((p, i) => <path key={'r' + i} d={`M${hands[0]},${hands[1]} Q${(hands[0] + p[0]) / 2},${p[1] + 120 * s} ${p[0] + 40 * s},${p[1] - 30 * s}`}
-        stroke="#b3122c" strokeWidth={6 * s} fill="none" />)}
-      {deerOn && deerAt.map((p, i) => <g key={'d' + i} transform={`translate(${p[0]},${p[1]})`}><Deer phase={(phase + i * 0.17) % 1} s={s * 0.55} head={head} frozen={!!state.frozen} /></g>)}
-      <Img href={`sprites/sleigh/${ramName}.png`} part={ram} at={seat} an={ram.seat} s={s * 0.9} rot={state.crash ? -20 * state.crash : 0} />
-      <Img href={`sprites/sleigh/${slName}.png`} part={sl} at={hitch} an={sl.hitch} s={s} />
+    <g transform={`translate(${state.pos[0]},${state.pos[1]}) scale(${state.flip ? -1 : 1},1)`}>
+      {deerOn && g.deerAt.map((p, i) => <g key={'d' + i} transform={`translate(${p[0]},${p[1]}) rotate(${g.deerRot})`}><Deer phase={(g.phase + i * 0.17) % 1} s={s * DEER_SCALE} head={head} frozen={!!state.frozen} /></g>)}
+      {deerOn && g.reins.map((r, i) => <path key={'r' + i} d={`M${r.a[0]},${r.a[1]} Q${r.c[0]},${r.c[1]} ${r.b[0]},${r.b[1]}`}
+        stroke="#b3122c" strokeWidth={Math.max(3, 7 * s)} strokeLinecap="round" fill="none" />)}
+      <g transform={`rotate(${state.angle})`}>
+        <Img href={`sprites/sleigh/${ramName}.png`} part={g.ram} at={rotAbout(g.seat, [0, 0], -state.angle)} an={g.ram.seat} s={s * 0.9} rot={state.crash ? -20 * state.crash : 0} />
+        <Img href={`sprites/sleigh/${slName}.png`} part={g.sl} at={[0, 0]} an={g.sl.hitch} s={s} />
+      </g>
     </g>
   );
 }

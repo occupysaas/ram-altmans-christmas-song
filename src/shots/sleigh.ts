@@ -36,7 +36,7 @@ export const SLEIGH_PATHS: Record<string, Path> = {
   // overloaded: struggles off the tower roof, barely rising, right-to-left
   '46': (t, s) => moving(v => [lerp(1100, 200, v), 560 - 90 * v + 25 * Math.sin(v * 30)], u(t, s), {sag: 1}),
   // tipping and sputtering, mostly in place, drifting left
-  '47': (t, s) => moving(v => [lerp(900, 600, v), 520 + 30 * Math.sin(v * 14)], u(t, s), {sag: 1}),
+  '47': (t, s) => moving(v => [lerp(1300, 1080, v), 600 + 30 * Math.sin(v * 14)], u(t, s), {sag: 1}),   // far enough right that the deer pulling ahead stay in frame
   // nose-dive down to the hill (bottom-left), impact at 70%
   '48': (t, s) => {
     const v = u(t, s), dive = clamp01(v / 0.7);
@@ -51,7 +51,7 @@ type Shot2 = {id?: string; start: number; end: number};
 const T = (id: string, scale: number, extra?: (t: number, st: PathState, shot: Shot2) => Item[]) =>
   (_t: number, frame: number, shot: Shot2): Item[] => {
     const t = twos(frame), st = SLEIGH_PATHS[id](t, shot);
-    const items: Item[] = [{sleighTeam: {state: st, scale, t, deer: id !== '47'}}];
+    const items: Item[] = [{sleighTeam: {state: st, scale, t, deer: true}}];
     return extra ? [...items, ...extra(t, st, shot)] : items;
   };
 
@@ -79,5 +79,5 @@ const fountain = (_t: number, st: PathState): Item[] => {
 
 export const SLEIGH_CHOREO = {
   '15': T('15', 0.42), '16': T('16', 0.5, ramStream), '31': T('31', 0.42, buffer), '34': T('34', 0.36),
-  '46': T('46', 0.5), '47': T('47', 0.75), '48': T('48', 0.45, fountain),
+  '46': T('46', 0.5), '47': T('47', 0.6), '48': T('48', 0.45, fountain),
 };

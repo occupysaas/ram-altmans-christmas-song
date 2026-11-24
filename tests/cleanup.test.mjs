@@ -78,3 +78,26 @@ test('lyric boxes keep >=24 px inside the camera view at both ends of the move',
     assert.ok(ok, `shot ${s.id} line ${e.line} too close to the frame edge`);
   }
 });
+
+import {teamGeometry, DEER_SCALE} from '../src/puppet/team.ts';
+import {SLEIGH_PATHS, SLEIGH_CHOREO} from '../src/shots/sleigh.ts';
+import deerParts from '../public/puppets/reindeer/parts.json' with {type: 'json'};
+
+test('reins run from the hands to a harness point on each deer, every 3rd frame of 46 and 47', () => {
+  const b = deerParts.body;
+  for (const id of ['46', '47']) {
+    const s = shot(id);
+    for (let f = Math.round(s.start * 24); f < s.end * 24; f += 3) {
+      const team = SLEIGH_CHOREO[id](f / 24, f, s).find(i => i.sleighTeam).sleighTeam;
+      assert.ok(team.deer, `shot ${id} has no deer`);
+      const g = teamGeometry(team.state, team.scale, team.t), ds = team.scale * DEER_SCALE;
+      g.reins.forEach((r, i) => {
+        assert.deepEqual(r.a, g.hands);
+        assert.deepEqual(r.b, g.harness[i]);
+        const a = -g.deerRot * Math.PI / 180, dx = r.b[0] - g.deerAt[i][0], dy = r.b[1] - g.deerAt[i][1];
+        const local = [(dx * Math.cos(a) - dy * Math.sin(a)) / ds + b.neck[0], (dx * Math.sin(a) + dy * Math.cos(a)) / ds + b.neck[1]];
+        assert.ok(local[0] > b.size[0] * 0.6 && local[0] < b.size[0] && local[1] > 0 && local[1] < b.size[1] * 0.6, `shot ${id} f${f} rein ${i} ends off the deer's chest at ${local}`);
+      });
+    }
+  }
+});
