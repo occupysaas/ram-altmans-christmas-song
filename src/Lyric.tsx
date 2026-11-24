@@ -1,5 +1,5 @@
 import React from 'react';
-import {layoutEntry, type Style} from './layout';
+import {layoutEntry, wordGap, type Style} from './layout';
 import lyrics from './timing/lyrics-aligned.json';
 
 const FPS = 24;
@@ -40,8 +40,8 @@ export function LyricBlock({entry, box, t}: {entry: Entry; box: {w: number; h: n
             const rise = w.impact ? 0 : (1 - ease) * w.size * 0.25;
             return (
               <span key={wi} style={{display: 'inline-block', fontFamily: `'${w.font.family}'`, fontStyle: w.font.italic ? 'italic' : 'normal',
-                fontSize: w.size, color, opacity: on ? ease : 0, marginLeft: wi ? L.leadSize * 0.3 : 0,
-                transform: `translateY(${rise}px) scale(${scale})`, transformOrigin: '50% 80%',
+                fontSize: w.size, color, opacity: on ? ease : 0, marginLeft: wi ? wordGap(r.words[wi - 1], w) : 0,
+                transform: `translateY(${rise}px) scale(${scale})`, transformOrigin: '0% 80%',  // pops from its left edge so it never covers the word before it,
                 textShadow: `${outline(edge, edgeW)}, 0 ${edgeW * 1.4}px 0 ${edge}, 0 0 ${w.size * 0.25}px ${pal.glow}`}}>{w.text}</span>
             );
           })}

@@ -12,7 +12,7 @@ const prop = (sprite: string, at: P, scale: number, rot = 0): Item => ({sprite: 
 /** 10: "Every stick, every chip, every byte in the store!" — arms snake in from off-screen and snatch one item per word. */
 export const shot10: Choreo = (_t, frame) => {
   const t = twos(frame), S = 0.42, r = rig(), c = r.colors;
-  const targets: [number, P, string][] = [[wordAt(5, 1), [420, 440], 'ram-stick'], [wordAt(5, 3), [600, 432], 'chip'], [wordAt(5, 5), [740, 436], 'byte']];
+  const targets: [number, P, string][] = [[wordAt(5, 1), [440, 540], 'ram-stick'], [wordAt(5, 3), [718, 555], 'chip'], [wordAt(5, 5), [950, 580], 'byte']]   // the painted shelf items;
   const items: Item[] = [];
   targets.forEach(([at, tgt, what], i) => {
     const near = i % 2 === 0, root: P = near ? [-60, 120] : [-60, 260];
@@ -94,7 +94,8 @@ export const shot63: Choreo = (_t, frame, shot) => {
   const t = twos(frame), S = scaleFor(W, 520), floor = 912;
   const bow = Math.sin(Math.PI * clamp01((t - shot.start - 0.3) / 2.4));
   const pose = stand(W, {t, x: 760, floor, S, lean: 58 * bow, head: bow > 0.5 ? 'head-fake-smile' : 'head-smirk', spread: 140,
-    hands: sh => ({near: add(sh.neck, [60 * S + 40 * bow, -120 * S - 160 * S * (1 - bow)]), far: add(sh.far, [-160 * S, 260 * S]),
+    // near hand sweeps the hat down and out to the hip; far hand hangs at the side (both below the shoulders)
+    hands: sh => ({near: add(sh.near, [lerp(40, 150, bow) * S, lerp(300, 200, bow) * S]), far: add(sh.far, [-40 * S, 300 * S]),
       nearPart: 'hand-near-open', farPart: 'hand-far-open'})});
   return [{who: W, pose, scale: S}];
 };

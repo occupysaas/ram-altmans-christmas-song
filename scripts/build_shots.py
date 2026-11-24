@@ -20,6 +20,7 @@ CAMERAS = {
     'panLeft':   [[.58, .50, 1.20, 0], [.42, .50, 1.20, 0]],
     'tiltUp':    [[.50, .58, 1.20, 0], [.50, .42, 1.20, 0]],
     'tiltDown':  [[.50, .42, 1.20, 0], [.50, .58, 1.20, 0]],
+    'starHold':  [[.45, .435, 1.15, 0], [.48, .47, 1.12, 0]],   # 32: stay on the star through the spin; it falls out the bottom
     'craneDown': [[.50, .42, 1.20, 0], [.50, .58, 1.30, 0]],
     'craneUp':   [[.50, .58, 1.30, 0], [.50, .42, 1.20, 0]],
     'dutchPush': [[.50, .50, 1.15, -4], [.50, .50, 1.35, 4]],
@@ -34,18 +35,23 @@ CAMERAS = {
     'rotate':    [[.50, .50, 1.30, -8], [.50, .50, 1.30, 8]],
 }
 
-def fit(p, box):
-    """Pull a camera endpoint back / over just enough that the lyric box stays fully in view."""
+def fit(p, box, pad=False):
+    """Pull a camera endpoint back / over just enough that the lyric box stays fully in view (with a 24 px margin when pad)."""
     x, y, z, r = p; bx, by, bw, bh = box[:4]
+    if pad:
+        mx, my = 24 / 1600, 24 / 1200
+        bx, by, bw, bh = max(0, bx - mx), max(0, by - my), bw + 2 * mx, bh + 2 * my
     z = max(1.0, min(z, 1 / max(bw, bh)))
     h = 0.5 / z
     x = min(max(x, bx + bw - h, h), bx + h, 1 - h)
     y = min(max(y, by + bh - h, h), by + h, 1 - h)
     return [x, y, z, r]
 
-def cam(c, box):
+FROZEN = {1, 2, 3, 4, 5, 6}   # 0:00-0:33 is approved as-is ("S tier, do not alter")
+
+def cam(c, box, n=0):
     pts = CAMERAS[c] if isinstance(c, str) else c
-    return {k: dict(zip(('x', 'y', 'zoom', 'rot'), fit(p, box))) for k, p in zip(('from', 'to'), pts)}
+    return {k: dict(zip(('x', 'y', 'zoom', 'rot'), fit(p, box, pad=n not in FROZEN))) for k, p in zip(('from', 'to'), pts)}
 
 def tone(still, box):
     im = Image.open('public/' + still).convert('L')
@@ -74,7 +80,7 @@ def build():
         sid = str(s['id']) if 'id' in s else f"{s['n']:02d}"
         shots.append({'id': sid, 'name': s['name'],
                       'section': next(z['name'] for z in secs if z['start'] <= st < z['end']),
-                      'start': st, 'end': en, 'still': s.get('still', f"stills/{sid}.png"), 'camera': cam(s['cam'], s['surf']),
+                      'start': st, 'end': en, 'still': s.get('still', f"stills/{sid}.png"), 'camera': cam(s['cam'], s['surf'], s['n']),
                       'towerStage': s['tower'], 'brief': s['brief'], 'lyrics': [], 'sfx': [],
                       '_surf': {'x': x, 'y': y, 'w': w, 'h': h, 'rot': rot}, '_style': s['style'],
                       '_tone': tone(s.get('still', f"stills/{sid}.png"), s['surf'])})

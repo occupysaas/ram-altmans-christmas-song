@@ -33,6 +33,16 @@ const F = {
 const LEAD: Record<Style, Font[]> = {narration: [F.fell, F.mocReg], hook: [F.mocReg, F.fell], tech: [F.vt], aside: [F.fellItalic]};
 const IMP: Record<Style, Font[]> = {narration: [F.mocBold, F.bowlby, F.swash], hook: [F.mocBold, F.swash, F.bowlby], tech: [F.vtUp], aside: [F.swash, F.mocBold]};
 
+import METRICS from './fontMetrics.json' with {type: 'json'};
+const ADV = METRICS as Record<string, Record<string, number>>;
+/** Real advance width in px (font metrics) plus room for the drawn outline. */
+function measure(text: string, font: Font, size: number): number {
+  const m = ADV[font.family + (font.italic ? ' Italic' : '')];
+  return [...text].reduce((a, c) => a + (m?.[c] ?? 0.6), 0) * size + 0.12 * size;
+}
+/** Space between two neighbouring words: scaled to the bigger of the two so impact words never butt up. */
+export const wordGap = (a: {size: number}, b: {size: number}) => 0.3 * Math.max(a.size, b.size);
+
 export type LWord = {text: string; k: number; impact: boolean; font: Font; size: number; width: number};
 export type Row = {words: LWord[]; width: number; height: number};
 export type Layout = {leadSize: number; impactSize: number; rows: Row[]; height: number; words: LWord[]};
@@ -62,11 +72,11 @@ export function layoutEntry(e: {line: number; from: number; to: number; style: S
       const font = w.impact ? big : lead, sz = w.impact ? isz : size;
       const acronym = (w.text.match(/[A-Z]/g) ?? []).length >= 2; // GPUs, SSDs, DIMMs keep their spelling
       const text = font.upper && !acronym ? w.text.toUpperCase() : w.text;
-      return {...w, text, font, size: sz, width: text.length * font.em * sz};
+      return {...w, text, font, size: sz, width: measure(text, font, sz)};
     });
     const rows: Row[] = [];
     for (const w of words) {
-      const r = rows.at(-1), gap = 0.3 * size;
+      const r = rows.at(-1), gap = r ? wordGap(r.words.at(-1)!, w) : 0;
       if (r && r.width + gap + w.width <= box.w) { r.words.push(w); r.width += gap + w.width; r.height = Math.max(r.height, w.size * LINE_GAP); }
       else rows.push({words: [w], width: w.width, height: w.size * LINE_GAP});
     }
