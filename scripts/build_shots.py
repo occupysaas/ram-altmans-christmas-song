@@ -1,0 +1,88 @@
+"""docs/shotlist.yaml + src/timing/*.json → src/shots.json (see the plan's Task 4 interface)."""
+import json, yaml
+
+DUR = 259.6
+LEAD = 0.25          # shots cut in this long before their anchor word
+MIN_AFTER = 0.75     # a finished lyric line stays readable at least this long (carried into the next shot if needed)
+GLASS_DELAY = 0.6    # glass-break this long after the star line ends (spin, tip, fall)
+
+# [[x, y, zoom, rot], [x, y, zoom, rot]] in still-space; zoom 1 = the whole 4:3 still
+CAMERAS = {
+    'push':      [[.50, .50, 1.05, 0], [.50, .47, 1.25, 0]],
+    'pushIn':    [[.50, .50, 1.10, 0], [.50, .50, 1.30, 0]],
+    'pushIn2':   [[.50, .50, 1.08, 0], [.50, .52, 1.28, 0]],
+    'pushRight': [[.45, .50, 1.15, 0], [.55, .50, 1.30, 0]],
+    'slowPush':  [[.50, .50, 1.05, 0], [.50, .50, 1.15, 0]],
+    'pullOut':   [[.50, .50, 1.30, 0], [.50, .50, 1.05, 0]],
+    'pullOut2':  [[.50, .48, 1.25, 0], [.50, .50, 1.00, 0]],
+    'panRight':  [[.42, .50, 1.20, 0], [.58, .50, 1.20, 0]],
+    'panLeft':   [[.58, .50, 1.20, 0], [.42, .50, 1.20, 0]],
+    'tiltUp':    [[.50, .58, 1.20, 0], [.50, .42, 1.20, 0]],
+    'tiltDown':  [[.50, .42, 1.20, 0], [.50, .58, 1.20, 0]],
+    'craneDown': [[.50, .42, 1.20, 0], [.50, .58, 1.30, 0]],
+    'craneUp':   [[.50, .58, 1.30, 0], [.50, .42, 1.20, 0]],
+    'dutchPush': [[.50, .50, 1.15, -4], [.50, .50, 1.35, 4]],
+    'punch':     [[.50, .50, 1.10, 0], [.47, .45, 1.50, 0]],
+    'punch2':    [[.50, .50, 1.12, 0], [.53, .47, 1.45, 0]],
+    'drift':     [[.48, .50, 1.12, 0], [.52, .50, 1.18, 0]],
+    'drift2':    [[.52, .50, 1.15, 0], [.48, .48, 1.20, 0]],
+    'orbit':     [[.47, .50, 1.20, -3], [.53, .50, 1.25, 3]],
+    'shake':     [[.50, .50, 1.20, 2], [.50, .50, 1.30, -2]],
+    'shake2':    [[.50, .50, 1.25, -3], [.50, .50, 1.35, 3]],
+    'lowAngle':  [[.50, .55, 1.20, 0], [.50, .50, 1.30, 0]],
+    'rotate':    [[.50, .50, 1.30, -8], [.50, .50, 1.30, 8]],
+}
+
+def cam(c):
+    pts = CAMERAS[c] if isinstance(c, str) else c
+    return {k: dict(zip(('x', 'y', 'zoom', 'rot'), p)) for k, p in zip(('from', 'to'), pts)}
+
+def build():
+    spec = yaml.safe_load(open('docs/shotlist.yaml'))['shots']
+    lyr = json.load(open('src/timing/lyrics-aligned.json'))
+    secs = json.load(open('src/timing/sections.json'))
+    imp = json.load(open('src/timing/impact.json'))
+
+    def start_of(a):
+        if 't' in a: return a['t']
+        if 'impact' in a: v = imp[a['impact']]; return v[0] if isinstance(v, list) else v
+        return round(lyr[a['line']]['words'][a.get('word', 0)]['s'] - LEAD, 3)
+
+    starts = [start_of(s['anchor']) for s in spec]
+    assert starts == sorted(starts), f'anchors out of order: {starts}'
+    shots = []
+    for i, s in enumerate(spec):
+        st, en = starts[i], (starts[i + 1] if i + 1 < len(spec) else DUR)
+        x, y, w, h, rot = s['surf']
+        shots.append({'id': f"{s['n']:02d}", 'name': s['name'],
+                      'section': next(z['name'] for z in secs if z['start'] <= st < z['end']),
+                      'start': st, 'end': en, 'still': f"stills/{s['n']:02d}.png", 'camera': cam(s['cam']),
+                      'towerStage': s['tower'], 'brief': s['brief'], 'lyrics': [], 'sfx': [],
+                      '_surf': {'x': x, 'y': y, 'w': w, 'h': h, 'rot': rot}, '_style': s['style']})
+        if s.get('sfx') == 'knocks': shots[-1]['sfx'] += [{'name': 'knock', 't': t} for t in imp['knocks']]
+
+    def entry(sh, li, frm, to, carry=False):
+        e = {'line': li, 'from': frm, 'to': to, 'surface': sh['_surf'], 'style': sh['_style']}
+        if carry: e['carry'] = True
+        sh['lyrics'].append(e)
+
+    for li, l in enumerate(lyr):
+        n = len(l['words'])
+        for sh in shots:
+            ks = [k for k, w in enumerate(l['words']) if sh['start'] <= w['s'] < sh['end']]
+            if ks: entry(sh, li, ks[0], ks[-1] + 1)
+        done = next(j for j, sh in enumerate(shots) if any(e['line'] == li and e['to'] == n for e in sh['lyrics']))
+        frm = next(e['from'] for e in shots[done]['lyrics'] if e['line'] == li and e['to'] == n)
+        j = done
+        while shots[j]['end'] - l['end'] < MIN_AFTER and j + 1 < len(shots):
+            j += 1; entry(shots[j], li, frm, n, carry=True)
+
+    star = next(l for l in lyr if l['text'].startswith('The star on the tree'))
+    shots[31]['sfx'].append({'name': 'glass-break', 't': round(star['end'] + GLASS_DELAY, 3)})
+    for sh in shots: del sh['_surf'], sh['_style']
+    return shots
+
+if __name__ == '__main__':
+    out = build()
+    json.dump(out, open('src/shots.json', 'w'), indent=1)
+    for s in out: print(s['id'], f"{s['start']:7.2f} {s['end'] - s['start']:5.2f}s", s['section'], s['name'], [(e['line'], e['from'], e['to']) for e in s['lyrics']])

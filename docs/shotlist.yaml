@@ -1,0 +1,137 @@
+# Shot list (design §8) as data. scripts/build_shots.py → src/shots.json
+# anchor: {t: sec} | {line: L, word: k} (k default 0; start = word.s - 0.25) | {impact: knocks|silence} (no lead-in)
+# cam: preset name (see build_shots.py CAMERAS) or [[x,y,zoom,rot],[x,y,zoom,rot]] in still-space (0..1 centre)
+# surf: [x, y, w, h, rot] lyric box in still-space; style: narration | hook | tech | aside
+# tower: §7a stage 1..5, or null when the tower is not in frame
+# brief: what the Codex still shows (no text in the image; leave the lyric box area calm and clear)
+shots:
+- {n: 1, name: title, anchor: {t: 0}, cam: push, tower: 1, surf: [0.18, 0.24, 0.64, 0.2, 0], style: hook,
+   brief: "Title card: a snowy hill at night under huge stars, the modest glass-and-chrome data-center tower on the peak with one thin smoke plume, Byteville's lit cottages far below. Big empty starry sky in the upper half for the show title."}
+- {n: 2, name: crane-rooftops, anchor: {line: 0}, cam: craneDown, tower: 1, surf: [0.18, 0.22, 0.64, 0.14, 0], style: narration,
+   brief: "High view from the starry sky down over Byteville's snowy crooked rooftops, chimneys smoking, warm windows; the small tower glows on the hill in the far background. Open sky across the top third."}
+- {n: 3, name: living-room, anchor: {line: 0, word: 5}, cam: panRight, tower: 1, surf: [0.22, 0.24, 0.3, 0.16, -2], style: narration,
+   brief: "Cosy Byteville living room at night: family asleep in armchairs, a decorated tree with NOTHING underneath it, a cat mid-stride crossing the rug left to right, an embroidered sampler frame hanging blank on the wall at upper left, the tiny tower visible on the hill through the window."}
+- {n: 4, name: rack-row, anchor: {line: 1}, cam: panLeft, tower: null, surf: [0.24, 0.42, 0.52, 0.1, 0], style: tech,
+   brief: "Inside the tower: a long dark row of tall curly-topped server racks receding in perspective, all lights dark except one tiny blinking light; a blank horizontal LED panel strip on the nearest rack at mid height."}
+- {n: 5, name: empty-rack, anchor: {line: 1, word: 4}, cam: drift, tower: null, surf: [0.4, 0.5, 0.3, 0.1, 6], style: narration,
+   brief: "Close on a single completely empty server rack, dust drifting in a beam of moonlight, a blank paper price tag dangling on a string from an empty shelf."}
+- {n: 6, name: tower-low, anchor: {t: 24.5}, cam: tiltUp, tower: 1, surf: [0.2, 0.62, 0.6, 0.1, 0], style: narration,
+   brief: "Low angle looking up at the curly glass-and-chrome data-center tower on its snowy peak, one smoke plume, snow falling, starry sky; big smooth glass facade across the lower middle."}
+- {n: 7, name: sam-desk, anchor: {line: 3}, cam: pushRight, tower: null, surf: [0.3, 0.24, 0.44, 0.12, 0], style: tech,
+   brief: "From behind: Sam (normal human version: healthy skin, round eyes, short messy brown hair, plain grey crewneck, no hat, no scarf) sits at a desk facing a curved wall of glowing monitors, GPUs humming in racks on both sides."}
+- {n: 8, name: transformation, anchor: {line: 4}, cam: dutchPush, tower: null, surf: [0.2, 0.2, 0.6, 0.12, 0], style: narration,
+   brief: "Mid-transformation: Sam turned three-quarters toward camera, villain-green creeping up his face from the neck, ears sharpening to points, a battered black top hat and long red scarf dropping onto him from above, swirling magic sparkles."}
+- {n: 9, name: grin, anchor: {line: 4, word: 6}, cam: punch, tower: null, surf: [0.16, 0.12, 0.56, 0.14, -4], style: hook,
+   brief: "Extreme close-up of Ram Altman's greedy grin, eyes wide with hunger, monitor glow on his green face."}
+- {n: 10, name: shop-snatch, anchor: {line: 5}, cam: panRight, tower: 2, surf: [0.2, 0.6, 0.6, 0.12, 0], style: narration,
+   brief: "Electronics shop shelf, side view: Ram Altman's long bony green fingers snatching glowing green RAM sticks, a chip and a tiny glowing cube off the shelf left to right; blank price tags along the shelf edge; the tower visible bigger through the shop window."}
+- {n: 11, name: coding-montage, anchor: {line: 6}, cam: orbit, tower: null, surf: [0.24, 0.6, 0.52, 0.12, 0], style: tech,
+   brief: "Over Ram Altman's shoulder typing furiously at a glowing terminal, moon in the window on the left, morning sun in another window on the right, racks multiplying around him; a blank black terminal pane low in frame."}
+- {n: 12, name: howling-fans, anchor: {line: 7}, cam: shake, tower: null, surf: [0.2, 0.22, 0.6, 0.12, 3], style: narration,
+   brief: "Close on a wall of big server fans spinning wildly with cartoon wind-lines and snow blowing off them, the fan grilles shaped like howling mouths."}
+- {n: 13, name: window-sneak, anchor: {line: 8}, cam: panRight, tower: null, surf: [0.28, 0.24, 0.44, 0.12, 0], style: narration,
+   brief: "The server hall with the big arched window over the snowy hill and Byteville below (as the spike background): Ram Altman sneaking on tiptoe left to right past the window."}
+- {n: 14, name: kid-laptop, anchor: {line: 9}, cam: pushIn, tower: 2, surf: [0.22, 0.62, 0.56, 0.1, 0], style: tech,
+   brief: "Byteville kitchen at night: a kid at the table staring at a frozen old laptop with a spinning cursor, chin on hands, bored; the data-center tower (bigger, extra wings, two smokestacks) visible through the window."}
+- {n: 15, name: sleigh-launch, anchor: {line: 10}, cam: panLeft, tower: 2, surf: [0.24, 0.5, 0.52, 0.12, -6], style: hook,
+   brief: "The ornate sleigh stacked with server racks launching off the tower roof, swooping right to left across a starry sky, two reindeer straining, Ram Altman cracking a cable whip; a long blank banner on the sleigh's side."}
+- {n: 16, name: rooftop-vacuum, anchor: {line: 10, word: 4}, cam: drift, tower: 2, surf: [0.2, 0.22, 0.6, 0.12, 0], style: hook,
+   brief: "Sleigh flying low over Byteville roofs: streams of glowing green RAM sticks being sucked up out of the chimneys into the sleigh like a vacuum."}
+- {n: 17, name: wink, anchor: {line: 11}, cam: punch, tower: null, surf: [0.18, 0.62, 0.5, 0.1, -3], style: narration,
+   brief: "Close on Ram Altman at the sleigh's reins, winking at the viewer, scarf streaming, a curling vapour trail behind the sleigh."}
+- {n: 18, name: empty-tree, anchor: {line: 12}, cam: tiltDown, tower: 2, surf: [0.36, 0.5, 0.3, 0.12, 4], style: narration,
+   brief: "A Byteville family (dad, mum, two kids) staring sadly at the empty space under their tree, a blank gift tag hanging from a branch at the middle; the tower glows through the window."}
+- {n: 19, name: shop-window, anchor: {line: 13}, cam: pushIn, tower: 2, surf: [0.3, 0.44, 0.4, 0.14, 0], style: hook,
+   brief: "Electronics shop window from the snowy street: a single RAM stick on a velvet cushion with a huge blank price tag; townsfolk with jaws dropped reflected in the glass."}
+- {n: 20, name: tower-cloud, anchor: {line: 14}, cam: tiltUp, tower: 2, surf: [0.2, 0.24, 0.6, 0.12, 0], style: hook,
+   brief: "The data-center tower, now bigger with extra floors and side wings, its top piercing a glowing cyan cloud bank, smoke from two stacks."}
+- {n: 21, name: token-mountain, anchor: {line: 15}, cam: craneDown, tower: null, surf: [0.2, 0.24, 0.6, 0.12, 0], style: narration,
+   brief: "Ram Altman on top of a mountain of gold tokens with circuit patterns, flinging handfuls into the air, coins raining down."}
+- {n: 22, name: cackle, anchor: {line: 15, word: 5}, cam: lowAngle, tower: 2, surf: [0.2, 0.62, 0.6, 0.1, 0], style: narration,
+   brief: "Low-angle wide shot of Ram Altman cackling with his head thrown back on the tower's balcony, scarf flying, Byteville below."}
+- {n: 23, name: crane-roof, anchor: {line: 16}, cam: craneUp, tower: 2, surf: [0.2, 0.22, 0.6, 0.14, 0], style: hook,
+   brief: "Exterior: the tower humming and glowing bright at night, a string of marquee bulbs running around its upper floors, smoke and an occasional spark."}
+- {n: 24, name: vault, anchor: {line: 17}, cam: pushIn, tower: null, surf: [0.3, 0.4, 0.4, 0.14, 0], style: hook,
+   brief: "Ram Altman slamming a giant round vault door on a wall of glowing green RAM shelves; the door's big smooth face takes the middle of the frame."}
+- {n: 25, name: grab-vram, anchor: {line: 18}, cam: panRight, tower: null, surf: [0.2, 0.22, 0.6, 0.12, 0], style: narration,
+   brief: "Side view: Ram Altman's two long arms reaching and yanking a graphics card and a glass cookie-jar full of glowing cache chips off a shelf."}
+- {n: 26, name: stash, anchor: {line: 19}, cam: shake, tower: null, surf: [0.24, 0.62, 0.52, 0.1, 0], style: narration,
+   brief: "Ram Altman cramming SSD drives into a bulging sack, then caught mid-shove looking straight at the viewer with a guilty squint, the sack half hidden behind his back."}
+- {n: 27, name: whiteboard, anchor: {line: 20}, cam: drift, tower: null, surf: [0.22, 0.2, 0.5, 0.18, -2], style: narration,
+   brief: "Ram Altman pointing a long finger at a whiteboard with a hand-drawn chart line rocketing up and to the right (no numbers or words), top of the board left clear."}
+- {n: 28, name: banner, anchor: {line: 20, word: 7}, cam: tiltDown, tower: 3, surf: [0.3, 0.3, 0.4, 0.3, 0], style: hook,
+   brief: "The sprawling top-heavy mega-tower with fans everywhere, thick smoke and spark showers, a giant blank vertical banner unrolling down its face; tiny Ram Altman on a podium at its base."}
+- {n: 29, name: receipt, anchor: {line: 21}, cam: panLeft, tower: 3, surf: [0.3, 0.3, 0.36, 0.3, 0], style: tech,
+   brief: "A receipt printer spitting an endless blank paper invoice that tumbles down a staircase, out the tower door and across the snow towards Byteville."}
+- {n: 30, name: elves-jpg, anchor: {line: 22}, cam: pushRight, tower: null, surf: [0.2, 0.2, 0.6, 0.12, 0], style: narration,
+   brief: "Four little data-center elves in green hoodies with headsets in a row, a giant mechanical press stamping down on them, the right half of the image showing them squashed into one blocky, smeared, low-quality picture."}
+- {n: 31, name: reindeer-buffering, anchor: {line: 23}, cam: drift2, tower: 3, surf: [0.2, 0.62, 0.6, 0.1, 0], style: tech,
+   brief: "Two reindeer frozen mid-leap in the night sky pulling the sleigh, with the mega-tower smoking in the background."}
+- {n: 32, name: star, anchor: {line: 24}, cam: tiltUp, tower: 3, surf: [0.34, 0.56, 0.32, 0.1, 0], style: narration,
+   brief: "Byteville's big town-square Christmas tree from below, camera rising to the shining gold star at the top, with a little blank velvet ribbon tied under the star; the mega-tower on the hill behind."}
+- {n: 33, name: register, anchor: {line: 25}, cam: punch, tower: null, surf: [0.24, 0.3, 0.44, 0.12, 0], style: tech,
+   brief: "An ornate old brass cash register with its drawer springing open, a row of blank display tiles across its top."}
+- {n: 34, name: sleigh-pass, anchor: {line: 26}, cam: panRight, tower: 4, surf: [0.24, 0.24, 0.52, 0.12, 4], style: hook,
+   brief: "Low angle: the sleigh passing left to right under a huge full moon, loot spilling, the grotesquely huge belching tower filling the sky behind."}
+- {n: 35, name: clam-model, anchor: {line: 27}, cam: pushIn, tower: null, surf: [0.2, 0.2, 0.6, 0.12, 0], style: narration,
+   brief: "Ram Altman shovelling RAM into the hopper of a giant brass-and-glass machine shaped like a big dopey clam with goofy eyes."}
+- {n: 36, name: carolers, anchor: {line: 28}, cam: drift, tower: 4, surf: [0.24, 0.22, 0.52, 0.12, 0], style: narration,
+   brief: "Byteville carolers in scarves on a snowy doorstep, mouths open, a long blank paper scroll unfurling out of a speaker box on the door."}
+- {n: 37, name: facts-scroll, anchor: {line: 29}, cam: tiltDown, tower: null, surf: [0.26, 0.3, 0.48, 0.34, 0], style: tech,
+   brief: "Close on a long blank parchment scroll held open by mittens, with a blank sticky note slapped on its corner."}
+- {n: 38, name: gpu-throne, anchor: {line: 30}, cam: craneUp, tower: null, surf: [0.2, 0.2, 0.6, 0.12, 0], style: hook,
+   brief: "Ram Altman lounging on a towering throne built from stacked graphics cards with glowing fans, seen from a low angle."}
+- {n: 39, name: squash, anchor: {line: 31}, cam: shake, tower: null, surf: [0.24, 0.62, 0.52, 0.1, -3], style: narration,
+   brief: "Ram Altman bringing down a giant rubber stamp on tiny townsfolk (a shopkeeper, kids with a garage workbench) scattering; a blank envelope fluttering in the foreground."}
+- {n: 40, name: christmas-morning, anchor: {line: 32}, cam: panRight, tower: 4, surf: [0.2, 0.22, 0.6, 0.12, 0], style: narration,
+   brief: "Christmas morning: the family running downstairs left to right in pyjamas, sunlight through the window where the monstrous tower smokes on the hill."}
+- {n: 41, name: overhead-floor, anchor: {line: 32, word: 7}, cam: rotate, tower: null, surf: [0.26, 0.6, 0.48, 0.1, 0], style: narration,
+   brief: "Straight-down overhead view of the bare floor under the tree, four sad faces peering down from the edges of frame."}
+- {n: 42, name: cookies, anchor: {line: 33}, cam: pushIn, tower: null, surf: [0.24, 0.24, 0.52, 0.18, 0], style: narration,
+   brief: "Close on a plate holding only cookie crumbs and one bitten cookie, next to a blank card propped up against a glass of milk."}
+- {n: 43, name: tiny-heart, anchor: {line: 34}, cam: slowPush, tower: null, surf: [0.22, 0.2, 0.56, 0.12, 0], style: narration,
+   brief: "Dark, dramatic: Ram Altman alone in his vault, an x-ray view of his chest showing a heart that is just two tiny green memory chips."}
+- {n: 44, name: kernel-panic, anchor: {line: 35}, cam: shake, tower: null, surf: [0.28, 0.3, 0.44, 0.2, 0], style: tech,
+   brief: "A wall of monitors behind Ram Altman all flashing an alarming blank red-and-black panic screen, Ram clutching his hat."}
+- {n: 45, name: racks-stall, anchor: {line: 35, word: 4}, cam: pushIn2, tower: null, surf: [0.2, 0.62, 0.6, 0.1, 0], style: narration,
+   brief: "Long server hall with the lights going out row by row toward the camera, the nearest racks still lit."}
+- {n: 46, name: sleigh-sag, anchor: {line: 36}, cam: panLeft, tower: 4, surf: [0.2, 0.22, 0.6, 0.12, 0], style: narration,
+   brief: "Wide: the sleigh grossly overloaded with the whole town's memory, sagging, reindeer straining to lift it off the tower roof, the tower sparking and cracked."}
+- {n: 47, name: sleigh-tips, anchor: {line: 37}, cam: dutchPush, tower: null, surf: [0.2, 0.62, 0.6, 0.1, 0], style: narration,
+   brief: "Dutch-angle tracking shot of the sleigh tipping and sputtering in the clouds, loot sliding, Ram Altman's panicked face."}
+- {n: 48, name: crash, anchor: {line: 37, word: 4}, cam: shake2, tower: 4, surf: [0.2, 0.2, 0.6, 0.12, 0], style: hook,
+   brief: "The sleigh nose-diving into the snowy hillside below the tower, a huge fountain of glowing green RAM sticks and sparkles bursting over Byteville."}
+- {n: 49, name: march, anchor: {line: 39}, cam: panRight, tower: 5, surf: [0.2, 0.2, 0.6, 0.12, 0], style: hook,
+   brief: "Townsfolk and elves marching up the snowy hill left to right holding lanterns, the leaning, smoking, sparking peak-size tower ahead of them."}
+- {n: 50, name: paywall, anchor: {line: 40}, cam: punch, tower: null, surf: [0.2, 0.62, 0.5, 0.1, 0], style: narration,
+   brief: "Elves tearing apart a velvet rope barrier with a blank hanging sign, tokens spilling free."}
+- {n: 51, name: patch, anchor: {line: 40, word: 4}, cam: drift, tower: null, surf: [0.24, 0.22, 0.52, 0.12, 0], style: narration,
+   brief: "An elf on a ladder slapping a giant band-aid over a cracked, sparking server."}
+- {n: 52, name: build-open, anchor: {line: 41}, cam: craneUp, tower: 5, surf: [0.2, 0.22, 0.6, 0.12, 0], style: hook,
+   brief: "Townsfolk and elves building a cheerful tower together out of transparent glass boxes in the town square, the smoking giant tower in the distance."}
+- {n: 53, name: balloon-pop, anchor: {line: 42}, cam: punch2, tower: null, surf: [0.2, 0.62, 0.6, 0.1, 0], style: narration,
+   brief: "A giant gold balloon bursting over the town square in a shower of confetti, townsfolk cheering."}
+- {n: 54, name: town-chorus, anchor: {line: 43}, cam: craneUp, tower: 5, surf: [0.2, 0.22, 0.6, 0.14, 0], style: hook,
+   brief: "Wide crane over the whole town singing in the snowy square, elf choir on the bandstand, the tower looming."}
+- {n: 55, name: gifts, anchor: {line: 44}, cam: panLeft, tower: 5, surf: [0.2, 0.22, 0.6, 0.12, 0], style: narration,
+   brief: "Gifts landing under trees in cosy Byteville homes: a game console, a laptop, a ham-radio set with a big antenna, wrapped presents."}
+- {n: 56, name: give-back, anchor: {line: 45}, cam: pullOut, tower: 5, surf: [0.2, 0.2, 0.6, 0.12, 0], style: hook,
+   brief: "The hill around the tower: wind turbines spinning, a water tower filling, green fields pushing through the snow."}
+- {n: 57, name: door-knocks, anchor: {impact: knocks}, cam: pushIn, tower: null, surf: [0.24, 0.24, 0.52, 0.12, 0], style: hook,
+   sfx: knocks, brief: "The huge curly front door of the data center at night, snow on the step, a little shadow on the doorstep."}
+- {n: 58, name: girl-asks, anchor: {line: 46}, cam: tiltDown, tower: null, surf: [0.22, 0.24, 0.56, 0.12, 0], style: aside,
+   brief: "Over Ram Altman's shoulder down to the little Byteville girl on the step: too-big knit hat, gap-tooth smile, mittens, holding a cardboard science-fair trifold. Ram wears a fake-friendly smile."}
+- {n: 59, name: hi-five, anchor: {line: 48}, cam: drift, tower: null, surf: [0.2, 0.2, 0.6, 0.14, 0], style: aside,
+   brief: "Profile two-shot on the doorstep: Ram Altman crouching to the girl's level, both raising hands for a high five, a sparkle between their palms, space above them."}
+- {n: 60, name: pull-back, anchor: {line: 49}, cam: pullOut, tower: 5, surf: [0.2, 0.22, 0.6, 0.12, 0], style: narration,
+   brief: "Exterior wide of the giant smoking, sparking tower at its peak size, a small figure waving at its door, the girl walking away down the hill."}
+- {n: 61, name: elves-ship, anchor: {line: 50}, cam: panRight, tower: null, surf: [0.2, 0.62, 0.6, 0.1, 0], style: narration,
+   brief: "An elf assembly line packing boxes with blank labels onto a conveyor running out of the tower."}
+- {n: 62, name: marquee, anchor: {line: 51}, cam: tiltUp, tower: 5, surf: [0.26, 0.3, 0.48, 0.16, 0], style: hook,
+   brief: "An old-timey theatre on Byteville's main street at night, its big blank lightbulb marquee glowing, snow falling, the tower on the hill behind."}
+- {n: 63, name: stage-bow, anchor: {line: 52}, cam: slowPush, tower: null, surf: [0.2, 0.2, 0.6, 0.12, 0], style: narration,
+   brief: "A spotlight on Ram Altman bowing on a little stage with red curtains."}
+- {n: 64, name: scrooge-card, anchor: {line: 52, word: 5}, cam: punch, tower: null, surf: [0.2, 0.6, 0.56, 0.14, -4], style: hook,
+   brief: "Extreme close-up of Ram Altman's smug face holding up a blank white card beside his chin."}
+- {n: 65, name: collapse, anchor: {impact: silence}, cam: pullOut2, tower: 5, surf: [0.2, 0.22, 0.6, 0.12, 0], style: narration,
+   brief: "Exterior wide of the gigantic data-center tower mid-collapse, imploding in on itself, smoke sucking inward, over a quiet snowy hill with Byteville's windows glowing warm below."}

@@ -1,0 +1,3194 @@
+[
+ {
+  "id": "01",
+  "name": "title",
+  "section": "Intro",
+  "start": 0,
+  "end": 8.058,
+  "still": "stills/01.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.05,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.47,
+    "zoom": 1.25,
+    "rot": 0
+   }
+  },
+  "towerStage": 1,
+  "brief": "Title card: a snowy hill at night under huge stars, the modest glass-and-chrome data-center tower on the peak with one thin smoke plume, Byteville's lit cottages far below. Big empty starry sky in the upper half for the show title.",
+  "lyrics": [],
+  "sfx": []
+ },
+ {
+  "id": "02",
+  "name": "crane-rooftops",
+  "section": "Intro",
+  "start": 8.058,
+  "end": 10.861,
+  "still": "stills/02.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.3,
+    "rot": 0
+   }
+  },
+  "towerStage": 1,
+  "brief": "High view from the starry sky down over Byteville's snowy crooked rooftops, chimneys smoking, warm windows; the small tower glows on the hill in the far background. Open sky across the top third.",
+  "lyrics": [
+   {
+    "line": 0,
+    "from": 0,
+    "to": 5,
+    "surface": {
+     "x": 0.18,
+     "y": 0.22,
+     "w": 0.64,
+     "h": 0.14,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "03",
+  "name": "living-room",
+  "section": "Intro",
+  "start": 10.861,
+  "end": 14.585,
+  "still": "stills/03.png",
+  "camera": {
+   "from": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 1,
+  "brief": "Cosy Byteville living room at night: family asleep in armchairs, a decorated tree with NOTHING underneath it, a cat mid-stride crossing the rug left to right, an embroidered sampler frame hanging blank on the wall at upper left, the tiny tower visible on the hill through the window.",
+  "lyrics": [
+   {
+    "line": 0,
+    "from": 5,
+    "to": 10,
+    "surface": {
+     "x": 0.22,
+     "y": 0.24,
+     "w": 0.3,
+     "h": 0.16,
+     "rot": -2
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "04",
+  "name": "rack-row",
+  "section": "Intro",
+  "start": 14.585,
+  "end": 17.768,
+  "still": "stills/04.png",
+  "camera": {
+   "from": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Inside the tower: a long dark row of tall curly-topped server racks receding in perspective, all lights dark except one tiny blinking light; a blank horizontal LED panel strip on the nearest rack at mid height.",
+  "lyrics": [
+   {
+    "line": 1,
+    "from": 0,
+    "to": 4,
+    "surface": {
+     "x": 0.24,
+     "y": 0.42,
+     "w": 0.52,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "tech"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "05",
+  "name": "empty-rack",
+  "section": "Intro",
+  "start": 17.768,
+  "end": 24.5,
+  "still": "stills/05.png",
+  "camera": {
+   "from": {
+    "x": 0.48,
+    "y": 0.5,
+    "zoom": 1.12,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.52,
+    "y": 0.5,
+    "zoom": 1.18,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Close on a single completely empty server rack, dust drifting in a beam of moonlight, a blank paper price tag dangling on a string from an empty shelf.",
+  "lyrics": [
+   {
+    "line": 1,
+    "from": 4,
+    "to": 8,
+    "surface": {
+     "x": 0.4,
+     "y": 0.5,
+     "w": 0.3,
+     "h": 0.1,
+     "rot": 6
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "06",
+  "name": "tower-low",
+  "section": "Intro",
+  "start": 24.5,
+  "end": 33.544,
+  "still": "stills/06.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 1,
+  "brief": "Low angle looking up at the curly glass-and-chrome data-center tower on its snowy peak, one smoke plume, snow falling, starry sky; big smooth glass facade across the lower middle.",
+  "lyrics": [
+   {
+    "line": 2,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.6,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "07",
+  "name": "sam-desk",
+  "section": "Verse 1",
+  "start": 33.544,
+  "end": 37.768,
+  "still": "stills/07.png",
+  "camera": {
+   "from": {
+    "x": 0.45,
+    "y": 0.5,
+    "zoom": 1.15,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.55,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "From behind: Sam (normal human version: healthy skin, round eyes, short messy brown hair, plain grey crewneck, no hat, no scarf) sits at a desk facing a curved wall of glowing monitors, GPUs humming in racks on both sides.",
+  "lyrics": [
+   {
+    "line": 2,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.3,
+     "y": 0.24,
+     "w": 0.44,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "tech",
+    "carry": true
+   },
+   {
+    "line": 3,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.3,
+     "y": 0.24,
+     "w": 0.44,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "tech"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "08",
+  "name": "transformation",
+  "section": "Verse 1",
+  "start": 37.768,
+  "end": 39.55,
+  "still": "stills/08.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.15,
+    "rot": -4
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.35,
+    "rot": 4
+   }
+  },
+  "towerStage": null,
+  "brief": "Mid-transformation: Sam turned three-quarters toward camera, villain-green creeping up his face from the neck, ears sharpening to points, a battered black top hat and long red scarf dropping onto him from above, swirling magic sparkles.",
+  "lyrics": [
+   {
+    "line": 3,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 4,
+    "from": 0,
+    "to": 6,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "09",
+  "name": "grin",
+  "section": "Verse 1",
+  "start": 39.55,
+  "end": 42.172,
+  "still": "stills/09.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.1,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.47,
+    "y": 0.45,
+    "zoom": 1.5,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Extreme close-up of Ram Altman's greedy grin, eyes wide with hunger, monitor glow on his green face.",
+  "lyrics": [
+   {
+    "line": 4,
+    "from": 6,
+    "to": 9,
+    "surface": {
+     "x": 0.16,
+     "y": 0.12,
+     "w": 0.56,
+     "h": 0.14,
+     "rot": -4
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "10",
+  "name": "shop-snatch",
+  "section": "Verse 1",
+  "start": 42.172,
+  "end": 46.437,
+  "still": "stills/10.png",
+  "camera": {
+   "from": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 2,
+  "brief": "Electronics shop shelf, side view: Ram Altman's long bony green fingers snatching glowing green RAM sticks, a chip and a tiny glowing cube off the shelf left to right; blank price tags along the shelf edge; the tower visible bigger through the shop window.",
+  "lyrics": [
+   {
+    "line": 5,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.6,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "11",
+  "name": "coding-montage",
+  "section": "Verse 1",
+  "start": 46.437,
+  "end": 50.621,
+  "still": "stills/11.png",
+  "camera": {
+   "from": {
+    "x": 0.47,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": -3
+   },
+   "to": {
+    "x": 0.53,
+    "y": 0.5,
+    "zoom": 1.25,
+    "rot": 3
+   }
+  },
+  "towerStage": null,
+  "brief": "Over Ram Altman's shoulder typing furiously at a glowing terminal, moon in the window on the left, morning sun in another window on the right, racks multiplying around him; a blank black terminal pane low in frame.",
+  "lyrics": [
+   {
+    "line": 6,
+    "from": 0,
+    "to": 11,
+    "surface": {
+     "x": 0.24,
+     "y": 0.6,
+     "w": 0.52,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "tech"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "12",
+  "name": "howling-fans",
+  "section": "Verse 1",
+  "start": 50.621,
+  "end": 54.945,
+  "still": "stills/12.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 2
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": -2
+   }
+  },
+  "towerStage": null,
+  "brief": "Close on a wall of big server fans spinning wildly with cartoon wind-lines and snow blowing off them, the fan grilles shaped like howling mouths.",
+  "lyrics": [
+   {
+    "line": 6,
+    "from": 0,
+    "to": 11,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 3
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 7,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 3
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "13",
+  "name": "window-sneak",
+  "section": "Verse 1",
+  "start": 54.945,
+  "end": 58.769,
+  "still": "stills/13.png",
+  "camera": {
+   "from": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "The server hall with the big arched window over the snowy hill and Byteville below (as the spike background): Ram Altman sneaking on tiptoe left to right past the window.",
+  "lyrics": [
+   {
+    "line": 7,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.28,
+     "y": 0.24,
+     "w": 0.44,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 8,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.28,
+     "y": 0.24,
+     "w": 0.44,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "14",
+  "name": "kid-laptop",
+  "section": "Verse 1",
+  "start": 58.769,
+  "end": 63.854,
+  "still": "stills/14.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.1,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": 0
+   }
+  },
+  "towerStage": 2,
+  "brief": "Byteville kitchen at night: a kid at the table staring at a frozen old laptop with a spinning cursor, chin on hands, bored; the data-center tower (bigger, extra wings, two smokestacks) visible through the window.",
+  "lyrics": [
+   {
+    "line": 8,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.22,
+     "y": 0.62,
+     "w": 0.56,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "tech",
+    "carry": true
+   },
+   {
+    "line": 9,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.22,
+     "y": 0.62,
+     "w": 0.56,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "tech"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "15",
+  "name": "sleigh-launch",
+  "section": "Chorus 1",
+  "start": 63.854,
+  "end": 66.177,
+  "still": "stills/15.png",
+  "camera": {
+   "from": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 2,
+  "brief": "The ornate sleigh stacked with server racks launching off the tower roof, swooping right to left across a starry sky, two reindeer straining, Ram Altman cracking a cable whip; a long blank banner on the sleigh's side.",
+  "lyrics": [
+   {
+    "line": 10,
+    "from": 0,
+    "to": 4,
+    "surface": {
+     "x": 0.24,
+     "y": 0.5,
+     "w": 0.52,
+     "h": 0.12,
+     "rot": -6
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "16",
+  "name": "rooftop-vacuum",
+  "section": "Chorus 1",
+  "start": 66.177,
+  "end": 68.319,
+  "still": "stills/16.png",
+  "camera": {
+   "from": {
+    "x": 0.48,
+    "y": 0.5,
+    "zoom": 1.12,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.52,
+    "y": 0.5,
+    "zoom": 1.18,
+    "rot": 0
+   }
+  },
+  "towerStage": 2,
+  "brief": "Sleigh flying low over Byteville roofs: streams of glowing green RAM sticks being sucked up out of the chimneys into the sleigh like a vacuum.",
+  "lyrics": [
+   {
+    "line": 10,
+    "from": 4,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "17",
+  "name": "wink",
+  "section": "Chorus 1",
+  "start": 68.319,
+  "end": 72.603,
+  "still": "stills/17.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.1,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.47,
+    "y": 0.45,
+    "zoom": 1.5,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Close on Ram Altman at the sleigh's reins, winking at the viewer, scarf streaming, a curling vapour trail behind the sleigh.",
+  "lyrics": [
+   {
+    "line": 10,
+    "from": 4,
+    "to": 9,
+    "surface": {
+     "x": 0.18,
+     "y": 0.62,
+     "w": 0.5,
+     "h": 0.1,
+     "rot": -3
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 11,
+    "from": 0,
+    "to": 11,
+    "surface": {
+     "x": 0.18,
+     "y": 0.62,
+     "w": 0.5,
+     "h": 0.1,
+     "rot": -3
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "18",
+  "name": "empty-tree",
+  "section": "Chorus 1",
+  "start": 72.603,
+  "end": 76.967,
+  "still": "stills/18.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 2,
+  "brief": "A Byteville family (dad, mum, two kids) staring sadly at the empty space under their tree, a blank gift tag hanging from a branch at the middle; the tower glows through the window.",
+  "lyrics": [
+   {
+    "line": 11,
+    "from": 0,
+    "to": 11,
+    "surface": {
+     "x": 0.36,
+     "y": 0.5,
+     "w": 0.3,
+     "h": 0.12,
+     "rot": 4
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 12,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.36,
+     "y": 0.5,
+     "w": 0.3,
+     "h": 0.12,
+     "rot": 4
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "19",
+  "name": "shop-window",
+  "section": "Chorus 1",
+  "start": 76.967,
+  "end": 80.971,
+  "still": "stills/19.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.1,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": 0
+   }
+  },
+  "towerStage": 2,
+  "brief": "Electronics shop window from the snowy street: a single RAM stick on a velvet cushion with a huge blank price tag; townsfolk with jaws dropped reflected in the glass.",
+  "lyrics": [
+   {
+    "line": 12,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.3,
+     "y": 0.44,
+     "w": 0.4,
+     "h": 0.14,
+     "rot": 0
+    },
+    "style": "hook",
+    "carry": true
+   },
+   {
+    "line": 13,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.3,
+     "y": 0.44,
+     "w": 0.4,
+     "h": 0.14,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "20",
+  "name": "tower-cloud",
+  "section": "Chorus 1",
+  "start": 80.971,
+  "end": 85.256,
+  "still": "stills/20.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 2,
+  "brief": "The data-center tower, now bigger with extra floors and side wings, its top piercing a glowing cyan cloud bank, smoke from two stacks.",
+  "lyrics": [
+   {
+    "line": 13,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.2,
+     "y": 0.24,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook",
+    "carry": true
+   },
+   {
+    "line": 14,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.24,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "21",
+  "name": "token-mountain",
+  "section": "Chorus 1",
+  "start": 85.256,
+  "end": 87.578,
+  "still": "stills/21.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.3,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Ram Altman on top of a mountain of gold tokens with circuit patterns, flinging handfuls into the air, coins raining down.",
+  "lyrics": [
+   {
+    "line": 14,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.24,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 15,
+    "from": 0,
+    "to": 5,
+    "surface": {
+     "x": 0.2,
+     "y": 0.24,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "22",
+  "name": "cackle",
+  "section": "Chorus 1",
+  "start": 87.578,
+  "end": 89.38,
+  "still": "stills/22.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.55,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": 0
+   }
+  },
+  "towerStage": 2,
+  "brief": "Low-angle wide shot of Ram Altman cackling with his head thrown back on the tower's balcony, scarf flying, Byteville below.",
+  "lyrics": [
+   {
+    "line": 15,
+    "from": 5,
+    "to": 10,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.6,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "23",
+  "name": "crane-roof",
+  "section": "Chorus 1",
+  "start": 89.38,
+  "end": 93.564,
+  "still": "stills/23.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.3,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 2,
+  "brief": "Exterior: the tower humming and glowing bright at night, a string of marquee bulbs running around its upper floors, smoke and an occasional spark.",
+  "lyrics": [
+   {
+    "line": 15,
+    "from": 5,
+    "to": 10,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.14,
+     "rot": 0
+    },
+    "style": "hook",
+    "carry": true
+   },
+   {
+    "line": 16,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.14,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "24",
+  "name": "vault",
+  "section": "Chorus 1",
+  "start": 93.564,
+  "end": 98.449,
+  "still": "stills/24.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.1,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Ram Altman slamming a giant round vault door on a wall of glowing green RAM shelves; the door's big smooth face takes the middle of the frame.",
+  "lyrics": [
+   {
+    "line": 16,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.3,
+     "y": 0.4,
+     "w": 0.4,
+     "h": 0.14,
+     "rot": 0
+    },
+    "style": "hook",
+    "carry": true
+   },
+   {
+    "line": 17,
+    "from": 0,
+    "to": 7,
+    "surface": {
+     "x": 0.3,
+     "y": 0.4,
+     "w": 0.4,
+     "h": 0.14,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "25",
+  "name": "grab-vram",
+  "section": "Verse 2",
+  "start": 98.449,
+  "end": 102.513,
+  "still": "stills/25.png",
+  "camera": {
+   "from": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Side view: Ram Altman's two long arms reaching and yanking a graphics card and a glass cookie-jar full of glowing cache chips off a shelf.",
+  "lyrics": [
+   {
+    "line": 17,
+    "from": 0,
+    "to": 7,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 18,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "26",
+  "name": "stash",
+  "section": "Verse 2",
+  "start": 102.513,
+  "end": 107.218,
+  "still": "stills/26.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 2
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": -2
+   }
+  },
+  "towerStage": null,
+  "brief": "Ram Altman cramming SSD drives into a bulging sack, then caught mid-shove looking straight at the viewer with a guilty squint, the sack half hidden behind his back.",
+  "lyrics": [
+   {
+    "line": 18,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.24,
+     "y": 0.62,
+     "w": 0.52,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 19,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.24,
+     "y": 0.62,
+     "w": 0.52,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "27",
+  "name": "whiteboard",
+  "section": "Verse 2",
+  "start": 107.218,
+  "end": 110.181,
+  "still": "stills/27.png",
+  "camera": {
+   "from": {
+    "x": 0.48,
+    "y": 0.5,
+    "zoom": 1.12,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.52,
+    "y": 0.5,
+    "zoom": 1.18,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Ram Altman pointing a long finger at a whiteboard with a hand-drawn chart line rocketing up and to the right (no numbers or words), top of the board left clear.",
+  "lyrics": [
+   {
+    "line": 19,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.22,
+     "y": 0.2,
+     "w": 0.5,
+     "h": 0.18,
+     "rot": -2
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 20,
+    "from": 0,
+    "to": 7,
+    "surface": {
+     "x": 0.22,
+     "y": 0.2,
+     "w": 0.5,
+     "h": 0.18,
+     "rot": -2
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "28",
+  "name": "banner",
+  "section": "Verse 2",
+  "start": 110.181,
+  "end": 112.863,
+  "still": "stills/28.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 3,
+  "brief": "The sprawling top-heavy mega-tower with fans everywhere, thick smoke and spark showers, a giant blank vertical banner unrolling down its face; tiny Ram Altman on a podium at its base.",
+  "lyrics": [
+   {
+    "line": 20,
+    "from": 7,
+    "to": 11,
+    "surface": {
+     "x": 0.3,
+     "y": 0.3,
+     "w": 0.4,
+     "h": 0.3,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "29",
+  "name": "receipt",
+  "section": "Verse 2",
+  "start": 112.863,
+  "end": 117.708,
+  "still": "stills/29.png",
+  "camera": {
+   "from": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 3,
+  "brief": "A receipt printer spitting an endless blank paper invoice that tumbles down a staircase, out the tower door and across the snow towards Byteville.",
+  "lyrics": [
+   {
+    "line": 21,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.3,
+     "y": 0.3,
+     "w": 0.36,
+     "h": 0.3,
+     "rot": 0
+    },
+    "style": "tech"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "30",
+  "name": "elves-jpg",
+  "section": "Verse 2",
+  "start": 117.708,
+  "end": 121.972,
+  "still": "stills/30.png",
+  "camera": {
+   "from": {
+    "x": 0.45,
+    "y": 0.5,
+    "zoom": 1.15,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.55,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Four little data-center elves in green hoodies with headsets in a row, a giant mechanical press stamping down on them, the right half of the image showing them squashed into one blocky, smeared, low-quality picture.",
+  "lyrics": [
+   {
+    "line": 22,
+    "from": 0,
+    "to": 7,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "31",
+  "name": "reindeer-buffering",
+  "section": "Verse 2",
+  "start": 121.972,
+  "end": 126.257,
+  "still": "stills/31.png",
+  "camera": {
+   "from": {
+    "x": 0.52,
+    "y": 0.5,
+    "zoom": 1.15,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.48,
+    "y": 0.48,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 3,
+  "brief": "Two reindeer frozen mid-leap in the night sky pulling the sleigh, with the mega-tower smoking in the background.",
+  "lyrics": [
+   {
+    "line": 22,
+    "from": 0,
+    "to": 7,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.6,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "tech",
+    "carry": true
+   },
+   {
+    "line": 23,
+    "from": 0,
+    "to": 6,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.6,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "tech"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "32",
+  "name": "star",
+  "section": "Verse 2",
+  "start": 126.257,
+  "end": 130.061,
+  "still": "stills/32.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 3,
+  "brief": "Byteville's big town-square Christmas tree from below, camera rising to the shining gold star at the top, with a little blank velvet ribbon tied under the star; the mega-tower on the hill behind.",
+  "lyrics": [
+   {
+    "line": 24,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.34,
+     "y": 0.56,
+     "w": 0.32,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": [
+   {
+    "name": "glass-break",
+    "t": 129.589
+   }
+  ]
+ },
+ {
+  "id": "33",
+  "name": "register",
+  "section": "Verse 2",
+  "start": 130.061,
+  "end": 134.945,
+  "still": "stills/33.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.1,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.47,
+    "y": 0.45,
+    "zoom": 1.5,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "An ornate old brass cash register with its drawer springing open, a row of blank display tiles across its top.",
+  "lyrics": [
+   {
+    "line": 25,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.24,
+     "y": 0.3,
+     "w": 0.44,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "tech"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "34",
+  "name": "sleigh-pass",
+  "section": "Chorus 2",
+  "start": 134.945,
+  "end": 139.09,
+  "still": "stills/34.png",
+  "camera": {
+   "from": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 4,
+  "brief": "Low angle: the sleigh passing left to right under a huge full moon, loot spilling, the grotesquely huge belching tower filling the sky behind.",
+  "lyrics": [
+   {
+    "line": 25,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.24,
+     "y": 0.24,
+     "w": 0.52,
+     "h": 0.12,
+     "rot": 4
+    },
+    "style": "hook",
+    "carry": true
+   },
+   {
+    "line": 26,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.24,
+     "y": 0.24,
+     "w": 0.52,
+     "h": 0.12,
+     "rot": 4
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "35",
+  "name": "clam-model",
+  "section": "Chorus 2",
+  "start": 139.09,
+  "end": 143.374,
+  "still": "stills/35.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.1,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Ram Altman shovelling RAM into the hopper of a giant brass-and-glass machine shaped like a big dopey clam with goofy eyes.",
+  "lyrics": [
+   {
+    "line": 26,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 27,
+    "from": 0,
+    "to": 11,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "36",
+  "name": "carolers",
+  "section": "Chorus 2",
+  "start": 143.374,
+  "end": 147.638,
+  "still": "stills/36.png",
+  "camera": {
+   "from": {
+    "x": 0.48,
+    "y": 0.5,
+    "zoom": 1.12,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.52,
+    "y": 0.5,
+    "zoom": 1.18,
+    "rot": 0
+   }
+  },
+  "towerStage": 4,
+  "brief": "Byteville carolers in scarves on a snowy doorstep, mouths open, a long blank paper scroll unfurling out of a speaker box on the door.",
+  "lyrics": [
+   {
+    "line": 27,
+    "from": 0,
+    "to": 11,
+    "surface": {
+     "x": 0.24,
+     "y": 0.22,
+     "w": 0.52,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 28,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.24,
+     "y": 0.22,
+     "w": 0.52,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "37",
+  "name": "facts-scroll",
+  "section": "Chorus 2",
+  "start": 147.638,
+  "end": 151.702,
+  "still": "stills/37.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Close on a long blank parchment scroll held open by mittens, with a blank sticky note slapped on its corner.",
+  "lyrics": [
+   {
+    "line": 28,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.26,
+     "y": 0.3,
+     "w": 0.48,
+     "h": 0.34,
+     "rot": 0
+    },
+    "style": "tech",
+    "carry": true
+   },
+   {
+    "line": 29,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.26,
+     "y": 0.3,
+     "w": 0.48,
+     "h": 0.34,
+     "rot": 0
+    },
+    "style": "tech"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "38",
+  "name": "gpu-throne",
+  "section": "Chorus 2",
+  "start": 151.702,
+  "end": 155.866,
+  "still": "stills/38.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.3,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Ram Altman lounging on a towering throne built from stacked graphics cards with glowing fans, seen from a low angle.",
+  "lyrics": [
+   {
+    "line": 29,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook",
+    "carry": true
+   },
+   {
+    "line": 30,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "39",
+  "name": "squash",
+  "section": "Chorus 2",
+  "start": 155.866,
+  "end": 160.271,
+  "still": "stills/39.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 2
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": -2
+   }
+  },
+  "towerStage": null,
+  "brief": "Ram Altman bringing down a giant rubber stamp on tiny townsfolk (a shopkeeper, kids with a garage workbench) scattering; a blank envelope fluttering in the foreground.",
+  "lyrics": [
+   {
+    "line": 30,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.24,
+     "y": 0.62,
+     "w": 0.52,
+     "h": 0.1,
+     "rot": -3
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 31,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.24,
+     "y": 0.62,
+     "w": 0.52,
+     "h": 0.1,
+     "rot": -3
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "40",
+  "name": "christmas-morning",
+  "section": "Chorus 2",
+  "start": 160.271,
+  "end": 162.953,
+  "still": "stills/40.png",
+  "camera": {
+   "from": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 4,
+  "brief": "Christmas morning: the family running downstairs left to right in pyjamas, sunlight through the window where the monstrous tower smokes on the hill.",
+  "lyrics": [
+   {
+    "line": 31,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 32,
+    "from": 0,
+    "to": 6,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "41",
+  "name": "overhead-floor",
+  "section": "Chorus 2",
+  "start": 162.953,
+  "end": 164.315,
+  "still": "stills/41.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": -8
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": 8
+   }
+  },
+  "towerStage": null,
+  "brief": "Straight-down overhead view of the bare floor under the tree, four sad faces peering down from the edges of frame.",
+  "lyrics": [
+   {
+    "line": 32,
+    "from": 6,
+    "to": 11,
+    "surface": {
+     "x": 0.26,
+     "y": 0.6,
+     "w": 0.48,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "42",
+  "name": "cookies",
+  "section": "Chorus 2",
+  "start": 164.315,
+  "end": 168.699,
+  "still": "stills/42.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.1,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Close on a plate holding only cookie crumbs and one bitten cookie, next to a blank card propped up against a glass of milk.",
+  "lyrics": [
+   {
+    "line": 32,
+    "from": 6,
+    "to": 11,
+    "surface": {
+     "x": 0.24,
+     "y": 0.24,
+     "w": 0.52,
+     "h": 0.18,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 33,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.24,
+     "y": 0.24,
+     "w": 0.52,
+     "h": 0.18,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "43",
+  "name": "tiny-heart",
+  "section": "Bridge",
+  "start": 168.699,
+  "end": 173.444,
+  "still": "stills/43.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.05,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.15,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Dark, dramatic: Ram Altman alone in his vault, an x-ray view of his chest showing a heart that is just two tiny green memory chips.",
+  "lyrics": [
+   {
+    "line": 33,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.22,
+     "y": 0.2,
+     "w": 0.56,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 34,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.22,
+     "y": 0.2,
+     "w": 0.56,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "44",
+  "name": "kernel-panic",
+  "section": "Bridge",
+  "start": 173.444,
+  "end": 175.546,
+  "still": "stills/44.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 2
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": -2
+   }
+  },
+  "towerStage": null,
+  "brief": "A wall of monitors behind Ram Altman all flashing an alarming blank red-and-black panic screen, Ram clutching his hat.",
+  "lyrics": [
+   {
+    "line": 34,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.28,
+     "y": 0.3,
+     "w": 0.44,
+     "h": 0.2,
+     "rot": 0
+    },
+    "style": "tech",
+    "carry": true
+   },
+   {
+    "line": 35,
+    "from": 0,
+    "to": 4,
+    "surface": {
+     "x": 0.28,
+     "y": 0.3,
+     "w": 0.44,
+     "h": 0.2,
+     "rot": 0
+    },
+    "style": "tech"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "45",
+  "name": "racks-stall",
+  "section": "Bridge",
+  "start": 175.546,
+  "end": 177.748,
+  "still": "stills/45.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.08,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.52,
+    "zoom": 1.28,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Long server hall with the lights going out row by row toward the camera, the nearest racks still lit.",
+  "lyrics": [
+   {
+    "line": 35,
+    "from": 4,
+    "to": 8,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.6,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "46",
+  "name": "sleigh-sag",
+  "section": "Bridge",
+  "start": 177.748,
+  "end": 181.932,
+  "still": "stills/46.png",
+  "camera": {
+   "from": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 4,
+  "brief": "Wide: the sleigh grossly overloaded with the whole town's memory, sagging, reindeer straining to lift it off the tower roof, the tower sparking and cracked.",
+  "lyrics": [
+   {
+    "line": 35,
+    "from": 4,
+    "to": 8,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 36,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "47",
+  "name": "sleigh-tips",
+  "section": "Bridge",
+  "start": 181.932,
+  "end": 184.215,
+  "still": "stills/47.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.15,
+    "rot": -4
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.35,
+    "rot": 4
+   }
+  },
+  "towerStage": null,
+  "brief": "Dutch-angle tracking shot of the sleigh tipping and sputtering in the clouds, loot sliding, Ram Altman's panicked face.",
+  "lyrics": [
+   {
+    "line": 36,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.6,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 37,
+    "from": 0,
+    "to": 4,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.6,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "48",
+  "name": "crash",
+  "section": "Bridge",
+  "start": 184.215,
+  "end": 188.139,
+  "still": "stills/48.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.25,
+    "rot": -3
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.35,
+    "rot": 3
+   }
+  },
+  "towerStage": 4,
+  "brief": "The sleigh nose-diving into the snowy hillside below the tower, a huge fountain of glowing green RAM sticks and sparkles bursting over Byteville.",
+  "lyrics": [
+   {
+    "line": 37,
+    "from": 4,
+    "to": 8,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook"
+   },
+   {
+    "line": 38,
+    "from": 0,
+    "to": 2,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "49",
+  "name": "march",
+  "section": "Final Chorus",
+  "start": 188.139,
+  "end": 192.163,
+  "still": "stills/49.png",
+  "camera": {
+   "from": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 5,
+  "brief": "Townsfolk and elves marching up the snowy hill left to right holding lanterns, the leaning, smoking, sparking peak-size tower ahead of them.",
+  "lyrics": [
+   {
+    "line": 38,
+    "from": 0,
+    "to": 2,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook",
+    "carry": true
+   },
+   {
+    "line": 39,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "50",
+  "name": "paywall",
+  "section": "Final Chorus",
+  "start": 192.163,
+  "end": 194.685,
+  "still": "stills/50.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.1,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.47,
+    "y": 0.45,
+    "zoom": 1.5,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Elves tearing apart a velvet rope barrier with a blank hanging sign, tokens spilling free.",
+  "lyrics": [
+   {
+    "line": 39,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.5,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 40,
+    "from": 0,
+    "to": 4,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.5,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "51",
+  "name": "patch",
+  "section": "Final Chorus",
+  "start": 194.685,
+  "end": 196.988,
+  "still": "stills/51.png",
+  "camera": {
+   "from": {
+    "x": 0.48,
+    "y": 0.5,
+    "zoom": 1.12,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.52,
+    "y": 0.5,
+    "zoom": 1.18,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "An elf on a ladder slapping a giant band-aid over a cracked, sparking server.",
+  "lyrics": [
+   {
+    "line": 40,
+    "from": 4,
+    "to": 9,
+    "surface": {
+     "x": 0.24,
+     "y": 0.22,
+     "w": 0.52,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "52",
+  "name": "build-open",
+  "section": "Final Chorus",
+  "start": 196.988,
+  "end": 201.592,
+  "still": "stills/52.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.3,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 5,
+  "brief": "Townsfolk and elves building a cheerful tower together out of transparent glass boxes in the town square, the smoking giant tower in the distance.",
+  "lyrics": [
+   {
+    "line": 40,
+    "from": 4,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook",
+    "carry": true
+   },
+   {
+    "line": 41,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "53",
+  "name": "balloon-pop",
+  "section": "Final Chorus",
+  "start": 201.592,
+  "end": 205.276,
+  "still": "stills/53.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.12,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.53,
+    "y": 0.47,
+    "zoom": 1.45,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "A giant gold balloon bursting over the town square in a shower of confetti, townsfolk cheering.",
+  "lyrics": [
+   {
+    "line": 41,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.6,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 42,
+    "from": 0,
+    "to": 7,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.6,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "54",
+  "name": "town-chorus",
+  "section": "Final Chorus",
+  "start": 205.276,
+  "end": 210.081,
+  "still": "stills/54.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.3,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 5,
+  "brief": "Wide crane over the whole town singing in the snowy square, elf choir on the bandstand, the tower looming.",
+  "lyrics": [
+   {
+    "line": 42,
+    "from": 0,
+    "to": 7,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.14,
+     "rot": 0
+    },
+    "style": "hook",
+    "carry": true
+   },
+   {
+    "line": 43,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.14,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "55",
+  "name": "gifts",
+  "section": "Final Chorus",
+  "start": 210.081,
+  "end": 214.385,
+  "still": "stills/55.png",
+  "camera": {
+   "from": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 5,
+  "brief": "Gifts landing under trees in cosy Byteville homes: a game console, a laptop, a ham-radio set with a big antenna, wrapped presents.",
+  "lyrics": [
+   {
+    "line": 43,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 44,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "56",
+  "name": "give-back",
+  "section": "Final Chorus",
+  "start": 214.385,
+  "end": 218.155,
+  "still": "stills/56.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.05,
+    "rot": 0
+   }
+  },
+  "towerStage": 5,
+  "brief": "The hill around the tower: wind turbines spinning, a water tower filling, green fields pushing through the snow.",
+  "lyrics": [
+   {
+    "line": 44,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook",
+    "carry": true
+   },
+   {
+    "line": 45,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "57",
+  "name": "door-knocks",
+  "section": "Final Chorus",
+  "start": 218.155,
+  "end": 218.99,
+  "still": "stills/57.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.1,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "The huge curly front door of the data center at night, snow on the step, a little shadow on the doorstep.",
+  "lyrics": [
+   {
+    "line": 45,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.24,
+     "y": 0.24,
+     "w": 0.52,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "hook",
+    "carry": true
+   }
+  ],
+  "sfx": [
+   {
+    "name": "knock",
+    "t": 218.155
+   },
+   {
+    "name": "knock",
+    "t": 218.516
+   },
+   {
+    "name": "knock",
+    "t": 218.878
+   }
+  ]
+ },
+ {
+  "id": "58",
+  "name": "girl-asks",
+  "section": "Final Chorus",
+  "start": 218.99,
+  "end": 228.339,
+  "still": "stills/58.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Over Ram Altman's shoulder down to the little Byteville girl on the step: too-big knit hat, gap-tooth smile, mittens, holding a cardboard science-fair trifold. Ram wears a fake-friendly smile.",
+  "lyrics": [
+   {
+    "line": 45,
+    "from": 0,
+    "to": 8,
+    "surface": {
+     "x": 0.22,
+     "y": 0.24,
+     "w": 0.56,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "aside",
+    "carry": true
+   },
+   {
+    "line": 46,
+    "from": 0,
+    "to": 4,
+    "surface": {
+     "x": 0.22,
+     "y": 0.24,
+     "w": 0.56,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "aside"
+   },
+   {
+    "line": 47,
+    "from": 0,
+    "to": 11,
+    "surface": {
+     "x": 0.22,
+     "y": 0.24,
+     "w": 0.56,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "aside"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "59",
+  "name": "hi-five",
+  "section": "Ending",
+  "start": 228.339,
+  "end": 233.604,
+  "still": "stills/59.png",
+  "camera": {
+   "from": {
+    "x": 0.48,
+    "y": 0.5,
+    "zoom": 1.12,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.52,
+    "y": 0.5,
+    "zoom": 1.18,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Profile two-shot on the doorstep: Ram Altman crouching to the girl's level, both raising hands for a high five, a sparkle between their palms, space above them.",
+  "lyrics": [
+   {
+    "line": 47,
+    "from": 0,
+    "to": 11,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.14,
+     "rot": 0
+    },
+    "style": "aside",
+    "carry": true
+   },
+   {
+    "line": 48,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.14,
+     "rot": 0
+    },
+    "style": "aside"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "60",
+  "name": "pull-back",
+  "section": "Outro",
+  "start": 233.604,
+  "end": 237.248,
+  "still": "stills/60.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.3,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.05,
+    "rot": 0
+   }
+  },
+  "towerStage": 5,
+  "brief": "Exterior wide of the giant smoking, sparking tower at its peak size, a small figure waving at its door, the girl walking away down the hill.",
+  "lyrics": [
+   {
+    "line": 48,
+    "from": 0,
+    "to": 9,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 49,
+    "from": 0,
+    "to": 11,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "61",
+  "name": "elves-ship",
+  "section": "Outro",
+  "start": 237.248,
+  "end": 241.993,
+  "still": "stills/61.png",
+  "camera": {
+   "from": {
+    "x": 0.42,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.58,
+    "y": 0.5,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "An elf assembly line packing boxes with blank labels onto a conveyor running out of the tower.",
+  "lyrics": [
+   {
+    "line": 49,
+    "from": 0,
+    "to": 11,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.6,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   },
+   {
+    "line": 50,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.2,
+     "y": 0.62,
+     "w": 0.6,
+     "h": 0.1,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "62",
+  "name": "marquee",
+  "section": "Outro",
+  "start": 241.993,
+  "end": 246.857,
+  "still": "stills/62.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.58,
+    "zoom": 1.2,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.42,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": 5,
+  "brief": "An old-timey theatre on Byteville's main street at night, its big blank lightbulb marquee glowing, snow falling, the tower on the hill behind.",
+  "lyrics": [
+   {
+    "line": 50,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.26,
+     "y": 0.3,
+     "w": 0.48,
+     "h": 0.16,
+     "rot": 0
+    },
+    "style": "hook",
+    "carry": true
+   },
+   {
+    "line": 51,
+    "from": 0,
+    "to": 10,
+    "surface": {
+     "x": 0.26,
+     "y": 0.3,
+     "w": 0.48,
+     "h": 0.16,
+     "rot": 0
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "63",
+  "name": "stage-bow",
+  "section": "Outro",
+  "start": 246.857,
+  "end": 250.441,
+  "still": "stills/63.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.05,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.15,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "A spotlight on Ram Altman bowing on a little stage with red curtains.",
+  "lyrics": [
+   {
+    "line": 52,
+    "from": 0,
+    "to": 5,
+    "surface": {
+     "x": 0.2,
+     "y": 0.2,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "64",
+  "name": "scrooge-card",
+  "section": "Outro",
+  "start": 250.441,
+  "end": 253.514,
+  "still": "stills/64.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.1,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.47,
+    "y": 0.45,
+    "zoom": 1.5,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Extreme close-up of Ram Altman's smug face holding up a blank white card beside his chin.",
+  "lyrics": [
+   {
+    "line": 52,
+    "from": 5,
+    "to": 7,
+    "surface": {
+     "x": 0.2,
+     "y": 0.6,
+     "w": 0.56,
+     "h": 0.14,
+     "rot": -4
+    },
+    "style": "hook"
+   }
+  ],
+  "sfx": []
+ },
+ {
+  "id": "65",
+  "name": "collapse",
+  "section": "Outro",
+  "start": 253.514,
+  "end": 259.6,
+  "still": "stills/65.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.48,
+    "zoom": 1.25,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.0,
+    "rot": 0
+   }
+  },
+  "towerStage": 5,
+  "brief": "Exterior wide of the gigantic data-center tower mid-collapse, imploding in on itself, smoke sucking inward, over a quiet snowy hill with Byteville's windows glowing warm below.",
+  "lyrics": [
+   {
+    "line": 52,
+    "from": 5,
+    "to": 7,
+    "surface": {
+     "x": 0.2,
+     "y": 0.22,
+     "w": 0.6,
+     "h": 0.12,
+     "rot": 0
+    },
+    "style": "narration",
+    "carry": true
+   }
+  ],
+  "sfx": []
+ }
+]
