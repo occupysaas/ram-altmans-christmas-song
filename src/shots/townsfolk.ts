@@ -94,16 +94,29 @@ export function crowdItems(t: number, shot: Shot): {behind: Item[]; front: Item[
   return {behind, front};
 }
 
-/** 35 (2:19) "Fed it all to a model that's dumb as a clam": the golden machine-creature (one cut-out layer, so the
- *  WHOLE body moves) snaps shut on every beat with a squash, then springs open with a stretch, eyes bulging. */
-export const shot35: Choreo = (_t, frame) => {
+/** 35 (2:19) "Fed it all to a model that's dumb as a clam": Ram (cut-out poses) shovels on a two-beat cycle —
+ *  scoop, lift, TOSS — and the RAM arcs into the golden creature's open mouth. The creature (one layer, so the whole
+ *  body moves) snaps shut on every beat with a squash; once fed, its open mouth is stuffed and RAM spills out of it
+ *  onto the floor on every chomp. */
+const MOUTH35: P = [690, 800], BLADE35: P = [820, 760], LIP35: P = [640, 860], FLOOR35 = 1110;
+export const shot35: Choreo = (_t, frame, shot) => {
   const t = twos(frame), b = beat(t), L = IDX['35/creature'], feet: P = [L.x + L.w / 2, L.y + L.h];
+  const b0 = beat(shot.start + 0.05).i, rel = b.i - b0, half = b.since > 0.27;
+  const pose = rel % 2 === 0 ? (half ? 'lift' : 'scoop') : 'toss';
+  const firstToss = audio.beats[b0 + 1], fed = t >= firstToss + 0.35;
   const shut = b.i >= 0 && b.since < 0.18, k = shut ? 1 - b.since / 0.18 : Math.exp(-(b.since - 0.18) / 0.12);
   const sy = shut ? 1 - 0.1 * k : 1 + 0.06 * k, sx = shut ? 1 + 0.07 * k : 1 - 0.03 * k;
-  const items: Item[] = [{layer: shut ? '35/creature-shut' : '35/creature', sx, sy, pivot: feet, rot: shut ? -1.5 * k : 0}];
-  if (shut && b.since < 0.12) for (let i = 0; i < 6; i++) {   // crumbs of green bills puffing out of the shut jaws
-    const a = b.since / 0.12, th = Math.PI * (0.9 + 0.4 * hash(i + b.i));
-    items.push({draw: {kind: 'dot', at: [L.x + L.w * 0.18 + Math.cos(th) * 120 * a, L.y + L.h * 0.45 - Math.sin(th) * 90 * a], size: 9, color: '#5fd35a', opacity: 1 - a}});
+  const items: Item[] = [{layer: '35/cart'}, {layer: `35/ram-${pose}`, dy: pose === 'lift' ? -6 : 0}];
+  items.push({layer: shut ? '35/creature-shut' : fed ? '35/creature-full' : '35/creature', sx, sy, pivot: feet, rot: shut ? -1.5 * k : 0});
+  // the load in flight: from the blade at the toss into the open mouth
+  if (pose === 'toss') for (let i = 0; i < 5; i++) {
+    const u = Math.min(1, b.since / 0.32), x = BLADE35[0] + (MOUTH35[0] - BLADE35[0]) * u + 30 * (i - 2), y = BLADE35[1] + (MOUTH35[1] - BLADE35[1]) * u - 140 * Math.sin(Math.PI * u) + 12 * i;
+    if (u < 1) items.push({sprite: 'sprites/props/ram-stick', at: [x, y], scale: 0.2, rot: 200 * u + 40 * i});
+  }
+  // spills from the stuffed mouth on each chomp
+  if (fed && b.i >= b0 + 2) for (let i = 0; i < 4; i++) {
+    const a = b.since, x = LIP35[0] - 40 - 70 * a * (1 + i) + 15 * i, y = Math.min(FLOOR35 - 10 * i, LIP35[1] + 300 * a + 1400 * a * a);
+    items.push({sprite: 'sprites/props/ram-stick', at: [x, y], scale: 0.19, rot: 60 * i + (y < FLOOR35 - 10 * i ? 500 * a : 0)});
   }
   return items;
 };

@@ -155,3 +155,17 @@ test('17: the sky scrolls past, the arms snap the reins on each beat, and he win
   assert.ok(at(wink + 0.15).some(i => i.layer === '17/ram-wink'));
   assert.ok(!at(wink - 0.3).some(i => i.layer === '17/ram-wink'));
 });
+
+import {shot35} from '../src/shots/townsfolk.ts';
+
+test('35: Ram shovels scoop-lift-toss on the beat, RAM arcs into the mouth, and the stuffed mouth spills on each chomp', () => {
+  const s = shot('35'), at = t => shot35(t, Math.round(t * 24), s);
+  const beats = audioJ.beats.filter(b => b > s.start + 0.2 && b < s.end - 0.5);
+  const ramAt = t => at(t).find(i => String(i.layer ?? '').startsWith('35/ram-'))?.layer;
+  const seen = new Set(beats.flatMap(b => [ramAt(b + 0.13), ramAt(b + 0.4)]));
+  for (const p of ['35/ram-scoop', '35/ram-lift', '35/ram-toss']) assert.ok(seen.has(p), `${p} never shown`);
+  const late = beats.at(-1);
+  assert.ok(at(late + 0.4).some(i => i.layer === '35/creature-full'), 'mouth stuffed after the tosses');
+  assert.ok(at(late + 0.13).filter(i => String(i.sprite ?? '').endsWith('ram-stick')).length >= 3, 'RAM spilling/flying');
+  assert.ok(at(s.start + 0.5).some(i => i.layer === '35/cart'));
+});

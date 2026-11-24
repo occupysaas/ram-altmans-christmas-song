@@ -234,7 +234,7 @@ test('35: the whole creature chomps shut on each beat (one layer, squashed as a 
   for (const b of beats) {
     const on = at(b + 0.06), off = at(b + 0.32);
     assert.equal(on.length, 1); assert.equal(on[0].layer, '35/creature-shut'); assert.ok((on[0].sy ?? 1) < 0.97, 'squash on the chomp');
-    assert.equal(off[0].layer, '35/creature');
+    assert.ok(['35/creature', '35/creature-full'].includes(off[0].layer));   // pass 3: open mouth may be stuffed with RAM
   }
 });
 
