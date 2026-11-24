@@ -2,11 +2,12 @@ import React from 'react';
 import {Easing, Img, interpolate, staticFile} from 'remotion';
 import {STILL_W, STILL_H, type Style} from './layout';
 import {LyricBlock} from './Lyric';
+import {Tower} from './fx/Tower';
 
 export const PROG_W = 960, PROG_H = 720;
 type Cam = {x: number; y: number; zoom: number; rot: number};
 export type Shot = {id: string; start: number; end: number; still: string; camera: {from: Cam; to: Cam};
-  towerStage: number | null; lyrics: {line: number; from: number; to: number; style: Style; tone: 'light' | 'dark';
+  towerStage: number | null; fx?: string[]; lyrics: {line: number; from: number; to: number; style: Style; tone: 'light' | 'dark';
   surface: {x: number; y: number; w: number; h: number; rot: number}}[]};
 
 /** A still under an eased camera move, with its in-world lyrics painted onto it. */
@@ -23,6 +24,7 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
     <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, transformOrigin: '0 0',
       transform: `translate(${PROG_W / 2 + weave.x}px, ${PROG_H / 2 + weave.y}px) rotate(${rot}deg) scale(${scale}) translate(${-cx * STILL_W}px, ${-cy * STILL_H}px)`}}>
       <Img src={staticFile(image ?? shot.still)} style={{width: STILL_W, height: STILL_H, display: 'block'}} />
+      {shot.fx?.includes('tower') && <Tower shot={shot} t={t} />}
       {children}
       {inWorld.map((e, i) => {
         const s = e.surface, bh = s.h * STILL_H / inWorld.length;
