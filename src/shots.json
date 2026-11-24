@@ -832,10 +832,10 @@
   "sfx": [],
   "tier": "A",
   "fx": [],
-  "action": "whip crack, wink on 'wink'",
+  "action": "sky streams past the sleigh; Ram snaps the reins on every beat, whip-crack on snares, winks on \"wink\"",
   "plate": "plates/17.png",
   "puppets": [
-   "ram-sleigh"
+   "layers-17"
   ]
  },
  {

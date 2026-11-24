@@ -138,3 +138,20 @@ test('64: Ram laughs "HA HA HA" after "Scrooge!"', () => {
   assert.ok(mid.some(i => i.layer === '64/face-laugh'));
   assert.ok(mid.filter(i => i.draw?.text === 'HA').length >= 2);
 });
+
+import {shot17, skyOffset} from '../src/shots/wink17.ts';
+
+test('17: the sky scrolls past, the arms snap the reins on each beat, and he winks on "wink"', () => {
+  const s = shot('17'), at = t => shot17(t, Math.round(t * 24), s);
+  assert.ok(Math.abs(skyOffset(s.start + 1) - skyOffset(s.start)) > 300, 'sky moves');
+  const sky = at(s.start + 0.5).filter(i => i.sprite === 'plates/17');
+  assert.equal(sky.length, 2, 'two tiles for a seamless loop');
+  const beats = audioJ.beats.filter(b => b > s.start + 0.2 && b < s.end - 0.4);
+  for (const b of beats) {
+    const on = at(b + 0.13).find(i => i.layer === '17/arm-near'), off = at(b + 0.42).find(i => i.layer === '17/arm-near');   // held frames lag up to 0.125 s
+    assert.ok(Math.abs(on.rot) > Math.abs(off.rot) + 3, `no snap on beat ${b}`);
+  }
+  const wink = L()[11].words.find(w => w.w.startsWith('wink')).s;
+  assert.ok(at(wink + 0.15).some(i => i.layer === '17/ram-wink'));
+  assert.ok(!at(wink - 0.3).some(i => i.layer === '17/ram-wink'));
+});

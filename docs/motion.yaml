@@ -17,7 +17,7 @@
 14: {tier: B, fx: [spinner], action: "laptop spinner turns"}
 15: {tier: A, puppets: [reindeer, ram-sleigh], fx: [], action: "sleigh launches off the tower roof right-to-left"}
 16: {tier: A, puppets: [reindeer, ram-sleigh], fx: [ramStream], action: "rooftop pass; RAM sucked out of chimneys"}
-17: {tier: A, puppets: [ram-sleigh], fx: [], action: "whip crack, wink on 'wink'"}
+17: {tier: A, puppets: [layers-17], fx: [], action: "sky streams past the sleigh; Ram snaps the reins on every beat, whip-crack on snares, winks on \"wink\""}
 18: {tier: A, puppets: [layers-18], fx: [], action: "family (cut-out layers) sobs on alternating beats, tears fall and splash, blank tag drawn 2x for a big lyric; slow push-in"}
 19: {tier: A, puppets: [layers-19], fx: [], action: "shoppers bob up to the window, recoil in shock as the red price sticker flips higher on each beat"}
 20: {tier: B, fx: [tower], action: "tower in the cyan cloud; bumps, smoke"}
