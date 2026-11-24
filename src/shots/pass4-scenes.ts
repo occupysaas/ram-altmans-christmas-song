@@ -68,3 +68,21 @@ export const shot18: Choreo = (t, frame, shot) => {
   const sway = 1.2 * Math.sin(twos(frame) * 1.4);
   return [{sprite: 'sprites/scroll/scroll', at: [SCROLL18.x, SCROLL18.y], scale: SCROLL18.scale, size: [1400, 420], rot: sway}, ...items];
 };
+
+// 11 (0:46) "So he coded all night…": the city behind bounces on the beat (squash/stretch from its base, so no gap
+// opens under it), Ram's eyes squint and pop open in two-beat spells, and his hands hammer the keys on the half-beat.
+export const shot11: Choreo = (_t, frame) => {
+  const t = twos(frame), b = beat(t), hit = b.i >= 0 ? Math.exp(-b.since / 0.14) : 0, B = IDX['11/buildings'];
+  const squint = b.i >= 0 && Math.floor(b.i / 2) % 2 === 1, half = b.since > 0.25 ? 1 : 0, hands = (b.i * 2 + half) % 2 ? 'b' : 'a';
+  return [
+    {layer: '11/buildings', sy: 1 + 0.035 * hit, sx: 1 - 0.01 * hit, pivot: [B.x + B.w / 2, B.y + B.h]},
+    {layer: squint ? '11/ram-squint' : '11/ram', dy: 4 * hit},
+    {layer: `11/hands-${hands}`, dy: hands === 'b' ? 6 : 0},
+  ];
+};
+
+// 44 (2:53) "Your kernel's in panic…": Ram's jaw flaps open and shut in shock every couple of frames while he trembles.
+export const shot44: Choreo = (_t, frame) => {
+  const open = Math.floor(frame / 2) % 2 === 0, dx = 6 * Math.sin(frame * 2.9) + 3 * Math.sin(frame * 6.1), R = IDX['44/ram'];
+  return [{layer: open ? '44/ram-open' : '44/ram', dx, dy: 2 * Math.sin(frame * 4.3), pivot: [R.x + R.w / 2, R.y + R.h]}];
+};

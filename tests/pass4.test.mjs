@@ -114,3 +114,23 @@ test('43: Ram\'s mouth flaps rapidly in shock and he shakes', () => {
   assert.ok(heads.size >= 2, `heads ${[...heads]}`);
   assert.ok(Math.max(...xs) - Math.min(...xs) >= 8, 'shakes');
 });
+
+import {shot11, shot44} from '../src/shots/pass4-scenes.ts';
+
+test('11: buildings bounce on the beat, eyes squint and open, hands type; lyric at the top', () => {
+  const s = shot('11'), at = t => shot11(t, Math.round(t * 24), s), seen = new Set();
+  const b = audioJ.beats.find(x => x > s.start + 0.5);
+  const sy = t => at(t).find(i => i.layer === '11/buildings').sy ?? 1;
+  assert.ok(sy(b + 0.08) > sy(b + 0.45) + 0.015, 'bounce on the beat');
+  for (let t = s.start; t < s.end; t += 0.1) for (const i of at(t)) if (i.layer) seen.add(i.layer);
+  for (const k of ['11/ram', '11/ram-squint', '11/hands-a', '11/hands-b']) assert.ok(seen.has(k), `never shows ${k}`);
+  assert.ok(s.lyrics[0].surface.y + s.lyrics[0].surface.h <= 0.3, 'lyric moved to the top');
+});
+
+test('44: Ram\'s mouth flaps open and shut rapidly and he shakes', () => {
+  const s = shot('44'), keys = [], dxs = [];
+  for (let f = Math.round(s.start * 24); f < Math.round((s.start + 1) * 24); f++) { const r = shot44(f / 24, f, s).find(i => String(i.layer).startsWith('44/ram')); keys.push(r.layer); dxs.push(r.dx ?? 0); }
+  let flips = 0; for (let i = 1; i < keys.length; i++) if (keys[i] !== keys[i - 1]) flips++;
+  assert.ok(flips >= 6, `${flips} mouth changes in a second`);
+  assert.ok(Math.max(...dxs) - Math.min(...dxs) >= 8, 'shakes');
+});

@@ -25,7 +25,7 @@ shots:
    brief: "Extreme close-up of Ram Altman's greedy grin, eyes wide with hunger, monitor glow on his green face."}
 - {n: 10, name: shop-snatch, anchor: {line: 5}, cam: panRight, tower: 2, surf: [0.06, 0.6, 0.88, 0.33, 0], style: narration,
    brief: "Electronics shop shelf, side view: Ram Altman's long bony green fingers snatching glowing green RAM sticks, a chip and a tiny glowing cube off the shelf left to right; blank price tags along the shelf edge; the tower visible bigger through the shop window."}
-- {n: 11, name: coding-montage, anchor: {line: 6}, cam: orbit, tower: null, surf: [0.12, 0.53, 0.76, 0.32, 0], style: tech,
+- {n: 11, name: coding-montage, anchor: {line: 6}, cam: [[.5, .5, 1.0, 0], [.48, .52, 1.06, 0]], tower: null, surf: [0.12, 0.03, 0.76, 0.26, 0], style: tech,
    brief: "Over Ram Altman's shoulder typing furiously at a glowing terminal, moon in the window on the left, morning sun in another window on the right, racks multiplying around him; a blank black terminal pane low in frame."}
 - {n: 12, name: howling-fans, anchor: {line: 7}, cam: fanShake, tower: null, surf: [0.11, 0.17, 0.79, 0.35, 0], style: narration,
    brief: "Close on a wall of big server fans spinning wildly with cartoon wind-lines and snow blowing off them, the fan grilles shaped like howling mouths."}
