@@ -9,7 +9,10 @@ export type SpriteItem = {sprite: string; at: P; rot?: number; scale: number; op
 export type HoseItem = {hose: {a: P; b: P; L: number; side: 1 | -1; width: number; fill: string; ink: string}};
 /** A soft dark wash over a region (e.g. a town's lights dimming). */
 export type ShadeItem = {shade: {x: number; y: number; w: number; h: number; opacity: number; color?: string; round?: boolean}};
-export type Item = Placed | SpriteItem | HoseItem | ShadeItem;
+import type {PathState} from './sleigh.ts';
+export type TeamItem = {sleighTeam: {state: PathState; scale: number; t: number; deer: boolean}};
+export type Item = Placed | SpriteItem | HoseItem | ShadeItem | TeamItem;
+export const isTeam = (i: Item): i is TeamItem => (i as TeamItem).sleighTeam !== undefined;
 export const isShade = (i: Item): i is ShadeItem => (i as ShadeItem).shade !== undefined;
 export const isHose = (i: Item): i is HoseItem => (i as HoseItem).hose !== undefined;
 export const isSprite = (i: Item): i is SpriteItem => (i as SpriteItem).sprite !== undefined;

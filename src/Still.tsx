@@ -6,7 +6,8 @@ import {Tower} from './fx/Tower';
 import {Star} from './fx/Star';
 import {CHOREO} from './shots';
 import {Puppet} from './puppet/Puppet';
-import {isSprite, isHose, isShade} from './shots/types';
+import {isSprite, isHose, isShade, isTeam} from './shots/types';
+import {SleighTeam} from './puppet/Quadruped';
 import {Hose} from './puppet/Hose';
 import props from '../public/sprites/props/props.json';
 
@@ -34,6 +35,7 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
       {shot.fx?.includes('star') && <Star t={t} />}
       {CHOREO[shot.id] && <svg width={STILL_W} height={STILL_H} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
         {CHOREO[shot.id](t, frame, shot).map((p, i) => {
+          if (isTeam(p)) return <SleighTeam key={i} state={p.sleighTeam.state} scale={p.sleighTeam.scale} t={p.sleighTeam.t} deerOn={p.sleighTeam.deer} />;
           if (isHose(p)) return <Hose key={i} {...p.hose} />;
           if (isShade(p)) return p.shade.round
             ? <ellipse key={i} cx={p.shade.x + p.shade.w / 2} cy={p.shade.y + p.shade.h / 2} rx={p.shade.w / 2} ry={p.shade.h / 2} fill={p.shade.color ?? '#050414'} opacity={p.shade.opacity} style={{filter: 'blur(18px)'}} />

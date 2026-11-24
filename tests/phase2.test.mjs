@@ -103,7 +103,7 @@ test('collapse is complete before the TV switches off', () => {
 });
 
 import {CHOREO} from '../src/shots/index.ts';
-export const DONE_A = ['08', '10', '13', '21', '22', '24', '25', '26', '27', '39', '43', '63'];
+export const DONE_A = ['08', '10', '13', '15', '16', '21', '22', '24', '25', '26', '27', '31', '34', '39', '43', '46', '47', '48', '63'];
 
 test('every tier-A shot has a plate, its puppets and a choreography module', () => {
   for (const id of DONE_A) {
@@ -113,6 +113,21 @@ test('every tier-A shot has a plate, its puppets and a choreography module', () 
     assert.ok(CHOREO[id], `shot ${id}: no choreography`);
     const placed = CHOREO[id](s.start + 0.5, Math.round((s.start + 0.5) * 24), s);
     // a puppet, or (arms-only shots like 10) that puppet's painted parts
-    assert.ok(placed.some(p => (p.who && s.puppets.includes(p.who)) || s.puppets.some(w => p.sprite?.startsWith(`puppets/${w}/`))), `shot ${id}: choreography draws none of ${s.puppets}`);
+    assert.ok(placed.some(p => (p.who && s.puppets.includes(p.who)) || p.sleighTeam || s.puppets.some(w => p.sprite?.startsWith(`puppets/${w}/`))), `shot ${id}: choreography draws none of ${s.puppets}`);
+  }
+});
+
+import {SLEIGH_PATHS} from '../src/shots/sleigh.ts';
+
+test('sleigh teams face their direction of travel', () => {
+  for (const id of ['15', '16', '31', '34', '46', '47', '48']) {
+    const s = shots().find(x => x.id === id), path = SLEIGH_PATHS[id];
+    assert.ok(path, `no sleigh path for ${id}`);
+    for (let k = 1; k < 10; k++) {
+      const t = s.start + (s.end - s.start) * k / 10, a = path(t - 0.05, s), b = path(t + 0.05, s);
+      const dx = b.pos[0] - a.pos[0];
+      if (Math.abs(dx) < 1) continue;            // hovering (e.g. frozen on "buffering")
+      assert.equal(b.flip, dx < 0, `shot ${id} at ${t.toFixed(2)}: dx ${dx.toFixed(1)} flip ${b.flip}`);
+    }
   }
 });
