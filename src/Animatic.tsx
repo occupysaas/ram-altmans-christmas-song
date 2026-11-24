@@ -3,6 +3,8 @@ import {AbsoluteFill, Audio, staticFile, useCurrentFrame} from 'remotion';
 import shotsJson from './shots.json';
 import {loadFonts} from './fonts';
 import {Snow} from './Snow';
+import {Ident} from './fx/Ident';
+import {Title} from './fx/Title';
 import {PROG_H, PROG_W, Still, type Shot} from './Still';
 
 export const FPS = 24;
@@ -30,6 +32,8 @@ export function Animatic() {
         filter: `brightness(${1 + off.glow * 4})`}}>
       <Still shot={shot} t={t} frame={frame} />
       <Snow frame={frame} w={PROG_W} h={PROG_H} density={shot.towerStage != null ? 1 : 0.25} />
+      <Title t={t} w={PROG_W} />
+      <Ident t={t} frame={frame} w={PROG_W} h={PROG_H} />
       </AbsoluteFill>
       {off.dot > 0 && <div style={{position: 'absolute', left: PROG_W / 2 - 6, top: PROG_H / 2 - 6, width: 12, height: 12,
         borderRadius: '50%', background: '#fff', opacity: off.dot, boxShadow: `0 0 ${24 * off.dot}px 8px rgba(255,255,255,${off.dot})`}} />}

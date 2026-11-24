@@ -23,7 +23,14 @@
   "towerStage": 1,
   "brief": "Title card: a snowy hill at night under huge stars, the modest glass-and-chrome data-center tower on the peak with one thin smoke plume, Byteville's lit cottages far below. Big empty starry sky in the upper half for the show title.",
   "lyrics": [],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tower",
+   "ident",
+   "title"
+  ],
+  "action": "Occupy SaaS ident, then the title over the snowy hill; tower bumps on kicks"
  },
  {
   "id": "02",
@@ -64,7 +71,13 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tower",
+   "chimneySmoke"
+  ],
+  "action": "crane down over the rooftops; chimneys smoke"
  },
  {
   "id": "03",
@@ -105,7 +118,10 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "C",
+  "fx": [],
+  "action": "living room; cat already mid-stride (still)"
  },
  {
   "id": "04",
@@ -146,7 +162,10 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "C",
+  "fx": [],
+  "action": "rack row; one light blinks"
  },
  {
   "id": "05",
@@ -187,7 +206,12 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "dust"
+  ],
+  "action": "dust drifting in the moonbeam"
  },
  {
   "id": "06",
@@ -228,7 +252,12 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tower"
+  ],
+  "action": "low angle tower; bumps on kicks, smoke plume"
  },
  {
   "id": "07",
@@ -269,7 +298,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "gpuHum"
+  ],
+  "action": "monitors pulse on the beat"
  },
  {
   "id": "08",
@@ -310,7 +344,16 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [
+   "sparkles"
+  ],
+  "action": "Sam turns 3/4, transforms into Ram; hat and scarf drop on",
+  "plate": "plates/08.png",
+  "puppets": [
+   "sam-34"
+  ]
  },
  {
   "id": "09",
@@ -351,7 +394,10 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "C",
+  "fx": [],
+  "action": "grin close-up push"
  },
  {
   "id": "10",
@@ -392,7 +438,14 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "grabs RAM, a chip and a byte off the shelf, one per stressed word",
+  "plate": "plates/10.png",
+  "puppets": [
+   "ram-side"
+  ]
  },
  {
   "id": "11",
@@ -433,7 +486,12 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "terminal"
+  ],
+  "action": "terminal glyph blocks scroll"
  },
  {
   "id": "12",
@@ -474,7 +532,12 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "fans"
+  ],
+  "action": "fans spin with wind lines"
  },
  {
   "id": "13",
@@ -515,7 +578,14 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "the approved rubber-hose sneak to the window, settle, peer at the town",
+  "plate": "plates/13.png",
+  "puppets": [
+   "ram-side"
+  ]
  },
  {
   "id": "14",
@@ -556,7 +626,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "spinner"
+  ],
+  "action": "laptop spinner turns"
  },
  {
   "id": "15",
@@ -597,7 +672,15 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "sleigh launches off the tower roof right-to-left",
+  "plate": "plates/15.png",
+  "puppets": [
+   "reindeer",
+   "ram-sleigh"
+  ]
  },
  {
   "id": "16",
@@ -638,7 +721,17 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [
+   "ramStream"
+  ],
+  "action": "rooftop pass; RAM sucked out of chimneys",
+  "plate": "plates/16.png",
+  "puppets": [
+   "reindeer",
+   "ram-sleigh"
+  ]
  },
  {
   "id": "17",
@@ -679,7 +772,14 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "whip crack, wink on 'wink'",
+  "plate": "plates/17.png",
+  "puppets": [
+   "ram-sleigh"
+  ]
  },
  {
   "id": "18",
@@ -720,7 +820,10 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "C",
+  "fx": [],
+  "action": "family at the empty tree"
  },
  {
   "id": "19",
@@ -761,7 +864,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tagFlip"
+  ],
+  "action": "price tag flips to bigger numbers on beats"
  },
  {
   "id": "20",
@@ -802,7 +910,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tower"
+  ],
+  "action": "tower in the cyan cloud; bumps, smoke"
  },
  {
   "id": "21",
@@ -843,7 +956,16 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [
+   "coins"
+  ],
+  "action": "flings tokens up on each beat",
+  "plate": "plates/21.png",
+  "puppets": [
+   "ram-34"
+  ]
  },
  {
   "id": "22",
@@ -884,7 +1006,14 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "cackle, head thrown back on snares",
+  "plate": "plates/22.png",
+  "puppets": [
+   "ram-34"
+  ]
  },
  {
   "id": "23",
@@ -925,7 +1054,12 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tower"
+  ],
+  "action": "tower humming bright; marquee bulbs chase"
  },
  {
   "id": "24",
@@ -966,7 +1100,14 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "shoulder-pushes the vault door shut",
+  "plate": "plates/24.png",
+  "puppets": [
+   "ram-side"
+  ]
  },
  {
   "id": "25",
@@ -1007,7 +1148,14 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "two-arm pull of the GPU and cache jar with elastic overshoot",
+  "plate": "plates/25.png",
+  "puppets": [
+   "ram-side"
+  ]
  },
  {
   "id": "26",
@@ -1048,7 +1196,16 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [
+   "stashFreeze"
+  ],
+  "action": "shoves SSDs in the sack; freeze and squint at camera on 'umm, stash'",
+  "plate": "plates/26.png",
+  "puppets": [
+   "ram-side"
+  ]
  },
  {
   "id": "27",
@@ -1089,7 +1246,14 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "jabs at the chart on beats",
+  "plate": "plates/27.png",
+  "puppets": [
+   "ram-side"
+  ]
  },
  {
   "id": "28",
@@ -1130,7 +1294,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tower"
+  ],
+  "action": "mega-tower banner; bumps, smoke and sparks"
  },
  {
   "id": "29",
@@ -1171,7 +1340,12 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "receipt"
+  ],
+  "action": "receipt paper scrolls down the stairs"
  },
  {
   "id": "30",
@@ -1212,7 +1386,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "jpg"
+  ],
+  "action": "elves block-pixelate into one JPG"
  },
  {
   "id": "31",
@@ -1253,7 +1432,17 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [
+   "buffering"
+  ],
+  "action": "team freezes on 'buffering', pixelates, spinner",
+  "plate": "plates/31.png",
+  "puppets": [
+   "reindeer",
+   "ram-sleigh"
+  ]
  },
  {
   "id": "32",
@@ -1299,7 +1488,12 @@
     "name": "glass-break",
     "t": 129.589
    }
-  ]
+  ],
+  "tier": "B",
+  "fx": [
+   "star"
+  ],
+  "action": "star spins to its pixelated back, falls, shatters with the glass break"
  },
  {
   "id": "33",
@@ -1340,7 +1534,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "register"
+  ],
+  "action": "drawer jolts on each word"
  },
  {
   "id": "34",
@@ -1381,7 +1580,15 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "left-to-right pass under the moon",
+  "plate": "plates/34.png",
+  "puppets": [
+   "reindeer",
+   "ram-sleigh"
+  ]
  },
  {
   "id": "35",
@@ -1422,7 +1629,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "clamChomp"
+  ],
+  "action": "clam machine chomps on beats"
  },
  {
   "id": "36",
@@ -1463,7 +1675,10 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "C",
+  "fx": [],
+  "action": "carolers"
  },
  {
   "id": "37",
@@ -1504,7 +1719,10 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "C",
+  "fx": [],
+  "action": "facts scroll"
  },
  {
   "id": "38",
@@ -1545,7 +1763,10 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "C",
+  "fx": [],
+  "action": "throne of GPUs low angle"
  },
  {
   "id": "39",
@@ -1586,7 +1807,14 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "stamp slams on 'Squashing'; little guys scatter",
+  "plate": "plates/39.png",
+  "puppets": [
+   "ram-side"
+  ]
  },
  {
   "id": "40",
@@ -1627,7 +1855,14 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "family runs downstairs left to right",
+  "plate": "plates/40.png",
+  "puppets": [
+   "townsfolk"
+  ]
  },
  {
   "id": "41",
@@ -1668,7 +1903,10 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "C",
+  "fx": [],
+  "action": "overhead of the bare floor"
  },
  {
   "id": "42",
@@ -1709,7 +1947,10 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "C",
+  "fx": [],
+  "action": "cookie crumbs"
  },
  {
   "id": "43",
@@ -1750,7 +1991,16 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [
+   "heartPulse"
+  ],
+  "action": "clutches chest as the tiny-DIMM heart glows",
+  "plate": "plates/43.png",
+  "puppets": [
+   "ram-34"
+  ]
  },
  {
   "id": "44",
@@ -1791,7 +2041,12 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "panic"
+  ],
+  "action": "panic screens flash on snares"
  },
  {
   "id": "45",
@@ -1832,7 +2087,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "lightsOut"
+  ],
+  "action": "lights go out row by row toward camera"
  },
  {
   "id": "46",
@@ -1873,7 +2133,17 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [
+   "tower"
+  ],
+  "action": "overloaded sleigh sags and struggles to lift",
+  "plate": "plates/46.png",
+  "puppets": [
+   "reindeer",
+   "ram-sleigh"
+  ]
  },
  {
   "id": "47",
@@ -1914,7 +2184,14 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "sleigh tips and sputters",
+  "plate": "plates/47.png",
+  "puppets": [
+   "ram-sleigh"
+  ]
  },
  {
   "id": "48",
@@ -1969,7 +2246,18 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [
+   "ramFountain",
+   "vroll"
+  ],
+  "action": "nose-dive crash; RAM fountain over Byteville",
+  "plate": "plates/48.png",
+  "puppets": [
+   "reindeer",
+   "ram-sleigh"
+  ]
  },
  {
   "id": "49",
@@ -2010,7 +2298,17 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [
+   "tower"
+  ],
+  "action": "march up the hill with lanterns",
+  "plate": "plates/49.png",
+  "puppets": [
+   "townsfolk",
+   "elf"
+  ]
  },
  {
   "id": "50",
@@ -2051,7 +2349,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "coins"
+  ],
+  "action": "tokens spill as the rope tears"
  },
  {
   "id": "51",
@@ -2092,7 +2395,10 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "C",
+  "fx": [],
+  "action": "band-aid patch"
  },
  {
   "id": "52",
@@ -2133,7 +2439,12 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tower"
+  ],
+  "action": "building open boxes; tower looms"
  },
  {
   "id": "53",
@@ -2174,7 +2485,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "confetti"
+  ],
+  "action": "balloon pops, confetti"
  },
  {
   "id": "54",
@@ -2215,7 +2531,12 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tower"
+  ],
+  "action": "whole town sings; tower bumps"
  },
  {
   "id": "55",
@@ -2256,7 +2577,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "giftDrop"
+  ],
+  "action": "gifts drop under trees"
  },
  {
   "id": "56",
@@ -2297,7 +2623,12 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tower"
+  ],
+  "action": "turbines and fields return"
  },
  {
   "id": "57",
@@ -2336,7 +2667,12 @@
     "name": "knock",
     "t": 218.878
    }
-  ]
+  ],
+  "tier": "B",
+  "fx": [
+   "doorKnock"
+  ],
+  "action": "door shakes on each knock"
  },
  {
   "id": "58",
@@ -2391,7 +2727,15 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "girl asks (lip-sync); Ram's fake smile",
+  "plate": "plates/58.png",
+  "puppets": [
+   "girl",
+   "ram-34"
+  ]
  },
  {
   "id": "59",
@@ -2432,7 +2776,15 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "hi-five; Ram says subscribe (lip-sync)",
+  "plate": "plates/59.png",
+  "puppets": [
+   "girl",
+   "ram-side"
+  ]
  },
  {
   "id": "60",
@@ -2473,7 +2825,12 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tower"
+  ],
+  "action": "pull back from the waving figure"
  },
  {
   "id": "61",
@@ -2514,7 +2871,14 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "elves pack boxes on the beat",
+  "plate": "plates/61.png",
+  "puppets": [
+   "elf"
+  ]
  },
  {
   "id": "62",
@@ -2555,7 +2919,13 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tower",
+   "marquee"
+  ],
+  "action": "marquee bulbs chase; tower behind"
  },
  {
   "id": "63",
@@ -2596,7 +2966,14 @@
     "tone": "dark"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "A",
+  "fx": [],
+  "action": "bow with hat tip in the spotlight",
+  "plate": "plates/63.png",
+  "puppets": [
+   "ram-side"
+  ]
  },
  {
   "id": "64",
@@ -2637,7 +3014,12 @@
     "tone": "light"
    }
   ],
-  "sfx": []
+  "sfx": [],
+  "tier": "C",
+  "fx": [
+   "vroll"
+  ],
+  "action": "Ebenezer Scrooge smash cut"
  },
  {
   "id": "65",
@@ -2663,6 +3045,12 @@
   "towerStage": 5,
   "brief": "Exterior wide of the gigantic data-center tower mid-collapse, imploding in on itself, smoke sucking inward, over a quiet snowy hill with Byteville's windows glowing warm below.",
   "lyrics": [],
-  "sfx": []
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "tower",
+   "collapse"
+  ],
+  "action": "tower collapses over the instrumental tail"
  }
 ]

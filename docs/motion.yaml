@@ -1,0 +1,67 @@
+# Per-shot motion (Phase 2). tier A = rubber-hose puppets on a clean plate; B = Remotion fx on the still; C = still + camera.
+# Every shot keeps its camera move, snow and lyrics. scripts/build_shots.py copies these into src/shots.json.
+1:  {tier: B, fx: [tower, ident, title], action: "Occupy SaaS ident, then the title over the snowy hill; tower bumps on kicks"}
+2:  {tier: B, fx: [tower, chimneySmoke], action: "crane down over the rooftops; chimneys smoke"}
+3:  {tier: C, fx: [], action: "living room; cat already mid-stride (still)"}
+4:  {tier: C, fx: [], action: "rack row; one light blinks"}
+5:  {tier: B, fx: [dust], action: "dust drifting in the moonbeam"}
+6:  {tier: B, fx: [tower], action: "low angle tower; bumps on kicks, smoke plume"}
+7:  {tier: B, fx: [gpuHum], action: "monitors pulse on the beat"}
+8:  {tier: A, puppets: [sam-34], fx: [sparkles], action: "Sam turns 3/4, transforms into Ram; hat and scarf drop on"}
+9:  {tier: C, fx: [], action: "grin close-up push"}
+10: {tier: A, puppets: [ram-side], fx: [], action: "grabs RAM, a chip and a byte off the shelf, one per stressed word"}
+11: {tier: B, fx: [terminal], action: "terminal glyph blocks scroll"}
+12: {tier: B, fx: [fans], action: "fans spin with wind lines"}
+13: {tier: A, puppets: [ram-side], fx: [], action: "the approved rubber-hose sneak to the window, settle, peer at the town"}
+14: {tier: B, fx: [spinner], action: "laptop spinner turns"}
+15: {tier: A, puppets: [reindeer, ram-sleigh], fx: [], action: "sleigh launches off the tower roof right-to-left"}
+16: {tier: A, puppets: [reindeer, ram-sleigh], fx: [ramStream], action: "rooftop pass; RAM sucked out of chimneys"}
+17: {tier: A, puppets: [ram-sleigh], fx: [], action: "whip crack, wink on 'wink'"}
+18: {tier: C, fx: [], action: "family at the empty tree"}
+19: {tier: B, fx: [tagFlip], action: "price tag flips to bigger numbers on beats"}
+20: {tier: B, fx: [tower], action: "tower in the cyan cloud; bumps, smoke"}
+21: {tier: A, puppets: [ram-34], fx: [coins], action: "flings tokens up on each beat"}
+22: {tier: A, puppets: [ram-34], fx: [], action: "cackle, head thrown back on snares"}
+23: {tier: B, fx: [tower], action: "tower humming bright; marquee bulbs chase"}
+24: {tier: A, puppets: [ram-side], fx: [], action: "shoulder-pushes the vault door shut"}
+25: {tier: A, puppets: [ram-side], fx: [], action: "two-arm pull of the GPU and cache jar with elastic overshoot"}
+26: {tier: A, puppets: [ram-side], fx: [stashFreeze], action: "shoves SSDs in the sack; freeze and squint at camera on 'umm, stash'"}
+27: {tier: A, puppets: [ram-side], fx: [], action: "jabs at the chart on beats"}
+28: {tier: B, fx: [tower], action: "mega-tower banner; bumps, smoke and sparks"}
+29: {tier: B, fx: [receipt], action: "receipt paper scrolls down the stairs"}
+30: {tier: B, fx: [jpg], action: "elves block-pixelate into one JPG"}
+31: {tier: A, puppets: [reindeer, ram-sleigh], fx: [buffering], action: "team freezes on 'buffering', pixelates, spinner"}
+32: {tier: B, fx: [star], action: "star spins to its pixelated back, falls, shatters with the glass break"}
+33: {tier: B, fx: [register], action: "drawer jolts on each word"}
+34: {tier: A, puppets: [reindeer, ram-sleigh], fx: [], action: "left-to-right pass under the moon"}
+35: {tier: B, fx: [clamChomp], action: "clam machine chomps on beats"}
+36: {tier: C, fx: [], action: "carolers"}
+37: {tier: C, fx: [], action: "facts scroll"}
+38: {tier: C, fx: [], action: "throne of GPUs low angle"}
+39: {tier: A, puppets: [ram-side], fx: [], action: "stamp slams on 'Squashing'; little guys scatter"}
+40: {tier: A, puppets: [townsfolk], fx: [], action: "family runs downstairs left to right"}
+41: {tier: C, fx: [], action: "overhead of the bare floor"}
+42: {tier: C, fx: [], action: "cookie crumbs"}
+43: {tier: A, puppets: [ram-34], fx: [heartPulse], action: "clutches chest as the tiny-DIMM heart glows"}
+44: {tier: B, fx: [panic], action: "panic screens flash on snares"}
+45: {tier: B, fx: [lightsOut], action: "lights go out row by row toward camera"}
+46: {tier: A, puppets: [reindeer, ram-sleigh], fx: [tower], action: "overloaded sleigh sags and struggles to lift"}
+47: {tier: A, puppets: [ram-sleigh], fx: [], action: "sleigh tips and sputters"}
+48: {tier: A, puppets: [reindeer, ram-sleigh], fx: [ramFountain, vroll], action: "nose-dive crash; RAM fountain over Byteville"}
+49: {tier: A, puppets: [townsfolk, elf], fx: [tower], action: "march up the hill with lanterns"}
+50: {tier: B, fx: [coins], action: "tokens spill as the rope tears"}
+51: {tier: C, fx: [], action: "band-aid patch"}
+52: {tier: B, fx: [tower], action: "building open boxes; tower looms"}
+53: {tier: B, fx: [confetti], action: "balloon pops, confetti"}
+54: {tier: B, fx: [tower], action: "whole town sings; tower bumps"}
+55: {tier: B, fx: [giftDrop], action: "gifts drop under trees"}
+56: {tier: B, fx: [tower], action: "turbines and fields return"}
+57: {tier: B, fx: [doorKnock], action: "door shakes on each knock"}
+58: {tier: A, puppets: [girl, ram-34], fx: [], action: "girl asks (lip-sync); Ram's fake smile"}
+59: {tier: A, puppets: [girl, ram-side], fx: [], action: "hi-five; Ram says subscribe (lip-sync)"}
+60: {tier: B, fx: [tower], action: "pull back from the waving figure"}
+61: {tier: A, puppets: [elf], fx: [], action: "elves pack boxes on the beat"}
+62: {tier: B, fx: [tower, marquee], action: "marquee bulbs chase; tower behind"}
+63: {tier: A, puppets: [ram-side], fx: [], action: "bow with hat tip in the spotlight"}
+64: {tier: C, fx: [vroll], action: "Ebenezer Scrooge smash cut"}
+65: {tier: B, fx: [tower, collapse], action: "tower collapses over the instrumental tail"}

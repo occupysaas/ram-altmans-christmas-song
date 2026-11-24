@@ -55,6 +55,7 @@ def tone(still, box):
 
 def build():
     spec = yaml.safe_load(open('docs/shotlist.yaml'))['shots']
+    motion = yaml.safe_load(open('docs/motion.yaml'))
     lyr = json.load(open('src/timing/lyrics-aligned.json'))
     secs = json.load(open('src/timing/sections.json'))
     imp = json.load(open('src/timing/impact.json'))
@@ -76,6 +77,9 @@ def build():
                       'towerStage': s['tower'], 'brief': s['brief'], 'lyrics': [], 'sfx': [],
                       '_surf': {'x': x, 'y': y, 'w': w, 'h': h, 'rot': rot}, '_style': s['style'],
                       '_tone': tone(f"stills/{s['n']:02d}.png", s['surf'])})
+        m = motion[s['n']]
+        shots[-1].update({'tier': m['tier'], 'fx': m.get('fx', []), 'action': m.get('action', '')})
+        if m['tier'] == 'A': shots[-1].update({'plate': f"plates/{s['n']:02d}.png", 'puppets': m['puppets']})
         if s.get('sfx') == 'knocks': shots[-1]['sfx'] += [{'name': 'knock', 't': t} for t in imp['knocks']]
 
     def entry(sh, li, frm, to):
