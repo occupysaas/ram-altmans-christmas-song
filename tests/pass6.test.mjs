@@ -81,3 +81,8 @@ test('32: "is" starts the second line — "is a PREMIUM TIER,"', () => {
   const s = shot('32'), e = s.lyrics[0], L = layoutEntry(e, {w: e.surface.w * 1600, h: e.surface.h * 1200});
   assert.deepEqual(L.rows.map(r => r.words.map(w => w.text.toLowerCase())), [['the', 'star', 'on', 'the', 'tree'], ['is', 'a', 'premium', 'tier,']]);
 });
+
+import {SLEIGH_PATHS} from '../src/shots/sleigh.ts';
+test('46/47/48: the sleigh stays loaded with RAM through the crash shot', () => {
+  for (const id of ['46', '47', '48']) { const s = shot(id); for (const k of [0.1, 0.5, 0.9]) assert.ok(SLEIGH_PATHS[id](s.start + k * (s.end - s.start), s).sag, `shot ${id} sleigh empty at ${k}`); }
+});

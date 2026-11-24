@@ -47,7 +47,8 @@ export const SLEIGH_PATHS: Record<string, Path> = {
   '48': (t, s) => {
     const v = u(t, s), dive = clamp01(v / 0.7);
     const st = moving(w => [lerp(1400, 420, w), lerp(150, 980, w * w)], Math.min(dive, 0.995));
-    return {...st, angle: Math.min(60, st.angle + 25 * dive), crash: v >= 0.7 ? (v - 0.7) / 0.3 : 0};
+    // sag: still the loaded sleigh (the RAM pile on the back) all the way down
+    return {...st, angle: Math.min(60, st.angle + 25 * dive), crash: v >= 0.7 ? (v - 0.7) / 0.3 : 0, sag: 1};
   },
 };
 
