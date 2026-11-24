@@ -60,7 +60,9 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
       </svg>}
       {children}
       {(shot as {mood?: {dark: number}}).mood && <>
-        {/* mood: the scene darkened everywhere except around its own lights, then the lights bloom over it, flickering like candles */}
+        {/* mood: the scene darkened everywhere except around its own lights, then the lights bloom over it, flickering like candles.
+            The hidden <Img> makes Remotion wait for the mask image, which a CSS mask alone would not. */}
+        <Img src={staticFile(`light/${shot.id}-dark.png`)} style={{position: 'absolute', width: 1, height: 1, opacity: 0}} />
         <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, background: `rgba(8, 10, 32, ${(shot as {mood?: {dark: number}}).mood!.dark})`,
           WebkitMaskImage: `url(${staticFile(`light/${shot.id}-dark.png`)})`, maskImage: `url(${staticFile(`light/${shot.id}-dark.png`)})`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%'}} />
         <Img src={staticFile(`light/${shot.id}-glow.png`)} style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, mixBlendMode: 'screen',
