@@ -97,10 +97,10 @@ test('25: the vacuum hose runs from the canister on his back to the nozzle in hi
 
 test('25: a giant bloated vacuum (5x) whose belly bumps on the beat; suction lines stream toward the nozzle; no girl', () => {
   const s = shot('25'), at = t => shot25(t, Math.round(t * 24), s);
-  const can = t => at(t).find(i => String(i.sprite ?? '').endsWith('vacuum/canister'));
+  const can = t => at(t).find(i => String(i.sprite ?? '').includes('vacuum/canister'));   // pass 5: strapless, narrower
   assert.ok(can(s.start + 1).scale >= 2.7, `canister scale ${can(s.start + 1).scale}`);
   const b = audioJ.beats.find(x => x > s.start + 0.5);
-  assert.ok((can(b + 0.13).sx ?? 1) > (can(b + 0.45).sx ?? 1) + 0.03, 'belly bumps on the beat');
+  assert.ok((can(b + 0.13).sx ?? 1) > (can(b + 0.45).sx ?? 1) * 1.03, 'belly bumps on the beat');
   assert.ok(!at(s.start + 1).some(i => i.who === 'girl'), 'girl removed');
   const g = vacuum25(twos(Math.round((s.start + 1) * 24)), s), lines = at(s.start + 1).filter(i => i.draw?.kind === 'line' && i.draw.size < 20);   // thin suction lines (not the tube)
   assert.ok(lines.length >= 10, `${lines.length} suction lines`);

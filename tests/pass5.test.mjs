@@ -49,3 +49,22 @@ test('18: the scroll is twice as big, its paper covers the painted tag, and the 
   const s = shot('18').lyrics[0].surface;
   assert.ok(s.w * 1600 >= 800 && s.y * 1200 >= paper.y0 && (s.y + s.h) * 1200 <= paper.y1, 'lyric on the paper, bigger');
 });
+
+import {shot25, vacuum25} from '../src/shots/ram-side-shots.ts';
+import {hoseControl} from '../src/puppet/geom.ts';
+import {twos} from '../src/shots/kit.ts';
+test('25: a narrower strapless tank, and the swallowed boxes ride ON the curved hose', () => {
+  const s = shot('25');
+  let checked = 0;
+  for (let f = Math.round(s.start * 24); f < s.end * 24; f++) {
+    const items = shot25(f / 24, f, s), can = items.find(i => String(i.sprite ?? '').includes('vacuum/canister'));
+    assert.ok(can.sprite.endsWith('canister-nostrap') && can.scale * (can.sx ?? 1) <= 2.75 * 0.5, `tank too wide or strapped`);
+    const h = items.find(i => i.hose).hose, c = hoseControl(h.a, h.b, h.L, h.side);
+    for (const g of items.filter(i => i.draw?.gulp)) {
+      let best = 1e9;
+      for (let u = 0; u <= 1; u += 0.01) { const x = (1 - u) ** 2 * h.a[0] + 2 * (1 - u) * u * c[0] + u * u * h.b[0], y = (1 - u) ** 2 * h.a[1] + 2 * (1 - u) * u * c[1] + u * u * h.b[1]; best = Math.min(best, Math.hypot(g.draw.at[0] - x, g.draw.at[1] - y)); }
+      assert.ok(best < 12, `gulp ${best.toFixed(0)} px off the hose`); checked++;
+    }
+  }
+  assert.ok(checked > 3, 'some gulps seen');
+});

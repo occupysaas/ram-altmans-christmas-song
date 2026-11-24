@@ -17,7 +17,7 @@ export type FrontItem = {front: {y: number}};
 export type LayerItem = {layer: string; dx?: number; dy?: number; rot?: number; sx?: number; sy?: number; pivot?: P; opacity?: number};
 /** Small vector marks drawn in code: cursor, click ring, tear, music note, speed line, text, dot, snowflake. */
 export type DrawKind = 'cursor' | 'ring' | 'drop' | 'note' | 'line' | 'text' | 'dot' | 'flake' | 'rect' | 'ellipse';
-export type DrawItem = {draw: {kind: DrawKind; at: P; size: number; to?: P; w?: number; h?: number; pressed?: boolean; tile?: boolean; mouth?: boolean; snow?: boolean; rot?: number; color?: string; ink?: string; opacity?: number; text?: string; font?: string}};
+export type DrawItem = {draw: {kind: DrawKind; at: P; size: number; to?: P; w?: number; h?: number; pressed?: boolean; tile?: boolean; mouth?: boolean; snow?: boolean; gulp?: boolean; rot?: number; color?: string; ink?: string; opacity?: number; text?: string; font?: string}};
 export type Item = Placed | SpriteItem | HoseItem | ShadeItem | TeamItem | FrontItem | LayerItem | DrawItem;
 export const isLayer = (i: Item): i is LayerItem => (i as LayerItem).layer !== undefined;
 export const isDraw = (i: Item): i is DrawItem => (i as DrawItem).draw !== undefined;

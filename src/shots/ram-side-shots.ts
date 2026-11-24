@@ -1,5 +1,5 @@
 /** Ram (side puppet) acting shots: 10, 24, 25, 26, 27, 39, 63. Positions in still px, sized from each still. */
-import {type P, add, easeOutBack, easeInOut, clamp01, lerp, followThrough, hoseEndAngle} from '../puppet/geom.ts';
+import {type P, add, easeOutBack, easeInOut, clamp01, lerp, followThrough, hoseEndAngle, hoseControl} from '../puppet/geom.ts';
 import {PARTS} from '../puppet/parts.ts';
 import {shoulders} from '../puppet/body.ts';
 import impact from '../timing/impact.json' with {type: 'json'};
@@ -112,7 +112,8 @@ export function vacuum25(t: number, shot: {start: number; end: number}) {
   const pose = stand(W, {t, x: R25.x, floor: R25.floor, S, flip: true, lean: 12 + 8 * hit, head: 'head-grin', headRot: -4 * hit, spread: 220,
     hands: () => ({near: grip, far: add(wandEnd, [14, 16]), nearPart: 'hand-near-grab', farPart: 'hand-far-grab'})});
   const belly = 1 + 0.1 * hit;                                   // the tank swells on each beat
-  const socket: P = [CAN_AT[0], CAN_AT[1] - 380 * CAN_S * (2 - belly) * 0.95];
+  // the spout is at sprite x≈185 (the body is centred at 200, the anchor)
+  const socket: P = [CAN_AT[0] + (185 - 200) * CAN_S * 0.45 * belly, CAN_AT[1] - 380 * CAN_S * (2 - belly) * 0.95];
   const b0 = beat(shot.start + 0.05).i, bN = beat(shot.end - 0.3).i;
   return {socket, wandEnd, grip, mouth, aimY, pose, S, belly, lastBeat: audio.beats[bN], b0, n};
 }
@@ -128,13 +129,19 @@ export const shot25: Choreo = (_t, frame, shot) => {
     items.push({draw: {kind: 'line', at: p, to: q, size: 9, color: '#ffffff', opacity: Math.min(1, 1.3 * Math.sin(Math.PI * u))}});
   }
   // the giant canister, bloated and bouncing, then Ram in front of it, the fat hose and the nozzle
-  items.push({sprite: 'sprites/vacuum/canister', at: CAN_AT, scale: CAN_S, size: [300, 380], anchor: [150, 380], sx: g.belly, sy: 2 - g.belly} as Item);
+  // a tall narrow tank (45% of the old width), no backpack straps
+  items.push({sprite: 'sprites/vacuum/canister-nostrap', at: CAN_AT, scale: CAN_S, size: [300, 380], anchor: [200, 380], sx: 0.45 * g.belly, sy: 2 - g.belly} as Item);
   items.push({who: W, pose: g.pose, scale: S});
   const d = Math.hypot(g.wandEnd[0] - g.socket[0], g.wandEnd[1] - g.socket[1]);
   items.push({hose: {a: g.socket, b: g.wandEnd, L: d * 1.06, side: 1, width: 64, fill: '#6e5536', ink: '#17121c'}});
-  for (let k = Math.max(0, g.n - 6); k < g.n; k++) {   // each swallowed box rides up the hose as a bulge
-    const u = (t - grabTime(k, shot) - 0.3) / 0.45;
-    if (u > 0 && u < 1) items.push({draw: {kind: 'dot', at: [lerp(g.wandEnd[0], g.socket[0], u), lerp(g.wandEnd[1], g.socket[1], u) + 60 * Math.sin(Math.PI * u)], size: 46, color: '#7d6140', ink: '#17121c'}});
+  // each swallowed box rides up the hose as a bulge, ON the hose's actual curve (the same quadratic the Hose draws)
+  const hc = hoseControl(g.socket, g.wandEnd, d * 1.06, 1);
+  for (let k = Math.max(0, g.n - 6); k < g.n; k++) {
+    const u = 1 - (t - grabTime(k, shot) - 0.3) / 0.45;
+    if (u > 0 && u < 1) {
+      const x = (1 - u) ** 2 * g.socket[0] + 2 * (1 - u) * u * hc[0] + u * u * g.wandEnd[0], y = (1 - u) ** 2 * g.socket[1] + 2 * (1 - u) * u * hc[1] + u * u * g.wandEnd[1];
+      items.push({draw: {kind: 'dot', at: [x, y], size: 44, color: '#7d6140', ink: '#17121c', gulp: true}});
+    }
   }
   const ang = Math.atan2(g.mouth[1] - g.wandEnd[1], g.wandEnd[0] - g.mouth[0]) * 180 / Math.PI;
   // a leaf-blower tube: straight rigid red tube with brass bands, its round opening facing left at the shelf
