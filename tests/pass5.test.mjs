@@ -68,3 +68,12 @@ test('25: a narrower strapless tank, and the swallowed boxes ride ON the curved 
   }
   assert.ok(checked > 3, 'some gulps seen');
 });
+
+import {shot64} from '../src/shots/faces.ts';
+test('64: clean plate; Ram (face or laugh) always drawn, the card + hand always in front — no double image', () => {
+  const s = shot('64'); assert.equal(s.plate, 'plates/64.png');
+  for (let t = s.start + 0.1; t < s.end; t += 0.25) {
+    const it = shot64(t, Math.round(t * 24), s), face = it.findIndex(i => /^64\/face/.test(i.layer ?? '')), card = it.findIndex(i => i.layer === '64/card');
+    assert.ok(face >= 0 && card > face, `at ${t.toFixed(2)}: face ${face}, card ${card}`);
+  }
+});

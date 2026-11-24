@@ -32,9 +32,10 @@ export const shot09: Choreo = (_t, frame) => {
 };
 
 export const shot64: Choreo = (_t, frame) => {
-  const t = twos(frame), scrooge = lyrics[52].words.find(w => w.w === 'Scrooge!')!.s, t0 = scrooge + 0.35;
-  if (t < t0) return [];
-  const k = Math.floor((t - t0) / 0.26), open = k % 2 === 0, L = IDX['64/face-laugh'];
+  // on a clean plate: Ram's face (smirk, then laughing after "Scrooge!"), then the card and his hand IN FRONT of him
+  const t = twos(frame), scrooge = lyrics[52].words.find(w => w.w === 'Scrooge!')!.s, t0 = scrooge + 0.35, L = IDX['64/face-laugh'];
+  if (t < t0) return [{layer: '64/face'}, {layer: '64/card'}];
+  const k = Math.floor((t - t0) / 0.26), open = k % 2 === 0;
   return [{layer: open ? '64/face-laugh' : '64/face', dy: open ? -10 : 0, rot: open ? -2 : 0, pivot: [L.x + L.w * 0.5, L.y + L.h]},
-    ...has(t, t0, [1020, 480], [0.7, -0.6], 130, 0.26)];   // in the open space right of his face, above the sign   // from the mouth, drifting up and right
+    {layer: '64/card'}, ...has(t, t0, [1020, 480], [0.7, -0.6], 130, 0.26)];
 };

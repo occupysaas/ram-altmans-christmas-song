@@ -62,5 +62,5 @@
 61: {tier: A, indoor: true, puppets: [elf], fx: [], action: "elves pack boxes on the beat"}
 62: {tier: B, mood: 0.28, plate: true, towerCut: true, fx: [tower, marquee], action: "marquee bulbs chase; tower behind"}
 63: {tier: A, indoor: true, puppets: [ram-side], fx: [], action: "bow with hat tip in the spotlight"}
-64: {tier: C, indoor: true, fx: [vroll], action: "Ebenezer Scrooge smash cut; after \"Scrooge!\" Ram bursts out laughing, HA HA HA"}
+64: {tier: C, plate: true, indoor: true, fx: [vroll], action: "Ebenezer Scrooge smash cut; after \"Scrooge!\" Ram bursts out laughing, HA HA HA"}
 65: {tier: B, plate: true, towerCut: true, fx: [tower, explode], action: "victorious ending: the tower swells, glowing red and shaking, then explodes; RAM rains on Byteville and the townsfolk run in cheering to catch it"}
