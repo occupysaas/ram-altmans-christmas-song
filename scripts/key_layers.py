@@ -5,14 +5,19 @@ import json, shutil, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from key_magenta import key_magenta
+from PIL import Image
 
 root, raw = Path('public/sprites/layers'), Path('out/raw/layers')
 index = json.loads((root / 'layers.json').read_text()) if (root / 'layers.json').exists() else {}
 for png in sorted(root.glob('*/*.png')):
     key = f'{png.parent.name}/{png.stem}'
     keep = raw / png.parent.name / png.name
-    if not keep.exists():
+    im = Image.open(png)
+    unkeyed = im.mode != 'RGBA' or im.getchannel('A').getextrema()[0] == 255   # still a raw magenta frame (new or regenerated)
+    if unkeyed or not keep.exists():
         keep.parent.mkdir(parents=True, exist_ok=True); shutil.copy(png, keep)
+    elif key in index:
+        continue                                                                  # already keyed from its raw copy
     l, t, r, b = key_magenta(keep, png, frame=True)
     index[key] = {'x': l, 'y': t, 'w': r - l, 'h': b - t}
 (root / 'layers.json').write_text(json.dumps(index, indent=1) + '\n')

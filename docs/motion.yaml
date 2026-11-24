@@ -57,7 +57,6 @@
 54: {tier: B, fx: [tower], action: "whole town sings; tower bumps"}
 55: {tier: B, fx: [giftDrop], action: "gifts drop under trees"}
 56: {tier: B, fx: [tower], action: "turbines and fields return"}
-57: {tier: B, fx: [doorKnock], action: "door shakes on each knock"}
 58: {tier: A, puppets: [girl, ram-34], fx: [], action: "girl asks (lip-sync); Ram's fake smile"}
 59: {tier: A, puppets: [girl, ram-34], fx: [], action: "hi-five; Ram says subscribe (lip-sync)"}
 60: {tier: B, fx: [tower], action: "pull back from the waving figure"}

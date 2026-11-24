@@ -2668,7 +2668,7 @@
   "name": "give-back",
   "section": "Final Chorus",
   "start": 214.385,
-  "end": 218.155,
+  "end": 218.99,
   "still": "stills/56.png",
   "camera": {
    "from": {
@@ -2702,37 +2702,6 @@
     "tone": "dark"
    }
   ],
-  "sfx": [],
-  "tier": "B",
-  "fx": [
-   "tower"
-  ],
-  "action": "turbines and fields return"
- },
- {
-  "id": "57",
-  "name": "door-knocks",
-  "section": "Final Chorus",
-  "start": 218.155,
-  "end": 218.99,
-  "still": "stills/57.png",
-  "camera": {
-   "from": {
-    "x": 0.5,
-    "y": 0.5,
-    "zoom": 1.1,
-    "rot": 0
-   },
-   "to": {
-    "x": 0.5,
-    "y": 0.48461538461538456,
-    "zoom": 1.3,
-    "rot": 0
-   }
-  },
-  "towerStage": null,
-  "brief": "The huge curly front door of the data center at night, snow on the step, a little shadow on the doorstep.",
-  "lyrics": [],
   "sfx": [
    {
     "name": "knock",
@@ -2749,9 +2718,9 @@
   ],
   "tier": "B",
   "fx": [
-   "doorKnock"
+   "tower"
   ],
-  "action": "door shakes on each knock"
+  "action": "turbines and fields return"
  },
  {
   "id": "58",

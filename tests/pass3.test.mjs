@@ -98,3 +98,12 @@ test("25: the girl's box is sucked out of her hands on the last beat", () => {
   assert.ok(boxNearHer(last - 0.3), 'she holds a box before');
   assert.ok(!boxNearHer(last + 0.5), 'box gone after');
 });
+
+test('3:38: the stray door close-up (old shot 57) is gone; 56 runs into 58 and keeps the knock sounds', () => {
+  const ss = shots(), i56 = ss.findIndex(s => s.id === '56');
+  assert.ok(!ss.some(s => s.id === '57'), 'shot 57 still present');
+  assert.equal(ss[i56 + 1].id, '58');
+  assert.equal(ss[i56].end, ss[i56 + 1].start);
+  const knocks = read('src/timing/impact.json').knocks;
+  assert.deepEqual(ss[i56].sfx.filter(x => x.name === 'knock').map(x => x.t), knocks);
+});

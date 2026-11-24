@@ -9,9 +9,9 @@ const byId = id => shots().find(x => x.id === id);
 const lyr = () => read('src/timing/lyrics-aligned.json');
 const impact = () => read('src/timing/impact.json');
 
-test('65 shots plus sub-shot 13b tile 0..259.6 with no gaps', () => {
+test('64 shots (57 removed in pass 3) plus sub-shot 13b tile 0..259.6 with no gaps', () => {
   const s = shots();
-  const expected = Array.from({length: 65}, (_, i) => String(i + 1).padStart(2, '0'));
+  const expected = Array.from({length: 65}, (_, i) => String(i + 1).padStart(2, '0')).filter(id => id !== '57');
   expected.splice(13, 0, '13b');
   assert.deepEqual(s.map(x => x.id), expected);
   assert.equal(s[0].start, 0);
@@ -78,11 +78,9 @@ test('star shot 32 has a glass-break sfx after its line ends', () => {
   assert.ok(g && g.t > star.end && g.t < s.end, JSON.stringify(s.sfx));
 });
 
-test('shot 57 starts at the first knock and shot 65 at impact.silence', () => {
-  const s = shots(); const i = impact();
-  assert.equal(byId('57').start, i.knocks[0]);
+test('shot 65 starts at impact.silence (the knocks now play under shot 56)', () => {
+  const i = impact();
   assert.equal(byId('65').start, i.silence);
-  assert.deepEqual(byId('57').sfx.filter(x => x.name === 'knock').map(x => x.t), i.knocks);
 });
 
 test('towerStage never decreases across shots that have one', () => {

@@ -117,10 +117,8 @@ shots:
    brief: "Wide crane over the whole town singing in the snowy square, elf choir on the bandstand, the tower looming."}
 - {n: 55, name: gifts, anchor: {line: 44}, cam: panLeft, tower: 5, surf: [0.05, 0.15, 0.75, 0.5, 0], style: narration,
    brief: "Gifts landing under trees in cosy Byteville homes: a game console, a laptop, a ham-radio set with a big antenna, wrapped presents."}
-- {n: 56, name: give-back, anchor: {line: 45}, cam: pullOut, tower: 5, surf: [0.05, 0.05, 0.75, 0.4, 0], style: hook,
+- {n: 56, name: give-back, anchor: {line: 45}, cam: pullOut, tower: 5, surf: [0.05, 0.05, 0.75, 0.4, 0], style: hook, sfx: knocks,
    brief: "The hill around the tower: wind turbines spinning, a water tower filling, green fields pushing through the snow."}
-- {n: 57, name: door-knocks, anchor: {impact: knocks}, cam: pushIn, tower: null, surf: [0.15, 0.12, 0.67, 0.33, 0], style: hook,
-   sfx: knocks, brief: "The huge curly front door of the data center at night, snow on the step, a little shadow on the doorstep."}
 - {n: 58, name: girl-asks, anchor: {line: 46}, cam: tiltDown, tower: null, surf: [0.2, 0.03, 0.78, 0.5, 0], style: aside,
    brief: "Over Ram Altman's shoulder down to the little Byteville girl on the step: too-big knit hat, gap-tooth smile, mittens, holding a cardboard science-fair trifold. Ram wears a fake-friendly smile."}
 - {n: 59, name: hi-five, anchor: {line: 48}, cam: drift, tower: null, surf: [0.04, 0.03, 0.7, 0.34, 0], style: aside,
