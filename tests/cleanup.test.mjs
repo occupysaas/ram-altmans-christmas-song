@@ -247,3 +247,20 @@ test('35: the whole creature chomps shut on each beat (one layer, squashed as a 
     assert.equal(off[0].layer, '35/creature');
   }
 });
+
+import {explode, BOOM, TV_OFF as TVOFF} from '../src/fx/fxMath.ts';
+import {shot65} from '../src/shots/ending65.ts';
+
+test('65: the tower only grows until the boom, then RAM rains before the TV switches off', () => {
+  const s = shot('65');
+  assert.ok(BOOM > s.start + 1 && BOOM < TVOFF - 2, `boom at ${BOOM}`);
+  let last = 0;
+  for (let t = s.start; t < BOOM; t += 1 / 24) { const e = explode(t); assert.equal(e.phase, 'swell'); assert.ok(e.scale >= last - 1e-9, `shrank at ${t}`); last = e.scale; }
+  assert.ok(last >= 1.5, `swells to ${last}`);
+  assert.equal(explode(BOOM + 0.01).phase, 'boom');
+  const r = explode(TVOFF - 0.5); assert.equal(r.phase, 'rain'); assert.ok(r.rainAge > 1);
+  assert.ok(s.sfx.some(x => x.name === 'boom' && Math.abs(x.t - BOOM) < 0.05), 'boom sfx');
+  const items = shot65(TVOFF - 0.6, Math.round((TVOFF - 0.6) * 24), s);
+  assert.ok(items.filter(i => String(i.sprite ?? '').endsWith('ram-stick')).length >= 20, 'RAM rain');
+  assert.ok(items.filter(i => i.who).length >= 5, 'townsfolk catching');
+});

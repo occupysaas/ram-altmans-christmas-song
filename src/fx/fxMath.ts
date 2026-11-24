@@ -1,4 +1,4 @@
-/** Timing maths for the star (shot 32) and the tower collapse (shot 65). Pure and testable; times in seconds. */
+/** Timing maths for the star (shot 32) and the victorious tower explosion (shot 65). Pure and testable; times in seconds. */
 import lyrics from '../timing/lyrics-aligned.json' with {type: 'json'};
 import impact from '../timing/impact.json' with {type: 'json'};
 import shots from '../shots.json' with {type: 'json'};
@@ -29,13 +29,18 @@ export function starState(t: number): StarState {
   return {phase: 'gone', face: 'back', scaleX: 1, y: FALL_DROP, rot: 0, shardAge: 1};
 }
 
-/** Floor-by-floor telescoping collapse over the instrumental tail. */
-const C0 = impact.silence, C1 = TV_OFF - 0.3, FLOORS = 6;
-export function collapse(t: number) {
-  if (t < C0) return {sy: 1, sx: 1, wobble: 0, smokeIn: 0, rubble: 0, u: 0};
-  const u = Math.min(1, (t - C0) / (C1 - C0));
-  const k = u * FLOORS, step = Math.floor(k), frac = k - step;
-  const stepped = Math.min(1, (step + Math.min(1, frac / 0.35)) / FLOORS);   // each floor drops quickly, then a beat's pause
-  const sy = 1 - 0.88 * stepped;
-  return {sy, sx: 1 + 0.06 * Math.sin(Math.PI * stepped), wobble: 1.5 * Math.sin(t * 9) * (1 - u), smokeIn: u, rubble: Math.min(1, Math.max(0, (u - 0.5) / 0.5)), u};
+/** The victorious ending (shot 65, in the closing silence): the tower swells to ~1.55x, shaking harder and glowing
+ *  red, then BOOM — a white flash, a burst and a camera shake — and RAM rains down on the town until the TV goes off. */
+const SWELL0 = impact.silence;
+export const BOOM = SWELL0 + 1.6;
+const FLASH = 0.125, BOOM_LEN = 0.35;
+export type Explode = {phase: 'swell' | 'boom' | 'rain'; scale: number; shake: number; flash: number; glow: number; rainAge: number};
+export function explode(t: number): Explode {
+  if (t < BOOM) {
+    const u = Math.min(1, Math.max(0, (t - SWELL0) / (BOOM - SWELL0)));
+    return {phase: 'swell', scale: 1 + 0.55 * u ** 1.5, shake: 2 + 12 * u * u, flash: 0, glow: u, rainAge: 0};
+  }
+  const a = t - BOOM;
+  return {phase: a < BOOM_LEN ? 'boom' : 'rain', scale: 0, shake: 26 * Math.max(0, 1 - a / 0.6), flash: a < FLASH ? 1 : Math.max(0, 1 - (a - FLASH) / 0.4),
+    glow: 0, rainAge: a};
 }

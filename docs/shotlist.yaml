@@ -135,5 +135,5 @@ shots:
    brief: "A spotlight on Ram Altman bowing on a little stage with red curtains."}
 - {n: 64, name: scrooge-card, anchor: {line: 52, word: 5}, cam: punch, tower: null, surf: [0.08, 0.57, 0.8, 0.38, -3], style: hook,
    brief: "Extreme close-up of Ram Altman's smug face holding up a blank white card beside his chin."}
-- {n: 65, name: collapse, anchor: {impact: silence}, cam: [[0.74, 0.5, 1.45, 0], [0.66, 0.52, 1.2, 0]], tower: 5, surf: [0.6, 0.12, 0.3, 0.2, 0], style: narration,
+- {n: 65, name: boom, anchor: {impact: silence}, cam: boomWide, tower: 5, surf: [0.6, 0.12, 0.3, 0.2, 0], style: narration,
    brief: "Exterior wide of the gigantic data-center tower mid-collapse, imploding in on itself, smoke sucking inward, over a quiet snowy hill with Byteville's windows glowing warm below."}

@@ -75,7 +75,7 @@ test('every tower shot has a polygon whose base is inside it', () => {
   }
 });
 
-import {starState, collapse, TV_OFF} from '../src/fx/fxMath.ts';
+import {starState, TV_OFF} from '../src/fx/fxMath.ts';
 
 test('star shatters on the glass-break frame', () => {
   const s32 = shots().find(x => x.id === '32'), g = s32.sfx.find(x => x.name === 'glass-break').t;
@@ -91,15 +91,6 @@ test('star shows its pixelated back during the spin', () => {
   for (let t = premium.s; t < lyr()[24].end; t += 1 / 24) states.push(starState(t));
   assert.ok(states.some(s => s.face === 'back'), 'back never shown');
   assert.equal(starState(premium.s - 0.5).face, 'front');
-});
-
-test('collapse is complete before the TV switches off', () => {
-  const sil = read('src/timing/impact.json').silence;
-  assert.equal(collapse(sil - 0.05).sy, 1);
-  const end = collapse(TV_OFF - 0.3);
-  assert.ok(end.sy <= 0.12 + 1e-9 && end.rubble === 1, JSON.stringify(end));
-  let last = 1;
-  for (let t = sil; t < TV_OFF; t += 1 / 24) { const c = collapse(t); assert.ok(c.sy <= last + 1e-9); last = c.sy; }
 });
 
 import {CHOREO} from '../src/shots/index.ts';

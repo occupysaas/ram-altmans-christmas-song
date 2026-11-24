@@ -5,6 +5,7 @@ from PIL import Image, ImageStat
 DUR = 259.6
 LEAD = 0.25          # shots cut in this long before their anchor word
 LIGHT_LUM = 120      # mean luminance above which a lyric box gets dark ink (tone 'light')
+BOOM_DELAY = 1.6     # the ending's explosion: this long into the closing silence (must match fxMath.ts BOOM)
 GLASS_DELAY = 0.6    # glass-break this long after the star line ends (spin, tip, fall)
 
 # [[x, y, zoom, rot], [x, y, zoom, rot]] in still-space; zoom 1 = the whole 4:3 still
@@ -22,6 +23,7 @@ CAMERAS = {
     'tiltDown':  [[.50, .42, 1.20, 0], [.50, .58, 1.20, 0]],
     'starHold':  [[.45, .435, 1.15, 0], [.48, .47, 1.12, 0]],   # 32: stay on the star through the spin; it falls out the bottom
     'sadPush':   [[.50, .52, 1.05, 0], [.52, .56, 1.30, 0]],   # 18: everyone in view, then push toward the tag and the bare tree skirt
+    'boomWide':  [[.60, .50, 1.12, 0], [.52, .50, 1.0, 0]],   # 65: the whole tower in frame as it swells, then wide for the RAM rain
     'fanShake':  [[.50, .50, 1.05, 2], [.505, .50, 1.06, -2]],   # 12: wide enough to see all three fans whole
     'craneDown': [[.50, .42, 1.20, 0], [.50, .58, 1.30, 0]],
     'craneUp':   [[.50, .58, 1.30, 0], [.50, .42, 1.20, 0]],
@@ -103,6 +105,7 @@ def build():
 
     star = next(l for l in lyr if l['text'].startswith('The star on the tree'))
     next(x for x in shots if x['id'] == '32')['sfx'].append({'name': 'glass-break', 't': round(star['end'] + GLASS_DELAY, 3)})
+    next(x for x in shots if x['id'] == '65')['sfx'].append({'name': 'boom', 't': round(imp['silence'] + BOOM_DELAY, 3)})
     for sh in shots: del sh['_surf'], sh['_style'], sh['_tone']
     return shots
 

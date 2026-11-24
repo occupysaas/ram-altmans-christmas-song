@@ -3099,34 +3099,40 @@
  },
  {
   "id": "65",
-  "name": "collapse",
+  "name": "boom",
   "section": "Outro",
   "start": 253.514,
   "end": 259.6,
   "still": "stills/65.png",
   "camera": {
    "from": {
-    "x": 0.6551724137931034,
-    "y": 0.44482758620689655,
-    "zoom": 1.45,
+    "x": 0.5535714285714286,
+    "y": 0.5,
+    "zoom": 1.12,
     "rot": 0
    },
    "to": {
-    "x": 0.5833333333333333,
-    "y": 0.5166666666666667,
-    "zoom": 1.2,
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.0,
     "rot": 0
    }
   },
   "towerStage": 5,
   "brief": "Exterior wide of the gigantic data-center tower mid-collapse, imploding in on itself, smoke sucking inward, over a quiet snowy hill with Byteville's windows glowing warm below.",
   "lyrics": [],
-  "sfx": [],
+  "sfx": [
+   {
+    "name": "boom",
+    "t": 255.114
+   }
+  ],
   "tier": "B",
   "fx": [
    "tower",
-   "collapse"
+   "explode"
   ],
-  "action": "tower collapses over the instrumental tail"
+  "action": "victorious ending: the tower swells, glowing red and shaking, then explodes; RAM rains on Byteville and the townsfolk run in cheering to catch it",
+  "plate": "plates/65.png"
  }
 ]

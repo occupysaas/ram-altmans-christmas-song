@@ -23,3 +23,12 @@ click = rng.standard_normal(t.size) * np.exp(-t * 260)
 click = np.convolve(click, np.ones(6) / 6, 'same')
 save('knock', thump + click * 0.8)
 print('ok')
+# boom: the tower exploding — a sub-bass thump, a crackling low noise burst and a long rumbling tail
+t = np.arange(int(SR * 3.0)) / SR
+rng = np.random.default_rng(7)
+sub = np.sin(2 * np.pi * (55 * np.exp(-t * 1.5) + 28) * t) * np.exp(-t * 2.2)
+noise = rng.standard_normal(t.size)
+low = np.convolve(noise, np.ones(40) / 40, mode='same') * np.exp(-t * 1.6) * 3.0
+crack = noise * np.exp(-t * 18) * 0.6
+save('boom', np.tanh(1.6 * (sub * 1.1 + low + crack)) * 0.9)
+

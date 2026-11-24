@@ -148,7 +148,7 @@ The tower on the hill is a visual clock for Ram Altman's greed. Every time it ap
 | 3 | Verse 2 | A sprawling, top-heavy mega-tower: cooling fans everywhere, thick smoke, steady spark showers, cyan glow lighting the clouds |
 | 4 | Chorus 2, Bridge | Grotesquely huge, filling the sky, belching black-grey smoke, arcs of electricity, sparks raining onto the snow, cracks showing |
 | 5 | Final chorus, Ending, Outro | At its peak, smoking and sparking non-stop, groaning and leaning |
-| — | The silence | Collapses in on itself (shot 65) |
+| — | The silence | Swells until it explodes; RAM rains on the town (shot 65) |
 
 - **It pulses with the drums.** In every exterior shot, the tower does a quick squash-and-stretch "bump" on each kick drum, scaling up slightly from its base and settling back, and the windows flash on each snare. This is driven by the kick/snare onsets in `audio.json`. The bump gets stronger as the stages progress.
 - **Smoke and sparks are particle layers** drawn in code (deterministic, frame-derived, as in the sibling projects' snow and rain), so they can build up continuously rather than in five fixed steps. Smoke volume, spark rate and glow all ramp with song position.
@@ -245,7 +245,7 @@ Times are rough Whisper segment times; the build re-derives them from forced ali
 62. An old-timey theatre marquee on Byteville's main street. *"Jim Carry may have been the best grinch for you!"* is written on the marquee as text only: no likeness, no imagery.
 63. A spotlight pops on Ram on a stage, bowing. *"But Sam your the best!"*
 64. **Full stop, loud:** a smash cut to an extreme close-up of Ram with a card reading *"Ebenezer Scrooge!"*. A CRT vertical-roll glitch.
-65. **Silence: the data center collapses.** A cut to the exterior wide of the tower at its biggest (see §7a). In total silence, it implodes in on itself: floors telescope down, racks fold, the smoke sucks back inward and the sparks wink out, until it's a small heap of snow-covered scrap on the hill. Byteville's windows glow warm below. Then the TV switches off: the picture collapses to a white dot that fades, and the console TV and room hold for a beat before fading to black. (Any collapse sound effect stays very quiet or is left out, to keep the silence.)
+65. **Silence: the data center explodes and everyone gets free RAM.** (Changed in the 2026-11-24 review: "a grow so big it explodes with raining ram scene would be victorious where everyone gets free ram".) A wide on the tower at its biggest (see §7a). In the silence it keeps swelling (to ~1.55x), shaking harder, sparking and glowing red, then BOOM at 1.6 s: a white flash, a shock ring, flung debris and a camera shake, with a deep explosion sound effect. RAM sticks rain over Byteville, confetti drifts down, and the townsfolk run in from both sides, jumping with their arms up to catch it. Then the TV switches off: the picture collapses to a white dot that fades, and the console TV and room hold for a beat before fading to black.
 
 (About 65 numbered beats. Montage beats such as 11, 25–26 and 55 split into several setups, which brings the total to about 70–75 cuts.)
 
@@ -327,7 +327,7 @@ Times are rough Whisper segment times; the build re-derives them from forced ali
 - The star shot: shows its pixelated back, falls and shatters with a glass-break sound effect.
 - Codex generates stills, with a stills sample before animation.
 - Lyric typos are fixed in the on-screen text (some were only there for the AI singer's pronunciation).
-- The data center on the hill grows bigger, smokier and sparkier as the story goes on and bumps with the drums. It collapses in on itself during the final silence.
+- The data center on the hill grows bigger, smokier and sparkier as the story goes on and bumps with the drums. In the final silence it swells until it explodes, and RAM rains down on the town.
 
 - The video is made for **Occupy Saas Inc** (3 or fewer people, so Remotion's free licence applies); branding is a "Occupy SaaS presents" station ident at the start.
 

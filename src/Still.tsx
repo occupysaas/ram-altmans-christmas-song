@@ -6,6 +6,7 @@ import {Tower} from './fx/Tower';
 import {Star} from './fx/Star';
 import {CHOREO} from './shots';
 import {Puppet} from './puppet/Puppet';
+import {explode} from './fx/fxMath';
 import {isSprite, isHose, isShade, isTeam, isFront, isLayer, isDraw} from './shots/types';
 import {Layer, Draw} from './shots/Draw';
 import {SleighTeam} from './puppet/Quadruped';
@@ -29,13 +30,14 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
   const h = 0.5 / a.zoom + (0.5 / b.zoom - 0.5 / a.zoom) * p;   // half view size (still fraction), linear
   const cx = a.x + (b.x - a.x) * p, cy = a.y + (b.y - a.y) * p, rot = a.rot + (b.rot - a.rot) * p;
   const scale = PROG_W / (2 * h * STILL_W);
-  const weave = {x: Math.sin(frame * 1.7) * 0.6, y: Math.cos(frame * 2.3) * 0.5};
+  const boom = shot.fx?.includes('explode') ? explode(t).shake : 0;   // the ending's camera shake (programme px)
+  const weave = {x: Math.sin(frame * 1.7) * 0.6 + boom * Math.sin(frame * 7.3), y: Math.cos(frame * 2.3) * 0.5 + boom * 0.7 * Math.cos(frame * 5.9)};
   const inWorld = shot.lyrics;
   const ta = holdFrame(frame) / 24;   // animation time on Cuphead-style holds; the camera and lyrics stay smooth
   return (
     <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, transformOrigin: '0 0',
       transform: `translate(${PROG_W / 2 + weave.x}px, ${PROG_H / 2 + weave.y}px) rotate(${rot}deg) scale(${scale}) translate(${-cx * STILL_W}px, ${-cy * STILL_H}px)`}}>
-      <Img style={{width: STILL_W, height: STILL_H, display: 'block', transform: shot.fx?.includes('doorKnock') ? `translateX(${doorShake(t)}px)` : undefined}} src={staticFile(image ?? ((CHOREO[shot.id] || shot.tier === 'B') && shot.plate ? shot.plate : shot.fx?.includes('star') ? 'plates/32.png' : shot.fx?.includes('collapse') ? 'plates/65.png' : shot.still))} />
+      <Img style={{width: STILL_W, height: STILL_H, display: 'block', transform: shot.fx?.includes('doorKnock') ? `translateX(${doorShake(t)}px)` : undefined}} src={staticFile(image ?? ((CHOREO[shot.id] || shot.tier === 'B') && shot.plate ? shot.plate : shot.fx?.includes('star') ? 'plates/32.png' : shot.fx?.includes('explode') ? 'plates/65.png' : shot.still))} />
       {shot.fx?.includes('tower') && <Tower shot={shot} t={ta} />}
       {shot.fx?.includes('star') && <Star t={ta} />}
       <Overlays shot={shot} t={ta} ts={t} />

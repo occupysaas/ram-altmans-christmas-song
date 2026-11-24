@@ -65,4 +65,4 @@
 62: {tier: B, fx: [tower, marquee], action: "marquee bulbs chase; tower behind"}
 63: {tier: A, puppets: [ram-side], fx: [], action: "bow with hat tip in the spotlight"}
 64: {tier: C, fx: [vroll], action: "Ebenezer Scrooge smash cut"}
-65: {tier: B, fx: [tower, collapse], action: "tower collapses over the instrumental tail"}
+65: {tier: B, plate: true, fx: [tower, explode], action: "victorious ending: the tower swells, glowing red and shaking, then explodes; RAM rains on Byteville and the townsfolk run in cheering to catch it"}

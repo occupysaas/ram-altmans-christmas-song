@@ -4,7 +4,7 @@ import towers from '../../docs/towers.json';
 import {STILL_W, STILL_H} from '../layout';
 import {towerBump, towerFlash, towerGrowth} from './towerMath';
 import {cycle, hash} from './particles';
-import {collapse} from './fxMath';
+import {explode} from './fxMath';
 
 type TowerSpec = {poly: number[][]; base: number[]; top: number[]};
 const TW = towers as Record<string, TowerSpec>;
@@ -17,14 +17,14 @@ function maskUrl(poly: number[][]) {
 }
 
 /** Smoke puffs and sparks from the tower top; both ramp with stage and song time (design §7a). */
-function Emitters({top, stage, t, scale, smokeIn = 0}: {top: [number, number]; stage: number; t: number; scale: number; smokeIn?: number}) {
+function Emitters({top, stage, t, scale}: {top: [number, number]; stage: number; t: number; scale: number}) {
   const ramp = 0.6 + 0.4 * Math.min(1, t / 250);
-  const puffs = Math.round((3 + 3 * stage) * ramp), sparks = stage < 2 || smokeIn > 0 ? 0 : Math.round(5 * stage * ramp);
+  const puffs = Math.round((3 + 3 * stage) * ramp), sparks = stage < 2 ? 0 : Math.round(5 * stage * ramp);
   const dark = stage >= 4;
   const out: React.ReactNode[] = [];
   for (let i = 0; i < puffs; i++) {
     const c = cycle(i, t, 3.2), seed = c.seed;
-    const age = smokeIn > 0 ? 1 - c.age : c.age;   // the collapse sucks the smoke back in
+    const age = c.age;
     const r = (20 + 50 * age) * (0.7 + 0.15 * stage) * scale;
     const x = top[0] + (hash(seed) - 0.5) * 40 + age * 160 * (0.5 + hash(seed + 1));
     const y = top[1] - age * 260 * scale;
@@ -46,22 +46,24 @@ export function Tower({shot, t}: {shot: {id: string; still: string; towerStage: 
   const stage = shot.towerStage ?? 1;
   const g = towerGrowth(t), b = towerBump(t, stage), flash = towerFlash(t);
   const bx = spec.base[0] * STILL_W, by = spec.base[1] * STILL_H;
-  const col = shot.fx?.includes('collapse') ? collapse(t) : null;
-  const sy = col ? (1 + g) * col.sy : 1 + g + b, sx = col ? (1 + g) * col.sx : 1 + g + b * 0.5;   // stretch up more than out on each kick
+  const ex = shot.fx?.includes('explode') ? explode(t) : null;
+  if (ex && ex.phase !== 'swell') return null;                      // blown to bits: plate 65 has no tower
+  const swell = ex ? ex.scale : 1, jit = ex ? ex.shake * (hash(Math.floor(t * 24)) - 0.5) : 0;
+  const sy = (1 + g + b) * swell, sx = (1 + g + b * 0.5) * swell;   // stretch up more than out on each kick
   const top: [number, number] = [bx + (spec.top[0] * STILL_W - bx) * sx, by + (spec.top[1] * STILL_H - by) * sy];
   const mask = maskUrl(spec.poly);
   return (
     <>
       <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, transformOrigin: `${bx}px ${by}px`,
-        transform: `rotate(${col ? col.wobble : 0}deg) scale(${sx}, ${sy})`, filter: `brightness(${1 + flash})`, WebkitMaskImage: mask, maskImage: mask,
+        transform: `translateX(${jit}px) rotate(${jit * 0.08}deg) scale(${sx}, ${sy})`,
+        filter: ex ? `brightness(${1 + flash + 0.08 * ex.glow}) drop-shadow(0 0 ${40 * ex.glow}px rgba(255,70,30,${0.9 * ex.glow}))` : `brightness(${1 + flash})`,
+        WebkitMaskImage: mask, maskImage: mask,
         WebkitMaskSize: '100% 100%', maskSize: '100% 100%'}}>
         <Img src={staticFile(shot.still)} style={{width: STILL_W, height: STILL_H, display: 'block'}} />
       </div>
       <svg width={STILL_W} height={STILL_H} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
-        <Emitters top={top} stage={stage} t={t} scale={Math.max(0.6, (spec.poly[2][1] - spec.poly[0][1]))} smokeIn={col?.smokeIn ?? 0} />
+        <Emitters top={top} stage={ex ? 5 + Math.round(3 * ex.glow) : stage} t={t} scale={Math.max(0.6, (spec.poly[2][1] - spec.poly[0][1]))} />
       </svg>
-      {col && col.rubble > 0 && <Img src={staticFile('sprites/rubble.png')} style={{position: 'absolute', width: 420,
-        left: bx - 210, top: by - 170, opacity: col.rubble}} />}
     </>
   );
 }

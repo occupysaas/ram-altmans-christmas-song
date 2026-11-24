@@ -26,7 +26,7 @@ export function towerFlash(t: number, snares: Hit[] = audio.snares as Hit[]): nu
   return k === -Infinity ? 0 : 0.25 * Math.exp(-(t - k) / 0.1);
 }
 
-/** Slow growth over the whole song: 0 → 0.12 by the collapse, never decreasing. */
+/** Slow growth over the whole song: 0 → 0.12 by the ending, never decreasing. */
 export function towerGrowth(t: number): number {
   return 0.12 * Math.min(1, Math.max(0, t / impact.silence));
 }
