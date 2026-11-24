@@ -1,0 +1,8 @@
+node_modules
+.venv
+stems
+out
+spike/work
+public/song.wav
+*.pt
+.superpowers

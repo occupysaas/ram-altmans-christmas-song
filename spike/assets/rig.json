@@ -1,0 +1,226 @@
+{
+  "ram-full.png": {
+    "size": [
+      710,
+      1504
+    ],
+    "parent": null,
+    "pivot": [
+      243,
+      884
+    ],
+    "sockets": {}
+  },
+  "ram-torso.png": {
+    "size": [
+      457,
+      703
+    ],
+    "parent": "root",
+    "pivot": [
+      298,
+      334
+    ],
+    "sockets": {
+      "neck": [
+        324,
+        64
+      ],
+      "shoulder-back": [
+        239,
+        138
+      ],
+      "shoulder-front": [
+        263,
+        145
+      ],
+      "hip-back": [
+        267,
+        516
+      ],
+      "hip-front": [
+        334,
+        516
+      ]
+    }
+  },
+  "ram-arm-upper-back.png": {
+    "size": [
+      248,
+      357
+    ],
+    "parent": "ram-torso.png",
+    "pivot": [
+      202,
+      63
+    ],
+    "sockets": {
+      "elbow": [
+        66,
+        300
+      ]
+    }
+  },
+  "ram-arm-lower-back.png": {
+    "size": [
+      372,
+      272
+    ],
+    "parent": "ram-arm-upper-back.png",
+    "pivot": [
+      48,
+      214
+    ],
+    "sockets": {}
+  },
+  "ram-leg-upper-back.png": {
+    "size": [
+      189,
+      326
+    ],
+    "parent": "ram-torso.png",
+    "pivot": [
+      62,
+      48
+    ],
+    "sockets": {
+      "knee": [
+        144,
+        280
+      ]
+    }
+  },
+  "ram-leg-lower-back.png": {
+    "size": [
+      261,
+      406
+    ],
+    "parent": "ram-leg-upper-back.png",
+    "pivot": [
+      96,
+      42
+    ],
+    "sockets": {}
+  },
+  "ram-arm-upper-front.png": {
+    "size": [
+      266,
+      348
+    ],
+    "parent": "ram-torso.png",
+    "pivot": [
+      216,
+      63
+    ],
+    "sockets": {
+      "elbow": [
+        80,
+        300
+      ]
+    }
+  },
+  "ram-arm-lower-front.png": {
+    "size": [
+      394,
+      272
+    ],
+    "parent": "ram-arm-upper-front.png",
+    "pivot": [
+      50,
+      218
+    ],
+    "sockets": {}
+  },
+  "ram-leg-upper-front.png": {
+    "size": [
+      190,
+      321
+    ],
+    "parent": "ram-torso.png",
+    "pivot": [
+      51,
+      45
+    ],
+    "sockets": {
+      "knee": [
+        134,
+        278
+      ]
+    }
+  },
+  "ram-leg-lower-front.png": {
+    "size": [
+      272,
+      405
+    ],
+    "parent": "ram-leg-upper-front.png",
+    "pivot": [
+      93,
+      46
+    ],
+    "sockets": {}
+  },
+  "ram-head-closed.png": {
+    "size": [
+      379,
+      555
+    ],
+    "parent": "ram-torso.png",
+    "pivot": [
+      174,
+      530
+    ],
+    "sockets": {}
+  },
+  "ram-head-open.png": {
+    "size": [
+      379,
+      555
+    ],
+    "parent": "ram-torso.png",
+    "pivot": [
+      174,
+      530
+    ],
+    "sockets": {}
+  },
+  "ram-head-wide.png": {
+    "size": [
+      379,
+      555
+    ],
+    "parent": "ram-torso.png",
+    "pivot": [
+      174,
+      530
+    ],
+    "sockets": {}
+  },
+  "bg-serverroom.png": {
+    "size": [
+      2400,
+      1350
+    ],
+    "parent": null,
+    "pivot": null,
+    "sockets": {}
+  },
+  "fg-rack.png": {
+    "size": [
+      338,
+      1350
+    ],
+    "parent": null,
+    "pivot": null,
+    "sockets": {}
+  },
+  "fg-snowsill.png": {
+    "size": [
+      2400,
+      381
+    ],
+    "parent": null,
+    "pivot": null,
+    "sockets": {}
+  }
+}

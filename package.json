@@ -1,0 +1,1 @@
+{"name":"ram-altman","private":true,"type":"module","scripts":{"test":"node --test tests/*.test.mjs","studio":"remotion studio src/index.ts","render":"bash scripts/render-v3.sh"},"dependencies":{"@remotion/cli":"^4.0.541","react":"^19.3.1","react-dom":"^19.3.1","remotion":"^4.0.541"}}
