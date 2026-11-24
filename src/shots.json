@@ -369,15 +369,15 @@
   "still": "stills/09.png",
   "camera": {
    "from": {
-    "x": 0.47954545454545455,
-    "y": 0.48454545454545456,
-    "zoom": 1.1,
+    "x": 0.52,
+    "y": 0.5,
+    "zoom": 1.08,
     "rot": 0
    },
    "to": {
-    "x": 0.35833333333333334,
-    "y": 0.36333333333333334,
-    "zoom": 1.5,
+    "x": 0.6,
+    "y": 0.5,
+    "zoom": 1.35,
     "rot": 0
    }
   },
@@ -389,10 +389,10 @@
     "from": 6,
     "to": 9,
     "surface": {
-     "x": 0.04,
-     "y": 0.05,
-     "w": 0.56,
-     "h": 0.32,
+     "x": 0.25,
+     "y": 0.15,
+     "w": 0.4,
+     "h": 0.26,
      "rot": -3
     },
     "style": "hook",
@@ -400,9 +400,13 @@
    }
   ],
   "sfx": [],
-  "tier": "C",
+  "tier": "A",
   "fx": [],
-  "action": "grin close-up push"
+  "action": "grin close-up push; on \"memory!\" he throws his head back cackling, HA!s pop",
+  "plate": "plates/09.png",
+  "puppets": [
+   "layers-09"
+  ]
  },
  {
   "id": "10",
@@ -1234,6 +1238,14 @@
     "y": 0.5653846153846154,
     "zoom": 1.3,
     "rot": -2
+   },
+   "push": {
+    "x": 0.75,
+    "y": 0.27,
+    "zoom": 2.2,
+    "rot": 0,
+    "t": 105.265,
+    "dur": 0.25
    }
   },
   "towerStage": null,
@@ -1242,7 +1254,7 @@
    {
     "line": 19,
     "from": 0,
-    "to": 9,
+    "to": 7,
     "surface": {
      "x": 0.1,
      "y": 0.63,
@@ -1252,6 +1264,21 @@
     },
     "style": "narration",
     "tone": "light"
+   },
+   {
+    "line": 19,
+    "from": 7,
+    "to": 9,
+    "surface": {
+     "x": 0.6,
+     "y": 0.31,
+     "w": 0.34,
+     "h": 0.16,
+     "rot": 0
+    },
+    "style": "narration",
+    "tone": "light",
+    "own": true
    }
   ],
   "sfx": [],
@@ -3067,7 +3094,7 @@
   "fx": [
    "vroll"
   ],
-  "action": "Ebenezer Scrooge smash cut"
+  "action": "Ebenezer Scrooge smash cut; after \"Scrooge!\" Ram bursts out laughing, HA HA HA"
  },
  {
   "id": "65",

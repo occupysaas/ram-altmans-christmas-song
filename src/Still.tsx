@@ -1,7 +1,8 @@
 import React from 'react';
-import {Easing, Img, interpolate, staticFile} from 'remotion';
+import {Img, staticFile} from 'remotion';
 import {STILL_W, STILL_H, type Style} from './layout';
 import {LyricBlock} from './Lyric';
+import {camAt} from './camera';
 import {FROZEN_SHOTS} from './layout';
 import {Tower} from './fx/Tower';
 import {Star} from './fx/Star';
@@ -19,17 +20,13 @@ import props from '../public/sprites/props/props.json';
 
 export const PROG_W = 960, PROG_H = 720;
 type Cam = {x: number; y: number; zoom: number; rot: number};
-export type Shot = {id: string; start: number; end: number; still: string; camera: {from: Cam; to: Cam};
+export type Shot = {id: string; start: number; end: number; still: string; camera: {from: Cam; to: Cam; push?: Cam & {t: number; dur: number}};
   towerStage: number | null; fx?: string[]; plate?: string; lyrics: {line: number; from: number; to: number; style: Style; tone: 'light' | 'dark';
-  surface: {x: number; y: number; w: number; h: number; rot: number}}[]};
+  surface: {x: number; y: number; w: number; h: number; rot: number}; own?: boolean}[]};
 
 /** A still under an eased camera move, with its in-world lyrics painted onto it. */
 export function Still({shot, t, frame, image, children}: {shot: Shot; t: number; frame: number; image?: string; children?: React.ReactNode}) {
-  const p = interpolate(t, [shot.start, shot.end], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
-    easing: Easing.inOut(Easing.sin)});
-  const {from: a, to: b} = shot.camera;
-  const h = 0.5 / a.zoom + (0.5 / b.zoom - 0.5 / a.zoom) * p;   // half view size (still fraction), linear
-  const cx = a.x + (b.x - a.x) * p, cy = a.y + (b.y - a.y) * p, rot = a.rot + (b.rot - a.rot) * p;
+  const {cx, cy, h, rot} = camAt(shot, t);
   const scale = PROG_W / (2 * h * STILL_W) * (shot.fx?.includes('beatBump') ? beatBumpScale(holdFrame(frame) / 24) : 1);
   const boom = shot.fx?.includes('explode') ? explode(t).shake : 0;   // the ending's camera shake (programme px)
   const weave = {x: Math.sin(frame * 1.7) * 0.6 + boom * Math.sin(frame * 7.3), y: Math.cos(frame * 2.3) * 0.5 + boom * 0.7 * Math.cos(frame * 5.9)};
@@ -63,9 +60,11 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
       </svg>}
       {children}
       {inWorld.map((e, i) => {
-        const s = e.surface, bh = s.h * STILL_H / inWorld.length;
+        // entries share their surface, stacked; an entry with its own surface (`own`, a split line) fills it alone
+        const shared = inWorld.filter(x => !x.own), k = e.own ? 0 : shared.indexOf(e), n = e.own ? 1 : shared.length;
+        const s = e.surface, bh = s.h * STILL_H / n;
         return (
-          <div key={i} style={{position: 'absolute', left: s.x * STILL_W, top: s.y * STILL_H + i * bh,
+          <div key={i} style={{position: 'absolute', left: s.x * STILL_W, top: s.y * STILL_H + k * bh,
                                transform: `rotate(${s.rot}deg)`}}>
             <LyricBlock entry={e} box={{w: s.w * STILL_W, h: bh}} t={t} legacy={FROZEN_SHOTS.includes(shot.id)} />
           </div>

@@ -92,7 +92,7 @@ test('towerStage never decreases across shots that have one', () => {
 });
 
 test('lyric surfaces stay in camera view for the whole shot', () => {
-  for (const x of shots()) for (const e of x.lyrics) for (const k of ['from', 'to']) {
+  for (const x of shots()) for (const e of x.lyrics) for (const k of (e.own && x.camera.push ? ['push'] : ['from', 'to'])) {   // a split-off box only shows after the push-in
     const c = x.camera[k], h = 0.5 / c.zoom, b = e.surface;
     assert.ok(b.x >= c.x - h - 1e-6 && b.x + b.w <= c.x + h + 1e-6 && b.y >= c.y - h - 1e-6 && b.y + b.h <= c.y + h + 1e-6,
       `shot ${x.id} line ${e.line} surface out of view at ${k}`);

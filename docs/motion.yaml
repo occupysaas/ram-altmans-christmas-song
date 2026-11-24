@@ -8,7 +8,7 @@
 6:  {tier: B, fx: [tower], action: "low angle tower; bumps on kicks, smoke plume"}
 7:  {tier: A, puppets: [layers-07], fx: [gpuHum], action: "Sam (cut-out layers) clicks around: the mouse darts on beats, clicks on snares, cursor follows on the big screen"}
 8:  {tier: A, puppets: [sam-34], fx: [sparkles], action: "Sam turns 3/4, transforms into Ram; hat and scarf drop on"}
-9:  {tier: C, fx: [], action: "grin close-up push"}
+9: {tier: A, puppets: [layers-09], fx: [], action: "grin close-up push; on \"memory!\" he throws his head back cackling, HA!s pop"}
 10: {tier: A, puppets: [ram-side], fx: [], action: "grabs RAM, a chip and a byte off the shelf, one per stressed word"}
 11: {tier: B, fx: [terminal], action: "terminal glyph blocks scroll"}
 12: {tier: B, plate: true, fx: [fans], action: "three animated fans blast frosty air (blur ghosts, ice-wind lines, snow crystals, frost rims) and boost on kicks"}
@@ -63,5 +63,5 @@
 61: {tier: A, puppets: [elf], fx: [], action: "elves pack boxes on the beat"}
 62: {tier: B, fx: [tower, marquee], action: "marquee bulbs chase; tower behind"}
 63: {tier: A, puppets: [ram-side], fx: [], action: "bow with hat tip in the spotlight"}
-64: {tier: C, fx: [vroll], action: "Ebenezer Scrooge smash cut"}
+64: {tier: C, fx: [vroll], action: "Ebenezer Scrooge smash cut; after \"Scrooge!\" Ram bursts out laughing, HA HA HA"}
 65: {tier: B, plate: true, fx: [tower, explode], action: "victorious ending: the tower swells, glowing red and shaking, then explodes; RAM rains on Byteville and the townsfolk run in cheering to catch it"}

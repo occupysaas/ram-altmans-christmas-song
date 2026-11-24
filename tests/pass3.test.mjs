@@ -107,3 +107,34 @@ test('3:38: the stray door close-up (old shot 57) is gone; 56 runs into 58 and k
   const knocks = read('src/timing/impact.json').knocks;
   assert.deepEqual(ss[i56].sfx.filter(x => x.name === 'knock').map(x => x.t), knocks);
 });
+
+import {shot09, shot64} from '../src/shots/faces.ts';
+import {shot26} from '../src/shots/ram-side-shots.ts';
+import {camAt} from '../src/camera.ts';
+const L = () => read('src/timing/lyrics-aligned.json');
+
+test('09: Ram grins, then laughs from "memory!" with HA!s popping', () => {
+  const s = shot('09'), memory = L()[4].words.find(w => w.w === 'memory!').s, at = t => shot09(t, Math.round(t * 24), s);
+  assert.ok(at(memory - 0.3).some(i => i.layer === '09/grin') && !at(memory - 0.3).some(i => i.layer === '09/laugh'));
+  assert.ok(at(memory + 0.3).some(i => i.layer === '09/laugh'));
+  assert.ok(at(s.end - 0.3).some(i => i.draw?.text?.startsWith('HA')));
+});
+
+test('26: a RAM mountain by the sack; the camera pushes in on his face at the flash, the grin changes, "umm, stash" sits below it', () => {
+  const s = shot('26'), stash = read('src/timing/impact.json').stash, at = t => shot26(t, Math.round(t * 24), s);
+  assert.ok(at(s.start + 0.5).some(i => String(i.sprite ?? '').endsWith('ram-pile')));
+  assert.ok(camAt(s, stash - 0.1).h > 1.6 * camAt(s, stash + 0.4).h, 'push-in');
+  assert.equal(at(stash - 0.2).find(i => i.who).pose.head, 'head-grin');
+  assert.equal(at(stash + 0.3).find(i => i.who).pose.head, 'head-camera');
+  const own = s.lyrics.find(e => e.own), c = camAt(s, stash + 0.4);
+  assert.ok(own && L()[own.line].words[own.from].w === 'umm,', 'split entry starts at "umm,"');
+  const b = own.surface; assert.ok(b.x > c.cx - c.h && b.x + b.w < c.cx + c.h && b.y > c.cy - c.h && b.y + b.h < c.cy + c.h, 'umm, stash in the close-up');
+});
+
+test('64: Ram laughs "HA HA HA" after "Scrooge!"', () => {
+  const s = shot('64'), scrooge = L()[52].words.find(w => w.w === 'Scrooge!').s, at = t => shot64(t, Math.round(t * 24), s);
+  assert.ok(!at(scrooge - 0.2).some(i => i.layer === '64/face-laugh'));
+  const mid = at(scrooge + 0.9);
+  assert.ok(mid.some(i => i.layer === '64/face-laugh'));
+  assert.ok(mid.filter(i => i.draw?.text === 'HA').length >= 2);
+});

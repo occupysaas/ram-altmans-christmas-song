@@ -62,7 +62,7 @@ test('star stays in view from the shot start until it tips', async () => {
 
 test('lyric boxes keep >=24 px inside the camera view at both ends of the move', () => {
   const FROZEN = ['01', '02', '03', '04', '05', '06'];
-  for (const s of shots()) if (!FROZEN.includes(s.id)) for (const e of s.lyrics) for (const c of [s.camera.from, s.camera.to]) {
+  for (const s of shots()) if (!FROZEN.includes(s.id)) for (const e of s.lyrics) for (const c of (e.own && s.camera.push ? [s.camera.push] : [s.camera.from, s.camera.to])) {   // split-off boxes show after the push
     const h = 0.5 / c.zoom, mx = 24 / STILL_W, my = 24 / STILL_H, b = e.surface;
     const ok = b.x - (c.x - h) >= mx - 1e-6 && (c.x + h) - (b.x + b.w) >= mx - 1e-6 && b.y - (c.y - h) >= my - 1e-6 && (c.y + h) - (b.y + b.h) >= my - 1e-6;
     assert.ok(ok, `shot ${s.id} line ${e.line} too close to the frame edge`);

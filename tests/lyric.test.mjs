@@ -7,7 +7,7 @@ import {IMPACT} from '../src/impact.ts';
 
 const lyr = JSON.parse(fs.readFileSync('src/timing/lyrics-aligned.json', 'utf8'));
 const shots = JSON.parse(fs.readFileSync('src/shots.json', 'utf8'));
-const boxOf = (s, e) => { const n = s.lyrics.length; return {w: e.surface.w * STILL_W, h: e.surface.h * STILL_H / n}; };
+const boxOf = (s, e) => { const n = e.own ? 1 : s.lyrics.filter(x => !x.own).length; return {w: e.surface.w * STILL_W, h: e.surface.h * STILL_H / n}; };   // split-off (own) boxes stand alone, as in Still
 
 test('visibleWords reveals each word at its aligned start', () => {
   for (const [li, k] of [[0, 0], [4, 6], [22, 5], [37, 7], [52, 5]]) {

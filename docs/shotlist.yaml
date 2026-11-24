@@ -21,7 +21,7 @@ shots:
    brief: "From behind: Sam (normal human version: healthy skin, round eyes, short messy brown hair, plain grey crewneck, no hat, no scarf) sits at a desk facing a curved wall of glowing monitors, GPUs humming in racks on both sides."}
 - {n: 8, name: transformation, anchor: {line: 4}, cam: dutchPush, tower: null, surf: [0.06, 0.1, 0.56, 0.32, 0], style: narration,
    brief: "Mid-transformation: Sam turned three-quarters toward camera, villain-green creeping up his face from the neck, ears sharpening to points, a battered black top hat and long red scarf dropping onto him from above, swirling magic sparkles."}
-- {n: 9, name: grin, anchor: {line: 4, word: 6}, cam: punch, tower: null, surf: [0.04, 0.05, 0.56, 0.32, -3], style: hook,
+- {n: 9, name: grin, anchor: {line: 4, word: 6}, cam: [[.52, .5, 1.08, 0], [.6, .5, 1.35, 0]], tower: null, surf: [0.25, 0.15, 0.4, 0.26, -3], style: hook,
    brief: "Extreme close-up of Ram Altman's greedy grin, eyes wide with hunger, monitor glow on his green face."}
 - {n: 10, name: shop-snatch, anchor: {line: 5}, cam: panRight, tower: 2, surf: [0.06, 0.6, 0.88, 0.33, 0], style: narration,
    brief: "Electronics shop shelf, side view: Ram Altman's long bony green fingers snatching glowing green RAM sticks, a chip and a tiny glowing cube off the shelf left to right; blank price tags along the shelf edge; the tower visible bigger through the shop window."}
@@ -57,7 +57,7 @@ shots:
    brief: "Ram Altman slamming a giant round vault door on a wall of glowing green RAM shelves; the door's big smooth face takes the middle of the frame."}
 - {n: 25, name: grab-vram, anchor: {line: 18}, cam: panRight, tower: null, surf: [0.54, 0.04, 0.43, 0.3, 0], style: narration,
    brief: "Side view: Ram Altman's two long arms reaching and yanking a graphics card and a glass cookie-jar full of glowing cache chips off a shelf."}
-- {n: 26, name: stash, anchor: {line: 19}, cam: shake, tower: null, surf: [0.1, 0.63, 0.73, 0.3, 0], style: narration,
+- {n: 26, name: stash, anchor: {line: 19}, cam: shake, tower: null, surf: [0.1, 0.63, 0.73, 0.3, 0], style: narration, push: {t: stash, to: [0.75, 0.27, 2.2, 0], dur: 0.25}, split: {word: 7, surf: [0.6, 0.31, 0.34, 0.16, 0]},
    brief: "Ram Altman cramming SSD drives into a bulging sack, then caught mid-shove looking straight at the viewer with a guilty squint, the sack half hidden behind his back."}
 - {n: 27, name: whiteboard, anchor: {line: 20}, cam: drift, tower: null, surf: [0.14, 0.23, 0.62, 0.45, -2], style: narration,
    brief: "Ram Altman pointing a long finger at a whiteboard with a hand-drawn chart line rocketing up and to the right (no numbers or words), top of the board left clear."}

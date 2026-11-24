@@ -164,7 +164,8 @@ export const shot26: Choreo = (_t, frame) => {
   const pose = stand(W, {t, x: 1250, floor, S, flip: true, lean: frozen ? 4 : 10 + 10 * hit, spread: 160,
     head: frozen ? 'head-camera' : 'head-grin', headRot: frozen ? 0 : -5 * hit,
     hands: () => ({near: [1060 - 40 * hit, 760 + 60 * hit], far: [1290, 860], nearPart: 'hand-near-fist', farPart: 'hand-far-grab'})});
-  const items: Item[] = [prop('sack', [1180, 900], 0.95), {who: W, pose, scale: S}];
+  // a mountain of RAM heaped beside the sack (the stash he's shovelling from)
+  const items: Item[] = [{sprite: 'sprites/props/ram-pile', at: [800, 1150], scale: 1.35, size: [520, 420], anchor: [260, 410]}, prop('sack', [1180, 900], 0.95), {who: W, pose, scale: S}];
   if (!frozen) items.push(prop('ssd', [1060 - 40 * hit, 740 + 60 * hit], 0.5, -20));
   return items;
 };

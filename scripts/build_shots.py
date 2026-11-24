@@ -93,9 +93,19 @@ def build():
         shots[-1].update({'tier': m['tier'], 'fx': m.get('fx', []), 'action': m.get('action', '')})
         if m['tier'] == 'A': shots[-1].update({'plate': f"plates/{sid}.png", 'puppets': m['puppets']})
         elif m.get('plate'): shots[-1]['plate'] = f"plates/{sid}.png"
+        if 'push' in s:
+            pt = imp[s['push']['t']] if isinstance(s['push']['t'], str) else s['push']['t']
+            shots[-1]['camera']['push'] = {**dict(zip(('x', 'y', 'zoom', 'rot'), s['push']['to'])), 't': pt, 'dur': s['push'].get('dur', 0.3)}
+        if 'split' in s: shots[-1]['_split'] = s['split']
         if s.get('sfx') == 'knocks': shots[-1]['sfx'] += [{'name': 'knock', 't': t} for t in imp['knocks']]
 
     def entry(sh, li, frm, to):
+        sp = sh.get('_split')
+        if sp and frm < sp['word'] < to:   # a split line: words from `word` on get their own surface
+            x, y, w, h, rot = sp['surf']
+            sh['lyrics'].append({'line': li, 'from': frm, 'to': sp['word'], 'surface': sh['_surf'], 'style': sh['_style'], 'tone': sh['_tone']})
+            sh['lyrics'].append({'line': li, 'from': sp['word'], 'to': to, 'surface': {'x': x, 'y': y, 'w': w, 'h': h, 'rot': rot}, 'style': sh['_style'], 'tone': sh['_tone'], 'own': True})
+            return
         sh['lyrics'].append({'line': li, 'from': frm, 'to': to, 'surface': sh['_surf'], 'style': sh['_style'], 'tone': sh['_tone']})
 
     for li, l in enumerate(lyr):
@@ -107,7 +117,9 @@ def build():
     star = next(l for l in lyr if l['text'].startswith('The star on the tree'))
     next(x for x in shots if x['id'] == '32')['sfx'].append({'name': 'glass-break', 't': round(star['end'] + GLASS_DELAY, 3)})
     next(x for x in shots if x['id'] == '65')['sfx'].append({'name': 'boom', 't': round(imp['silence'] + BOOM_DELAY, 3)})
-    for sh in shots: del sh['_surf'], sh['_style'], sh['_tone']
+    for sh in shots:
+        del sh['_surf'], sh['_style'], sh['_tone']
+        sh.pop('_split', None)
     return shots
 
 if __name__ == '__main__':
