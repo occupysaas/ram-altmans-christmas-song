@@ -77,3 +77,12 @@ Plan: `docs/superpowers/plans/2026-11-24-pass-4.md`.
 - 1:12 lyric on a twisted-end scroll. 1:17 text down. 1:38 leaf-blower tube opening left. 1:52 text down, lines removed, glow.
 - 1:57 elves text on the middle belts. 2:06 star text up. 2:10 register text smaller. 2:48 shock mouth + shaking. 2:53 panic mouth + shaking.
 - Mood darkness dialled back (0.28), every tree bulb glows. 3:25 mansion behind the town.
+
+## Pass 5 (render 2026-11-24)
+
+`out/ram-altman.mp4`: 1920x1080, 24 fps, AAC, 259.600 s. Preview 23.0 MB. Tests 122/122.
+- 0:26 horns pop out on the first of the 8 intro horn hits (detected in the instrument stem, src/timing/horns.json), blast on each, retract at the verse (0:29.5).
+- 0:42 grabs 80 px higher. 1:08 sleigh text 25% smaller. 1:12 scroll at 1.25x covers the tag, bigger text.
+- 1:38 tank 45% as wide, no straps; swallowed boxes ride on the curved hose from the spout.
+- 2:06 star text 15% smaller, centred on the snow. 3:12 background without painted coins.
+- 3:25 mansion on its painted spot at 1.12x (no doubling), behind the town. 4:10 laugh on a clean plate behind the card.
