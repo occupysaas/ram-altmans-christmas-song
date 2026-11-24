@@ -65,7 +65,7 @@ shots:
    brief: "The sprawling top-heavy mega-tower with fans everywhere, thick smoke and spark showers, a giant blank vertical banner unrolling down its face; tiny Ram Altman on a podium at its base."}
 - {n: 29, name: receipt, anchor: {line: 21}, cam: panLeft, tower: 3, surf: [0.38, 0.1, 0.6, 0.42, 0], style: tech,
    brief: "A receipt printer spitting an endless blank paper invoice that tumbles down a staircase, out the tower door and across the snow towards Byteville."}
-- {n: 30, name: elves-jpg, anchor: {line: 22}, cam: pushRight, tower: null, surf: [0.12, 0.03, 0.76, 0.33, 0], style: narration,
+- {n: 30, name: elves-jpg, anchor: {line: 22}, cam: [[.5, .5, 1.0, 0], [.5, .5, 1.03, 0]], tower: null, surf: [0.03, 0.02, 0.94, 0.11, 0], style: narration,
    brief: "Four little data-center elves in green hoodies with headsets in a row, a giant mechanical press stamping down on them, the right half of the image showing them squashed into one blocky, smeared, low-quality picture."}
 - {n: 31, name: reindeer-buffering, anchor: {line: 23}, cam: drift2, tower: 3, surf: [0.08, 0.42, 0.84, 0.36, 0], style: tech,
    brief: "Two reindeer frozen mid-leap in the night sky pulling the sleigh, with the mega-tower smoking in the background."}

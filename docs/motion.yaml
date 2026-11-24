@@ -30,7 +30,7 @@
 27: {tier: A, puppets: [ram-side], fx: [], action: "jabs at the chart on beats"}
 28: {tier: B, fx: [tower], action: "mega-tower banner; bumps, smoke and sparks"}
 29: {tier: B, fx: [receipt], action: "receipt paper scrolls down the stairs"}
-30: {tier: B, fx: [jpg], action: "elves block-pixelate into one JPG"}
+30: {tier: A, puppets: [topdown-elf], fx: [], action: "top-down workshop: 4 lanes of 4 same-job elves; a piston per lane slams them into one four-armed elf doing all four jobs"}
 31: {tier: A, puppets: [reindeer, ram-sleigh], fx: [buffering], action: "team freezes on 'buffering', pixelates, spinner"}
 32: {tier: B, fx: [star], action: "star spins to its pixelated back, falls, shatters with the glass break"}
 33: {tier: B, fx: [register], action: "drawer jolts on each word"}

@@ -179,3 +179,27 @@ test('25: the shelf empties beat by beat and is bare by the end', () => {
   assert.equal(shelfLeft(s.end - 0.05), 0);
   assert.ok(shot25(s.end - 0.2, Math.round((s.end - 0.2) * 24), s).some(i => i.who === 'girl'), 'girl behind him');
 });
+
+import {shot30, laneMerge, LANES} from '../src/shots/elves-topdown.ts';
+
+test('30: each of the 4 lanes gets pistoned once, four same-task elves becoming one four-armed elf', () => {
+  const s = shot('30'), at = t => shot30(t, Math.round(t * 24), s);
+  assert.equal(LANES.length, 4);
+  const times = LANES.map((_, l) => laneMerge(l, s));
+  assert.ok(times.every(x => x > s.start + 0.3 && x < s.end - 0.4), `merge times ${times}`);
+  assert.equal(new Set(times.map(x => x.toFixed(2))).size, 4, 'staggered');
+  const early = at(s.start + 0.1), late = at(s.end - 0.1);
+  assert.equal(early.filter(i => String(i.sprite).includes('topdown-elf/multi')).length, 0);
+  assert.equal(early.filter(i => /topdown-elf\/(wrap|tape|bow|label)/.test(String(i.sprite))).length, 16);
+  assert.equal(late.filter(i => String(i.sprite).includes('topdown-elf/multi')).length, 4);
+});
+
+test('31: a big loading spinner sits over the frozen team after "buffering"', () => {
+  const s = shot('31'), buf = read('src/timing/lyrics-aligned.json')[23].words.find(w => w.w === 'buffering').s;
+  const before = SLEIGH_CHOREO['31'](buf - 0.2, Math.round((buf - 0.2) * 24), s), after = SLEIGH_CHOREO['31'](buf + 0.5, Math.round((buf + 0.5) * 24), s);
+  const dots = items => items.filter(i => i.draw?.kind === 'dot' && i.draw.size >= 14);
+  assert.equal(dots(before).length, 0);
+  const d = dots(after); assert.ok(d.length >= 12, `${d.length} spinner dots`);
+  const team = after.find(i => i.sleighTeam).sleighTeam.state.pos, cx = d.reduce((a, i) => a + i.draw.at[0], 0) / d.length;
+  assert.ok(Math.abs(cx - team[0]) < 700 && cx > 100 && cx < 1500, `spinner at ${cx}, team at ${team[0]}`);
+});

@@ -66,12 +66,17 @@ const ramStream = (t: number, st: PathState): Item[] => Array.from({length: 10},
   const k = ((t * 1.5 + hash(i)) % 1), x0 = 200 + 140 * i, y0 = 900;
   return {sprite: 'sprites/props/ram-stick', at: [lerp(x0, st.pos[0] + 60, k), lerp(y0, st.pos[1] - 40, k) - 120 * Math.sin(Math.PI * k)] as P, scale: 0.18, rot: 360 * k, opacity: 1 - k * 0.3};
 });
-/** Pixelated "buffering" blocks + spinner over the frozen team (31). */
+/** Pixelated "buffering" haze + a big classic loading spinner over the frozen team (31): 12 dots, one step per held frame. */
 const buffer = (t: number, st: PathState): Item[] => {
   if (!st.frozen) return [];
-  const out: Item[] = [{shade: {x: st.pos[0] - 250, y: st.pos[1] - 240, w: 1050, h: 360, opacity: 0.25}}];
-  for (let i = 0; i < 8; i++) { const a = i / 8 * 2 * Math.PI + t * 6;
-    out.push({shade: {x: 1150 + Math.cos(a) * 60 - 12, y: 720 + Math.sin(a) * 60 - 12, w: 24, h: 24, opacity: 0.25 + 0.75 * (i / 8), color: '#ffffff', round: true}}); }
+  const s = 0.42, dir = st.flip ? -1 : 1, c: P = [st.pos[0] + dir * 560 * s * 1.1, st.pos[1] - 40];
+  const out: Item[] = [{shade: {x: c[0] - 520, y: c[1] - 220, w: 1040, h: 420, opacity: 0.35}}];
+  out.push({draw: {kind: 'dot', at: c, size: 150, color: '#0b0a1c', opacity: 0.45}});
+  const step = Math.floor(t * 12) % 12;
+  for (let i = 0; i < 12; i++) {
+    const a = (i / 12) * 2 * Math.PI - Math.PI / 2, lit = (i - step + 12) % 12;   // the lead dot is brightest, the tail fades
+    out.push({draw: {kind: 'dot', at: [c[0] + Math.cos(a) * 110, c[1] + Math.sin(a) * 110], size: 18, color: '#ffffff', opacity: 0.15 + 0.85 * (lit / 11)}});
+  }
   return out;
 };
 /** Crash fountain of RAM sticks over Byteville (48). */

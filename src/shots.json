@@ -1413,15 +1413,15 @@
   "still": "stills/30.png",
   "camera": {
    "from": {
-    "x": 0.4602173913043478,
-    "y": 0.4447826086956522,
-    "zoom": 1.15,
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1.0,
     "rot": 0
    },
    "to": {
     "x": 0.5,
-    "y": 0.405,
-    "zoom": 1.2658227848101264,
+    "y": 0.4854368932038835,
+    "zoom": 1.03,
     "rot": 0
    }
   },
@@ -1433,10 +1433,10 @@
     "from": 0,
     "to": 7,
     "surface": {
-     "x": 0.12,
-     "y": 0.03,
-     "w": 0.76,
-     "h": 0.33,
+     "x": 0.03,
+     "y": 0.02,
+     "w": 0.94,
+     "h": 0.11,
      "rot": 0
     },
     "style": "narration",
@@ -1444,11 +1444,13 @@
    }
   ],
   "sfx": [],
-  "tier": "B",
-  "fx": [
-   "jpg"
-  ],
-  "action": "elves block-pixelate into one JPG"
+  "tier": "A",
+  "fx": [],
+  "action": "top-down workshop: 4 lanes of 4 same-job elves; a piston per lane slams them into one four-armed elf doing all four jobs",
+  "plate": "plates/30.png",
+  "puppets": [
+   "topdown-elf"
+  ]
  },
  {
   "id": "31",
