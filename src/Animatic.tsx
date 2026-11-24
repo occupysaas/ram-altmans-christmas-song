@@ -9,7 +9,7 @@ import {PROG_H, PROG_W, Still, type Shot} from './Still';
 
 export const FPS = 24;
 const shots = shotsJson as Shot[];
-export const TV_OFF = 258.0; // the picture collapses to a white dot, then black (design shot 65)
+import {TV_OFF} from './fx/fxMath';
 
 /** Old-TV switch-off: squash to a bright horizontal line, then to a dot that fades. */
 function tvOff(t: number): {sx: number; sy: number; glow: number; dot: number} {

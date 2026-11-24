@@ -66,3 +66,30 @@ test('every tower shot has a polygon whose base is inside it', () => {
     assert.ok(inside([tw.top[0], tw.top[1] + 0.01], tw.poly), `shot ${s.id} top not inside polygon`);
   }
 });
+
+import {starState, collapse, TV_OFF} from '../src/fx/fxMath.ts';
+
+test('star shatters on the glass-break frame', () => {
+  const s32 = shots()[31], g = s32.sfx.find(x => x.name === 'glass-break').t;
+  let first = null;
+  for (let f = Math.round(s32.start * 24); f < Math.round(s32.end * 24); f++) if (starState(f / 24).phase === 'shatter') { first = f; break; }
+  assert.ok(first !== null, 'never shatters');
+  assert.ok(Math.abs(first - g * 24) <= 1, `shatter frame ${first} vs glass ${g * 24}`);
+});
+
+test('star shows its pixelated back during the spin', () => {
+  const premium = lyr()[24].words.find(w => w.w === 'premium');
+  const states = [];
+  for (let t = premium.s; t < lyr()[24].end; t += 1 / 24) states.push(starState(t));
+  assert.ok(states.some(s => s.face === 'back'), 'back never shown');
+  assert.equal(starState(premium.s - 0.5).face, 'front');
+});
+
+test('collapse is complete before the TV switches off', () => {
+  const sil = read('src/timing/impact.json').silence;
+  assert.equal(collapse(sil - 0.05).sy, 1);
+  const end = collapse(TV_OFF - 0.3);
+  assert.ok(end.sy <= 0.12 + 1e-9 && end.rubble === 1, JSON.stringify(end));
+  let last = 1;
+  for (let t = sil; t < TV_OFF; t += 1 / 24) { const c = collapse(t); assert.ok(c.sy <= last + 1e-9); last = c.sy; }
+});
