@@ -67,3 +67,26 @@ test('spoken and whispered lines sit inside their sections', () => {
   }
   assert.ok(a.find(x => x.text.includes('Ebenezer')).end < 256);
 });
+
+test('audio features are 24 fps over 6231 frames', () => {
+  const a = read('audio');
+  assert.equal(a.fps, 24);
+  assert.equal(a.duration, DUR);
+  for (const [k, env] of Object.entries(a.env)) assert.equal(env.length, 6231, k);
+  assert.ok(a.kicks.length > 50 && a.snares.length > 50);
+});
+
+test('stops are ordered and inside their sections', () => {
+  const i = read('impact'), a = read('lyrics-aligned');
+  const v2 = sectionOf('Verse 2');
+  assert.ok(i.stash > v2.start && i.stash < v2.end, `stash ${i.stash}`);
+  const stashWord = a.flatMap(l => l.words).find(w => w.w.startsWith('stash'));
+  assert.ok(i.stash < stashWord.s, 'stop precedes "stash"');
+  const merry = a.find(l => l.text.startsWith('Merry Christmas'));
+  assert.equal(i.knocks.length, 3);
+  assert.ok(i.knocks[0] < i.knocks[1] && i.knocks[1] < i.knocks[2]);
+  assert.ok(i.knocks[2] - i.knocks[0] < 2.5);
+  assert.ok(i.knocks[2] < merry.start, `knocks ${i.knocks} before ${merry.start}`);
+  const lastE = a.at(-1).words.at(-1).e;
+  assert.ok(i.silence >= lastE - 0.05 && i.silence < DUR, `silence ${i.silence} vs last word ${lastE}`);
+});
