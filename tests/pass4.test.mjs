@@ -83,9 +83,8 @@ test('03: the cat sleeps and breathes; snow only in the window; the data center 
   assert.equal(shot('03').plate, 'plates/03.png');
 });
 
-test('06: two horns pop out of the tower on "He lived in a tower" and blow on the beat', () => {
+test('06: two horns, one each side of the tower, blasting notes (timing in pass5 test)', () => {
   const s = shot('06'), at = t => shot06(t, Math.round(t * 24), s), t0 = L()[2].start;
-  assert.equal(at(t0 - 0.3).filter(i => String(i.sprite ?? '').includes('sprites/horn/')).length, 0);
   const horns = at(t0 + 0.8).filter(i => String(i.sprite ?? '').includes('sprites/horn/'));
   assert.equal(horns.length, 2);
   assert.ok(horns[0].at[0] < 800 && horns[1].at[0] > 800, 'one each side');

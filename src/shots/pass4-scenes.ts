@@ -35,14 +35,22 @@ export const shot03: Choreo = (_t, frame) => {
 
 // 06 — two brass horns slide out from the tower's sides on "He lived in a tower" and blast on every beat
 const HORNS06: [P, number][] = [[[455, 390], -1], [[1145, 390], 1]];   // mouthpieces at the dome's upper sides (view is x 133-1467)
+// the intro horn blasts (detected in the 'other' stem by scripts/horn_hits.py): out just before the first, a blast on
+// each one, then on the beat through the verse
+import HORN_HITS from '../timing/horns.json' with {type: 'json'};
+const HORN_OUT = (HORN_HITS as number[])[0] - 0.3;
 export const shot06: Choreo = (_t, frame) => {
-  const t = twos(frame), t0 = lyrics[2].start, a = t - t0;
+  const t = twos(frame) + 0.04, a = t - HORN_OUT;   // +0.04: held frames lag, so blasts land on the hit
   if (a < 0) return [];
-  const b = beat(t), blast = b.i >= 0 ? Math.exp(-b.since / 0.16) : 0, out = easeOutBack(clamp01(a / 0.45));
+  const hits = HORN_HITS as number[], last = hits.filter(h => h <= t).pop();
+  const b = beat(t), onHit = last !== undefined && t - last < 0.2, sinceHit = last !== undefined ? t - last : 9;
+  const blast = t < hits[hits.length - 1] + 0.3 ? (onHit ? Math.exp(-sinceHit / 0.09) : 0) : (b.i >= 0 ? Math.exp(-b.since / 0.16) : 0);
+  const out = easeOutBack(clamp01(a / 0.28));
   const items: Item[] = [];
   HORNS06.forEach(([at, dir], i) => {
     const pos: P = [at[0] + dir * lerp(-120, 0, out), at[1] - 14 * blast], ang = -(26 + 6 * blast), len = 470 * 0.56;
-    items.push({sprite: `sprites/horn/${blast > 0.4 ? 'horn-b' : 'horn'}`, at: pos, scale: 0.56 * (1 + 0.06 * blast) * out, size: [520, 260], anchor: [40, 130], flip: dir < 0, rot: dir * ang});
+    // the blast pose is held for at least one stop-motion hold, so no hit is skipped
+    items.push({sprite: `sprites/horn/${blast > 0.4 || (sinceHit < 0.15 && t < hits[hits.length - 1] + 0.3) ? 'horn-b' : 'horn'}`, at: pos, scale: 0.56 * (1 + 0.06 * blast) * out, size: [520, 260], anchor: [40, 130], flip: dir < 0, rot: dir * ang});
     const bell: P = [pos[0] + dir * len * Math.cos(ang * Math.PI / 180), pos[1] + len * Math.sin(ang * Math.PI / 180)];
     for (let k = 0; k < 4; k++) {   // notes and blast lines out of the bell
       const {age} = cycle(i * 10 + k + 60, t, 0.8);
