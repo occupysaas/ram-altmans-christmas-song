@@ -11,6 +11,7 @@ import {SleighTeam} from './puppet/Quadruped';
 import {Hose} from './puppet/Hose';
 import {doorShake} from './fx/door';
 import {Overlays} from './fx/Overlays';
+import {holdFrame} from './puppet/geom';
 import props from '../public/sprites/props/props.json';
 
 export const PROG_W = 960, PROG_H = 720;
@@ -29,13 +30,14 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
   const scale = PROG_W / (2 * h * STILL_W);
   const weave = {x: Math.sin(frame * 1.7) * 0.6, y: Math.cos(frame * 2.3) * 0.5};
   const inWorld = shot.lyrics;
+  const ta = holdFrame(frame) / 24;   // animation time on Cuphead-style holds; the camera and lyrics stay smooth
   return (
     <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, transformOrigin: '0 0',
       transform: `translate(${PROG_W / 2 + weave.x}px, ${PROG_H / 2 + weave.y}px) rotate(${rot}deg) scale(${scale}) translate(${-cx * STILL_W}px, ${-cy * STILL_H}px)`}}>
       <Img style={{width: STILL_W, height: STILL_H, display: 'block', transform: shot.fx?.includes('doorKnock') ? `translateX(${doorShake(t)}px)` : undefined}} src={staticFile(image ?? (CHOREO[shot.id] && shot.plate ? shot.plate : shot.fx?.includes('star') ? 'plates/32.png' : shot.fx?.includes('collapse') ? 'plates/65.png' : shot.still))} />
-      {shot.fx?.includes('tower') && <Tower shot={shot} t={t} />}
-      {shot.fx?.includes('star') && <Star t={t} />}
-      <Overlays shot={shot} t={t} />
+      {shot.fx?.includes('tower') && <Tower shot={shot} t={ta} />}
+      {shot.fx?.includes('star') && <Star t={ta} />}
+      <Overlays shot={shot} t={ta} />
       {CHOREO[shot.id] && <svg width={STILL_W} height={STILL_H} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
         {CHOREO[shot.id](t, frame, shot).map((p, i) => {
           if (isFront(p)) return <g key={i}><clipPath id={`front-${shot.id}`}><rect x={0} y={p.front.y} width={STILL_W} height={STILL_H - p.front.y} /></clipPath>

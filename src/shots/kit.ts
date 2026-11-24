@@ -1,7 +1,7 @@
 /** Choreography kit: standing poses on a floor line, hand placement, beat timing (all on twos). */
 import audio from '../timing/audio.json' with {type: 'json'};
 import lyrics from '../timing/lyrics-aligned.json' with {type: 'json'};
-import {type P, add, followThrough, squashAt} from '../puppet/geom.ts';
+import {type P, add, followThrough, squashAt, holdFrame} from '../puppet/geom.ts';
 import {shoulders} from '../puppet/body.ts';
 import {PARTS} from '../puppet/parts.ts';
 import {groove} from '../puppet/groove.ts';
@@ -44,5 +44,5 @@ export const beatHit = (t: number, decay = 0.18) => { const s = beat(t).since; r
 /** Aligned start time of word k of lyric line `line`. */
 export const wordAt = (line: number, k: number) => lyrics[line].words[k].s;
 /** Local time on twos. */
-export const twos = (frame: number) => (frame - (frame % 2)) / 24;
+export const twos = (frame: number) => holdFrame(frame) / 24;
 export {add, followThrough};

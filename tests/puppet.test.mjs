@@ -40,9 +40,6 @@ test('body overshoots after the feet stop, then settles', () => {
   assert.ok(Math.abs(followThrough(1.5, 30, 11, 4.5)) < 1);
 });
 
-test('poses change on twos', () => {
-  for (const k of [0, 7, 500]) assert.equal(onTwos(2 * k), onTwos(2 * k + 1));
-});
 
 test('hose keeps its length without elbows', () => {
   const L = 200;
@@ -106,4 +103,19 @@ test('groove is on in verses and the bridge, off in the choruses', () => {
   for (const n of ['Verse 1', 'Verse 2', 'Bridge']) assert.ok(groove(mid(n)).active, n);
   for (const n of ['Chorus 1', 'Chorus 2']) assert.ok(!groove(mid(n)).active, n);
   assert.ok(groove(mid('Chorus 1'), true).active, 'per-shot override switches it on');
+});
+
+import {holdFrame} from '../src/puppet/geom.ts';
+
+test('animation holds each drawing 2 frames, with an occasional 3-frame hold (Cuphead-style)', () => {
+  const runs = []; let cur = holdFrame(0), n = 0;
+  for (let f = 0; f < 600; f++) {
+    const h = holdFrame(f);
+    assert.ok(h <= f && f - h <= 2, `frame ${f} shows ${h}`);
+    if (h !== cur) { runs.push(n); cur = h; n = 0; }
+    n++;
+  }
+  assert.ok(runs.every(r => r === 2 || r === 3), `hold lengths ${[...new Set(runs)]}`);
+  assert.ok(runs.filter(r => r === 3).length > 10, 'some 3-frame holds');
+  assert.ok(runs.filter(r => r === 2).length > runs.length * 0.6, 'mostly twos');
 });

@@ -38,8 +38,17 @@ export function hoseEndAngle(a: P, b: P, L: number, side: 1 | -1) {
   return Math.atan2(t[1], t[0]) * 180 / Math.PI;
 }
 
-/** Poses change on twos: frames 2k and 2k+1 share a pose. */
-export const onTwos = (frame: number) => frame - (frame % 2);
+/** Cuphead-style holds: each drawing stays up 2 frames, with an occasional 3-frame hold so the timing feels hand-made
+ *  (displayed frames 0,0,2,2,4,4,6,6,6,9,9,…). Returns the frame whose drawing is shown at `frame`. */
+const HOLDS = [2, 2, 2, 3, 2, 2, 3];
+const CYCLE = HOLDS.reduce((a, b) => a + b, 0);
+export function holdFrame(frame: number): number {
+  const base = frame - (frame % CYCLE); let r = frame % CYCLE, at = 0;
+  for (const h of HOLDS) { if (r < at + h) return base + at; at += h; }
+  return base + at;
+}
+/** Poses change on the hold pattern above (mostly twos). */
+export const onTwos = holdFrame;
 
 /** Damped spring used for follow-through after a stop; 0 before `since` reaches lag. */
 export function followThrough(since: number, amp: number, w: number, k: number, lag = 0) {
