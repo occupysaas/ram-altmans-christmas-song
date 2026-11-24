@@ -99,6 +99,12 @@ All are original designs, each made from a Codex turnaround sheet (front, ¾, si
   - Expression heads: smug smirk, scheming squint, cackle, greedy grin, panic, fake-friendly smile.
   - Mouth set (closed / open / wide / "ee" / "oo") for the ending line only.
 - **Sam (before)**: the same face as a normal human. Healthy skin, round eyes, plain grey crewneck, no hat or scarf. Appears in the intro and the start of Verse 1, then transforms (§7, Verse 1).
+- **Rig parts must be true left/right pairs (lesson from the spike, where both arms came out as the same near-side right arm).** For every side or three-quarter rig:
+  - The **far arm and far leg are drawn as the opposite limb seen from the other side**: a mirrored hand with the thumb on the correct side, back of the hand vs palm as anatomy dictates, and the far sleeve/trouser seam showing.
+  - Far limbs are a step darker or cooler, so they read as behind the body.
+  - The near arm overlaps the torso and the far arm tucks behind it, with correct layer order: far limbs, then torso, then near limbs.
+  - Codex generates near and far limbs as **separately specified parts on one sheet**, and each pair is checked before rigging by assembling the full puppet in the default pose and comparing it against the turnaround.
+  - A rig test renders the assembled puppet beside the matching turnaround view. A rig is rejected if the two hands or feet are the same drawing.
 - **The little girl**: a small Byteville kid in a too-big knit hat, with a gap-tooth smile, mittens and a cardboard science-fair trifold. Original design; must not resemble Cindy Lou Who: no blonde antenna pigtails, no nightgown. Needs ¾ and front views plus a mouth set for her two lines.
 - **Byteville townsfolk**: 6–8 whole-cutout residents (a dad, a grandma, kids, a gamer teen) with stepped motion, and a group "elf choir" for the final chorus.
 - **Elves**: 4 small data-center elves in green hoodies with headsets. They also need a "squashed into one JPG" version: a single blocky, smeared image of all four.
