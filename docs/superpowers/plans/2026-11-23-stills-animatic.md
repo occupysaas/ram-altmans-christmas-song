@@ -30,7 +30,7 @@
 - On-screen lyrics use the corrected spellings listed in design §9. Alignment uses the sung forms.
 - No lip-sync in the song.
 - Every render is deterministic: no `Math.random`, no wall-clock time.
-- Fonts must be OFL and bundled with their licences in `public/fonts/`:
+- Fonts must be OFL or Apache-2.0 (user OK'd Apache, 2026-11-23) and bundled with their licences in `public/fonts/`:
   - **IM Fell English** (narration)
   - **Mountains of Christmas** (chorus hooks)
   - **VT323** (tech surfaces)

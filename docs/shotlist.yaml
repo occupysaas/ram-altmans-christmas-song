@@ -39,7 +39,7 @@ shots:
    brief: "Sleigh flying low over Byteville roofs: streams of glowing green RAM sticks being sucked up out of the chimneys into the sleigh like a vacuum."}
 - {n: 17, name: wink, anchor: {line: 11}, cam: punch, tower: null, surf: [0.18, 0.62, 0.5, 0.1, -3], style: narration,
    brief: "Close on Ram Altman at the sleigh's reins, winking at the viewer, scarf streaming, a curling vapour trail behind the sleigh."}
-- {n: 18, name: empty-tree, anchor: {line: 12}, cam: tiltDown, tower: 2, surf: [0.36, 0.5, 0.3, 0.12, 4], style: narration,
+- {n: 18, name: empty-tree, anchor: {line: 12}, cam: tiltDown, tower: 2, surf: [0.3, 0.46, 0.4, 0.16, 4], style: narration,
    brief: "A Byteville family (dad, mum, two kids) staring sadly at the empty space under their tree, a blank gift tag hanging from a branch at the middle; the tower glows through the window."}
 - {n: 19, name: shop-window, anchor: {line: 13}, cam: pushIn, tower: 2, surf: [0.3, 0.44, 0.4, 0.14, 0], style: hook,
    brief: "Electronics shop window from the snowy street: a single RAM stick on a velvet cushion with a huge blank price tag; townsfolk with jaws dropped reflected in the glass."}
@@ -119,7 +119,7 @@ shots:
    brief: "The hill around the tower: wind turbines spinning, a water tower filling, green fields pushing through the snow."}
 - {n: 57, name: door-knocks, anchor: {impact: knocks}, cam: pushIn, tower: null, surf: [0.24, 0.24, 0.52, 0.12, 0], style: hook,
    sfx: knocks, brief: "The huge curly front door of the data center at night, snow on the step, a little shadow on the doorstep."}
-- {n: 58, name: girl-asks, anchor: {line: 46}, cam: tiltDown, tower: null, surf: [0.22, 0.24, 0.56, 0.12, 0], style: aside,
+- {n: 58, name: girl-asks, anchor: {line: 46}, cam: tiltDown, tower: null, surf: [0.18, 0.2, 0.64, 0.2, 0], style: aside,
    brief: "Over Ram Altman's shoulder down to the little Byteville girl on the step: too-big knit hat, gap-tooth smile, mittens, holding a cardboard science-fair trifold. Ram wears a fake-friendly smile."}
 - {n: 59, name: hi-five, anchor: {line: 48}, cam: drift, tower: null, surf: [0.2, 0.2, 0.6, 0.14, 0], style: aside,
    brief: "Profile two-shot on the doorstep: Ram Altman crouching to the girl's level, both raising hands for a high five, a sparkle between their palms, space above them."}
