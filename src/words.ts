@@ -1,6 +1,6 @@
 import lyrics from './timing/lyrics-aligned.json' with {type: 'json'};
 
-export type LyricEntry = {line: number; from: number; to: number; carry?: boolean};
+export type LyricEntry = {line: number; from: number; to: number; };
 
 /** How many words of line `lineIndex` have started by time `t` (seconds). */
 export function visibleWords(lineIndex: number, t: number): number {

@@ -37,15 +37,12 @@ test('every word of every line appears in the shot playing when it is sung', () 
   }));
 });
 
-test('every lyric line is fully visible for at least 0.75 s', () => {
-  const s = shots(); const a = lyr();
-  a.forEach((l, i) => {
-    const n = l.words.length;
-    const last = s.filter(x => x.lyrics.some(e => e.line === i && e.to === n));
-    assert.ok(last.length, `line ${i} never completes`);
-    const visibleUntil = Math.max(...last.map(x => x.end));
-    assert.ok(visibleUntil - l.end >= 0.75, `line ${i} only visible ${(visibleUntil - l.end).toFixed(2)} s after it ends`);
-  });
+test('no lyric is repeated as a bottom caption (user: no CC-style duplicates)', () => {
+  for (const x of shots()) for (const e of x.lyrics) assert.ok(!e.carry, `shot ${x.id} has a carried caption for line ${e.line}`);
+});
+
+test('every lyric entry has a text tone matched to the art under it', () => {
+  for (const x of shots()) for (const e of x.lyrics) assert.ok(['light', 'dark'].includes(e.tone), `shot ${x.id} tone ${e.tone}`);
 });
 
 test('no two consecutive shots share a still or an identical camera', () => {

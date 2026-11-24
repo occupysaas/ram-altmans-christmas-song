@@ -1,9 +1,10 @@
 """docs/shotlist.yaml + src/timing/*.json → src/shots.json (see the plan's Task 4 interface)."""
 import json, yaml
+from PIL import Image, ImageStat
 
 DUR = 259.6
 LEAD = 0.25          # shots cut in this long before their anchor word
-MIN_AFTER = 0.75     # a finished lyric line stays readable at least this long (carried into the next shot if needed)
+LIGHT_LUM = 120      # mean luminance above which a lyric box gets dark ink (tone 'light')
 GLASS_DELAY = 0.6    # glass-break this long after the star line ends (spin, tip, fall)
 
 # [[x, y, zoom, rot], [x, y, zoom, rot]] in still-space; zoom 1 = the whole 4:3 still
@@ -33,9 +34,24 @@ CAMERAS = {
     'rotate':    [[.50, .50, 1.30, -8], [.50, .50, 1.30, 8]],
 }
 
-def cam(c):
+def fit(p, box):
+    """Pull a camera endpoint back / over just enough that the lyric box stays fully in view."""
+    x, y, z, r = p; bx, by, bw, bh = box[:4]
+    z = max(1.0, min(z, 1 / max(bw, bh)))
+    h = 0.5 / z
+    x = min(max(x, bx + bw - h, h), bx + h, 1 - h)
+    y = min(max(y, by + bh - h, h), by + h, 1 - h)
+    return [x, y, z, r]
+
+def cam(c, box):
     pts = CAMERAS[c] if isinstance(c, str) else c
-    return {k: dict(zip(('x', 'y', 'zoom', 'rot'), p)) for k, p in zip(('from', 'to'), pts)}
+    return {k: dict(zip(('x', 'y', 'zoom', 'rot'), fit(p, box))) for k, p in zip(('from', 'to'), pts)}
+
+def tone(still, box):
+    im = Image.open('public/' + still).convert('L')
+    W, H = im.size; x, y, w, h = box[:4]
+    lum = ImageStat.Stat(im.crop((int(x * W), int(y * H), int((x + w) * W), int((y + h) * H)))).mean[0]
+    return 'light' if lum > LIGHT_LUM else 'dark'
 
 def build():
     spec = yaml.safe_load(open('docs/shotlist.yaml'))['shots']
@@ -56,30 +72,24 @@ def build():
         x, y, w, h, rot = s['surf']
         shots.append({'id': f"{s['n']:02d}", 'name': s['name'],
                       'section': next(z['name'] for z in secs if z['start'] <= st < z['end']),
-                      'start': st, 'end': en, 'still': f"stills/{s['n']:02d}.png", 'camera': cam(s['cam']),
+                      'start': st, 'end': en, 'still': f"stills/{s['n']:02d}.png", 'camera': cam(s['cam'], s['surf']),
                       'towerStage': s['tower'], 'brief': s['brief'], 'lyrics': [], 'sfx': [],
-                      '_surf': {'x': x, 'y': y, 'w': w, 'h': h, 'rot': rot}, '_style': s['style']})
+                      '_surf': {'x': x, 'y': y, 'w': w, 'h': h, 'rot': rot}, '_style': s['style'],
+                      '_tone': tone(f"stills/{s['n']:02d}.png", s['surf'])})
         if s.get('sfx') == 'knocks': shots[-1]['sfx'] += [{'name': 'knock', 't': t} for t in imp['knocks']]
 
-    def entry(sh, li, frm, to, carry=False):
-        e = {'line': li, 'from': frm, 'to': to, 'surface': sh['_surf'], 'style': sh['_style']}
-        if carry: e['carry'] = True
-        sh['lyrics'].append(e)
+    def entry(sh, li, frm, to):
+        sh['lyrics'].append({'line': li, 'from': frm, 'to': to, 'surface': sh['_surf'], 'style': sh['_style'], 'tone': sh['_tone']})
 
     for li, l in enumerate(lyr):
         n = len(l['words'])
         for sh in shots:
             ks = [k for k, w in enumerate(l['words']) if sh['start'] <= w['s'] < sh['end']]
             if ks: entry(sh, li, ks[0], ks[-1] + 1)
-        done = next(j for j, sh in enumerate(shots) if any(e['line'] == li and e['to'] == n for e in sh['lyrics']))
-        frm = next(e['from'] for e in shots[done]['lyrics'] if e['line'] == li and e['to'] == n)
-        j = done
-        while shots[j]['end'] - l['end'] < MIN_AFTER and j + 1 < len(shots):
-            j += 1; entry(shots[j], li, frm, n, carry=True)
 
     star = next(l for l in lyr if l['text'].startswith('The star on the tree'))
     shots[31]['sfx'].append({'name': 'glass-break', 't': round(star['end'] + GLASS_DELAY, 3)})
-    for sh in shots: del sh['_surf'], sh['_style']
+    for sh in shots: del sh['_surf'], sh['_style'], sh['_tone']
     return shots
 
 if __name__ == '__main__':

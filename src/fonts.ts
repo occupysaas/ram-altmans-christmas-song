@@ -9,7 +9,10 @@ export const FONTS = {
 const files: [string, string, string?][] = [
   ['IM Fell English', 'fonts/IMFellEnglish.ttf'],
   ['IM Fell English', 'fonts/IMFellEnglish-Italic.ttf', 'italic'],
-  ['Mountains of Christmas', 'fonts/MountainsOfChristmas-Bold.ttf'],
+  ['Mountains of Christmas', 'fonts/MountainsOfChristmas-Regular.ttf'],
+  ['Mountains of Christmas Bold', 'fonts/MountainsOfChristmas-Bold.ttf'],
+  ['Bowlby One', 'fonts/BowlbyOne.ttf'],
+  ['Berkshire Swash', 'fonts/BerkshireSwash.ttf'],
   ['VT323', 'fonts/VT323.ttf'],
 ];
 

@@ -8,7 +8,7 @@ import json, subprocess, sys
 from PIL import Image
 
 DUR = 259.6
-PUSH = 1.7                 # screen height ≈ 504 * 1.7 = 857 px in the final frame
+PUSH = 2.06               # screen height ≈ 504 * 2.06 = 1038 px: the picture tube fills the frame height (user: zoom in more)
 IN_T0, IN_T1 = 1.5, 4.5    # push in (title card)
 OUT_T0, OUT_T1 = 256.0, 257.9   # pull back to the room before the TV switches off (Animatic TV_OFF = 258.0)
 FADE_T, FADE_D = 258.9, 0.7

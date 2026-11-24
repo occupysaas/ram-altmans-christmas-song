@@ -1,12 +1,12 @@
 import React from 'react';
 import {Easing, Img, interpolate, staticFile} from 'remotion';
-import {STILL_W, STILL_H, type Style} from './fitText';
+import {STILL_W, STILL_H, type Style} from './layout';
 import {LyricBlock} from './Lyric';
 
 export const PROG_W = 960, PROG_H = 720;
 type Cam = {x: number; y: number; zoom: number; rot: number};
 export type Shot = {id: string; start: number; end: number; still: string; camera: {from: Cam; to: Cam};
-  towerStage: number | null; lyrics: {line: number; from: number; to: number; carry?: boolean; style: Style;
+  towerStage: number | null; lyrics: {line: number; from: number; to: number; style: Style; tone: 'light' | 'dark';
   surface: {x: number; y: number; w: number; h: number; rot: number}}[]};
 
 /** A still under an eased camera move, with its in-world lyrics painted onto it. */
@@ -18,7 +18,7 @@ export function Still({shot, t, frame}: {shot: Shot; t: number; frame: number}) 
   const cx = a.x + (b.x - a.x) * p, cy = a.y + (b.y - a.y) * p, rot = a.rot + (b.rot - a.rot) * p;
   const scale = PROG_W / (2 * h * STILL_W);
   const weave = {x: Math.sin(frame * 1.7) * 0.6, y: Math.cos(frame * 2.3) * 0.5};
-  const inWorld = shot.lyrics.filter(e => !e.carry);
+  const inWorld = shot.lyrics;
   return (
     <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, transformOrigin: '0 0',
       transform: `translate(${PROG_W / 2 + weave.x}px, ${PROG_H / 2 + weave.y}px) rotate(${rot}deg) scale(${scale}) translate(${-cx * STILL_W}px, ${-cy * STILL_H}px)`}}>

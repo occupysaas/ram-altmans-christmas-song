@@ -34,14 +34,14 @@
   "still": "stills/02.png",
   "camera": {
    "from": {
-    "x": 0.5,
+    "x": 0.4766666666666667,
     "y": 0.42,
     "zoom": 1.2,
     "rot": 0
    },
    "to": {
-    "x": 0.5,
-    "y": 0.58,
+    "x": 0.4446153846153846,
+    "y": 0.42461538461538456,
     "zoom": 1.3,
     "rot": 0
    }
@@ -54,13 +54,14 @@
     "from": 0,
     "to": 5,
     "surface": {
-     "x": 0.18,
-     "y": 0.22,
-     "w": 0.64,
-     "h": 0.14,
+     "x": 0.06,
+     "y": 0.04,
+     "w": 0.62,
+     "h": 0.26,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -94,13 +95,14 @@
     "from": 5,
     "to": 10,
     "surface": {
-     "x": 0.22,
-     "y": 0.24,
-     "w": 0.3,
-     "h": 0.16,
-     "rot": -2
+     "x": 0.235,
+     "y": 0.2,
+     "w": 0.28,
+     "h": 0.15,
+     "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -114,13 +116,13 @@
   "still": "stills/04.png",
   "camera": {
    "from": {
-    "x": 0.58,
+    "x": 0.4966666666666667,
     "y": 0.5,
     "zoom": 1.2,
     "rot": 0
    },
    "to": {
-    "x": 0.42,
+    "x": 0.4433333333333333,
     "y": 0.5,
     "zoom": 1.2,
     "rot": 0
@@ -134,13 +136,14 @@
     "from": 0,
     "to": 4,
     "surface": {
-     "x": 0.24,
-     "y": 0.42,
-     "w": 0.52,
-     "h": 0.1,
+     "x": 0.08,
+     "y": 0.4,
+     "w": 0.78,
+     "h": 0.2,
      "rot": 0
     },
-    "style": "tech"
+    "style": "tech",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -174,13 +177,14 @@
     "from": 4,
     "to": 8,
     "surface": {
-     "x": 0.4,
-     "y": 0.5,
-     "w": 0.3,
-     "h": 0.1,
-     "rot": 6
+     "x": 0.17,
+     "y": 0.42,
+     "w": 0.65,
+     "h": 0.28,
+     "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -201,7 +205,7 @@
    },
    "to": {
     "x": 0.5,
-    "y": 0.42,
+    "y": 0.4233333333333333,
     "zoom": 1.2,
     "rot": 0
    }
@@ -214,13 +218,14 @@
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.6,
-     "h": 0.1,
+     "x": 0.11,
+     "y": 0.59,
+     "w": 0.77,
+     "h": 0.25,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -250,31 +255,18 @@
   "brief": "From behind: Sam (normal human version: healthy skin, round eyes, short messy brown hair, plain grey crewneck, no hat, no scarf) sits at a desk facing a curved wall of glowing monitors, GPUs humming in racks on both sides.",
   "lyrics": [
    {
-    "line": 2,
-    "from": 0,
-    "to": 10,
-    "surface": {
-     "x": 0.3,
-     "y": 0.24,
-     "w": 0.44,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "tech",
-    "carry": true
-   },
-   {
     "line": 3,
     "from": 0,
     "to": 8,
     "surface": {
-     "x": 0.3,
-     "y": 0.24,
-     "w": 0.44,
-     "h": 0.12,
+     "x": 0.23,
+     "y": 0.2,
+     "w": 0.55,
+     "h": 0.22,
      "rot": 0
     },
-    "style": "tech"
+    "style": "tech",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -288,14 +280,14 @@
   "still": "stills/08.png",
   "camera": {
    "from": {
-    "x": 0.5,
+    "x": 0.4947826086956522,
     "y": 0.5,
     "zoom": 1.15,
     "rot": -4
    },
    "to": {
-    "x": 0.5,
-    "y": 0.5,
+    "x": 0.43037037037037035,
+    "y": 0.4703703703703703,
     "zoom": 1.35,
     "rot": 4
    }
@@ -304,31 +296,18 @@
   "brief": "Mid-transformation: Sam turned three-quarters toward camera, villain-green creeping up his face from the neck, ears sharpening to points, a battered black top hat and long red scarf dropping onto him from above, swirling magic sparkles.",
   "lyrics": [
    {
-    "line": 3,
-    "from": 0,
-    "to": 8,
-    "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 4,
     "from": 0,
     "to": 6,
     "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.06,
+     "y": 0.1,
+     "w": 0.56,
+     "h": 0.32,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -342,14 +321,14 @@
   "still": "stills/09.png",
   "camera": {
    "from": {
-    "x": 0.5,
+    "x": 0.4945454545454545,
     "y": 0.5,
     "zoom": 1.1,
     "rot": 0
    },
    "to": {
-    "x": 0.47,
-    "y": 0.45,
+    "x": 0.3733333333333333,
+    "y": 0.3833333333333333,
     "zoom": 1.5,
     "rot": 0
    }
@@ -362,13 +341,14 @@
     "from": 6,
     "to": 9,
     "surface": {
-     "x": 0.16,
-     "y": 0.12,
+     "x": 0.04,
+     "y": 0.05,
      "w": 0.56,
-     "h": 0.14,
-     "rot": -4
+     "h": 0.32,
+     "rot": -3
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -382,15 +362,15 @@
   "still": "stills/10.png",
   "camera": {
    "from": {
-    "x": 0.42,
+    "x": 0.49999999999999994,
     "y": 0.5,
-    "zoom": 1.2,
+    "zoom": 1.1363636363636365,
     "rot": 0
    },
    "to": {
-    "x": 0.58,
+    "x": 0.49999999999999994,
     "y": 0.5,
-    "zoom": 1.2,
+    "zoom": 1.1363636363636365,
     "rot": 0
    }
   },
@@ -402,13 +382,14 @@
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.2,
+     "x": 0.06,
      "y": 0.6,
-     "w": 0.6,
-     "h": 0.12,
+     "w": 0.88,
+     "h": 0.33,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -428,7 +409,7 @@
     "rot": -3
    },
    "to": {
-    "x": 0.53,
+    "x": 0.52,
     "y": 0.5,
     "zoom": 1.25,
     "rot": 3
@@ -442,13 +423,14 @@
     "from": 0,
     "to": 11,
     "surface": {
-     "x": 0.24,
-     "y": 0.6,
-     "w": 0.52,
-     "h": 0.12,
+     "x": 0.12,
+     "y": 0.53,
+     "w": 0.76,
+     "h": 0.32,
      "rot": 0
     },
-    "style": "tech"
+    "style": "tech",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -463,14 +445,14 @@
   "camera": {
    "from": {
     "x": 0.5,
-    "y": 0.5,
+    "y": 0.4866666666666667,
     "zoom": 1.2,
     "rot": 2
    },
    "to": {
-    "x": 0.5,
-    "y": 0.5,
-    "zoom": 1.3,
+    "x": 0.505,
+    "y": 0.465,
+    "zoom": 1.2658227848101264,
     "rot": -2
    }
   },
@@ -478,31 +460,18 @@
   "brief": "Close on a wall of big server fans spinning wildly with cartoon wind-lines and snow blowing off them, the fan grilles shaped like howling mouths.",
   "lyrics": [
    {
-    "line": 6,
-    "from": 0,
-    "to": 11,
-    "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 3
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 7,
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 3
+     "x": 0.11,
+     "y": 0.07,
+     "w": 0.79,
+     "h": 0.35,
+     "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -532,31 +501,18 @@
   "brief": "The server hall with the big arched window over the snowy hill and Byteville below (as the spike background): Ram Altman sneaking on tiptoe left to right past the window.",
   "lyrics": [
    {
-    "line": 7,
-    "from": 0,
-    "to": 10,
-    "surface": {
-     "x": 0.28,
-     "y": 0.24,
-     "w": 0.44,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 8,
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.28,
-     "y": 0.24,
-     "w": 0.44,
-     "h": 0.12,
+     "x": 0.22,
+     "y": 0.12,
+     "w": 0.55,
+     "h": 0.29,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -578,7 +534,7 @@
    "to": {
     "x": 0.5,
     "y": 0.5,
-    "zoom": 1.3,
+    "zoom": 1.1904761904761905,
     "rot": 0
    }
   },
@@ -586,31 +542,18 @@
   "brief": "Byteville kitchen at night: a kid at the table staring at a frozen old laptop with a spinning cursor, chin on hands, bored; the data-center tower (bigger, extra wings, two smokestacks) visible through the window.",
   "lyrics": [
    {
-    "line": 8,
-    "from": 0,
-    "to": 10,
-    "surface": {
-     "x": 0.22,
-     "y": 0.62,
-     "w": 0.56,
-     "h": 0.1,
-     "rot": 0
-    },
-    "style": "tech",
-    "carry": true
-   },
-   {
     "line": 9,
     "from": 0,
     "to": 8,
     "surface": {
-     "x": 0.22,
+     "x": 0.08,
      "y": 0.62,
-     "w": 0.56,
-     "h": 0.1,
+     "w": 0.84,
+     "h": 0.3,
      "rot": 0
     },
-    "style": "tech"
+    "style": "tech",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -624,7 +567,7 @@
   "still": "stills/15.png",
   "camera": {
    "from": {
-    "x": 0.58,
+    "x": 0.45666666666666667,
     "y": 0.5,
     "zoom": 1.2,
     "rot": 0
@@ -644,13 +587,14 @@
     "from": 0,
     "to": 4,
     "surface": {
-     "x": 0.24,
-     "y": 0.5,
-     "w": 0.52,
-     "h": 0.12,
-     "rot": -6
+     "x": 0.04,
+     "y": 0.48,
+     "w": 0.62,
+     "h": 0.3,
+     "rot": -4
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -665,13 +609,13 @@
   "camera": {
    "from": {
     "x": 0.48,
-    "y": 0.5,
+    "y": 0.4764285714285714,
     "zoom": 1.12,
     "rot": 0
    },
    "to": {
-    "x": 0.52,
-    "y": 0.5,
+    "x": 0.46372881355932205,
+    "y": 0.45372881355932204,
     "zoom": 1.18,
     "rot": 0
    }
@@ -684,13 +628,14 @@
     "from": 4,
     "to": 9,
     "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.04,
+     "y": 0.03,
+     "w": 0.62,
+     "h": 0.22,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -710,9 +655,9 @@
     "rot": 0
    },
    "to": {
-    "x": 0.47,
-    "y": 0.45,
-    "zoom": 1.5,
+    "x": 0.45499999999999996,
+    "y": 0.595,
+    "zoom": 1.4492753623188408,
     "rot": 0
    }
   },
@@ -720,31 +665,18 @@
   "brief": "Close on Ram Altman at the sleigh's reins, winking at the viewer, scarf streaming, a curling vapour trail behind the sleigh.",
   "lyrics": [
    {
-    "line": 10,
-    "from": 4,
-    "to": 9,
-    "surface": {
-     "x": 0.18,
-     "y": 0.62,
-     "w": 0.5,
-     "h": 0.1,
-     "rot": -3
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 11,
     "from": 0,
     "to": 11,
     "surface": {
-     "x": 0.18,
-     "y": 0.62,
-     "w": 0.5,
-     "h": 0.1,
-     "rot": -3
+     "x": 0.11,
+     "y": 0.58,
+     "w": 0.69,
+     "h": 0.36,
+     "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -774,31 +706,18 @@
   "brief": "A Byteville family (dad, mum, two kids) staring sadly at the empty space under their tree, a blank gift tag hanging from a branch at the middle; the tower glows through the window.",
   "lyrics": [
    {
-    "line": 11,
-    "from": 0,
-    "to": 11,
-    "surface": {
-     "x": 0.3,
-     "y": 0.46,
-     "w": 0.4,
-     "h": 0.16,
-     "rot": 4
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 12,
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.3,
-     "y": 0.46,
-     "w": 0.4,
-     "h": 0.16,
+     "x": 0.35,
+     "y": 0.45,
+     "w": 0.31,
+     "h": 0.21,
      "rot": 4
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -828,31 +747,18 @@
   "brief": "Electronics shop window from the snowy street: a single RAM stick on a velvet cushion with a huge blank price tag; townsfolk with jaws dropped reflected in the glass.",
   "lyrics": [
    {
-    "line": 12,
-    "from": 0,
-    "to": 10,
-    "surface": {
-     "x": 0.3,
-     "y": 0.44,
-     "w": 0.4,
-     "h": 0.14,
-     "rot": 0
-    },
-    "style": "hook",
-    "carry": true
-   },
-   {
     "line": 13,
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.3,
-     "y": 0.44,
-     "w": 0.4,
-     "h": 0.14,
+     "x": 0.24,
+     "y": 0.37,
+     "w": 0.52,
+     "h": 0.3,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -866,13 +772,13 @@
   "still": "stills/20.png",
   "camera": {
    "from": {
-    "x": 0.5,
-    "y": 0.58,
+    "x": 0.4766666666666667,
+    "y": 0.44666666666666666,
     "zoom": 1.2,
     "rot": 0
    },
    "to": {
-    "x": 0.5,
+    "x": 0.4766666666666667,
     "y": 0.42,
     "zoom": 1.2,
     "rot": 0
@@ -882,31 +788,18 @@
   "brief": "The data-center tower, now bigger with extra floors and side wings, its top piercing a glowing cyan cloud bank, smoke from two stacks.",
   "lyrics": [
    {
-    "line": 13,
-    "from": 0,
-    "to": 10,
-    "surface": {
-     "x": 0.2,
-     "y": 0.24,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "hook",
-    "carry": true
-   },
-   {
     "line": 14,
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.2,
-     "y": 0.24,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.06,
+     "y": 0.03,
+     "w": 0.64,
+     "h": 0.25,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -927,7 +820,7 @@
    },
    "to": {
     "x": 0.5,
-    "y": 0.58,
+    "y": 0.4046153846153846,
     "zoom": 1.3,
     "rot": 0
    }
@@ -936,31 +829,18 @@
   "brief": "Ram Altman on top of a mountain of gold tokens with circuit patterns, flinging handfuls into the air, coins raining down.",
   "lyrics": [
    {
-    "line": 14,
-    "from": 0,
-    "to": 9,
-    "surface": {
-     "x": 0.2,
-     "y": 0.24,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 15,
     "from": 0,
     "to": 5,
     "surface": {
-     "x": 0.2,
-     "y": 0.24,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.22,
+     "y": 0.02,
+     "w": 0.56,
+     "h": 0.2,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -974,15 +854,15 @@
   "still": "stills/22.png",
   "camera": {
    "from": {
-    "x": 0.5,
+    "x": 0.5233333333333332,
     "y": 0.55,
     "zoom": 1.2,
     "rot": 0
    },
    "to": {
-    "x": 0.5,
+    "x": 0.5299999999999999,
     "y": 0.5,
-    "zoom": 1.3,
+    "zoom": 1.2195121951219512,
     "rot": 0
    }
   },
@@ -994,13 +874,14 @@
     "from": 5,
     "to": 10,
     "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.6,
-     "h": 0.1,
+     "x": 0.12,
+     "y": 0.57,
+     "w": 0.82,
+     "h": 0.18,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1015,7 +896,7 @@
   "camera": {
    "from": {
     "x": 0.5,
-    "y": 0.58,
+    "y": 0.4146153846153846,
     "zoom": 1.3,
     "rot": 0
    },
@@ -1030,31 +911,18 @@
   "brief": "Exterior: the tower humming and glowing bright at night, a string of marquee bulbs running around its upper floors, smoke and an occasional spark.",
   "lyrics": [
    {
-    "line": 15,
-    "from": 5,
-    "to": 10,
-    "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.14,
-     "rot": 0
-    },
-    "style": "hook",
-    "carry": true
-   },
-   {
     "line": 16,
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.14,
+     "x": 0.15,
+     "y": 0.03,
+     "w": 0.7,
+     "h": 0.3,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -1075,8 +943,8 @@
    },
    "to": {
     "x": 0.5,
-    "y": 0.5,
-    "zoom": 1.3,
+    "y": 0.48000000000000004,
+    "zoom": 1.25,
     "rot": 0
    }
   },
@@ -1084,31 +952,18 @@
   "brief": "Ram Altman slamming a giant round vault door on a wall of glowing green RAM shelves; the door's big smooth face takes the middle of the frame.",
   "lyrics": [
    {
-    "line": 16,
-    "from": 0,
-    "to": 9,
-    "surface": {
-     "x": 0.3,
-     "y": 0.4,
-     "w": 0.4,
-     "h": 0.14,
-     "rot": 0
-    },
-    "style": "hook",
-    "carry": true
-   },
-   {
     "line": 17,
     "from": 0,
     "to": 7,
     "surface": {
-     "x": 0.3,
-     "y": 0.4,
-     "w": 0.4,
-     "h": 0.14,
+     "x": 0.29,
+     "y": 0.08,
+     "w": 0.58,
+     "h": 0.8,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1122,14 +977,14 @@
   "still": "stills/25.png",
   "camera": {
    "from": {
-    "x": 0.42,
-    "y": 0.5,
+    "x": 0.4433333333333333,
+    "y": 0.4866666666666667,
     "zoom": 1.2,
     "rot": 0
    },
    "to": {
-    "x": 0.58,
-    "y": 0.5,
+    "x": 0.5166666666666667,
+    "y": 0.4866666666666667,
     "zoom": 1.2,
     "rot": 0
    }
@@ -1138,31 +993,18 @@
   "brief": "Side view: Ram Altman's two long arms reaching and yanking a graphics card and a glass cookie-jar full of glowing cache chips off a shelf.",
   "lyrics": [
    {
-    "line": 17,
-    "from": 0,
-    "to": 7,
-    "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 18,
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.1,
+     "y": 0.07,
+     "w": 0.76,
+     "h": 0.29,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1177,13 +1019,13 @@
   "camera": {
    "from": {
     "x": 0.5,
-    "y": 0.5,
+    "y": 0.5133333333333332,
     "zoom": 1.2,
     "rot": 2
    },
    "to": {
-    "x": 0.5,
-    "y": 0.5,
+    "x": 0.48461538461538456,
+    "y": 0.5453846153846154,
     "zoom": 1.3,
     "rot": -2
    }
@@ -1192,31 +1034,18 @@
   "brief": "Ram Altman cramming SSD drives into a bulging sack, then caught mid-shove looking straight at the viewer with a guilty squint, the sack half hidden behind his back.",
   "lyrics": [
    {
-    "line": 18,
-    "from": 0,
-    "to": 10,
-    "surface": {
-     "x": 0.24,
-     "y": 0.62,
-     "w": 0.52,
-     "h": 0.1,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 19,
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.24,
-     "y": 0.62,
-     "w": 0.52,
-     "h": 0.1,
+     "x": 0.1,
+     "y": 0.63,
+     "w": 0.73,
+     "h": 0.3,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1246,31 +1075,18 @@
   "brief": "Ram Altman pointing a long finger at a whiteboard with a hand-drawn chart line rocketing up and to the right (no numbers or words), top of the board left clear.",
   "lyrics": [
    {
-    "line": 19,
-    "from": 0,
-    "to": 9,
-    "surface": {
-     "x": 0.22,
-     "y": 0.2,
-     "w": 0.5,
-     "h": 0.18,
-     "rot": -2
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 20,
     "from": 0,
     "to": 7,
     "surface": {
-     "x": 0.22,
-     "y": 0.2,
-     "w": 0.5,
-     "h": 0.18,
+     "x": 0.14,
+     "y": 0.23,
+     "w": 0.62,
+     "h": 0.45,
      "rot": -2
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1304,13 +1120,14 @@
     "from": 7,
     "to": 11,
     "surface": {
-     "x": 0.3,
-     "y": 0.3,
-     "w": 0.4,
-     "h": 0.3,
+     "x": 0.23,
+     "y": 0.25,
+     "w": 0.52,
+     "h": 0.5,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1330,7 +1147,7 @@
     "rot": 0
    },
    "to": {
-    "x": 0.42,
+    "x": 0.5633333333333332,
     "y": 0.5,
     "zoom": 1.2,
     "rot": 0
@@ -1344,13 +1161,14 @@
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.3,
-     "y": 0.3,
-     "w": 0.36,
-     "h": 0.3,
+     "x": 0.38,
+     "y": 0.1,
+     "w": 0.6,
+     "h": 0.42,
      "rot": 0
     },
-    "style": "tech"
+    "style": "tech",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -1365,13 +1183,13 @@
   "camera": {
    "from": {
     "x": 0.45,
-    "y": 0.5,
+    "y": 0.46478260869565224,
     "zoom": 1.15,
     "rot": 0
    },
    "to": {
-    "x": 0.55,
-    "y": 0.5,
+    "x": 0.5046153846153846,
+    "y": 0.4146153846153846,
     "zoom": 1.3,
     "rot": 0
    }
@@ -1384,13 +1202,14 @@
     "from": 0,
     "to": 7,
     "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.12,
+     "y": 0.03,
+     "w": 0.76,
+     "h": 0.33,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1404,15 +1223,15 @@
   "still": "stills/31.png",
   "camera": {
    "from": {
-    "x": 0.52,
+    "x": 0.5147826086956522,
     "y": 0.5,
     "zoom": 1.15,
     "rot": 0
    },
    "to": {
-    "x": 0.48,
+    "x": 0.49999999999999994,
     "y": 0.48,
-    "zoom": 1.2,
+    "zoom": 1.1904761904761905,
     "rot": 0
    }
   },
@@ -1420,31 +1239,18 @@
   "brief": "Two reindeer frozen mid-leap in the night sky pulling the sleigh, with the mega-tower smoking in the background.",
   "lyrics": [
    {
-    "line": 22,
-    "from": 0,
-    "to": 7,
-    "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.6,
-     "h": 0.1,
-     "rot": 0
-    },
-    "style": "tech",
-    "carry": true
-   },
-   {
     "line": 23,
     "from": 0,
     "to": 6,
     "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.6,
-     "h": 0.1,
+     "x": 0.08,
+     "y": 0.42,
+     "w": 0.84,
+     "h": 0.36,
      "rot": 0
     },
-    "style": "tech"
+    "style": "tech",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -1478,13 +1284,14 @@
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.34,
+     "x": 0.2,
      "y": 0.56,
-     "w": 0.32,
-     "h": 0.1,
+     "w": 0.6,
+     "h": 0.26,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": [
@@ -1509,9 +1316,9 @@
     "rot": 0
    },
    "to": {
-    "x": 0.47,
+    "x": 0.43,
     "y": 0.45,
-    "zoom": 1.5,
+    "zoom": 1.4285714285714286,
     "rot": 0
    }
   },
@@ -1523,13 +1330,14 @@
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.24,
-     "y": 0.3,
-     "w": 0.44,
-     "h": 0.12,
+     "x": 0.08,
+     "y": 0.28,
+     "w": 0.7,
+     "h": 0.22,
      "rot": 0
     },
-    "style": "tech"
+    "style": "tech",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1544,13 +1352,13 @@
   "camera": {
    "from": {
     "x": 0.42,
-    "y": 0.5,
+    "y": 0.4966666666666667,
     "zoom": 1.2,
     "rot": 0
    },
    "to": {
-    "x": 0.58,
-    "y": 0.5,
+    "x": 0.5666666666666667,
+    "y": 0.4966666666666667,
     "zoom": 1.2,
     "rot": 0
    }
@@ -1559,31 +1367,18 @@
   "brief": "Low angle: the sleigh passing left to right under a huge full moon, loot spilling, the grotesquely huge belching tower filling the sky behind.",
   "lyrics": [
    {
-    "line": 25,
-    "from": 0,
-    "to": 9,
-    "surface": {
-     "x": 0.24,
-     "y": 0.24,
-     "w": 0.52,
-     "h": 0.12,
-     "rot": 4
-    },
-    "style": "hook",
-    "carry": true
-   },
-   {
     "line": 26,
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.24,
-     "y": 0.24,
-     "w": 0.52,
-     "h": 0.12,
-     "rot": 4
+     "x": 0.15,
+     "y": 0.08,
+     "w": 0.6,
+     "h": 0.5,
+     "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1603,9 +1398,9 @@
     "rot": 0
    },
    "to": {
-    "x": 0.5,
-    "y": 0.5,
-    "zoom": 1.3,
+    "x": 0.5249999999999999,
+    "y": 0.475,
+    "zoom": 1.1764705882352942,
     "rot": 0
    }
   },
@@ -1613,31 +1408,18 @@
   "brief": "Ram Altman shovelling RAM into the hopper of a giant brass-and-glass machine shaped like a big dopey clam with goofy eyes.",
   "lyrics": [
    {
-    "line": 26,
-    "from": 0,
-    "to": 9,
-    "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 27,
     "from": 0,
     "to": 11,
     "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.1,
+     "y": 0.05,
+     "w": 0.85,
+     "h": 0.48,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1651,14 +1433,14 @@
   "still": "stills/36.png",
   "camera": {
    "from": {
-    "x": 0.48,
-    "y": 0.5,
+    "x": 0.4764285714285714,
+    "y": 0.4764285714285714,
     "zoom": 1.12,
     "rot": 0
    },
    "to": {
-    "x": 0.52,
-    "y": 0.5,
+    "x": 0.45372881355932204,
+    "y": 0.45372881355932204,
     "zoom": 1.18,
     "rot": 0
    }
@@ -1667,31 +1449,18 @@
   "brief": "Byteville carolers in scarves on a snowy doorstep, mouths open, a long blank paper scroll unfurling out of a speaker box on the door.",
   "lyrics": [
    {
-    "line": 27,
-    "from": 0,
-    "to": 11,
-    "surface": {
-     "x": 0.24,
-     "y": 0.22,
-     "w": 0.52,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 28,
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.24,
-     "y": 0.22,
-     "w": 0.52,
-     "h": 0.12,
+     "x": 0.03,
+     "y": 0.03,
+     "w": 0.62,
+     "h": 0.32,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1706,14 +1475,14 @@
   "camera": {
    "from": {
     "x": 0.5,
-    "y": 0.42,
-    "zoom": 1.2,
+    "y": 0.49999999999999994,
+    "zoom": 1.1904761904761905,
     "rot": 0
    },
    "to": {
     "x": 0.5,
-    "y": 0.58,
-    "zoom": 1.2,
+    "y": 0.5,
+    "zoom": 1.1904761904761905,
     "rot": 0
    }
   },
@@ -1721,31 +1490,18 @@
   "brief": "Close on a long blank parchment scroll held open by mittens, with a blank sticky note slapped on its corner.",
   "lyrics": [
    {
-    "line": 28,
-    "from": 0,
-    "to": 10,
-    "surface": {
-     "x": 0.26,
-     "y": 0.3,
-     "w": 0.48,
-     "h": 0.34,
-     "rot": 0
-    },
-    "style": "tech",
-    "carry": true
-   },
-   {
     "line": 29,
     "from": 0,
     "to": 8,
     "surface": {
-     "x": 0.26,
-     "y": 0.3,
-     "w": 0.48,
-     "h": 0.34,
+     "x": 0.12,
+     "y": 0.08,
+     "w": 0.68,
+     "h": 0.84,
      "rot": 0
     },
-    "style": "tech"
+    "style": "tech",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1760,7 +1516,7 @@
   "camera": {
    "from": {
     "x": 0.5,
-    "y": 0.58,
+    "y": 0.4046153846153846,
     "zoom": 1.3,
     "rot": 0
    },
@@ -1775,31 +1531,18 @@
   "brief": "Ram Altman lounging on a towering throne built from stacked graphics cards with glowing fans, seen from a low angle.",
   "lyrics": [
    {
-    "line": 29,
-    "from": 0,
-    "to": 8,
-    "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "hook",
-    "carry": true
-   },
-   {
     "line": 30,
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.15,
+     "y": 0.02,
+     "w": 0.7,
+     "h": 0.3,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1813,15 +1556,15 @@
   "still": "stills/39.png",
   "camera": {
    "from": {
-    "x": 0.5,
+    "x": 0.44666666666666666,
     "y": 0.5,
     "zoom": 1.2,
     "rot": 2
    },
    "to": {
-    "x": 0.5,
+    "x": 0.43000000000000005,
     "y": 0.5,
-    "zoom": 1.3,
+    "zoom": 1.25,
     "rot": -2
    }
   },
@@ -1829,31 +1572,18 @@
   "brief": "Ram Altman bringing down a giant rubber stamp on tiny townsfolk (a shopkeeper, kids with a garage workbench) scattering; a blank envelope fluttering in the foreground.",
   "lyrics": [
    {
-    "line": 30,
-    "from": 0,
-    "to": 9,
-    "surface": {
-     "x": 0.24,
-     "y": 0.62,
-     "w": 0.52,
-     "h": 0.1,
-     "rot": -3
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 31,
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.24,
-     "y": 0.62,
-     "w": 0.52,
-     "h": 0.1,
+     "x": 0.03,
+     "y": 0.52,
+     "w": 0.8,
+     "h": 0.36,
      "rot": -3
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1868,13 +1598,13 @@
   "camera": {
    "from": {
     "x": 0.42,
-    "y": 0.5,
+    "y": 0.4666666666666667,
     "zoom": 1.2,
     "rot": 0
    },
    "to": {
-    "x": 0.58,
-    "y": 0.5,
+    "x": 0.4666666666666667,
+    "y": 0.4666666666666667,
     "zoom": 1.2,
     "rot": 0
    }
@@ -1883,31 +1613,18 @@
   "brief": "Christmas morning: the family running downstairs left to right in pyjamas, sunlight through the window where the monstrous tower smokes on the hill.",
   "lyrics": [
    {
-    "line": 31,
-    "from": 0,
-    "to": 9,
-    "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 32,
     "from": 0,
     "to": 6,
     "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.05,
+     "y": 0.05,
+     "w": 0.75,
+     "h": 0.3,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1941,13 +1658,14 @@
     "from": 6,
     "to": 11,
     "surface": {
-     "x": 0.26,
-     "y": 0.6,
-     "w": 0.48,
-     "h": 0.1,
+     "x": 0.2,
+     "y": 0.35,
+     "w": 0.5,
+     "h": 0.3,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -1968,7 +1686,7 @@
    },
    "to": {
     "x": 0.5,
-    "y": 0.5,
+    "y": 0.43461538461538457,
     "zoom": 1.3,
     "rot": 0
    }
@@ -1977,31 +1695,18 @@
   "brief": "Close on a plate holding only cookie crumbs and one bitten cookie, next to a blank card propped up against a glass of milk.",
   "lyrics": [
    {
-    "line": 32,
-    "from": 6,
-    "to": 11,
-    "surface": {
-     "x": 0.24,
-     "y": 0.24,
-     "w": 0.52,
-     "h": 0.18,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 33,
     "from": 0,
     "to": 8,
     "surface": {
-     "x": 0.24,
-     "y": 0.24,
-     "w": 0.52,
-     "h": 0.18,
+     "x": 0.22,
+     "y": 0.05,
+     "w": 0.62,
+     "h": 0.45,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -2031,31 +1736,18 @@
   "brief": "Dark, dramatic: Ram Altman alone in his vault, an x-ray view of his chest showing a heart that is just two tiny green memory chips.",
   "lyrics": [
    {
-    "line": 33,
-    "from": 0,
-    "to": 8,
-    "surface": {
-     "x": 0.22,
-     "y": 0.2,
-     "w": 0.56,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 34,
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.22,
-     "y": 0.2,
-     "w": 0.56,
-     "h": 0.12,
+     "x": 0.15,
+     "y": 0.1,
+     "w": 0.6,
+     "h": 0.3,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -2085,31 +1777,18 @@
   "brief": "A wall of monitors behind Ram Altman all flashing an alarming blank red-and-black panic screen, Ram clutching his hat.",
   "lyrics": [
    {
-    "line": 34,
-    "from": 0,
-    "to": 10,
-    "surface": {
-     "x": 0.28,
-     "y": 0.3,
-     "w": 0.44,
-     "h": 0.2,
-     "rot": 0
-    },
-    "style": "tech",
-    "carry": true
-   },
-   {
     "line": 35,
     "from": 0,
     "to": 4,
     "surface": {
-     "x": 0.28,
-     "y": 0.3,
-     "w": 0.44,
-     "h": 0.2,
+     "x": 0.23,
+     "y": 0.25,
+     "w": 0.55,
+     "h": 0.25,
      "rot": 0
     },
-    "style": "tech"
+    "style": "tech",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -2143,13 +1822,14 @@
     "from": 4,
     "to": 8,
     "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.6,
-     "h": 0.1,
+     "x": 0.15,
+     "y": 0.66,
+     "w": 0.7,
+     "h": 0.24,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -2163,14 +1843,14 @@
   "still": "stills/46.png",
   "camera": {
    "from": {
-    "x": 0.58,
-    "y": 0.5,
+    "x": 0.5166666666666667,
+    "y": 0.4666666666666667,
     "zoom": 1.2,
     "rot": 0
    },
    "to": {
-    "x": 0.42,
-    "y": 0.5,
+    "x": 0.4333333333333333,
+    "y": 0.4666666666666667,
     "zoom": 1.2,
     "rot": 0
    }
@@ -2179,31 +1859,18 @@
   "brief": "Wide: the sleigh grossly overloaded with the whole town's memory, sagging, reindeer straining to lift it off the tower roof, the tower sparking and cracked.",
   "lyrics": [
    {
-    "line": 35,
-    "from": 4,
-    "to": 8,
-    "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 36,
     "from": 0,
     "to": 8,
     "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.1,
+     "y": 0.05,
+     "w": 0.75,
+     "h": 0.33,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -2224,8 +1891,8 @@
    },
    "to": {
     "x": 0.5,
-    "y": 0.5,
-    "zoom": 1.35,
+    "y": 0.51,
+    "zoom": 1.1904761904761905,
     "rot": 4
    }
   },
@@ -2233,31 +1900,18 @@
   "brief": "Dutch-angle tracking shot of the sleigh tipping and sputtering in the clouds, loot sliding, Ram Altman's panicked face.",
   "lyrics": [
    {
-    "line": 36,
-    "from": 0,
-    "to": 8,
-    "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.6,
-     "h": 0.1,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 37,
     "from": 0,
     "to": 4,
     "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.6,
-     "h": 0.1,
+     "x": 0.08,
+     "y": 0.65,
+     "w": 0.84,
+     "h": 0.28,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -2271,14 +1925,14 @@
   "still": "stills/48.png",
   "camera": {
    "from": {
-    "x": 0.5,
-    "y": 0.5,
+    "x": 0.43000000000000005,
+    "y": 0.43000000000000005,
     "zoom": 1.25,
     "rot": -3
    },
    "to": {
-    "x": 0.5,
-    "y": 0.5,
+    "x": 0.4003703703703704,
+    "y": 0.4003703703703704,
     "zoom": 1.35,
     "rot": 3
    }
@@ -2291,26 +1945,28 @@
     "from": 4,
     "to": 8,
     "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.03,
+     "y": 0.03,
+     "w": 0.7,
+     "h": 0.4,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "dark"
    },
    {
     "line": 38,
     "from": 0,
     "to": 2,
     "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.03,
+     "y": 0.03,
+     "w": 0.7,
+     "h": 0.4,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -2324,14 +1980,14 @@
   "still": "stills/49.png",
   "camera": {
    "from": {
-    "x": 0.42,
-    "y": 0.5,
+    "x": 0.4333333333333333,
+    "y": 0.4666666666666667,
     "zoom": 1.2,
     "rot": 0
    },
    "to": {
-    "x": 0.58,
-    "y": 0.5,
+    "x": 0.5166666666666667,
+    "y": 0.4666666666666667,
     "zoom": 1.2,
     "rot": 0
    }
@@ -2340,31 +1996,18 @@
   "brief": "Townsfolk and elves marching up the snowy hill left to right holding lanterns, the leaning, smoking, sparking peak-size tower ahead of them.",
   "lyrics": [
    {
-    "line": 38,
-    "from": 0,
-    "to": 2,
-    "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "hook",
-    "carry": true
-   },
-   {
     "line": 39,
     "from": 0,
     "to": 8,
     "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.1,
+     "y": 0.05,
+     "w": 0.75,
+     "h": 0.35,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -2379,14 +2022,14 @@
   "camera": {
    "from": {
     "x": 0.5,
-    "y": 0.5,
+    "y": 0.5054545454545454,
     "zoom": 1.1,
     "rot": 0
    },
    "to": {
-    "x": 0.47,
-    "y": 0.45,
-    "zoom": 1.5,
+    "x": 0.49999999999999994,
+    "y": 0.54,
+    "zoom": 1.1904761904761905,
     "rot": 0
    }
   },
@@ -2394,31 +2037,18 @@
   "brief": "Elves tearing apart a velvet rope barrier with a blank hanging sign, tokens spilling free.",
   "lyrics": [
    {
-    "line": 39,
-    "from": 0,
-    "to": 8,
-    "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.5,
-     "h": 0.1,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 40,
     "from": 0,
     "to": 4,
     "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.5,
-     "h": 0.1,
+     "x": 0.08,
+     "y": 0.66,
+     "w": 0.84,
+     "h": 0.3,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -2452,13 +2082,14 @@
     "from": 4,
     "to": 9,
     "surface": {
-     "x": 0.24,
-     "y": 0.22,
-     "w": 0.52,
-     "h": 0.12,
+     "x": 0.1,
+     "y": 0.08,
+     "w": 0.6,
+     "h": 0.25,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -2472,13 +2103,13 @@
   "still": "stills/52.png",
   "camera": {
    "from": {
-    "x": 0.5,
-    "y": 0.58,
+    "x": 0.43461538461538457,
+    "y": 0.43461538461538457,
     "zoom": 1.3,
     "rot": 0
    },
    "to": {
-    "x": 0.5,
+    "x": 0.4666666666666667,
     "y": 0.42,
     "zoom": 1.2,
     "rot": 0
@@ -2488,31 +2119,18 @@
   "brief": "Townsfolk and elves building a cheerful tower together out of transparent glass boxes in the town square, the smoking giant tower in the distance.",
   "lyrics": [
    {
-    "line": 40,
-    "from": 4,
-    "to": 9,
-    "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "hook",
-    "carry": true
-   },
-   {
     "line": 41,
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.05,
+     "y": 0.05,
+     "w": 0.75,
+     "h": 0.4,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -2532,9 +2150,9 @@
     "rot": 0
    },
    "to": {
-    "x": 0.53,
-    "y": 0.47,
-    "zoom": 1.45,
+    "x": 0.5,
+    "y": 0.57,
+    "zoom": 1.3888888888888888,
     "rot": 0
    }
   },
@@ -2542,31 +2160,18 @@
   "brief": "A giant gold balloon bursting over the town square in a shower of confetti, townsfolk cheering.",
   "lyrics": [
    {
-    "line": 41,
-    "from": 0,
-    "to": 10,
-    "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.6,
-     "h": 0.1,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 42,
     "from": 0,
     "to": 7,
     "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.6,
-     "h": 0.1,
+     "x": 0.14,
+     "y": 0.58,
+     "w": 0.72,
+     "h": 0.35,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -2580,8 +2185,8 @@
   "still": "stills/54.png",
   "camera": {
    "from": {
-    "x": 0.5,
-    "y": 0.58,
+    "x": 0.48461538461538456,
+    "y": 0.43461538461538457,
     "zoom": 1.3,
     "rot": 0
    },
@@ -2596,31 +2201,18 @@
   "brief": "Wide crane over the whole town singing in the snowy square, elf choir on the bandstand, the tower looming.",
   "lyrics": [
    {
-    "line": 42,
-    "from": 0,
-    "to": 7,
-    "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.14,
-     "rot": 0
-    },
-    "style": "hook",
-    "carry": true
-   },
-   {
     "line": 43,
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.14,
+     "x": 0.1,
+     "y": 0.05,
+     "w": 0.75,
+     "h": 0.4,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -2634,7 +2226,7 @@
   "still": "stills/55.png",
   "camera": {
    "from": {
-    "x": 0.58,
+    "x": 0.4666666666666667,
     "y": 0.5,
     "zoom": 1.2,
     "rot": 0
@@ -2650,31 +2242,18 @@
   "brief": "Gifts landing under trees in cosy Byteville homes: a game console, a laptop, a ham-radio set with a big antenna, wrapped presents.",
   "lyrics": [
    {
-    "line": 43,
-    "from": 0,
-    "to": 9,
-    "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 44,
     "from": 0,
     "to": 8,
     "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.05,
+     "y": 0.15,
+     "w": 0.75,
+     "h": 0.5,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -2688,8 +2267,8 @@
   "still": "stills/56.png",
   "camera": {
    "from": {
-    "x": 0.5,
-    "y": 0.5,
+    "x": 0.43461538461538457,
+    "y": 0.43461538461538457,
     "zoom": 1.3,
     "rot": 0
    },
@@ -2704,31 +2283,18 @@
   "brief": "The hill around the tower: wind turbines spinning, a water tower filling, green fields pushing through the snow.",
   "lyrics": [
    {
-    "line": 44,
-    "from": 0,
-    "to": 8,
-    "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "hook",
-    "carry": true
-   },
-   {
     "line": 45,
     "from": 0,
     "to": 8,
     "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.05,
+     "y": 0.05,
+     "w": 0.75,
+     "h": 0.4,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -2756,22 +2322,7 @@
   },
   "towerStage": null,
   "brief": "The huge curly front door of the data center at night, snow on the step, a little shadow on the doorstep.",
-  "lyrics": [
-   {
-    "line": 45,
-    "from": 0,
-    "to": 8,
-    "surface": {
-     "x": 0.24,
-     "y": 0.24,
-     "w": 0.52,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "hook",
-    "carry": true
-   }
-  ],
+  "lyrics": [],
   "sfx": [
    {
     "name": "knock",
@@ -2796,14 +2347,14 @@
   "still": "stills/58.png",
   "camera": {
    "from": {
-    "x": 0.5,
+    "x": 0.5633333333333332,
     "y": 0.42,
     "zoom": 1.2,
     "rot": 0
    },
    "to": {
-    "x": 0.5,
-    "y": 0.58,
+    "x": 0.5633333333333332,
+    "y": 0.44666666666666666,
     "zoom": 1.2,
     "rot": 0
    }
@@ -2812,44 +2363,32 @@
   "brief": "Over Ram Altman's shoulder down to the little Byteville girl on the step: too-big knit hat, gap-tooth smile, mittens, holding a cardboard science-fair trifold. Ram wears a fake-friendly smile.",
   "lyrics": [
    {
-    "line": 45,
-    "from": 0,
-    "to": 8,
-    "surface": {
-     "x": 0.18,
-     "y": 0.2,
-     "w": 0.64,
-     "h": 0.2,
-     "rot": 0
-    },
-    "style": "aside",
-    "carry": true
-   },
-   {
     "line": 46,
     "from": 0,
     "to": 4,
     "surface": {
-     "x": 0.18,
-     "y": 0.2,
-     "w": 0.64,
-     "h": 0.2,
+     "x": 0.2,
+     "y": 0.03,
+     "w": 0.78,
+     "h": 0.5,
      "rot": 0
     },
-    "style": "aside"
+    "style": "aside",
+    "tone": "light"
    },
    {
     "line": 47,
     "from": 0,
     "to": 11,
     "surface": {
-     "x": 0.18,
-     "y": 0.2,
-     "w": 0.64,
-     "h": 0.2,
+     "x": 0.2,
+     "y": 0.03,
+     "w": 0.78,
+     "h": 0.5,
      "rot": 0
     },
-    "style": "aside"
+    "style": "aside",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -2864,13 +2403,13 @@
   "camera": {
    "from": {
     "x": 0.48,
-    "y": 0.5,
+    "y": 0.4764285714285714,
     "zoom": 1.12,
     "rot": 0
    },
    "to": {
-    "x": 0.52,
-    "y": 0.5,
+    "x": 0.46372881355932205,
+    "y": 0.45372881355932204,
     "zoom": 1.18,
     "rot": 0
    }
@@ -2879,31 +2418,18 @@
   "brief": "Profile two-shot on the doorstep: Ram Altman crouching to the girl's level, both raising hands for a high five, a sparkle between their palms, space above them.",
   "lyrics": [
    {
-    "line": 47,
-    "from": 0,
-    "to": 11,
-    "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.14,
-     "rot": 0
-    },
-    "style": "aside",
-    "carry": true
-   },
-   {
     "line": 48,
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.14,
+     "x": 0.04,
+     "y": 0.03,
+     "w": 0.7,
+     "h": 0.34,
      "rot": 0
     },
-    "style": "aside"
+    "style": "aside",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -2917,8 +2443,8 @@
   "still": "stills/60.png",
   "camera": {
    "from": {
-    "x": 0.5,
-    "y": 0.5,
+    "x": 0.43461538461538457,
+    "y": 0.43461538461538457,
     "zoom": 1.3,
     "rot": 0
    },
@@ -2933,31 +2459,18 @@
   "brief": "Exterior wide of the giant smoking, sparking tower at its peak size, a small figure waving at its door, the girl walking away down the hill.",
   "lyrics": [
    {
-    "line": 48,
-    "from": 0,
-    "to": 9,
-    "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 49,
     "from": 0,
     "to": 11,
     "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.05,
+     "y": 0.05,
+     "w": 0.7,
+     "h": 0.4,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -2971,15 +2484,15 @@
   "still": "stills/61.png",
   "camera": {
    "from": {
-    "x": 0.42,
-    "y": 0.5,
-    "zoom": 1.2,
+    "x": 0.49999999999999994,
+    "y": 0.49999999999999994,
+    "zoom": 1.1363636363636365,
     "rot": 0
    },
    "to": {
-    "x": 0.58,
-    "y": 0.5,
-    "zoom": 1.2,
+    "x": 0.49999999999999994,
+    "y": 0.49999999999999994,
+    "zoom": 1.1363636363636365,
     "rot": 0
    }
   },
@@ -2987,31 +2500,18 @@
   "brief": "An elf assembly line packing boxes with blank labels onto a conveyor running out of the tower.",
   "lyrics": [
    {
-    "line": 49,
-    "from": 0,
-    "to": 11,
-    "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.6,
-     "h": 0.1,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   },
-   {
     "line": 50,
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.2,
-     "y": 0.62,
-     "w": 0.6,
-     "h": 0.1,
+     "x": 0.06,
+     "y": 0.06,
+     "w": 0.88,
+     "h": 0.32,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -3041,31 +2541,18 @@
   "brief": "An old-timey theatre on Byteville's main street at night, its big blank lightbulb marquee glowing, snow falling, the tower on the hill behind.",
   "lyrics": [
    {
-    "line": 50,
-    "from": 0,
-    "to": 10,
-    "surface": {
-     "x": 0.26,
-     "y": 0.3,
-     "w": 0.48,
-     "h": 0.16,
-     "rot": 0
-    },
-    "style": "hook",
-    "carry": true
-   },
-   {
     "line": 51,
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.26,
-     "y": 0.3,
-     "w": 0.48,
-     "h": 0.16,
+     "x": 0.16,
+     "y": 0.22,
+     "w": 0.64,
+     "h": 0.26,
      "rot": 0
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -3099,13 +2586,14 @@
     "from": 0,
     "to": 5,
     "surface": {
-     "x": 0.2,
-     "y": 0.2,
-     "w": 0.6,
-     "h": 0.12,
+     "x": 0.14,
+     "y": 0.08,
+     "w": 0.72,
+     "h": 0.3,
      "rot": 0
     },
-    "style": "narration"
+    "style": "narration",
+    "tone": "dark"
    }
   ],
   "sfx": []
@@ -3125,9 +2613,9 @@
     "rot": 0
    },
    "to": {
-    "x": 0.47,
-    "y": 0.45,
-    "zoom": 1.5,
+    "x": 0.48,
+    "y": 0.5499999999999999,
+    "zoom": 1.25,
     "rot": 0
    }
   },
@@ -3139,13 +2627,14 @@
     "from": 5,
     "to": 7,
     "surface": {
-     "x": 0.2,
-     "y": 0.6,
-     "w": 0.56,
-     "h": 0.14,
-     "rot": -4
+     "x": 0.08,
+     "y": 0.57,
+     "w": 0.8,
+     "h": 0.38,
+     "rot": -3
     },
-    "style": "hook"
+    "style": "hook",
+    "tone": "light"
    }
   ],
   "sfx": []
@@ -3159,8 +2648,8 @@
   "still": "stills/65.png",
   "camera": {
    "from": {
-    "x": 0.5,
-    "y": 0.48,
+    "x": 0.45,
+    "y": 0.45,
     "zoom": 1.25,
     "rot": 0
    },
@@ -3173,22 +2662,7 @@
   },
   "towerStage": 5,
   "brief": "Exterior wide of the gigantic data-center tower mid-collapse, imploding in on itself, smoke sucking inward, over a quiet snowy hill with Byteville's windows glowing warm below.",
-  "lyrics": [
-   {
-    "line": 52,
-    "from": 5,
-    "to": 7,
-    "surface": {
-     "x": 0.2,
-     "y": 0.22,
-     "w": 0.6,
-     "h": 0.12,
-     "rot": 0
-    },
-    "style": "narration",
-    "carry": true
-   }
-  ],
+  "lyrics": [],
   "sfx": []
  }
 ]
