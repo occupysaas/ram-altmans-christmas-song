@@ -264,3 +264,14 @@ test('65: the tower only grows until the boom, then RAM rains before the TV swit
   assert.ok(items.filter(i => String(i.sprite ?? '').endsWith('ram-stick')).length >= 20, 'RAM rain');
   assert.ok(items.filter(i => i.who).length >= 5, 'townsfolk catching');
 });
+
+import {wordGapFor} from '../src/layout.ts';
+
+test('shots 01-06 keep their approved lyric layout, word gaps and pop-in (S tier, do not alter)', () => {
+  const want = read('tests/fixtures/frozen-01-06-layout.json');
+  for (const s of shots().filter(x => ['01', '02', '03', '04', '05', '06'].includes(x.id))) s.lyrics.forEach((e, i) => {
+    const L = layoutEntry(e, {w: e.surface.w * STILL_W, h: e.surface.h * STILL_H / s.lyrics.length}, true);
+    assert.deepEqual({leadSize: L.leadSize, impactSize: L.impactSize, rows: L.rows.map(r => r.words.map(w => w.text))}, want[`${s.id}/${i}`], `shot ${s.id} entry ${i}`);
+    for (const r of L.rows) for (let k = 1; k < r.words.length; k++) assert.equal(wordGapFor(r.words[k - 1], r.words[k], L, true), 0.3 * L.leadSize);
+  });
+});

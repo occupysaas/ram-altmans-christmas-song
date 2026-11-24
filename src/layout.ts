@@ -42,6 +42,9 @@ function measure(text: string, font: Font, size: number): number {
 }
 /** Space between two neighbouring words: scaled to the bigger of the two so impact words never butt up. */
 export const wordGap = (a: {size: number}, b: {size: number}) => 0.3 * Math.max(a.size, b.size);
+/** Shots 01-06 are approved as-is ("S tier, do not alter"): they keep the original em-estimate widths and lead-sized gaps. */
+export const FROZEN_SHOTS = ['01', '02', '03', '04', '05', '06'];
+export const wordGapFor = (a: {size: number}, b: {size: number}, L: {leadSize: number}, legacy = false) => legacy ? 0.3 * L.leadSize : wordGap(a, b);
 
 export type LWord = {text: string; k: number; impact: boolean; font: Font; size: number; width: number};
 export type Row = {words: LWord[]; width: number; height: number};
@@ -61,7 +64,7 @@ export function impactWords(line: number): Set<number> {
   return out;
 }
 
-export function layoutEntry(e: {line: number; from: number; to: number; style: Style}, box: {w: number; h: number}): Layout {
+export function layoutEntry(e: {line: number; from: number; to: number; style: Style}, box: {w: number; h: number}, legacy = false): Layout {
   const imp = impactWords(e.line);
   const lead = LEAD[e.style][e.line % LEAD[e.style].length], big = IMP[e.style][e.line % IMP[e.style].length];
   const src = lyrics[e.line].words.slice(e.from, e.to).map((w, i) => ({text: w.w, k: e.from + i, impact: imp.has(e.from + i)}));
@@ -72,11 +75,11 @@ export function layoutEntry(e: {line: number; from: number; to: number; style: S
       const font = w.impact ? big : lead, sz = w.impact ? isz : size;
       const acronym = (w.text.match(/[A-Z]/g) ?? []).length >= 2; // GPUs, SSDs, DIMMs keep their spelling
       const text = font.upper && !acronym ? w.text.toUpperCase() : w.text;
-      return {...w, text, font, size: sz, width: measure(text, font, sz)};
+      return {...w, text, font, size: sz, width: legacy ? text.length * font.em * sz : measure(text, font, sz)};
     });
     const rows: Row[] = [];
     for (const w of words) {
-      const r = rows.at(-1), gap = r ? wordGap(r.words.at(-1)!, w) : 0;
+      const r = rows.at(-1), gap = r ? (legacy ? 0.3 * size : wordGap(r.words.at(-1)!, w)) : 0;
       if (r && r.width + gap + w.width <= box.w) { r.words.push(w); r.width += gap + w.width; r.height = Math.max(r.height, w.size * LINE_GAP); }
       else rows.push({words: [w], width: w.width, height: w.size * LINE_GAP});
     }

@@ -1,0 +1,80 @@
+{
+ "02/0": {
+  "leadSize": 98,
+  "impactSize": 147,
+  "rows": [
+   [
+    "'Twas",
+    "the",
+    "night",
+    "before"
+   ],
+   [
+    "CHRISTMAS,"
+   ]
+  ]
+ },
+ "03/0": {
+  "leadSize": 60,
+  "impactSize": 84,
+  "rows": [
+   [
+    "and",
+    "all",
+    "through"
+   ],
+   [
+    "the",
+    "STACK,"
+   ]
+  ]
+ },
+ "04/0": {
+  "leadSize": 94,
+  "impactSize": 132,
+  "rows": [
+   [
+    "Not",
+    "a",
+    "GIGABYTE"
+   ],
+   [
+    "stirred..."
+   ]
+  ]
+ },
+ "05/0": {
+  "leadSize": 108,
+  "impactSize": 152,
+  "rows": [
+   [
+    "not",
+    "one",
+    "EMPTY"
+   ],
+   [
+    "RACK."
+   ]
+  ]
+ },
+ "06/0": {
+  "leadSize": 82,
+  "impactSize": 115,
+  "rows": [
+   [
+    "He",
+    "lived",
+    "in",
+    "a",
+    "tower",
+    "of",
+    "GLASS"
+   ],
+   [
+    "and",
+    "of",
+    "CHROME,"
+   ]
+  ]
+ }
+}

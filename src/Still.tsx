@@ -2,6 +2,7 @@ import React from 'react';
 import {Easing, Img, interpolate, staticFile} from 'remotion';
 import {STILL_W, STILL_H, type Style} from './layout';
 import {LyricBlock} from './Lyric';
+import {FROZEN_SHOTS} from './layout';
 import {Tower} from './fx/Tower';
 import {Star} from './fx/Star';
 import {CHOREO} from './shots';
@@ -66,7 +67,7 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
         return (
           <div key={i} style={{position: 'absolute', left: s.x * STILL_W, top: s.y * STILL_H + i * bh,
                                transform: `rotate(${s.rot}deg)`}}>
-            <LyricBlock entry={e} box={{w: s.w * STILL_W, h: bh}} t={t} />
+            <LyricBlock entry={e} box={{w: s.w * STILL_W, h: bh}} t={t} legacy={FROZEN_SHOTS.includes(shot.id)} />
           </div>
         );
       })}
