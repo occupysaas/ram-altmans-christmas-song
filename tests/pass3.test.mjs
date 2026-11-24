@@ -208,3 +208,15 @@ test('54: the town holds hands in a ring around the giant RAM rising out of the 
   assert.ok(late.findIndex(i => i.ramGiant) > late.findIndex(i => String(i.sprite ?? '').includes('ring-back')) &&
     late.findIndex(i => i.ramGiant) < late.findIndex(i => String(i.sprite ?? '').includes('ring-front')), 'back half behind it, front half in front');
 });
+
+import {shot56} from '../src/shots/energy56.ts';
+
+test('56: house windows black out one by one (with flickers) and the water flows', () => {
+  const s = shot('56'), at = t => shot56(t, Math.round(t * 24), s), out = t => at(t).filter(i => i.draw?.kind === 'rect').length;
+  const n = read('docs/fx-regions.json')['56'].windows.length;
+  assert.ok(n >= 12, `${n} windows`);
+  assert.equal(out(s.start + 0.05), 0);
+  assert.ok(out(s.start + 0.5 * (s.end - s.start)) < out(s.end - 0.1), 'more go dark over time');
+  assert.ok(out(s.end - 0.1) >= 0.6 * n, 'most of the town is dark by the end');
+  assert.ok(at(s.start + 1).filter(i => i.draw?.kind === 'line').length >= 5, 'water streaming');
+});

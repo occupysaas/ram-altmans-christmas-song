@@ -56,7 +56,7 @@
 53: {tier: B, fx: [confetti], action: "balloon pops, confetti"}
 54: {tier: B, plate: true, towerCut: true, fx: [tower], action: "whole town sings; tower bumps"}
 55: {tier: B, fx: [giftDrop], action: "gifts drop under trees"}
-56: {tier: B, fx: [tower], action: "turbines and fields return"}
+56: {tier: B, fx: [tower], action: "water pours into the tank (streams, ripples, splashes); town windows flicker and black out one by one; tower bumps"}
 58: {tier: A, puppets: [girl, ram-34], fx: [], action: "girl asks (lip-sync); Ram's fake smile"}
 59: {tier: A, puppets: [girl, ram-34], fx: [], action: "hi-five; Ram says subscribe (lip-sync)"}
 60: {tier: B, fx: [tower], action: "pull back from the waving figure"}
