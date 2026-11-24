@@ -135,20 +135,17 @@ test('19: shoppers recoil into shock after the price flips', () => {
   assert.ok(at(s.end - 0.3).some(i => i.draw?.kind === 'text'), 'price drawn on the tag');
 });
 
-import {coinsAt, SHOP_SIGNS} from '../src/shots/sleigh.ts';
+import {SHOP_SIGNS} from '../src/shots/sleigh.ts';
 
-test('21/22: a fresh burst of coins pours out of the sleigh on each beat, and shops flip to SOLD', () => {
-  const s = shot('21'), beats = audioJ.beats.filter(b => b > s.start + 0.15 && b < s.end - 0.2);
-  assert.ok(beats.length >= 2);
-  for (const b of beats) {
-    const before = coinsAt('21', b - 0.02, s).filter(c => c.age < 0.1).length, after = coinsAt('21', b + 0.06, s).filter(c => c.age < 0.1).length;
-    assert.ok(after >= before + 6, `beat ${b}: ${before} -> ${after}`);
-  }
-  const items = SLEIGH_CHOREO['21'](s.end - 0.05, Math.round((s.end - 0.05) * 24), s);
-  assert.ok(items.filter(i => i.draw?.text === 'SOLD').length >= 2, 'shops sold');
+test('21/22: no coins from the sleigh; the shops flip to SOLD one per beat as it passes', () => {
+  const s = shot('21'), at = t => SLEIGH_CHOREO['21'](t, Math.round(t * 24), s);
+  assert.ok(!at(s.start + 1).some(i => String(i.sprite ?? '').endsWith('coin')), 'no coins');
+  const sold = t => at(t).filter(i => i.draw?.text === 'SOLD').length;
+  assert.ok(sold(s.start + 0.1) < sold(s.end - 0.1), 'more shops sold over the shot');
+  assert.ok(sold(s.end - 0.1) >= 3);
   assert.equal(SHOP_SIGNS.length, 5);
   const s22 = shot('22'), it22 = SLEIGH_CHOREO['22'](s22.start + 0.5, Math.round((s22.start + 0.5) * 24), s22);
-  assert.ok(it22.some(i => i.sleighTeam) && it22.filter(i => i.draw?.text === 'SOLD').length === 5);
+  assert.ok(it22.some(i => i.sleighTeam) && it22.filter(i => i.draw?.text === 'SOLD').length === 5 && !it22.some(i => String(i.sprite ?? '').endsWith('coin')));
 });
 
 import {shot24, shot25, vaultDoorX, spillLanded, shelfLeft} from '../src/shots/ram-side-shots.ts';
@@ -204,16 +201,6 @@ test('36: carolers open up to sing on the sung words', () => {
   assert.ok(shot36(s.start + 1, Math.round((s.start + 1) * 24), s).some(i => i.draw?.kind === 'note'), 'music notes');
 });
 
-test('39: a dozen-plus townsfolk run about, facing where they run, and scatter on each stamp', () => {
-  const s = shot('39'), at = t => shot39crowd(t, s);
-  const r = at(s.start + 1.0);
-  assert.ok(r.length >= 12, `${r.length} runners`);
-  for (const p of r) if (Math.abs(p.vx) > 20 && !p.flat) assert.equal(p.flip, p.vx < 0, `runner ${p.who} faces backwards`);
-  assert.ok(slamTimes(s).length >= 2, 'stamps more than once');
-  const t1 = slamTimes(s)[0], near = q => at(q).filter(p => Math.hypot(p.x - 860, p.y - 700) < 380 && !p.flat).length;
-  assert.ok(near(t1 + 0.6) < near(t1 - 0.02) || near(t1 - 0.02) === 0, 'they scatter from the stamp');
-  assert.ok(slamTimes(s).some(q => at(q + 0.2).some(p => p.flat)), 'someone gets flattened');
-});
 
 test('40: every runner\'s feet stay on the stairs (planted foot on a tread, nobody floats)', () => {
   const s = shot('40');
@@ -251,7 +238,7 @@ test('65: the tower only grows until the boom, then RAM rains before the TV swit
   assert.ok(s.sfx.some(x => x.name === 'boom' && Math.abs(x.t - BOOM) < 0.05), 'boom sfx');
   const items = shot65(TVOFF - 0.6, Math.round((TVOFF - 0.6) * 24), s);
   assert.ok(items.filter(i => String(i.sprite ?? '').endsWith('ram-stick')).length >= 20, 'RAM rain');
-  assert.ok(items.filter(i => i.who).length >= 5, 'townsfolk catching');
+  assert.equal(items.filter(i => i.who).length, 0, 'no townsfolk: the explosion is enough');
 });
 
 import {wordGapFor} from '../src/layout.ts';

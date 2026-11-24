@@ -308,7 +308,10 @@
   "plate": "plates/07.png",
   "puppets": [
    "layers-07"
-  ]
+  ],
+  "mood": {
+   "dark": 0.45
+  }
  },
  {
   "id": "08",
@@ -454,7 +457,10 @@
   "plate": "plates/10.png",
   "puppets": [
    "ram-side"
-  ]
+  ],
+  "mood": {
+   "dark": 0.45
+  }
  },
  {
   "id": "11",
@@ -884,7 +890,10 @@
   "plate": "plates/18.png",
   "puppets": [
    "layers-18"
-  ]
+  ],
+  "mood": {
+   "dark": 0.45
+  }
  },
  {
   "id": "19",
@@ -932,7 +941,10 @@
   "plate": "plates/19.png",
   "puppets": [
    "layers-19"
-  ]
+  ],
+  "mood": {
+   "dark": 0.45
+  }
  },
  {
   "id": "20",
@@ -1172,7 +1184,10 @@
   "plate": "plates/24.png",
   "puppets": [
    "ram-side"
-  ]
+  ],
+  "mood": {
+   "dark": 0.45
+  }
  },
  {
   "id": "25",
@@ -1221,7 +1236,10 @@
   "puppets": [
    "ram-side",
    "girl"
-  ]
+  ],
+  "mood": {
+   "dark": 0.45
+  }
  },
  {
   "id": "26",
@@ -1294,7 +1312,10 @@
   "plate": "plates/26.png",
   "puppets": [
    "ram-side"
-  ]
+  ],
+  "mood": {
+   "dark": 0.45
+  }
  },
  {
   "id": "27",
@@ -1777,7 +1798,10 @@
   "plate": "plates/36.png",
   "puppets": [
    "layers-36"
-  ]
+  ],
+  "mood": {
+   "dark": 0.45
+  }
  },
  {
   "id": "37",
@@ -2517,7 +2541,10 @@
   "plate": "plates/51.png",
   "puppets": [
    "layers-51"
-  ]
+  ],
+  "mood": {
+   "dark": 0.45
+  }
  },
  {
   "id": "52",
@@ -2660,7 +2687,11 @@
   ],
   "action": "whole town sings; tower bumps",
   "plate": "plates/54.png",
-  "towerCut": true
+  "towerCut": true,
+  "towerDy": 150,
+  "mood": {
+   "dark": 0.45
+  }
  },
  {
   "id": "55",
@@ -2928,7 +2959,10 @@
   ],
   "action": "pull back from the waving figure",
   "plate": "plates/60.png",
-  "towerCut": true
+  "towerCut": true,
+  "mood": {
+   "dark": 0.45
+  }
  },
  {
   "id": "61",
@@ -3025,7 +3059,10 @@
   ],
   "action": "marquee bulbs chase; tower behind",
   "plate": "plates/62.png",
-  "towerCut": true
+  "towerCut": true,
+  "mood": {
+   "dark": 0.45
+  }
  },
  {
   "id": "63",

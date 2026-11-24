@@ -44,20 +44,24 @@ test('38: the fan throne bumps on every beat', () => {
 });
 
 import {shot39crowd, RAM39, slamTimes} from '../src/shots/townsfolk.ts';
+import {shot39} from '../src/shots/ram-side-shots.ts';
 
-test('39: Ram stands in the middle and the crowd circles him without ever touching him', () => {
-  const s = shot('39');
+test('39: a packed square that empties out — people flee across and out of frame screaming, never touching Ram, no slam bursts', () => {
+  const s = shot('39'), on = r => r.x > 0 && r.x < 1600;
+  const at = t => shot39crowd(t, s);
   assert.ok(Math.abs(RAM39.x - 800) < 1 && RAM39.floor === 760);
-  let behind = 0, front = 0;
-  for (let t = s.start; t < s.end; t += 0.25) for (const r of shot39crowd(t, s)) {
-    const d = Math.hypot(r.x - RAM39.x, 2 * (r.y - RAM39.floor));
-    assert.ok(d >= 260, `${r.who} at ${t.toFixed(2)} is ${d.toFixed(0)} from Ram`);
-    if (r.y < RAM39.floor) behind++; else front++;
-  }
-  assert.ok(behind > 20 && front > 20, 'they pass both behind and in front of him');
-  const t1 = slamTimes(s)[0], spread = q => shot39crowd(q, s).reduce((a, r) => a + Math.hypot(r.x - RAM39.x, 2 * (r.y - RAM39.floor)), 0);
-  assert.ok(spread(t1 + 0.25) > spread(t1 - 0.02) * 1.15, 'they burst outward on the slam');
-  assert.ok(slamTimes(s).some(q => shot39crowd(q + 0.2, s).some(r => r.flat)), 'one gets flattened');
+  assert.ok(at(s.start + 0.2).filter(on).length >= 12, 'starts crowded');
+  assert.ok(at(s.end - 0.15).filter(on).length <= 4, 'clears out by the end');
+  const first = at(s.start + 0.05), last = at(s.end - 0.05);
+  assert.ok(first.some((r, i) => !on(r) && last[i] && at(s.start + 1.5)[i] && on(at(s.start + 1.5)[i])), 'someone enters later');
+  assert.ok(first.some((r, i) => on(r) && !on(last[i])), 'people leave');
+  for (let t = s.start; t < s.end; t += 0.25) for (const r of at(t)) if (on(r)) assert.ok(Math.hypot(r.x - RAM39.x, 2 * (r.y - RAM39.floor)) >= 260, `${r.who} touches Ram at ${t.toFixed(2)}`);
+  first.forEach((r, i) => { const l = last[i], a = Math.atan2(r.vy, r.vx), b = Math.atan2(l.vy, l.vx);
+    const d = Math.abs(Math.atan2(Math.sin(a - b), Math.cos(a - b))); assert.ok(d < Math.PI / 3 || r.victim, `runner ${i} turns ${(d * 57).toFixed(0)}° (circling)`); });
+  for (const q of slamTimes(s)) { const a = at(q - 1 / 24), b = at(q + 1 / 24);
+    a.forEach((r, i) => assert.ok(Math.hypot(b[i].x - r.x, b[i].y - r.y) < 60, `runner ${i} jumps on the slam`)); }
+  const items = shot39(s.start + 1, Math.round((s.start + 1) * 24), s);
+  assert.ok(items.some(i => /^A+H/.test(i.draw?.text ?? '')), 'screams');
 });
 
 import {shot10, SHELF10} from '../src/shots/ram-side-shots.ts';
@@ -271,4 +275,26 @@ test('56: the outage is calm (only a few single blinks) and chimneys smoke', () 
   }
   assert.ok(toggles <= n / 3, `${toggles} relights for ${n} windows`);
   assert.ok(s.fx.includes('chimneySmoke') && read('docs/fx-regions.json')['56'].chimneySmoke.length >= 4);
+});
+
+import {execFileSync} from 'node:child_process';
+const MOOD = ['07', '10', '18', '19', '24', '25', '26', '36', '51', '54', '60', '62'];
+
+test('mood shots: darkened around their own lights, with a glow map per shot', () => {
+  for (const id of MOOD) {
+    const s = shot(id);
+    assert.ok(s.mood && s.mood.dark >= 0.3 && s.mood.dark <= 0.6, `shot ${id} mood ${JSON.stringify(s.mood)}`);
+    for (const f of [`public/light/${id}-glow.png`, `public/light/${id}-dark.png`]) assert.ok(fs.existsSync(f), `missing ${f}`);
+  }
+  assert.ok(!shot('56').mood, '56 has its own blackout, no glow map');
+  assert.ok(!['01', '02', '03', '04', '05', '06'].some(id => shot(id).mood), 'intro untouched');
+  const stats = JSON.parse(execFileSync('.venv/bin/python', ['-I', 'scripts/make_lightmaps.py', '--stats'], {encoding: 'utf8'}));
+  for (const id of MOOD) assert.ok(stats[id].lit > 0.002 && stats[id].lit < 0.35, `shot ${id}: lit fraction ${stats[id].lit}`);
+});
+
+test('finish: a highlights-only bloom runs on the programme before the CRT pass', () => {
+  const f = execFileSync('.venv/bin/python', ['-I', '-c', "import sys; sys.path.insert(0, 'scripts'); import finish; print(finish.video_filter(1, 1, 10, 10, 5, 5))"], {encoding: 'utf8'});
+  const bloom = f.indexOf('[hl]'), crt = f.indexOf('scale=480:360');
+  assert.ok(bloom > 0 && bloom < crt, 'bloom before the CRT downscale');
+  assert.match(f, /curves=all='0\/0 0\.6[0-9]*\/0/);
 });

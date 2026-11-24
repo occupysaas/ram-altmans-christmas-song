@@ -44,25 +44,33 @@ export function slamTimes(shot: Shot): number[] {
 export const RAM39 = {x: 800, floor: 760};
 export const STAMP_AT: P = [1100, 760];
 const WHO = ['dad', 'mum', 'kid1', 'kid2', 'elf'];
-type Runner = {who: string; x: number; y: number; vx: number; vy: number; flip: boolean; flat: boolean; flatAge: number; dist: number};
-const FLAT = 0.6;
 
-/** The crowd circles Ram on ellipses (some clockwise, some not), never closer than 260 px (y counted double for depth).
- *  On every slam the whole ring bursts outward and drifts back. Runner 0 is timed to be under the first stamp. */
+/** The square starts packed and empties: everyone flees in a (zig-zagging but) straight line across and out of
+ *  frame, passing well in front of or behind Ram (never near him); a few latecomers run in and out; nobody is
+ *  thrown around by the slams. Runner 0 arrives under the first stamp, is flattened, pops up and bolts. */
+type Runner = {who: string; x: number; y: number; vx: number; vy: number; flip: boolean; flat: boolean; flatAge: number; dist: number; victim?: boolean; scream: boolean};
+const FLAT = 0.6, N39 = 18;
 export function shot39crowd(t: number, shot: Shot): Runner[] {
   const slams = slamTimes(shot), rs: Runner[] = [];
-  const burst = (q: number) => slams.reduce((k, s) => k + (q >= s ? 0.55 * Math.exp(-(q - s) / 0.5) * Math.min(1, (q - s) / 0.08) : 0), 0);
-  for (let i = 0; i < 14; i++) {
-    const victim = i === 0;
-    const rx = victim ? 300 : 400 + 260 * hash(i * 3.3), ry = victim ? 160 : 190 + 90 * hash(i * 5.9);
-    const w = (victim ? -1 : hash(i * 1.7) < 0.5 ? -1 : 1) * (0.7 + 0.6 * hash(i * 2.2));
-    const th0 = victim ? -w * (slams[0] - shot.start) : 2 * Math.PI * hash(i * 9.1);   // victim: at angle 0 (the stamp) on the first slam
-    const flatAge = victim && t >= slams[0] ? t - slams[0] : -1, flat = flatAge >= 0 && flatAge < FLAT;
-    const lt = t - shot.start - (victim && flatAge >= 0 ? Math.min(flatAge, FLAT) : 0);   // the flattened one is stuck for FLAT s
-    const th = th0 + w * lt, k = 1 + burst(t);
-    const x = RAM39.x + rx * k * Math.cos(th), y = RAM39.floor + ry * k * Math.sin(th);
-    const vx = -rx * k * w * Math.sin(th), vy = ry * k * w * Math.cos(th);
-    rs.push({who: WHO[i % 5], x, y, vx, vy, flip: vx < 0, flat, flatAge, dist: Math.abs(w) * (rx + ry) * 0.5 * lt});
+  for (let i = 0; i < N39; i++) {
+    const who = WHO[i % 5], dir = hash(i * 1.7) < 0.5 ? -1 : 1, front = hash(i * 2.9) < 0.6;
+    const y0 = front ? 925 + 150 * hash(i * 5.9) : 562 + 30 * hash(i * 9.1);   // lanes well in front of / behind Ram (wobble ±18 stays clear)
+    const sp = 380 + 200 * hash(i * 3.3), late = i >= N39 - 3;
+    const enter = late ? shot.start + 0.6 + 0.5 * (i - (N39 - 3)) : shot.start;
+    const x0 = late ? (dir > 0 ? -150 : 1750) : lerp(dir > 0 ? -150 : 1750, dir > 0 ? 1750 : -150, 0.15 + 0.6 * hash(i * 7.7));
+    if (i === 0) {   // the victim: runs in along Ram's line from the right, flattened at the stamp, then bolts down-right
+      const s0 = slams[0], v = 420, xStamp = STAMP_AT[0];
+      const fa = t - s0;
+      let x: number, y = STAMP_AT[1], vx = -v, vy = 0;
+      if (fa < 0) x = xStamp + v * -fa;   // still running in from the right
+      else if (fa < FLAT) x = xStamp;
+      else { const a2 = fa - FLAT; x = xStamp + 300 * a2; y = STAMP_AT[1] + 380 * a2; vx = 300; vy = 380; }
+      rs.push({who, x, y, vx, vy, flip: vx < 0, flat: fa >= 0 && fa < FLAT, flatAge: fa >= 0 ? fa : -1, dist: v * Math.max(0, t - shot.start), victim: true, scream: true});
+      continue;
+    }
+    const lt = Math.max(0, t - enter), wob = Math.sin(lt * 7 + i) * 18;
+    const x = x0 + dir * sp * lt, y = y0 + wob, vy = 18 * 7 * Math.cos(lt * 7 + i);
+    rs.push({who, x: t < enter ? x0 : x, y, vx: dir * sp, vy, flip: dir < 0, flat: false, flatAge: -1, dist: sp * lt, scream: i % 3 === 0});
   }
   return rs;
 }
@@ -86,10 +94,13 @@ function runPose(r: Runner, S: number, t: number): Pose {
 export function crowdItems(t: number, shot: Shot): {behind: Item[]; front: Item[]} {
   const behind: Item[] = [], front: Item[] = [];
   for (const r of shot39crowd(t, shot).sort((a, b) => a.y - b.y)) {
+    if (r.x < -260 || r.x > 1860) continue;
     const depth = clamp01((r.y - (RAM39.floor - 340)) / 680), kid = r.who.startsWith('kid') || r.who === 'elf';
     const S = scaleFor(r.who, lerp(200, 520, depth) * (kid ? 0.62 : 1));
     const item: Item = {who: r.who, pose: runPose(r, S, t), scale: S};
     (r.y < RAM39.floor ? behind : front).push(item);
+    if (r.scream && Math.floor(t * 2 + r.x * 0.01) % 2 === 0) front.push({draw: {kind: 'text', at: [r.x, r.y - PARTS[r.who]._rig.hipHeight * S * 2.6], size: 34 + 30 * depth,
+      text: 'AAAH!', color: '#fffbe6', ink: '#17121c', rot: r.flip ? 8 : -8}});
   }
   return {behind, front};
 }

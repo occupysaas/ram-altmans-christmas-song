@@ -59,6 +59,13 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
         })}
       </svg>}
       {children}
+      {(shot as {mood?: {dark: number}}).mood && <>
+        {/* mood: the scene darkened everywhere except around its own lights, then the lights bloom over it, flickering like candles */}
+        <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, background: `rgba(8, 10, 32, ${(shot as {mood?: {dark: number}}).mood!.dark})`,
+          WebkitMaskImage: `url(${staticFile(`light/${shot.id}-dark.png`)})`, maskImage: `url(${staticFile(`light/${shot.id}-dark.png`)})`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%'}} />
+        <Img src={staticFile(`light/${shot.id}-glow.png`)} style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, mixBlendMode: 'screen',
+          opacity: 0.55 + 0.08 * Math.sin(t * 13.1) + 0.05 * Math.sin(t * 31.7 + 1.3)}} />
+      </>}
       {inWorld.map((e, i) => {
         // entries share their surface, stacked; an entry with its own surface (`own`, a split line) fills it alone
         const shared = inWorld.filter(x => !x.own), k = e.own ? 0 : shared.indexOf(e), n = e.own ? 1 : shared.length;
