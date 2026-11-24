@@ -20,10 +20,10 @@
 17: {tier: A, puppets: [layers-17], fx: [], action: "sky streams past the sleigh; Ram snaps the reins on every beat, whip-crack on snares, winks on \"wink\""}
 18: {tier: A, puppets: [layers-18], fx: [], action: "family (cut-out layers) sobs on alternating beats, tears fall and splash, blank tag drawn 2x for a big lyric; slow push-in"}
 19: {tier: A, puppets: [layers-19], fx: [], action: "shoppers bob up to the window, recoil in shock as the red price sticker flips higher on each beat"}
-20: {tier: B, fx: [tower], action: "tower in the cyan cloud; bumps, smoke"}
+20: {tier: B, plate: true, towerCut: true, fx: [tower], action: "tower in the cyan cloud; bumps, smoke"}
 21: {tier: A, puppets: [sleigh], fx: [], action: "shopping spree: sleigh pass over the shop street pouring coins on each beat; shop signs flip to SOLD"}
 22: {tier: A, puppets: [sleigh], fx: [], action: "hovering sleigh over the sold-out street; Ram leans back cackling on snares, HA!s pop"}
-23: {tier: B, fx: [tower], action: "tower humming bright; marquee bulbs chase"}
+23: {tier: B, plate: true, towerCut: true, fx: [tower], action: "tower humming bright; marquee bulbs chase"}
 24: {tier: A, puppets: [ram-side], fx: [], action: "round vault door rolls across the doorway; Ram on its right shoves it on beats, kicks knock it back; RAM spills out of the gap and piles on the floor"}
 25: {tier: A, puppets: [ram-side, girl], fx: [], action: "generic electronics store: Ram sweeps RAM boxes off the shelf into a teetering armful; a girl behind him reaches and is left at a bare shelf"}
 26: {tier: A, puppets: [ram-side], fx: [stashFreeze], action: "shoves SSDs in the sack; freeze and squint at camera on 'umm, stash'"}
@@ -52,9 +52,9 @@
 49: {tier: A, puppets: [dad, mum, kid1, kid2, elf], fx: [tower], action: "march up the hill with lanterns"}
 50: {tier: B, fx: [coins], action: "tokens spill as the rope tears"}
 51: {tier: C, fx: [], action: "band-aid patch"}
-52: {tier: B, fx: [tower], action: "building open boxes; tower looms"}
+52: {tier: B, plate: true, towerCut: true, fx: [tower], action: "building open boxes; tower looms"}
 53: {tier: B, fx: [confetti], action: "balloon pops, confetti"}
-54: {tier: B, fx: [tower], action: "whole town sings; tower bumps"}
+54: {tier: B, plate: true, towerCut: true, fx: [tower], action: "whole town sings; tower bumps"}
 55: {tier: B, fx: [giftDrop], action: "gifts drop under trees"}
 56: {tier: B, fx: [tower], action: "turbines and fields return"}
 58: {tier: A, puppets: [girl, ram-34], fx: [], action: "girl asks (lip-sync); Ram's fake smile"}

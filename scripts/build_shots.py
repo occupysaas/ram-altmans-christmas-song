@@ -93,6 +93,7 @@ def build():
         shots[-1].update({'tier': m['tier'], 'fx': m.get('fx', []), 'action': m.get('action', '')})
         if m['tier'] == 'A': shots[-1].update({'plate': f"plates/{sid}.png", 'puppets': m['puppets']})
         elif m.get('plate'): shots[-1]['plate'] = f"plates/{sid}.png"
+        if m.get('towerCut'): shots[-1]['towerCut'] = True   # the tower is its own layer (layers/NN/tower) over a tower-free plate
         if 'push' in s:
             pt = imp[s['push']['t']] if isinstance(s['push']['t'], str) else s['push']['t']
             shots[-1]['camera']['push'] = {**dict(zip(('x', 'y', 'zoom', 'rot'), s['push']['to'])), 't': pt, 'dur': s['push'].get('dur', 0.3)}

@@ -978,7 +978,9 @@
   "fx": [
    "tower"
   ],
-  "action": "tower in the cyan cloud; bumps, smoke"
+  "action": "tower in the cyan cloud; bumps, smoke",
+  "plate": "plates/20.png",
+  "towerCut": true
  },
  {
   "id": "21",
@@ -1120,7 +1122,9 @@
   "fx": [
    "tower"
   ],
-  "action": "tower humming bright; marquee bulbs chase"
+  "action": "tower humming bright; marquee bulbs chase",
+  "plate": "plates/23.png",
+  "towerCut": true
  },
  {
   "id": "24",
@@ -2550,7 +2554,9 @@
   "fx": [
    "tower"
   ],
-  "action": "building open boxes; tower looms"
+  "action": "building open boxes; tower looms",
+  "plate": "plates/52.png",
+  "towerCut": true
  },
  {
   "id": "53",
@@ -2642,7 +2648,9 @@
   "fx": [
    "tower"
   ],
-  "action": "whole town sings; tower bumps"
+  "action": "whole town sings; tower bumps",
+  "plate": "plates/54.png",
+  "towerCut": true
  },
  {
   "id": "55",

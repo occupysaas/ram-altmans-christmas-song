@@ -1,6 +1,8 @@
 import React from 'react';
 import {Img, staticFile} from 'remotion';
 import towers from '../../docs/towers.json';
+import layers from '../../public/sprites/layers/layers.json';
+const LAYERS = layers as Record<string, {x: number; y: number; w: number; h: number}>;
 import {STILL_W, STILL_H} from '../layout';
 import {towerBump, towerFlash, towerGrowth} from './towerMath';
 import {cycle, hash} from './particles';
@@ -51,6 +53,19 @@ export function Tower({shot, t}: {shot: {id: string; still: string; towerStage: 
   const swell = ex ? ex.scale : 1, jit = ex ? ex.shake * (hash(Math.floor(t * 24)) - 0.5) : 0;
   const sy = (1 + g + b) * swell, sx = (1 + g + b * 0.5) * swell;   // stretch up more than out on each kick
   const top: [number, number] = [bx + (spec.top[0] * STILL_W - bx) * sx, by + (spec.top[1] * STILL_H - by) * sy];
+  if ((shot as {towerCut?: boolean}).towerCut) {
+    // the tower is its own cut-out layer over a tower-free plate: the WHOLE building bumps, the sky stays still
+    const L = LAYERS[`${shot.id}/tower`];
+    return <>
+      <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, transformOrigin: `${bx}px ${by}px`,
+        transform: `translateX(${jit}px) scale(${sx}, ${sy})`, filter: ex ? `brightness(${1 + flash + 0.08 * ex.glow})` : `brightness(${1 + flash})`}}>
+        <Img src={staticFile(`sprites/layers/${shot.id}/tower.png`)} style={{position: 'absolute', left: L.x, top: L.y, width: L.w, height: L.h}} />
+      </div>
+      <svg width={STILL_W} height={STILL_H} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
+        <Emitters top={top} stage={ex ? 5 + Math.round(3 * ex.glow) : stage} t={t} scale={Math.max(0.6, (spec.poly[2][1] - spec.poly[0][1]))} />
+      </svg>
+    </>;
+  }
   const mask = maskUrl(spec.poly);
   return (
     <>

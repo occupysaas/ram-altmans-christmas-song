@@ -169,3 +169,17 @@ test('35: Ram shovels scoop-lift-toss on the beat, RAM arcs into the mouth, and 
   assert.ok(at(late + 0.13).filter(i => String(i.sprite ?? '').endsWith('ram-stick')).length >= 3, 'RAM spilling/flying');
   assert.ok(at(s.start + 0.5).some(i => i.layer === '35/cart'));
 });
+
+test('tower shots with a cut-out tower draw it over a tower-free plate', () => {
+  const layers = read('public/sprites/layers/layers.json'), towers = read('docs/towers.json');
+  const cut = shots().filter(s => s.towerCut);
+  assert.ok(['20', '23', '52', '54'].every(id => cut.some(s => s.id === id)), `cut-out shots: ${cut.map(s => s.id)}`);
+  assert.ok(!cut.some(s => ['01', '02', '06'].includes(s.id)), 'intro towers untouched');
+  for (const s of cut) {
+    assert.ok(layers[`${s.id}/tower`], `shot ${s.id} has no tower layer`);
+    assert.equal(s.plate, `plates/${s.id}.png`, `shot ${s.id} has no tower-free plate`);
+    assert.ok(fs.existsSync(`public/${s.plate}`));
+    const L = layers[`${s.id}/tower`], [bx, by] = towers[s.id].base;
+    assert.ok(bx * 1600 >= L.x - 40 && bx * 1600 <= L.x + L.w + 40 && by * 1200 >= L.y && by * 1200 <= L.y + L.h + 80, `shot ${s.id}: base outside the tower layer`);
+  }
+});
