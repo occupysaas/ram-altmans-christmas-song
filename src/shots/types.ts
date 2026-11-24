@@ -4,7 +4,7 @@ export type Pose = {hip: P; lean: number; head: string; headRot: number;
 export type Placed = {who: string; pose: Pose; scale: number};
 /** A free sprite (prop in a hand, falling hat, coins…), drawn in array order with the puppets. */
 /** `sprite` is a path under public/ without .png, e.g. 'sprites/props/gpu'. */
-export type SpriteItem = {sprite: string; at: P; rot?: number; scale: number; opacity?: number; anchor?: P; flip?: boolean; size?: P};
+export type SpriteItem = {sprite: string; at: P; rot?: number; scale: number; opacity?: number; anchor?: P; flip?: boolean; size?: P; sx?: number; sy?: number};
 /** A free rubber-hose limb (e.g. arms reaching in from off-screen). */
 export type HoseItem = {hose: {a: P; b: P; L: number; side: 1 | -1; width: number; fill: string; ink: string}};
 /** A soft dark wash over a region (e.g. a town's lights dimming). */

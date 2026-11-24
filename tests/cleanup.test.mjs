@@ -167,7 +167,6 @@ test('25: the shelf empties beat by beat and is bare by the end', () => {
   assert.ok(prev >= 16);
   for (const b of beats) { const n = shelfLeft(b + 0.3); assert.ok(n < prev, `no grab on beat ${b}`); prev = n; }
   assert.equal(shelfLeft(s.end - 0.05), 0);
-  assert.ok(shot25(s.end - 0.2, Math.round((s.end - 0.2) * 24), s).some(i => i.who === 'girl'), 'girl behind him');
 });
 
 import {shot30, laneMerge, LANES} from '../src/shots/elves-topdown.ts';

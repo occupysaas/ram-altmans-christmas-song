@@ -91,12 +91,16 @@ test('25: the vacuum hose runs from the canister on his back to the nozzle in hi
   assert.equal(shelfLeft(s.end - 0.05), 0);
 });
 
-test("25: the girl's box is sucked out of her hands on the last beat", () => {
-  const s = shot('25'), last = vacuum25(s.start, s).lastBeat;
-  const boxNearHer = t => { const it = shot25(t, Math.round(t * 24), s), g = it.find(i => i.who === 'girl');
-    return it.some(i => String(i.sprite ?? '').endsWith('ram-box') && Math.hypot(i.at[0] - g.pose.hands.near[0], i.at[1] - g.pose.hands.near[1]) < 90); };
-  assert.ok(boxNearHer(last - 0.3), 'she holds a box before');
-  assert.ok(!boxNearHer(last + 0.5), 'box gone after');
+test('25: a giant bloated vacuum (5x) whose belly bumps on the beat; suction lines stream toward the nozzle; no girl', () => {
+  const s = shot('25'), at = t => shot25(t, Math.round(t * 24), s);
+  const can = t => at(t).find(i => String(i.sprite ?? '').endsWith('vacuum/canister'));
+  assert.ok(can(s.start + 1).scale >= 2.7, `canister scale ${can(s.start + 1).scale}`);
+  const b = audioJ.beats.find(x => x > s.start + 0.5);
+  assert.ok((can(b + 0.13).sx ?? 1) > (can(b + 0.45).sx ?? 1) + 0.03, 'belly bumps on the beat');
+  assert.ok(!at(s.start + 1).some(i => i.who === 'girl'), 'girl removed');
+  const g = vacuum25(twos(Math.round((s.start + 1) * 24)), s), lines = at(s.start + 1).filter(i => i.draw?.kind === 'line');
+  assert.ok(lines.length >= 10, `${lines.length} suction lines`);
+  for (const l of lines) assert.ok(Math.hypot(l.draw.to[0] - g.mouth[0], l.draw.to[1] - g.mouth[1]) < Math.hypot(l.draw.at[0] - g.mouth[0], l.draw.at[1] - g.mouth[1]), 'lines point at the nozzle');
 });
 
 test('3:38: the stray door close-up (old shot 57) is gone; 56 runs into 58 and keeps the knock sounds', () => {

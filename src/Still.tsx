@@ -53,7 +53,7 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
           if (!isSprite(p)) return <Puppet key={i} who={p.who} pose={p.pose} scale={p.scale} frame={frame} />;
           const meta = p.sprite.startsWith('sprites/props/') ? (props as Record<string, {size: [number, number]; grip: [number, number]}>)[p.sprite.slice(14)] : undefined;
           const [w, h] = p.size ?? meta?.size ?? [200, 200], an = p.anchor ?? meta?.grip ?? [w / 2, h / 2];
-          return <g key={i} opacity={p.opacity ?? 1} transform={`translate(${p.at[0]},${p.at[1]}) rotate(${p.rot ?? 0}) scale(${p.flip ? -p.scale : p.scale},${p.scale}) translate(${-an[0]},${-an[1]})`}>
+          return <g key={i} opacity={p.opacity ?? 1} transform={`translate(${p.at[0]},${p.at[1]}) rotate(${p.rot ?? 0}) scale(${(p.flip ? -p.scale : p.scale) * (p.sx ?? 1)},${p.scale * (p.sy ?? 1)}) translate(${-an[0]},${-an[1]})`}>
             <image href={staticFile(`${p.sprite}.png`)} width={w} height={h} />
           </g>;
         })}

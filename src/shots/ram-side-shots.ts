@@ -99,55 +99,48 @@ function grabbed(t: number) {
 }
 export const shelfLeft = (t: number) => BOXES.length - Math.min(BOXES.length, grabbed(t));
 
-/** 25 geometry: Ram (facing left) wears the vacuum canister on his back; the hose runs from its top socket to the
- *  wand end of the nozzle, which he aims at the shelf row being emptied. */
-const R25 = {x: 1010, floor: 1120}, CAN_S = 0.55, NOZ_S = 0.7;
+/** 25 geometry (pass 3): a GIANT bloated canister vacuum (5x) stands on the floor behind Ram, belly bulging on every
+ *  beat; its fat hose runs from the socket on top to the nozzle wand he aims at the shelf row being emptied. */
+const R25 = {x: 1080, floor: 1120}, CAN_S = 2.75, NOZ_S = 1.6, CAN_AT: P = [1390, 1150];
 export function vacuum25(t: number, shot: {start: number; end: number}) {
   const n = Math.min(BOXES.length, grabbed(t)), row = Math.min(3, Math.floor(n / 5)), hit = beatHit(t), S = scaleFor(W, 640);
   const aimY = lerp(SHELVES[0] + 10, SHELVES[3] - 30, row / 3) + 6 * Math.sin(t * 9);
-  const wandEnd: P = [R25.x - 140, lerp(aimY, 700, 0.35)];
-  const grip: P = [wandEnd[0] - 60, wandEnd[1] + 4];
+  const wandEnd: P = [R25.x - 120, lerp(aimY, 700, 0.4)];
+  const grip: P = [wandEnd[0] - 70, wandEnd[1] + 6];
   const mouth: P = [wandEnd[0] - 330 * NOZ_S, aimY];
-  const pose = stand(W, {t, x: R25.x, floor: R25.floor, S, flip: true, lean: 10 + 6 * hit, head: 'head-grin', headRot: -4 * hit, spread: 200,
-    hands: () => ({near: grip, far: add(wandEnd, [12, 14]), nearPart: 'hand-near-grab', farPart: 'hand-far-grab'})});
-  // strapped to his back: halfway down the spine, pushed out behind him (he faces left, so behind = +x)
-  const sh = shoulders(W, pose.hip, pose.lean, S, true), back: P = [(sh.neck[0] + pose.hip[0]) / 2 + 95 * S * 2, (sh.neck[1] + pose.hip[1]) / 2];
-  const socket: P = [back[0], back[1] - 380 * CAN_S * 0.42];
+  const pose = stand(W, {t, x: R25.x, floor: R25.floor, S, flip: true, lean: 12 + 8 * hit, head: 'head-grin', headRot: -4 * hit, spread: 220,
+    hands: () => ({near: grip, far: add(wandEnd, [14, 16]), nearPart: 'hand-near-grab', farPart: 'hand-far-grab'})});
+  const belly = 1 + 0.1 * hit;                                   // the tank swells on each beat
+  const socket: P = [CAN_AT[0], CAN_AT[1] - 380 * CAN_S * (2 - belly) * 0.95];
   const b0 = beat(shot.start + 0.05).i, bN = beat(shot.end - 0.3).i;
-  return {socket, back, wandEnd, grip, mouth, aimY, pose, S, lastBeat: audio.beats[bN], b0, n};
+  return {socket, wandEnd, grip, mouth, aimY, pose, S, belly, lastBeat: audio.beats[bN], b0, n};
 }
 
 export const shot25: Choreo = (_t, frame, shot) => {
   const t = twos(frame), g = vacuum25(t, shot), S = g.S;
   const items: Item[] = [];
   BOXES.slice(g.n).forEach(bx => items.push({sprite: 'sprites/store/ram-box', at: [bx.x, bx.y], scale: BOX_S, size: [220, 150], anchor: [110, 145]}));
-  // the girl, behind him, hugging the one box she picked — until the last beat sucks it away
-  const gS = scaleFor('girl', 430), sucked = clamp01((t - g.lastBeat) / 0.35), after = clamp01((t - g.lastBeat - 0.35) / 0.8);
-  const girl = stand('girl', {t, x: 1380, floor: 1040, S: gS, flip: true, lean: sucked > 0 ? lerp(-6, 16, after) : 2, head: after > 0.5 ? 'head-X' : 'head-A', spread: 90,
-    hands: sh => sucked <= 0
-      ? {near: add(sh.near, [-90 * gS, 190 * gS]), far: add(sh.far, [-60 * gS, 200 * gS]), nearPart: 'hand-near-open', farPart: 'hand-far-open'}
-      : {near: add(sh.near, [lerp(-120, -60, after) * gS, lerp(40, 230, after) * gS]), far: add(sh.far, [20 * gS, 230 * gS]), nearPart: 'hand-near-open', farPart: 'hand-far-open'}});
-  items.push({who: 'girl', pose: girl, scale: gS});
-  if (sucked < 1) {
-    const from = add(girl.hands.near, [-10, -20]), at: P = [lerp(from[0], g.mouth[0], sucked * sucked), lerp(from[1], g.mouth[1], sucked) - 120 * Math.sin(Math.PI * sucked)];
-    items.push({sprite: 'sprites/store/ram-box', at, scale: 0.42 * (1 - 0.7 * sucked), size: [220, 150], anchor: [110, 75], rot: 400 * sucked});
+  // suction: wind lines from all over the shelf streaming into the nozzle mouth
+  for (let k = 0; k < 16; k++) {
+    const u = (t * 1.4 + hash(k * 3.3)) % 1, from: P = [120 + 650 * hash(k * 1.7), 300 + 700 * hash(k * 5.1)];
+    const p: P = [lerp(from[0], g.mouth[0], u * u), lerp(from[1], g.mouth[1], u * u)], q: P = [lerp(p[0], g.mouth[0], 0.25), lerp(p[1], g.mouth[1], 0.25)];
+    items.push({draw: {kind: 'line', at: p, to: q, size: 9, color: '#ffffff', opacity: Math.min(1, 1.3 * Math.sin(Math.PI * u))}});
   }
-  // canister on his back, Ram aiming the nozzle, the hose between
-  items.push({sprite: 'sprites/vacuum/canister', at: g.back, scale: CAN_S, size: [300, 380], anchor: [150, 190], rot: g.pose.lean * 0.5});
+  // the giant canister, bloated and bouncing, then Ram in front of it, the fat hose and the nozzle
+  items.push({sprite: 'sprites/vacuum/canister', at: CAN_AT, scale: CAN_S, size: [300, 380], anchor: [150, 380], sx: g.belly, sy: 2 - g.belly} as Item);
   items.push({who: W, pose: g.pose, scale: S});
   const d = Math.hypot(g.wandEnd[0] - g.socket[0], g.wandEnd[1] - g.socket[1]);
-  items.push({hose: {a: g.socket, b: g.wandEnd, L: d * 1.25, side: -1, width: 26, fill: '#6e5536', ink: '#17121c'}});   // sags down under its own weight
+  items.push({hose: {a: g.socket, b: g.wandEnd, L: d * 1.06, side: 1, width: 64, fill: '#6e5536', ink: '#17121c'}});
+  for (let k = Math.max(0, g.n - 6); k < g.n; k++) {   // each swallowed box rides up the hose as a bulge
+    const u = (t - grabTime(k, shot) - 0.3) / 0.45;
+    if (u > 0 && u < 1) items.push({draw: {kind: 'dot', at: [lerp(g.wandEnd[0], g.socket[0], u), lerp(g.wandEnd[1], g.socket[1], u) + 60 * Math.sin(Math.PI * u)], size: 46, color: '#7d6140', ink: '#17121c'}});
+  }
   const ang = Math.atan2(g.mouth[1] - g.wandEnd[1], g.wandEnd[0] - g.mouth[0]) * 180 / Math.PI;
   items.push({sprite: 'sprites/vacuum/nozzle', at: g.wandEnd, scale: NOZ_S, size: [360, 140], anchor: [12, 70], flip: true, rot: -ang});
-  // boxes whooshing off the shelf into the nozzle (the last 0.3 s of grabs), with suction lines
-  for (let k = Math.max(0, g.n - 6); k < g.n; k++) {
-    const bx = BOXES[k], tk = grabTime(k, shot), u = clamp01((t - tk) / 0.3);
+  for (let k = Math.max(0, g.n - 6); k < g.n; k++) {   // boxes whooshing off the shelf into the mouth
+    const bx = BOXES[k], u = clamp01((t - grabTime(k, shot)) / 0.3);
     if (u >= 1) continue;
     items.push({sprite: 'sprites/store/ram-box', at: [lerp(bx.x, g.mouth[0], u * u), lerp(bx.y - 70, g.mouth[1], u)], scale: BOX_S * (1 - 0.75 * u), size: [220, 150], anchor: [110, 75], rot: 300 * u});
-  }
-  for (let k = 0; k < 6; k++) {
-    const a = ((t * 3 + k / 6) % 1), y = g.mouth[1] + (k - 2.5) * 22;
-    items.push({draw: {kind: 'line', at: [g.mouth[0] - 260 * (1 - a), y + (k - 2.5) * 10 * (1 - a)], to: [g.mouth[0] - 260 * (1 - a) + 70, y], size: 4, color: '#fffbe6', opacity: a * 0.8}});
   }
   return items;
 };
