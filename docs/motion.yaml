@@ -53,7 +53,7 @@
 51: {tier: A, indoor: true, mood: 0.28, puppets: [layers-51], fx: [], action: "watching elves bob along; the ladder elf slaps the band-aid on \"patched\" with sparks"}
 52: {tier: B, plate: true, towerCut: true, fx: [tower], action: "bucket brigade: each beat the next carrier hoists a glowing box up the line; everyone bobs; tower bumps"}
 53: {tier: B, plate: true, fx: [confetti], action: "townsfolk watch the valuation balloon wobble; it bursts on \"popped\" and everyone jumps"}
-54: {tier: B, mood: 0.28, plate: true, towerCut: true, towerDy: 150, towerBehind: true, fx: [tower], action: "whole town sings; tower bumps"}
+54: {tier: B, mood: 0.28, plate: true, towerCut: true, towerScale: 1.12, towerBehind: true, fx: [tower], action: "whole town sings; tower bumps"}
 55: {tier: B, indoor: true, fx: [giftDrop], action: "gifts drop under trees"}
 56: {tier: B, plate: true, towerCut: true, fx: [tower, chimneySmoke], action: "water pours into the tank (streams, ripples, splashes); town windows flicker and black out one by one; tower bumps"}
 58: {tier: A, puppets: [girl, ram-34], fx: [], action: "girl asks (lip-sync); Ram's fake smile"}

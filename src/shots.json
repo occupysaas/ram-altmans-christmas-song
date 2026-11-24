@@ -2674,7 +2674,7 @@
   "plate": "plates/54.png",
   "towerCut": true,
   "towerBehind": true,
-  "towerDy": 150,
+  "towerScale": 1.12,
   "mood": {
    "dark": 0.28
   }

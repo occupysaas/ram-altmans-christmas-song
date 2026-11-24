@@ -96,6 +96,7 @@ def build():
         if m.get('towerCut'): shots[-1]['towerCut'] = True   # the tower is its own layer (layers/NN/tower) over a tower-free plate
         if m.get('indoor'): shots[-1]['indoor'] = True   # no falling snow inside
         if m.get('towerBehind'): shots[-1]['towerBehind'] = True   # plates/NN-front.png (sky keyed out) redrawn over the tower
+        if m.get('towerScale'): shots[-1]['towerScale'] = m['towerScale']   # enlarge a cut-out tower about its base
         if m.get('towerDy'): shots[-1]['towerDy'] = m['towerDy']   # nudge a cut-out tower down onto its hill (still px)
         if 'mood' in m: shots[-1]['mood'] = {'dark': m['mood']}   # mood 0 = glow only   # darken, lit by its own lights (make_lightmaps.py)
         if 'push' in s:

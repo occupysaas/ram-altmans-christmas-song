@@ -55,10 +55,11 @@ export function Tower({shot, t}: {shot: {id: string; still: string; towerStage: 
   const top: [number, number] = [bx + (spec.top[0] * STILL_W - bx) * sx, by + (spec.top[1] * STILL_H - by) * sy];
   if ((shot as {towerCut?: boolean}).towerCut) {
     // the tower is its own cut-out layer over a tower-free plate: the WHOLE building bumps, the sky stays still
-    const L = LAYERS[`${shot.id}/tower`], dyT = (shot as {towerDy?: number}).towerDy ?? 0;   // towerDy: seat it on its hill
+    // towerDy: seat it on its hill; towerScale: enlarge it about its base (so it fully covers any painted original)
+    const L = LAYERS[`${shot.id}/tower`], dyT = (shot as {towerDy?: number}).towerDy ?? 0, kT = (shot as {towerScale?: number}).towerScale ?? 1;
     return <>
       <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, transformOrigin: `${bx}px ${by + dyT}px`,
-        transform: `translateX(${jit}px) scale(${sx}, ${sy})`, filter: ex ? `brightness(${1 + flash + 0.08 * ex.glow})` : `brightness(${1 + flash})`}}>
+        transform: `translateX(${jit}px) scale(${sx * kT}, ${sy * kT})`, filter: ex ? `brightness(${1 + flash + 0.08 * ex.glow})` : `brightness(${1 + flash})`}}>
         <Img src={staticFile(`sprites/layers/${shot.id}/tower.png`)} style={{position: 'absolute', left: L.x, top: L.y + dyT, width: L.w, height: L.h}} />
       </div>
       <svg width={STILL_W} height={STILL_H} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
