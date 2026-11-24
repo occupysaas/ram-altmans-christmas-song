@@ -64,7 +64,8 @@ export function impactWords(line: number): Set<number> {
   return out;
 }
 
-export function layoutEntry(e: {line: number; from: number; to: number; style: Style}, box: {w: number; h: number}, legacy = false): Layout {
+export function layoutEntry(e: {line: number; from: number; to: number; style: Style; surface?: {lineGap?: number}}, box: {w: number; h: number}, legacy = false): Layout {
+  const gapK = e.surface?.lineGap ?? LINE_GAP;
   const imp = impactWords(e.line);
   const lead = LEAD[e.style][e.line % LEAD[e.style].length], big = IMP[e.style][e.line % IMP[e.style].length];
   const src = lyrics[e.line].words.slice(e.from, e.to).map((w, i) => ({text: w.w, k: e.from + i, impact: imp.has(e.from + i)}));
@@ -80,12 +81,13 @@ export function layoutEntry(e: {line: number; from: number; to: number; style: S
     const rows: Row[] = [];
     for (const w of words) {
       const r = rows.at(-1), gap = r ? (legacy ? 0.3 * size : wordGap(r.words.at(-1)!, w)) : 0;
-      if (r && r.width + gap + w.width <= box.w) { r.words.push(w); r.width += gap + w.width; r.height = Math.max(r.height, w.size * LINE_GAP); }
-      else rows.push({words: [w], width: w.width, height: w.size * LINE_GAP});
+      if (r && r.width + gap + w.width <= box.w) { r.words.push(w); r.width += gap + w.width; r.height = Math.max(r.height, w.size * gapK); }
+      else rows.push({words: [w], width: w.width, height: w.size * gapK});
     }
     const height = rows.reduce((a, r) => a + r.height, 0);
     best = {leadSize: size, impactSize: isz, rows, height, words};
-    if (height <= box.h && rows.every(r => r.width <= box.w)) return best;
+    // sizes are chosen at the standard line gap; a per-shot lineGap only tightens how the rows are drawn
+    if (height * LINE_GAP / gapK <= box.h && rows.every(r => r.width <= box.w)) return best;
   }
   return best!;
 }

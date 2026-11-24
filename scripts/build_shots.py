@@ -86,7 +86,7 @@ def build():
                       'section': next(z['name'] for z in secs if z['start'] <= st < z['end']),
                       'start': st, 'end': en, 'still': s.get('still', f"stills/{sid}.png"), 'camera': cam(s['cam'], s['surf'], s['n']),
                       'towerStage': s['tower'], 'brief': s['brief'], 'lyrics': [], 'sfx': [],
-                      '_surf': {'x': x, 'y': y, 'w': w, 'h': h, 'rot': rot}, '_style': s['style'],
+                      '_surf': {'x': x, 'y': y, 'w': w, 'h': h, 'rot': rot, **({'lineGap': s['lineGap']} if 'lineGap' in s else {})}, '_style': s['style'],
                       '_tone': tone(s.get('still', f"stills/{sid}.png"), s['surf'])})
         m = motion[sid if 'id' in s else s['n']]
         shots[-1].update({'tier': m['tier'], 'fx': m.get('fx', []), 'action': m.get('action', '')})

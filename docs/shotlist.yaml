@@ -11,9 +11,9 @@ shots:
    brief: "High view from the starry sky down over Byteville's snowy crooked rooftops, chimneys smoking, warm windows; the small tower glows on the hill in the far background. Open sky across the top third."}
 - {n: 3, name: living-room, anchor: {line: 0, word: 5}, cam: panRight, tower: 1, surf: [0.235, 0.2, 0.28, 0.15, 0], style: narration,
    brief: "Cosy Byteville living room at night: family asleep in armchairs, a decorated tree with NOTHING underneath it, a cat mid-stride crossing the rug left to right, an embroidered sampler frame hanging blank on the wall at upper left, the tiny tower visible on the hill through the window."}
-- {n: 4, name: rack-row, anchor: {line: 1}, cam: panLeft, tower: null, surf: [0.08, 0.4, 0.78, 0.2, 0], style: tech,
+- {n: 4, name: rack-row, anchor: {line: 1}, cam: panLeft, tower: null, surf: [0.08, 0.4, 0.78, 0.2, 0], lineGap: 0.8, style: tech,
    brief: "Inside the tower: a long dark row of tall curly-topped server racks receding in perspective, all lights dark except one tiny blinking light; a blank horizontal LED panel strip on the nearest rack at mid height."}
-- {n: 5, name: empty-rack, anchor: {line: 1, word: 4}, cam: drift, tower: null, surf: [0.17, 0.42, 0.65, 0.28, 0], style: narration,
+- {n: 5, name: empty-rack, anchor: {line: 1, word: 4}, cam: drift, tower: null, surf: [0.195, 0.42, 0.65, 0.28, 0], style: narration,
    brief: "Close on a single completely empty server rack, dust drifting in a beam of moonlight, a blank paper price tag dangling on a string from an empty shelf."}
 - {n: 6, name: tower-low, anchor: {t: 24.5}, cam: tiltUp, tower: 1, surf: [0.11, 0.59, 0.77, 0.25, 0], style: narration,
    brief: "Low angle looking up at the curly glass-and-chrome data-center tower on its snowy peak, one smoke plume, snow falling, starry sky; big smooth glass facade across the lower middle."}

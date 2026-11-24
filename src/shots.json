@@ -156,7 +156,8 @@
      "y": 0.4,
      "w": 0.78,
      "h": 0.2,
-     "rot": 0
+     "rot": 0,
+     "lineGap": 0.8
     },
     "style": "tech",
     "tone": "dark"
@@ -196,7 +197,7 @@
     "from": 4,
     "to": 8,
     "surface": {
-     "x": 0.17,
+     "x": 0.195,
      "y": 0.42,
      "w": 0.65,
      "h": 0.28,
@@ -1829,9 +1830,11 @@
    }
   ],
   "sfx": [],
-  "tier": "C",
-  "fx": [],
-  "action": "throne of GPUs low angle"
+  "tier": "B",
+  "fx": [
+   "beatBump"
+  ],
+  "action": "throne of GPUs low angle; the whole picture bumps on every beat"
  },
  {
   "id": "39",

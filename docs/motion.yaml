@@ -38,7 +38,7 @@
 35: {tier: A, puppets: [layers-35], fx: [], action: "the whole golden machine-creature snaps shut on every beat (squash) and springs open (stretch); bill crumbs puff out"}
 36: {tier: A, puppets: [layers-36], fx: [], action: "carolers (cut-out layers) sway on the bar, bob on the beat, open wide on every sung word; music notes float up"}
 37: {tier: C, fx: [], action: "facts scroll"}
-38: {tier: C, fx: [], action: "throne of GPUs low angle"}
+38: {tier: B, fx: [beatBump], action: "throne of GPUs low angle; the whole picture bumps on every beat"}
 39: {tier: A, puppets: [ram-side, dad, mum, kid1, kid2, elf], fx: [], action: "Ram stamps every two beats; 14 townsfolk run about in panic, scatter from each slam, three get flattened and pop back"}
 40: {tier: A, puppets: [dad, mum, kid1, kid2], fx: [], action: "family runs downstairs left to right"}
 41: {tier: C, fx: [], action: "overhead of the bare floor"}

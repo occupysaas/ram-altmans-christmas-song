@@ -7,7 +7,7 @@ import {Tower} from './fx/Tower';
 import {Star} from './fx/Star';
 import {CHOREO} from './shots';
 import {Puppet} from './puppet/Puppet';
-import {explode} from './fx/fxMath';
+import {explode, beatBumpScale} from './fx/fxMath';
 import {isSprite, isHose, isShade, isTeam, isFront, isLayer, isDraw} from './shots/types';
 import {Layer, Draw} from './shots/Draw';
 import {SleighTeam} from './puppet/Quadruped';
@@ -30,7 +30,7 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
   const {from: a, to: b} = shot.camera;
   const h = 0.5 / a.zoom + (0.5 / b.zoom - 0.5 / a.zoom) * p;   // half view size (still fraction), linear
   const cx = a.x + (b.x - a.x) * p, cy = a.y + (b.y - a.y) * p, rot = a.rot + (b.rot - a.rot) * p;
-  const scale = PROG_W / (2 * h * STILL_W);
+  const scale = PROG_W / (2 * h * STILL_W) * (shot.fx?.includes('beatBump') ? beatBumpScale(holdFrame(frame) / 24) : 1);
   const boom = shot.fx?.includes('explode') ? explode(t).shake : 0;   // the ending's camera shake (programme px)
   const weave = {x: Math.sin(frame * 1.7) * 0.6 + boom * Math.sin(frame * 7.3), y: Math.cos(frame * 2.3) * 0.5 + boom * 0.7 * Math.cos(frame * 5.9)};
   const inWorld = shot.lyrics;

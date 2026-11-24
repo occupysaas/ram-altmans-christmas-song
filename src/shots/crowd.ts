@@ -35,7 +35,7 @@ export const shot40: Choreo = (_t, frame, shot) => {
   const lt = twos(frame) - shot.start;
   const fam: [string, number, number][] = [['kid2', 0.0, 300], ['kid1', 0.2, 300], ['mum', 0.45, 560], ['dad', 0.7, 600]];
   return fam.map(([who, delay, h], i) => {
-    const w = walker(who, lt - delay, {x0: 60 - 120 * i, dist: 900, y0: 0, floorAt: stairs40, S: scaleFor(who, h), steps: 8, stepDur: 0.17, lean: 12, head: 'head-happy'});
+    const w = walker(who, lt - delay, {x0: 60 - 120 * i, dist: 1900, y0: 0, floorAt: stairs40, S: scaleFor(who, h), steps: 16, stepDur: 0.12, lean: 12, head: 'head-happy'});   // runs on off the right edge
     return {who, pose: w.pose, scale: w.S};
   }).reverse();
 };

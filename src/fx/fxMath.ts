@@ -2,6 +2,7 @@
 import lyrics from '../timing/lyrics-aligned.json' with {type: 'json'};
 import impact from '../timing/impact.json' with {type: 'json'};
 import shots from '../shots.json' with {type: 'json'};
+import audio from '../timing/audio.json' with {type: 'json'};
 
 export const TV_OFF = 258.0;                       // the picture collapses to a dot (Animatic)
 
@@ -44,3 +45,12 @@ export function explode(t: number): Explode {
   return {phase: a < BOOM_LEN ? 'boom' : 'rain', scale: 0, shake: 26 * Math.max(0, 1 - a / 0.6), flash: a < FLASH ? 1 : Math.max(0, 1 - (a - FLASH) / 0.4),
     glow: 0, rainAge: a};
 }
+
+/** Whole-picture bump on every beat (shot 38's fan throne): +2.5% right on the beat, decaying in ~0.15 s. */
+export function beatBumpScale(t: number): number {
+  let k = -1; for (const b of audio.beats) { if (b <= t) k = b; else break; }
+  if (k < 0) return 1;
+  const s = t - k;
+  return 1 + 0.025 * Math.exp(-s / 0.15) * Math.min(1, s / 0.03);
+}
+

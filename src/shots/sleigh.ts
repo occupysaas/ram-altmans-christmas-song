@@ -129,8 +129,24 @@ const cackle = (t: number, st: PathState, shot: Shot2): Item[] => {
   return [...items, ...coinRain('22')(t, st, shot).filter(i => !(i as {draw?: {text?: string}}).draw?.text)];
 };
 
+/** RAM sticks tumbling off the back of the overloaded sleigh: two per beat, falling and spinning (46, 47, 48). */
+const ramDrop = (t: number, _st: PathState, shot: Shot2): Item[] => {
+  const out: Item[] = [];
+  for (const b of audio.beats) {
+    if (b < shot.start - 1.2 || b > t) continue;
+    const a = t - b; if (a > 1.6) continue;
+    const st = SLEIGH_PATHS[(shot as {id?: string}).id ?? '46'](Math.max(b, shot.start), shot as Shot), back = st.flip ? 1 : -1;
+    for (let i = 0; i < 2; i++) {
+      const seed = Math.round(b * 100) + i * 7, vx = back * (60 + 140 * hash(seed)), vy = -120 * hash(seed + 1);
+      out.push({sprite: 'sprites/props/ram-stick', at: [st.pos[0] + back * (200 + 40 * i) + vx * a, st.pos[1] - 60 + vy * a + 900 * a * a] as P, scale: 0.22, rot: 500 * a * (hash(seed + 2) - 0.5) + 40 * i});
+    }
+  }
+  return out;
+};
+const both = (...fs: ((t: number, st: PathState, shot: Shot2) => Item[])[]) => (t: number, st: PathState, shot: Shot2) => fs.flatMap(f => f(t, st, shot));
+
 export const SLEIGH_CHOREO = {
   '21': T('21', 0.4, coinRain('21')), '22': T('22', 0.55, cackle),
   '15': T('15', 0.42), '16': T('16', 0.5, ramStream), '31': T('31', 0.42, buffer), '34': T('34', 0.36),
-  '46': T('46', 0.5), '47': T('47', 0.6), '48': T('48', 0.45, fountain),
+  '46': T('46', 0.5, ramDrop), '47': T('47', 0.6, ramDrop), '48': T('48', 0.45, both(ramDrop, fountain)),
 };
