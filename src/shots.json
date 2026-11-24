@@ -1388,7 +1388,9 @@
   "fx": [
    "tower"
   ],
-  "action": "mega-tower banner; bumps, smoke and sparks"
+  "action": "mega-tower banner; bumps, smoke and sparks",
+  "plate": "plates/28.png",
+  "towerCut": true
  },
  {
   "id": "29",
@@ -2418,7 +2420,8 @@
    "kid1",
    "kid2",
    "elf"
-  ]
+  ],
+  "towerCut": true
  },
  {
   "id": "50",
@@ -2508,9 +2511,13 @@
    }
   ],
   "sfx": [],
-  "tier": "C",
+  "tier": "A",
   "fx": [],
-  "action": "band-aid patch"
+  "action": "watching elves bob along; the ladder elf slaps the band-aid on \"patched\" with sparks",
+  "plate": "plates/51.png",
+  "puppets": [
+   "layers-51"
+  ]
  },
  {
   "id": "52",
@@ -2556,7 +2563,9 @@
   "fx": [
    "tower"
   ],
-  "action": "building open boxes; tower looms"
+  "action": "bucket brigade: each beat the next carrier hoists a glowing box up the line; everyone bobs; tower bumps",
+  "plate": "plates/52.png",
+  "towerCut": true
  },
  {
   "id": "53",
@@ -2602,7 +2611,8 @@
   "fx": [
    "confetti"
   ],
-  "action": "balloon pops, confetti"
+  "action": "townsfolk watch the valuation balloon wobble; it bursts on \"popped\" and everyone jumps",
+  "plate": "plates/53.png"
  },
  {
   "id": "54",
@@ -2755,7 +2765,9 @@
   "fx": [
    "tower"
   ],
-  "action": "water pours into the tank (streams, ripples, splashes); town windows flicker and black out one by one; tower bumps"
+  "action": "water pours into the tank (streams, ripples, splashes); town windows flicker and black out one by one; tower bumps",
+  "plate": "plates/56.png",
+  "towerCut": true
  },
  {
   "id": "58",
@@ -2913,7 +2925,9 @@
   "fx": [
    "tower"
   ],
-  "action": "pull back from the waving figure"
+  "action": "pull back from the waving figure",
+  "plate": "plates/60.png",
+  "towerCut": true
  },
  {
   "id": "61",
@@ -3008,7 +3022,9 @@
    "tower",
    "marquee"
   ],
-  "action": "marquee bulbs chase; tower behind"
+  "action": "marquee bulbs chase; tower behind",
+  "plate": "plates/62.png",
+  "towerCut": true
  },
  {
   "id": "63",
@@ -3140,6 +3156,7 @@
    "explode"
   ],
   "action": "victorious ending: the tower swells, glowing red and shaking, then explodes; RAM rains on Byteville and the townsfolk run in cheering to catch it",
-  "plate": "plates/65.png"
+  "plate": "plates/65.png",
+  "towerCut": true
  }
 ]

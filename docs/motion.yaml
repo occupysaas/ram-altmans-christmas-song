@@ -28,7 +28,7 @@
 25: {tier: A, puppets: [ram-side, girl], fx: [], action: "generic electronics store: Ram sweeps RAM boxes off the shelf into a teetering armful; a girl behind him reaches and is left at a bare shelf"}
 26: {tier: A, puppets: [ram-side], fx: [stashFreeze], action: "shoves SSDs in the sack; freeze and squint at camera on 'umm, stash'"}
 27: {tier: A, puppets: [ram-side], fx: [], action: "jabs at the chart on beats"}
-28: {tier: B, fx: [tower], action: "mega-tower banner; bumps, smoke and sparks"}
+28: {tier: B, plate: true, towerCut: true, fx: [tower], action: "mega-tower banner; bumps, smoke and sparks"}
 29: {tier: B, fx: [receipt], action: "receipt paper scrolls down the stairs"}
 30: {tier: A, puppets: [topdown-elf], fx: [], action: "top-down workshop: 4 lanes of 4 same-job elves; a piston per lane slams them into one four-armed elf doing all four jobs"}
 31: {tier: A, puppets: [reindeer, ram-sleigh], fx: [buffering], action: "team freezes on 'buffering', pixelates, spinner"}
@@ -49,19 +49,19 @@
 46: {tier: A, puppets: [reindeer, ram-sleigh], fx: [tower], action: "overloaded sleigh sags and struggles to lift"}
 47: {tier: A, puppets: [ram-sleigh], fx: [], action: "sleigh tips and sputters"}
 48: {tier: A, puppets: [reindeer, ram-sleigh], fx: [ramFountain, vroll], action: "nose-dive crash; RAM fountain over Byteville"}
-49: {tier: A, puppets: [dad, mum, kid1, kid2, elf], fx: [tower], action: "march up the hill with lanterns"}
+49: {tier: A, towerCut: true, puppets: [dad, mum, kid1, kid2, elf], fx: [tower], action: "march up the hill with lanterns"}
 50: {tier: A, puppets: [layers-50], fx: [], action: "elves bob and sway; rope tug-of-war snaps on \"un-paywalled\", tokens burst"}
-51: {tier: C, fx: [], action: "band-aid patch"}
-52: {tier: B, fx: [tower], action: "building open boxes; tower looms"}
-53: {tier: B, fx: [confetti], action: "balloon pops, confetti"}
+51: {tier: A, puppets: [layers-51], fx: [], action: "watching elves bob along; the ladder elf slaps the band-aid on \"patched\" with sparks"}
+52: {tier: B, plate: true, towerCut: true, fx: [tower], action: "bucket brigade: each beat the next carrier hoists a glowing box up the line; everyone bobs; tower bumps"}
+53: {tier: B, plate: true, fx: [confetti], action: "townsfolk watch the valuation balloon wobble; it bursts on \"popped\" and everyone jumps"}
 54: {tier: B, plate: true, towerCut: true, fx: [tower], action: "whole town sings; tower bumps"}
 55: {tier: B, fx: [giftDrop], action: "gifts drop under trees"}
-56: {tier: B, fx: [tower], action: "water pours into the tank (streams, ripples, splashes); town windows flicker and black out one by one; tower bumps"}
+56: {tier: B, plate: true, towerCut: true, fx: [tower], action: "water pours into the tank (streams, ripples, splashes); town windows flicker and black out one by one; tower bumps"}
 58: {tier: A, puppets: [girl, ram-34], fx: [], action: "girl asks (lip-sync); Ram's fake smile"}
 59: {tier: A, puppets: [girl, ram-34], fx: [], action: "hi-five; Ram says subscribe (lip-sync)"}
-60: {tier: B, fx: [tower], action: "pull back from the waving figure"}
+60: {tier: B, plate: true, towerCut: true, fx: [tower], action: "pull back from the waving figure"}
 61: {tier: A, puppets: [elf], fx: [], action: "elves pack boxes on the beat"}
-62: {tier: B, fx: [tower, marquee], action: "marquee bulbs chase; tower behind"}
+62: {tier: B, plate: true, towerCut: true, fx: [tower, marquee], action: "marquee bulbs chase; tower behind"}
 63: {tier: A, puppets: [ram-side], fx: [], action: "bow with hat tip in the spotlight"}
 64: {tier: C, fx: [vroll], action: "Ebenezer Scrooge smash cut; after \"Scrooge!\" Ram bursts out laughing, HA HA HA"}
-65: {tier: B, plate: true, fx: [tower, explode], action: "victorious ending: the tower swells, glowing red and shaking, then explodes; RAM rains on Byteville and the townsfolk run in cheering to catch it"}
+65: {tier: B, plate: true, towerCut: true, fx: [tower, explode], action: "victorious ending: the tower swells, glowing red and shaking, then explodes; RAM rains on Byteville and the townsfolk run in cheering to catch it"}

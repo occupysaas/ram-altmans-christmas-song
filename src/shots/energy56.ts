@@ -7,6 +7,7 @@ import regions from '../../docs/fx-regions.json' with {type: 'json'};
 import {twos} from './kit.ts';
 import type {Choreo, Item} from './types.ts';
 
+const ROTORS: [number, number, number][] = [[125, 630, 88], [270, 710, 62], [384, 768, 44]];   // windmill hubs (still px) and blade length
 const WIN = (regions as Record<string, {windows?: number[][]}>)['56'].windows ?? [];
 const PIPE: P = [650, 672], CTRL: P = [628, 690], TANK: P = [606, 806], POOL: P = [600, 850];
 const q = (u: number): P => [(1 - u) ** 2 * PIPE[0] + 2 * (1 - u) * u * CTRL[0] + u * u * TANK[0], (1 - u) ** 2 * PIPE[1] + 2 * (1 - u) * u * CTRL[1] + u * u * TANK[1]];
@@ -31,5 +32,6 @@ export const shot56: Choreo = (_t, frame, shot) => {
     const flicker = a < 0.3 && Math.floor(a * 24 / 2) % 2 === 0;
     if (!flicker) items.push({draw: {kind: 'rect', at: [x, y], size: 0, w: w + 4, h: h + 4, color: '#161b35', opacity: 0.88}});
   });
+  for (const [hx, hy, r] of ROTORS) items.push({sprite: 'sprites/windmill/rotor', at: [hx, hy], scale: r / 190, size: [400, 400], anchor: [200, 200], rot: (_t * 160 + hx) % 360});   // smooth time: no strobing
   return items;
 };

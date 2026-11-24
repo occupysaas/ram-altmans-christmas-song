@@ -61,12 +61,58 @@ export const shot54: Choreo = (_t, frame, shot) => {
   const glow = 0.5 + 0.3 * rise + 0.2 * Math.exp(-(t - lastWord) / 0.25);
   const base: P = [RING54.cx + 30, RING54.snow + 10 + lerp(560, 0, rise)];
   for (const [r, o] of [[330, 0.07], [240, 0.1], [160, 0.14]] as [number, number][]) items.push({draw: {kind: 'dot', at: [base[0] + 40, base[1] - 320], size: r * (0.85 + 0.25 * glow), color: '#e8ffb0', opacity: o * glow}});   // soft layered glow
-  items.push({sprite: 'sprites/props/ram-stick', at: base, scale: 1.7, rot: -80, ramGiant: true} as Item);   // stood upright like a monument
+  items.push({sprite: 'sprites/townsfolk/ram-giant', at: base, scale: 1.25, size: [335, 521], anchor: [167, 515], ramGiant: true} as Item);   // the glowing RAM monument
   for (let k = 0; k < 10; k++) {   // sparkles around the monument
     const ph = (t * 1.3 + hash(k * 4.1)) % 1, th = 2 * Math.PI * hash(k * 2.3);
     items.push({draw: {kind: 'flake', at: [base[0] + Math.cos(th) * (180 + 120 * hash(k)), base[1] - 280 + Math.sin(th) * 260], size: 16 * Math.sin(Math.PI * ph), color: '#fffbe0', opacity: Math.sin(Math.PI * ph)}});
   }
   items.push({front: {y: RING54.snow}});
   items.push(...FRONT.map(([n, off], k) => pair('front', n, off, RING54.frontY, 0.95, k + 1)));
+  return items;
+};
+
+/** 51 (3:14) "…and patched up the hack!": the watching elves bob along; the ladder elf slaps the giant band-aid onto
+ *  the cracked server on "patched" — a lunge, a squash and a shower of sparks. */
+export const SLAP51 = lyrics[40].words.find(w => w.w === 'patched')!.s;
+export const shot51: Choreo = (_t, frame) => {
+  const t = twos(frame), a = t - SLAP51, slap = a >= 0 ? Math.exp(-a / 0.2) : clamp01(1 + a / 0.25) * 0.4;
+  const items: Item[] = [1, 2, 3, 4, 5].map((k, i) => bobbing(`51/char${k}`, t, i));
+  items.push(bobbing('51/char6', t, 5, {dx: 26 * slap, rot: 6 * slap}));
+  if (a >= 0 && a < 0.35) for (let k = 0; k < 10; k++) {
+    const th = 2 * Math.PI * hash(k * 2.7), c: P = [1450, 470], r0 = 20 + 200 * a, r1 = r0 + 60;
+    items.push({draw: {kind: 'line', at: [c[0] + Math.cos(th) * r0, c[1] + Math.sin(th) * r0], to: [c[0] + Math.cos(th) * r1, c[1] + Math.sin(th) * r1], size: 6, color: k % 2 ? '#fff3b0' : '#7df9ff', opacity: 1 - a / 0.35}});
+  }
+  return items;
+};
+
+/** 52 (3:17) "We built it all open, we built the full stack!": the glowing boxes go up the line — on each beat the next
+ *  carrier hoists theirs (a bucket brigade), everyone bobbing, the tower bumping behind (towerCut). */
+const CARRIERS52 = [3, 5, 6, 7, 9, 10];
+export const shot52: Choreo = (_t, frame, shot) => {
+  const t = twos(frame), b = beat(t), b0 = beat(shot.start).i, turn = CARRIERS52[((b.i - b0) % CARRIERS52.length + CARRIERS52.length) % CARRIERS52.length];
+  const lift = b.i >= 0 ? Math.exp(-b.since / 0.25) : 0;
+  return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((k, i) => {
+    const it = bobbing(`52/char${k}`, t, i) as {dy?: number};
+    if (k === turn) it.dy = (it.dy ?? 0) - 28 * lift;   // hoisting their box up the line
+    return it as Item;
+  });
+};
+
+/** 53 (3:21) "…It popped pretty fast!": the townsfolk watch the golden valuation balloon wobble overhead; on "popped"
+ *  it bursts (the burst layer flashes in big and fades) and everyone jumps, then lands and bobs. */
+export const POP53 = lyrics[42].words.find(w => w.w === 'popped')!.s;
+export const shot53: Choreo = (_t, frame) => {
+  const t = twos(frame), a = t - POP53, items: Item[] = [];
+  if (a < 0) {   // the balloon, whole, wobbling and swelling (the burst layer squeezed into a ball shape)
+    items.push({layer: '53/balloon', sx: 0.55 + 0.03 * Math.sin(t * 9), sy: 0.6 + 0.03 * Math.cos(t * 9), pivot: [712, 246], opacity: 0});
+    items.push({draw: {kind: 'dot', at: [712, 230 + 8 * Math.sin(t * 3)], size: 110 + 6 * Math.sin(t * 9), color: '#f2c230', ink: '#17121c'}});
+    items.push({draw: {kind: 'dot', at: [680, 200 + 8 * Math.sin(t * 3)], size: 28, color: '#fff0a0', opacity: 0.8}});
+  } else if (a < 0.8) items.push({layer: '53/balloon', sx: 1 + 0.4 * a, sy: 1 + 0.4 * a, pivot: [712, 246], opacity: 1 - a / 0.8});
+  const jump = a >= 0 && a < 0.55 ? Math.sin(Math.PI * a / 0.55) : 0;
+  [1, 2, 3, 4, 5, 6].forEach((k, i) => {
+    const it = bobbing(`53/char${k}`, t, i) as {dy?: number};
+    it.dy = (it.dy ?? 0) - 70 * jump * (0.8 + 0.2 * (i % 2));
+    items.push(it as Item);
+  });
   return items;
 };

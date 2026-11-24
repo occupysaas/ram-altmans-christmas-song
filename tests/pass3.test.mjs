@@ -220,3 +220,39 @@ test('56: house windows black out one by one (with flickers) and the water flows
   assert.ok(out(s.end - 0.1) >= 0.6 * n, 'most of the town is dark by the end');
   assert.ok(at(s.start + 1).filter(i => i.draw?.kind === 'line').length >= 5, 'water streaming');
 });
+
+import {shot51, shot52, shot53, POP53, SLAP51} from '../src/shots/elves-town.ts';
+
+test('51-53: every cut-out character is drawn and bobs on the beat', () => {
+  const layers = read('public/sprites/layers/layers.json');
+  for (const [id, fn] of [['51', shot51], ['52', shot52], ['53', shot53]]) {
+    const s = shot(id), chars = Object.keys(layers).filter(k => k.startsWith(`${id}/char`));
+    const b = audioJ.beats.find(x => x > s.start + 0.3 && x < s.end - 0.6), at = t => fn(t, Math.round(t * 24), s);
+    for (const k of chars) {
+      const on = at(b + 0.13).find(i => i.layer === k), off = at(b + 0.45).find(i => i.layer === k);
+      assert.ok(on && off, `shot ${id} misses ${k}`);
+      assert.ok((on.dy ?? 0) < (off.dy ?? 0) - 2, `shot ${id} ${k} does not bob`);
+    }
+    assert.equal(s.plate, `plates/${id}.png`);
+  }
+});
+
+test('51: band-aid slapped on "patched" with sparks; 53: everyone jumps when the balloon pops on "popped"', () => {
+  assert.ok(Math.abs(SLAP51 - L()[40].words.find(w => w.w === 'patched').s) < 1e-6);
+  const s51 = shot('51'), sparks = shot51(SLAP51 + 0.06, Math.round((SLAP51 + 0.06) * 24), s51).filter(i => i.draw?.kind === 'line').length;
+  assert.ok(sparks >= 6, `${sparks} sparks`);
+  const s53 = shot('53'), at = t => shot53(t, Math.round(t * 24), s53);
+  assert.ok(Math.abs(POP53 - L()[42].words.find(w => w.w === 'popped').s) < 1e-6);
+  const dy = (t, k) => at(t).find(i => i.layer === `53/char${k}`).dy ?? 0;
+  for (const k of [1, 2, 3, 4, 5, 6]) assert.ok(dy(POP53 + 0.2, k) < dy(POP53 - 0.2, k) - 25, `char${k} doesn't jump`);
+  const balloon = t => at(t).find(i => i.layer === '53/balloon');
+  assert.ok(!balloon(POP53 - 0.2) || (balloon(POP53 - 0.2).opacity ?? 1) === 0, 'balloon only bursts on the pop');
+  assert.ok(balloon(POP53 + 0.1), 'burst shown on the pop');
+});
+
+test('56: the windmill rotors turn; remaining tower shots use the cut-out tower', () => {
+  const s = shot('56'), rot = t => shot56(t, Math.round(t * 24), s).filter(i => String(i.sprite ?? '').endsWith('windmill/rotor'));
+  assert.equal(rot(s.start + 1).length, 3);
+  assert.notEqual(rot(s.start + 1)[0].rot, rot(s.start + 1.3)[0].rot);
+  for (const id of ['28', '49', '52', '56', '60', '62', '65']) assert.ok(shot(id).towerCut, `shot ${id} still on the old tower bump`);
+});
