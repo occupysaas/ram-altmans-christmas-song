@@ -84,11 +84,11 @@ test('03: the cat sleeps and breathes; snow only in the window; the data center 
 });
 
 test('06: two horns, one each side of the tower, blasting notes (timing in pass5 test)', () => {
-  const s = shot('06'), at = t => shot06(t, Math.round(t * 24), s), t0 = L()[2].start;
-  const horns = at(t0 + 0.8).filter(i => String(i.sprite ?? '').includes('sprites/horn/'));
+  const s = shot('06'), at = t => shot06(t, Math.round(t * 24), s), t0 = read('src/timing/horns.json')[2];
+  const horns = at(t0 + 0.05).filter(i => String(i.sprite ?? '').includes('sprites/horn/'));
   assert.equal(horns.length, 2);
   assert.ok(horns[0].at[0] < 800 && horns[1].at[0] > 800, 'one each side');
-  assert.ok(at(t0 + 0.8).some(i => i.draw?.kind === 'note'), 'notes blasting');
+  assert.ok(at(t0 + 0.05).some(i => i.draw?.kind === 'note'), 'notes blasting');
 });
 
 test('13 removed: 13b starts at line 8 and Ram rises into frame, then looks out', () => {

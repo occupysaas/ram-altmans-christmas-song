@@ -38,14 +38,16 @@ const HORNS06: [P, number][] = [[[455, 390], -1], [[1145, 390], 1]];   // mouthp
 // the intro horn blasts (detected in the 'other' stem by scripts/horn_hits.py): out just before the first, a blast on
 // each one, then on the beat through the verse
 import HORN_HITS from '../timing/horns.json' with {type: 'json'};
-const HORN_OUT = (HORN_HITS as number[])[0] - 0.3;
+// they pop out ON the first blast and slide back into the tower when the verse starts
+const HORN_OUT = (HORN_HITS as number[])[0] - 0.04, HORN_IN = lyrics[2].start, HORN_IN_DUR = 0.35;
 export const shot06: Choreo = (_t, frame) => {
-  const t = twos(frame) + 0.04, a = t - HORN_OUT;   // +0.04: held frames lag, so blasts land on the hit
-  if (a < 0) return [];
+  // +0.04: held frames lag, so blasts land on the hit
+  const t = twos(frame) + 0.04, a = t - HORN_OUT, back = clamp01((t - HORN_IN) / HORN_IN_DUR);
+  if (a < 0 || back >= 1) return [];
   const hits = HORN_HITS as number[], last = hits.filter(h => h <= t).pop();
   const b = beat(t), onHit = last !== undefined && t - last < 0.2, sinceHit = last !== undefined ? t - last : 9;
   const blast = t < hits[hits.length - 1] + 0.3 ? (onHit ? Math.exp(-sinceHit / 0.09) : 0) : (b.i >= 0 ? Math.exp(-b.since / 0.16) : 0);
-  const out = easeOutBack(clamp01(a / 0.28));
+  const out = easeOutBack(clamp01(a / 0.12)) * (1 - back * back);
   const items: Item[] = [];
   HORNS06.forEach(([at, dir], i) => {
     const pos: P = [at[0] + dir * lerp(-120, 0, out), at[1] - 14 * blast], ang = -(26 + 6 * blast), len = 470 * 0.56;
