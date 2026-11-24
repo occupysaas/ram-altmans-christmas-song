@@ -7,19 +7,24 @@
 - the growing tower that bumps on the drums, with building smoke and sparks
 - the star that spins to its pixelated back, falls and shatters
 - the tower's collapse at the end
-- character animation in AniCraft: walks, sneaks, grabs, the sleigh flights and the lip-synced ending
+- rubber-hose character animation drawn in code: walks, sneaks, grabs, the sleigh flights and the lip-synced ending
 - per-shot effects
 
-**Architecture:** The Phase 1 Remotion programme stays the master: it owns timing, the camera, lyrics, snow and the TV/CRT finish. Motion comes in three tiers, assigned per shot in `docs/motion.yaml`:
+**Architecture (revised 2026-11-23 after the rubber-hose test, approved by the user):** The Phase 1 Remotion programme stays the master: it owns timing, the camera, lyrics, snow and the TV/CRT finish. **Character animation is rubber-hose style, drawn in code in Remotion** (proven by the `src/spike/` shot-13 test), not AniCraft bones:
+- Painted limbless parts from Codex (heads with expressions, torso, hands, feet), placed by anchors.
+- Arms and legs are bendy SVG tubes between those parts.
+- Poses change on twos, the body squashes on kicks, and the outlines boil.
 
-- **A, AniCraft frames.** AniCraft renders a full still-space plate sequence (1600×1200 stage: a clean background plate plus rigged puppets) to `public/frames/NN/`. `Still` plays that sequence instead of the still image, so the camera and lyrics work unchanged.
-- **B, Remotion effects.** Code-drawn layers over the still: the tower bump, growth, smoke and sparks; the star; the collapse; buffering; JPG compression; kernel panic; lights out; confetti.
-- **C, still plus camera.** As in Phase 1.
+Motion comes in three tiers, assigned per shot in `docs/motion.yaml`:
+- **A, puppet shots:** a clean background plate (`public/plates/NN.png`) plus one or more puppets, choreographed per shot in `src/shots/NN.ts`.
+- **B, Remotion effects:** code-drawn layers over the still: the tower bump, growth, smoke and sparks; the star; the collapse; buffering; JPG compression; kernel panic; lights out; confetti.
+- **C, still plus camera:** as in Phase 1.
+
+AniCraft is no longer required. It's kept only as an option if a path-heavy shot is easier there. The first pass favours getting every shot moving; the user will review and we clean up afterwards.
 
 **Tech Stack:**
-- AniCraft CLI (`anicraft-cli run` / `render-seq`)
-- Codex image generation (rig parts, clean plates, sprites)
-- Remotion 4
+- Remotion 4 (SVG puppets)
+- Codex image generation (limbless puppet parts, clean plates, sprites)
 - Rhubarb Lip Sync 1.14 (`~/.local/opt/Rhubarb-Lip-Sync-1.14.0-Linux/rhubarb`)
 - Pillow/numpy in `.venv`
 - `node --test`
@@ -29,20 +34,21 @@
 ## Global Constraints
 
 - Everything from Phase 1's Global Constraints still applies: 259.6 s at 24 fps (6231 frames), 960×720 programme, 1920×1080 final, deterministic renders, no text in generated images, original characters only, no lip-sync during the song.
-- AniCraft stage for every tier-A shot is **1600×1200 at 24 fps**, rendered with `render-seq --scale 0.5`. Frames are saved as JPEG at quality 90: `public/frames/NN/f_00001.jpg` and so on, one per programme frame of the shot.
-- **Rigs use true near/far limb pairs** (design §6): mirrored hands, correct thumbs, far limbs one step darker, layer order far limbs → torso → near limbs. A rig is rejected if its near and far hand parts are the same drawing.
-- AniCraft lessons from the spike:
-  - Heads that change frames are **movie-clip** symbols.
-  - Bone `dx`/`dy` is relative: key poses in ascending frame order.
-  - The camera stays in Remotion, never in AniCraft.
-  - Always render with explicit `--from/--to`.
+- Puppets live in still space (1600×1200), inside `Still`'s camera transform, so the camera and lyrics work unchanged.
+- **Near/far limbs** (design §6): far limbs and far hand/foot are drawn behind the torso, one shade darker, with the far hand mirrored (thumb on the correct side). The layer order is far limbs → torso and head → near limbs.
+- **Movement rules from the user's review of the test:**
+  - **Walks:** arms hang at the sides and swing opposite to the same-side leg. Feet are planted (stance) or arcing (swing) and never slide.
+  - **Stops:** the feet plant first. Then the body follows through: it overshoots, springs back, and the head and arms lag and settle.
+  - Poses change on twos.
+  - The whole body squashes on kicks (nearest kick only, no stacking).
+  - Outlines boil in a 3-frame cycle.
 - Occupy SaaS branding appears **only** as the opening "Occupy SaaS presents" station ident, rendered in code.
 - The tower never shrinks before shot 65; its stage and scale only increase (design §7a).
 - The finished video must be committed-reproducible with `bash scripts/render.sh && bash scripts/finish.sh out/ram-altman.mp4`.
 
 ## Review Focus
 
-1. **The number of AniCraft frames versus the shot's programme frames.** An off-by-one (AniCraft's 1-based CLI, the 0-based MCP) shows as a frozen or skipped frame at a cut. Owner: Task 4. Test: `test('every tier-A shot has exactly one frame per programme frame')`.
+1. **A puppet whose parts or anchors are missing at render time** (a typo in a part name renders an empty hole). Owner: Task 4/5. Test: `test('every part a choreography references exists in its parts.json')`.
 2. **Drum bumps landing between frames or doubling.** A kick within 2 frames of another must not stack into a giant bump. Owner: Task 2. Test: `test('tower bump is bounded and peaks on kick frames')`.
 3. **Shot 32's star sequence versus the glass-break time.** The shatter's first visual frame must be the effect's frame ±1. Owner: Task 3. Test: `test('star shatters on the glass-break frame')`.
 4. **Lip-sync mouths outside the spoken lines.** A mouth must never open during the song or the gaps. Owner: Task 7. Test: `test('ending mouths are closed outside lines 46-48')`.
@@ -53,23 +59,22 @@
 ## File Structure
 
 ```
-docs/motion.yaml                     per-shot tier (A|B|C), rig list, fx list, action notes
-docs/towers.json                     per tower shot: polygon (still fractions), base point, smoke/spark emitters
-docs/codex/10-*.md                   Codex briefs (rigs, plates, sprites)
-public/rigs/<rig>/*.png, rig.json    keyed rig parts with pivots/sockets (spike format)
-public/plates/NN.png                 clean background plates for tier-A shots (still without the animated characters)
-public/sprites/*.png                 star front/back, rubble heap, sleigh+load, title card art
-public/frames/NN/f_#####.jpg         AniCraft renders (gitignored, rebuilt by scripts/shots.sh)
-scripts/rig_check.py                 assembles a rig in default pose next to its turnaround; near/far difference metric
-scripts/ac/lib.py                    AniCraft script helpers: new_stage, place_plate, place_rig, pose, walk, path, head_frames, export
-shots/NN.py                          one generator per tier-A shot → shots/NN.json (anicraft-cli script)
-scripts/shots.sh                     build rigs, run generators, run anicraft-cli, render frames
-src/fx/Ident.tsx, Title.tsx          Occupy SaaS ident + title card
-src/fx/Tower.tsx, particles.ts       tower mask layer, bump/growth, smoke/sparks, collapse
-src/fx/Star.tsx                      shot 32 star spin, fall, shards
-src/fx/Overlays.tsx                  buffering, jpg-compress, kernel-panic flash, lights-out, confetti, stash freeze
+docs/motion.yaml                     per-shot tier (A|B|C), puppets, fx, action notes
+docs/towers.json                     per tower shot: polygon, base, top (still fractions)
+docs/fx-regions.json                 effect regions per shot (still fractions)
+docs/codex/2x-*.md                   Codex briefs (puppet parts, plates, sprites)
+public/puppets/<who>/*.png, parts.json   limbless parts + anchors (spike format), e.g. ram-side, sam-side, girl, reindeer, elf, townsfolk
+public/plates/NN.png                 clean background plates for tier-A shots
+public/sprites/*.png                 star front/back, rubble, sleigh, props
+src/puppet/geom.ts                   vector helpers, hose maths, springs, easing, on-twos time
+src/puppet/Hose.tsx                  rubber-hose limb + end-orientation
+src/puppet/Puppet.tsx                generic biped puppet: Pose → SVG (parts, limbs, layer order, boil, squash)
+src/puppet/walk.ts                   planted-foot walk/sneak/run cycles + stop follow-through (the spike's rules)
+src/puppet/Quadruped.tsx             reindeer: 4 hose legs, gallop cycle
+src/shots/NN.ts                      per-shot choreography: (t, frame) → puppets[] with poses
+src/fx/Ident.tsx, Title.tsx, Tower.tsx, particles.ts, Star.tsx, Overlays.tsx
 src/lipsync.ts, timing/rhubarb/      ending mouth cues
-tests/phase2.test.mjs
+tests/phase2.test.mjs, tests/puppet.test.mjs
 ```
 
 ---
@@ -83,11 +88,11 @@ tests/phase2.test.mjs
 **Interfaces:**
 - Produces:
   - `docs/motion.yaml`, keyed by shot number: `{tier: A|B|C, rigs: [..], fx: [..], action: "…"}`.
-  - `build_shots.py` copies `tier`, `fx` and (for tier A) `frames: "frames/NN"` into `src/shots.json`.
+  - `build_shots.py` copies `tier`, `fx` and (for tier A) `plate: "plates/NN.png"` and `puppets: [..]` into `src/shots.json`.
   - `Ident`/`Title` are drawn by `Animatic` over shot 1: the ident from 0 to 3.2 s, the title from 3.6 to 7.8 s.
 
 **Tier assignment** (from design §8 actions):
-- **A (AniCraft):**
+- **A (rubber-hose puppets):**
   - 08 transformation (Sam → Ram)
   - 10 shelf snatch
   - 13 window sneak
@@ -199,138 +204,136 @@ Every shot has motion: tier C keeps its camera move, snow and lyrics.
 - [ ] **Step 5:** Run the tests. Expected: PASS. Render 8 frames across shot 32 and 6 across shot 65, and Read them.
 - [ ] **Step 6:** Commit `feat: star spin-fall-shatter and tower collapse`.
 
-### Task 4: Rig and plate pipeline, proven on shot 13
+### Task 4: Puppet library, proven by porting shot 13
 
 **Files:**
-- Create:
-  - `docs/codex/11-rig-ram-side.md`, `public/rigs/ram-side/*`
-  - `scripts/rig_check.py`, `scripts/ac/lib.py`, `shots/13.py`, `scripts/shots.sh`, `public/plates/13.png`
-- Modify: `src/Still.tsx` (frame sequences), `.gitignore` (`public/frames/`); append tests
+- Create: `src/puppet/{geom.ts,Hose.tsx,Puppet.tsx,walk.ts}`, `src/shots/13.ts`, `src/shots/index.ts`, `tests/puppet.test.mjs`
+- Move: `public/rubber/*` → `public/puppets/ram-side/`, plus `parts.json` from `src/spike/parts.json`
+- Modify: `src/Still.tsx`. For a tier-A shot it draws `public/plates/NN.png` and the shot's puppets inside the camera transform.
+- Delete: `src/spike/` and the `Spike13` composition once shot 13 runs in the main programme.
 
 **Interfaces:**
 - Produces:
-  - `scripts/ac/lib.py` (Python; each function returns a list of anicraft-cli steps):
-    - `new_stage(frames)`
-    - `place_plate(path)`
-    - `place_rig(rig_dir, at: (x, y), scale, flip=False, layer_name)` returning `RigHandle{bones: {name: id}, armature_layer, head_symbol}`
-    - `pose(h, frame, **angles)`
-    - `move(h, frame, dx, dy)`
-    - `sneak_cycle(h, f0, f1, stride, x0, x1)`
-    - `walk_cycle(...)`
-    - `head_frames(h, schedule: [(frame, head_index)])` (the movie-clip schedule from the spike)
-    - `export_frames(shot_id, n)`
-  - `scripts/shots.sh [NN ...]`: runs each `shots/NN.py`, then `anicraft-cli run`, then `render-seq --from 1 --to n --scale 0.5`, then JPEG at quality 90 into `public/frames/NN/`.
-  - In `Still`: if `shot.frames` is set, it draws `frames/NN/f_{k}.jpg` for programme frame k of the shot, stretched to 1600×1200 still space.
+  - `type Pose = {hip: P; lean: number; head: string; headRot: number; hands: {near: P; far: P; nearPart: string; farPart: string}; feet: {near: P; far: P}; squash: number; flip: boolean}`
+  - `<Puppet who="ram-side" pose={Pose} scale frame />`
+  - `walkCycle({t, x0, x1, steps, stepDur, floor, lift}) => {x, feet, armSwing: {near, far}, hipDip, stopped, since}`: planted-foot steps, ending with both feet planted.
+  - `followThrough(since, amp, w, k, lag) => number`: the damped spring used after stops.
+  - `onTwos(frame) => number`
+  - `squashAt(t) => number`
+  - `shotPuppets(id, t, frame) => {who, pose, scale}[]`
+- Consumes: the `public/puppets/<who>/parts.json` anchors (torso: neck, shoulderNear/Far, hipNear/Far; head: neck; hands: wrist; feet: ankle).
 
 - [ ] **Step 1: Write the tests**
-  - `test('every tier-A shot has exactly one frame per programme frame')`: the count equals `round(end*24) - round(start*24)`. It skips shots not yet rendered and lists them.
-  - `test('rig near and far hands differ')`: `scripts/rig_check.py --metric` reports a hand difference > 0.15 (normalised pixel difference after aligning the mirrored far hand), for every rig in `public/rigs/`.
-- [ ] **Step 2:** Run the tests. Expected: FAIL.
-- [ ] **Step 3: Codex brief `11-rig-ram-side.md`**
-  - It references the cast sheet. Ram faces right in side profile.
-  - A parts sheet on magenta: torso with scarf, three expression heads (smirk, squint, cackle), and **near and far** upper/lower arms, hands, thighs and shins+slippers, specified separately. The far hand is mirrored with the thumb on the correct side, and far limbs are a step darker.
-  - Keyed with `scripts/prepare_assets.py`, with `rig.json` pivots and sockets.
-  - **Plate brief:** still 13 with Ram removed, identical framing.
-- [ ] **Step 4:** Implement `rig_check.py` (it assembles the default pose and writes `out/sheets/rig-<name>.png` beside the turnaround crop). Implement `lib.py` from the spike's `gen_shot.py`/`build_script.py` patterns, and `shots/13.py` from the spike's choreography: sneak in, gaze, "Hey!" cackle head, rub hands, sneak off. Mouth flaps are removed (narrator rule) and replaced by expression heads.
-- [ ] **Step 5:** Run the tests. Expected: PASS. Read the rig sheet and 6 frames of shot 13 in the full render (`remotion still`).
-- [ ] **Step 6:** Commit `feat: rig pipeline, Ram side rig, animated shot 13`.
+  - `test('planted foot does not slide during stance')`: within a stance window, the foot x is constant (±0.5 px).
+  - `test('walk ends with both feet planted on the floor')`: after the stop, both feet y equal the floor.
+  - `test('arms swing opposite to the same-side leg')`: the sign of the near arm swing is opposite to the near foot's forward velocity at mid-swing.
+  - `test('body overshoots after the feet stop, then settles')`: `followThrough` is non-zero just after the stop and below 1 px after 1.5 s.
+  - `test('poses change on twos')`: `onTwos(2k) === onTwos(2k+1)`.
+  - `test('hose keeps its length without elbows')`: the arc length of the quadratic stays within 8% of L for distances from 0.4L to L.
+- [ ] **Step 2:** Run `node --test tests/puppet.test.mjs`. Expected: FAIL.
+- [ ] **Step 3:** Implement the library by refactoring `src/spike/Rubber.tsx` into the files above (same maths and colours), then write `src/shots/13.ts` from the spike's choreography.
+- [ ] **Step 4:** Run the tests. Expected: PASS. Render 4 frames of shot 13 from the main `Animatic` and compare them with the spike frames.
+- [ ] **Step 5:** Commit `feat: rubber-hose puppet library; shot 13 in the main programme`.
 
-### Task 5: Ram's acting shots
+### Task 5: Ram's and Sam's acting shots
 
 **Files:**
 - Create:
-  - `docs/codex/12-rigs-ram-more.md`, `public/rigs/{ram-34,sam-34,ram-sleigh}/*`
+  - `docs/codex/21-puppets-ram.md`
+  - `public/puppets/{ram-34,sam-34,ram-sleigh}/*`, plus expression heads added to `ram-side` (grin, panic, fake-smile)
   - `public/plates/{08,10,17,21,22,24,25,26,27,39,43,63}.png`
-  - `shots/{08,10,17,21,22,24,25,26,27,39,43,63}.py`
+  - `src/shots/{08,10,17,21,22,24,25,26,27,39,43,63}.ts`
 
 **Interfaces:**
-- Consumes: `lib.py` and `RigHandle` from Task 4.
-- Produces: the frame sequences for these shots.
+- Consumes: the Task 4 library.
+- Produces: the per-shot choreography.
+- The Codex brief asks for **limbless parts** only, as in the spike brief (`spike/rubber/codex-brief.md`): near and far hands in open, grab, point and fist poses, near and far feet, and the expression heads. Plates are each still with the animated characters removed and identical framing.
 
 **Per-shot action** (from design §8 and `motion.yaml`):
-- **08:** the Sam rig turns ¾. A crossfade-and-shape tween of the head from Sam to Ram over 1.2 s, the hat and scarf dropping on along motion paths, a sparkle burst.
-- **10:** the near arm reaches by IK to three shelf targets in turn, one per stressed word.
-- **17:** whip crack (arm arc), with the head swapping to the wink on "wink".
+- **08:** Sam ¾ turns. The head crossfades from Sam to Ram over 1.2 s with a squash-and-stretch pop, the hat and scarf drop on along arcs, and sparkles burst.
+- **10:** the near arm reaches to three shelf targets, one per stressed word, using the grab hand.
+- **17:** the whip arm makes a big arc, and the head swaps to a wink on "wink".
 - **21:** both arms fling up on each beat.
-- **22:** a cackle head bob on the snares.
-- **24:** a shoulder push; the door rotates closed via a door sprite cut from the still.
-- **25:** two-arm IK pull, with an elastic overshoot.
-- **26:** shove, shove, then at `impact.stash` a **freeze**: hold the pose, snap the head to the squint toward the camera, and Remotion adds a 2-frame white flash and a 0.15 s camera micro-shake.
+- **22:** cackle, with the head thrown back on the snares.
+- **24:** a shoulder push, with the door rotating closed (a door sprite cut from the still).
+- **25:** two-arm pull with an elastic overshoot.
+- **26:** shove, shove, then at `impact.stash` a freeze: hold the pose, the head snaps to the squint toward the camera, a 2-frame white flash and a 0.15 s camera micro-shake.
 - **27:** pointing jabs on the beats.
-- **39:** the stamp drops on "Squashing", with the little guys scattering.
+- **39:** the stamp comes down on "Squashing", and the little guys scatter as sprites.
 - **43:** chest clutch, as the x-ray heart glow pulses.
-- **63:** a bow with the hat tipped.
+- **63:** a bow, with the hat tipped.
 
-- [ ] **Step 1:** Append to the tier-A frame-count test (it now expects these shots), and run it. Expected: FAIL (frames missing).
-- [ ] **Step 2:** Codex rigs and plates. Run `rig_check.py` on each rig and read its sheet. A failing rig gets a re-brief that lists the defect.
-- [ ] **Step 3:** Write the 12 generators and run `scripts/shots.sh 08 10 17 21 22 24 25 26 27 39 43 63`.
-- [ ] **Step 4:** Run the tests. Expected: PASS. Build the plate-vs-still diff sheet `out/sheets/plates.png` and 3 frames per shot, and Read them.
-- [ ] **Step 5:** Commit `feat: Ram acting shots`.
+- [ ] **Step 1:** Add `test('every tier-A shot has a plate, its puppets and a choreography module')` to `phase2.test.mjs`, and run it. Expected: FAIL.
+- [ ] **Step 2:** Get the Codex parts and plates. Check each parts preview sheet: near/far hands differ, no limbs drawn, no text.
+- [ ] **Step 3:** Write the 12 choreography modules.
+- [ ] **Step 4:** Run the tests. Expected: PASS. Read a plate-vs-still diff sheet and 3 frames per shot.
+- [ ] **Step 5:** Commit `feat: Ram and Sam acting shots`.
 
 ### Task 6: Sleigh flights and the crash
 
 **Files:**
-- Create: `public/rigs/reindeer-side/*`, `public/sprites/sleigh-*.png`, `public/plates/{15,16,31,34,46,47,48}.png`, `shots/{15,16,31,34,46,47,48}.py`
+- Create: `public/puppets/reindeer/*` (limbless body, head, hooves), `public/sprites/sleigh-*.png`, `public/plates/{15,16,31,34,46,47,48}.png`, `src/puppet/Quadruped.tsx`, `src/shots/{15,16,31,34,46,47,48}.ts`
 
 **Interfaces:**
-- Produces: frames. Each sleigh team is one group moved along `motion.set_path`, with deer leg cycles (4 legs, 2 bones each) phase-offset per deer. **Every deer and Ram face the direction of travel:** the generator flips the rig with `flip=True` when the path runs right to left, and a test checks this.
+- Produces:
+  - `<Quadruped pose />`: 4 hose legs with a gallop cycle, phase-offset per deer.
+  - A team group (2 deer, the reins drawn as curves, the sleigh sprite and the `ram-sleigh` puppet) moving along a path `(t) => {pos, angle, dir}`.
+  - **Every deer and Ram face the direction of travel:** `flip = dir < 0`.
 
-- [ ] **Step 1: Write the test** `test('sleigh rigs face their path direction')`: each sleigh shot's generator metadata `shots/NN.meta.json` records `{dir: -1|1, flip}`, and `flip === (dir < 0)`. Run it. Expected: FAIL.
-- [ ] **Step 2:** Codex reindeer rig (right-facing side run, separate near/far legs) and sleigh sprites with plates. Run `rig_check`.
-- [ ] **Step 3: Generators**
+- [ ] **Step 1: Write the test** `test('sleigh teams face their direction of travel')`: sample each sleigh shot's path, and check that `flip === (dx < 0)` for every puppet in the team. Run it. Expected: FAIL.
+- [ ] **Step 2:** Get the Codex parts, sprites and plates.
+- [ ] **Step 3: Choreography**
   - 15: launch arc.
-  - 16: a rooftop pass, with a RAM-stream particle path into the sack.
-  - 31: the team freezes at the "buffering" word, then Remotion pixelates it and shows a spinner (`fx: buffering`).
+  - 16: a rooftop pass with the RAM stream into the sack.
+  - 31: the team freezes on "buffering" (`fx: buffering` pixelates it and shows a spinner).
   - 34: a left-to-right pass under the moon.
-  - 46: sagging lift-off, with the deer straining (a short, fast leg cycle).
-  - 47: tipping (group rotation ±25°, wobbling).
-  - 48: a nose-dive along a path into the hill, impact squash, and a RAM-stick fountain (particle burst, Remotion `fx: ramFountain`).
-- [ ] **Step 4:** Run `scripts/shots.sh` for these shots, then the tests. Expected: PASS. Read 3 frames per shot.
+  - 46: sagging lift-off, with a short, fast leg cycle.
+  - 47: tipping (team rotation ±25°, wobbling).
+  - 48: a nose-dive into the hill, impact squash, and a RAM fountain (`fx: ramFountain`).
+- [ ] **Step 4:** Run the tests. Expected: PASS. Read 3 frames per shot.
 - [ ] **Step 5:** Commit `feat: sleigh flights and crash`.
 
 ### Task 7: The spoken ending (shots 57–59)
 
 **Files:**
 - Create:
-  - `public/rigs/girl-34/*` (with mouth set A–H, X)
-  - Ram ¾ mouth set added to `public/rigs/ram-34/`
+  - `public/puppets/girl/*` (with mouth heads A–H, X)
+  - Ram ¾ mouth heads in `public/puppets/ram-34/`
   - `scripts/rhubarb.sh` (from Living Legend)
-  - `src/timing/rhubarb/ending.json`
-  - `public/plates/{58,59}.png`, `shots/{58,59}.py`
-- Modify: `src/Animatic.tsx` (door shake on knocks, shot 57)
+  - `src/timing/rhubarb/ending.json`, `src/lipsync.ts`
+  - `public/plates/{58,59}.png`, `src/shots/{57,58,59}.ts`
 
 **Interfaces:**
 - Produces:
-  - Rhubarb cues for lines 46–48, run on the vocal stem over 219.0–233.4 s.
-  - `mouthAt(who: 'girl' | 'ram', t) => 'A'..'H' | 'X'`.
-  - The generators bake the cues into each head movie clip with `head_frames`.
+  - `mouthAt(who: 'girl' | 'ram', t) => 'A'..'H' | 'X'`, from Rhubarb cues on the vocal stem over 219.0–233.4 s. Lines 46–47 belong to the girl and line 48 to Ram.
+  - The puppet head part is `head-<mouth>`.
 
 - [ ] **Step 1: Write the tests**
   - `test('ending mouths are closed outside lines 46-48')`
-  - `test('girl speaks lines 46-47, Ram speaks line 48')`: the cues are non-X only inside the owning character's lines.
+  - `test('girl speaks lines 46-47, Ram speaks line 48')`
   - `test('door shakes on each knock')`
 - [ ] **Step 2:** Run the tests. Expected: FAIL.
-- [ ] **Step 3:** Codex: the girl ¾ rig with 9 mouths and Ram's 9 mouths, matching the cast sheets, plus plates 58/59. Run `rhubarb.sh ending 219.0 233.4 Ending`.
-- [ ] **Step 4: Generators**
-  - 58: the girl's hopeful sway, with the trifold lift on "prize".
-  - 59: Ram crouches, both arms rise by IK, and the palms meet on "hi-five!", with a sparkle. On "subscribe" his head snaps to the fake-friendly smile.
-  - 57: the Remotion door gets a ±6 px shake decaying over 0.25 s at each knock.
+- [ ] **Step 3:** Get the Codex parts and plates, then run `bash scripts/rhubarb.sh ending 219.0 233.4 Ending`.
+- [ ] **Step 4: Choreography**
+  - 57: the door shakes ±6 px, decaying over 0.25 s, on each knock.
+  - 58: the girl sways hopefully, and the trifold lifts on "prize".
+  - 59: Ram crouches, both arms rise, the palms meet on "hi-five!" with a sparkle, and the head snaps to the fake smile on "subscribe".
 - [ ] **Step 5:** Run the tests. Expected: PASS. Read 6 frames per shot, checking that the mouths open on the syllables.
 - [ ] **Step 6:** Commit `feat: lip-synced ending`.
 
-### Task 8: Crowd and elf shots (stepped cut-outs)
+### Task 8: Crowd and elf shots
 
 **Files:**
-- Create: `public/sprites/crowd-*.png` (cut from the stills with Codex mattes), `public/plates/{40,49,61}.png`, `shots/{40,49,61}.py`
+- Create: `public/puppets/{elf,townsfolk-*}/*`, `public/plates/{40,49,61}.png`, `src/shots/{40,49,61}.ts`
 
 **Interfaces:**
-- Produces: frames. Characters are whole cut-outs moved with stepped motion on twos: a bob of ±6 px and a lean of ±3° per step.
-  - 40: the family runs downstairs left to right.
-  - 49: a march with lanterns swinging.
-  - 61: elves pack, with arms swapping between 2 poses per beat and boxes sliding along the belt.
+- Produces: simplified puppets (parts plus hose limbs) using the shared walk cycle.
+  - 40: the family runs downstairs left to right (`runCycle` on a slope).
+  - 49: a march with lanterns swinging from the hands.
+  - 61: elves pack: arms alternate placing items into boxes on the beat, and the boxes slide along the belt.
 
-- [ ] **Step 1:** Add these shots to the frame-count test, and run it. Expected: FAIL.
-- [ ] **Step 2:** Make the Codex sprites and plates, then write the generators and run `shots.sh`.
+- [ ] **Step 1:** Extend the tier-A test to cover these shots, and run it. Expected: FAIL.
+- [ ] **Step 2:** Get the Codex parts and plates, and write the choreography.
 - [ ] **Step 3:** Run the tests. Expected: PASS. Read 3 frames per shot.
 - [ ] **Step 4:** Commit `feat: crowd and elf shots`.
 
@@ -360,7 +363,7 @@ Every shot has motion: tier C keeps its camera move, snow and lyrics.
 - Modify: `scripts/finish.py` (output name argument), `docs/review.md`
 
 - [ ] **Step 1:** Run `node --test tests/`. Expected: all PASS.
-- [ ] **Step 2:** Run `bash scripts/shots.sh` (all tier A), `bash scripts/render.sh` and `bash scripts/finish.sh out/ram-altman.mp4`.
+- [ ] **Step 2:** Run `bash scripts/render.sh` and `bash scripts/finish.sh out/ram-altman.mp4`.
 - [ ] **Step 3: Verify**
   - `ffprobe` shows 1920×1080, 24 fps, AAC, 259.6 ± 0.05 s.
   - Contact sheets via `scripts/contact.sh` (pointed at `out/ram-altman.mp4`): Read all 9.

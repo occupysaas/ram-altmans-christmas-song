@@ -6,3 +6,4 @@ spike/work
 public/song.wav
 *.pt
 .superpowers
+tmp/
