@@ -104,5 +104,21 @@
    74,
    22
   ]
+ },
+ "_rig": {
+  "armLen": 371,
+  "legLen": 581,
+  "armW": 55,
+  "legW": 65,
+  "reach": 323,
+  "hipHeight": 484,
+  "lift": 177,
+  "colors": {
+   "sleeve": "#8e8b93",
+   "sleeveFar": "#6f6c75",
+   "leg": "#2e2a33",
+   "legFar": "#211e26",
+   "ink": "#17121c"
+  }
  }
 }
