@@ -13,7 +13,14 @@ import type {PathState} from './sleigh.ts';
 export type TeamItem = {sleighTeam: {state: PathState; scale: number; t: number; deer: boolean}};
 /** Redraw the shot's plate below `y` (still px) in front of what came before — e.g. a counter or belt the puppets stand behind. */
 export type FrontItem = {front: {y: number}};
-export type Item = Placed | SpriteItem | HoseItem | ShadeItem | TeamItem | FrontItem;
+/** A character layer cut from a still (public/sprites/layers/<key>.png, placed by layers.json), moved about `pivot`. */
+export type LayerItem = {layer: string; dx?: number; dy?: number; rot?: number; sx?: number; sy?: number; pivot?: P; opacity?: number};
+/** Small vector marks drawn in code: cursor, click ring, tear, music note, speed line, text, dot, snowflake. */
+export type DrawKind = 'cursor' | 'ring' | 'drop' | 'note' | 'line' | 'text' | 'dot' | 'flake';
+export type DrawItem = {draw: {kind: DrawKind; at: P; size: number; to?: P; rot?: number; color?: string; ink?: string; opacity?: number; text?: string; font?: string}};
+export type Item = Placed | SpriteItem | HoseItem | ShadeItem | TeamItem | FrontItem | LayerItem | DrawItem;
+export const isLayer = (i: Item): i is LayerItem => (i as LayerItem).layer !== undefined;
+export const isDraw = (i: Item): i is DrawItem => (i as DrawItem).draw !== undefined;
 export const isFront = (i: Item): i is FrontItem => (i as FrontItem).front !== undefined;
 export const isTeam = (i: Item): i is TeamItem => (i as TeamItem).sleighTeam !== undefined;
 export const isShade = (i: Item): i is ShadeItem => (i as ShadeItem).shade !== undefined;

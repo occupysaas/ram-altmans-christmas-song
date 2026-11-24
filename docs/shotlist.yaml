@@ -27,7 +27,7 @@ shots:
    brief: "Electronics shop shelf, side view: Ram Altman's long bony green fingers snatching glowing green RAM sticks, a chip and a tiny glowing cube off the shelf left to right; blank price tags along the shelf edge; the tower visible bigger through the shop window."}
 - {n: 11, name: coding-montage, anchor: {line: 6}, cam: orbit, tower: null, surf: [0.12, 0.53, 0.76, 0.32, 0], style: tech,
    brief: "Over Ram Altman's shoulder typing furiously at a glowing terminal, moon in the window on the left, morning sun in another window on the right, racks multiplying around him; a blank black terminal pane low in frame."}
-- {n: 12, name: howling-fans, anchor: {line: 7}, cam: shake, tower: null, surf: [0.11, 0.07, 0.79, 0.35, 0], style: narration,
+- {n: 12, name: howling-fans, anchor: {line: 7}, cam: fanShake, tower: null, surf: [0.11, 0.07, 0.79, 0.35, 0], style: narration,
    brief: "Close on a wall of big server fans spinning wildly with cartoon wind-lines and snow blowing off them, the fan grilles shaped like howling mouths."}
 - {n: 13, name: window-sneak, anchor: {line: 8}, cam: panRight, tower: null, surf: [0.22, 0.12, 0.55, 0.29, 0], style: narration,
    brief: "The server hall with the big arched window over the snowy hill and Byteville below (as the spike background): Ram Altman sneaking on tiptoe left to right past the window."}

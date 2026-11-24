@@ -101,3 +101,25 @@ test('reins run from the hands to a harness point on each deer, every 3rd frame 
     }
   }
 });
+
+import {shot07, mouseOffset} from '../src/shots/07.ts';
+import {fanSpin} from '../src/fx/fanMath.ts';
+const audioJ = read('src/timing/audio.json');
+
+test('07: the mouse darts to a new spot on each beat and holds between beats', () => {
+  const s = shot('07'), beats = audioJ.beats.filter(b => b > s.start + 0.1 && b < s.end - 0.5);
+  assert.ok(beats.length >= 4);
+  for (let i = 0; i + 1 < beats.length; i++) {
+    const a = mouseOffset(beats[i] + 0.2), a2 = mouseOffset(beats[i] + 0.35), b = mouseOffset(beats[i + 1] + 0.2);
+    assert.deepEqual(a, a2, `mouse drifts during beat ${i}`);
+    assert.ok(Math.hypot(a[0] - b[0], a[1] - b[1]) > 8, `mouse did not move on beat ${i + 1}`);
+  }
+  const items = shot07(s.start + 1, Math.round((s.start + 1) * 24), s);
+  assert.ok(items.some(i => i.layer === '07/hand') && items.some(i => i.draw?.kind === 'cursor') && items.some(i => i.hose));
+});
+
+test('12: fan blades spin faster just after a kick than between kicks', () => {
+  const s = shot('12'), k = audioJ.kicks.map(x => x[0]).find(x => x > s.start + 0.5 && x < s.end - 0.5);
+  const rate = t => (fanSpin(t + 0.01) - fanSpin(t)) / 0.01;
+  assert.ok(rate(k + 0.05) > 1.4 * rate(k - 0.15), `kick ${rate(k + 0.05)} vs before ${rate(k - 0.15)}`);
+});

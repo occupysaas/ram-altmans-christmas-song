@@ -6,6 +6,7 @@ import regions from '../../docs/fx-regions.json';
 import audio from '../timing/audio.json';
 import {STILL_W as W, STILL_H as H} from '../layout';
 import {hash, cycle} from './particles';
+import {FrostFans} from './Fans';
 
 const R = regions as Record<string, Record<string, any>>;
 const since = (ev: number[][], t: number) => { let k = -1; for (const [x] of ev) { if (x <= t) k = x; else break; } return k < 0 ? 99 : t - k; };
@@ -13,7 +14,7 @@ const beatSince = (t: number) => { let k = -1; for (const b of audio.beats) { if
 const pulse = (s: number, d = 0.15) => Math.exp(-s / d);
 const box = (r: number[]) => ({left: r[0] * W, top: r[1] * H, width: r[2] * W, height: r[3] * H});
 
-type P = {id: string; t: number; still: string};
+type P = {id: string; t: number; ts: number; still: string};
 const FX: Record<string, (p: P & {r: any}) => React.ReactNode> = {
   chimneySmoke: ({t, r}) => <svg width={W} height={H} style={{position: 'absolute', inset: 0}}>{(r as number[][]).flatMap(([x, y], c) =>
     Array.from({length: 5}, (_, i) => { const {age} = cycle(c * 10 + i, t, 2.6);
@@ -27,10 +28,7 @@ const FX: Record<string, (p: P & {r: any}) => React.ReactNode> = {
     <div key={row} style={{height: r[3] * H / 9, display: 'flex', gap: 8, alignItems: 'center', transform: `translateY(${-(t * 60 % (r[3] * H / 9))}px)`}}>
       {Array.from({length: 5 + Math.floor(hash(row + Math.floor(t * 4)) * 6)}, (_, k) => <div key={k} style={{height: 12, width: 20 + 50 * hash(row * 7 + k),
         background: '#5ff6ff', opacity: 0.75, boxShadow: '0 0 6px #18c8ff'}} />)}</div>)}</div>,
-  fans: ({t, r}) => <svg width={W} height={H} style={{position: 'absolute', inset: 0}}>{(r as number[][]).map(([x, y, rad], i) =>
-    <g key={i} transform={`translate(${x * W},${y * H}) rotate(${t * 900 + i * 40})`} opacity={0.55}>
-      {[0, 1, 2, 3, 4].map(k => <path key={k} d={`M0,0 Q${rad * W * 0.5},${-rad * W * 0.2} ${rad * W * 0.9},0 Q${rad * W * 0.5},${rad * W * 0.15} 0,0`}
-        transform={`rotate(${k * 72})`} fill="#c9d3e8" stroke="#2b2a3a" strokeWidth={3} />)}</g>)}</svg>,
+  fans: ({t, ts, r}) => <FrostFans fans={r as number[][]} t={t} ts={ts} />,
   spinner: ({t, r}) => <svg width={W} height={H} style={{position: 'absolute', inset: 0}}>{Array.from({length: 8}, (_, i) => {
     const a = i / 8 * 2 * Math.PI + Math.floor(t * 10) * Math.PI / 4;
     return <circle key={i} cx={r[0] * W + Math.cos(a) * r[2] * W} cy={r[1] * H + Math.sin(a) * r[2] * W} r={6} fill="#ffffff" opacity={0.2 + 0.8 * i / 8} />; })}</svg>,
@@ -71,7 +69,7 @@ const FX: Record<string, (p: P & {r: any}) => React.ReactNode> = {
       return <circle key={i} cx={p[0]} cy={p[1]} r={9} fill={on ? '#fff6c2' : '#7a5b12'} opacity={on ? 1 : 0.6} style={on ? {filter: 'drop-shadow(0 0 8px #ffe27a)'} : undefined} />; })}</svg>; },
 };
 
-export function Overlays({shot, t}: {shot: {id: string; fx?: string[]; still: string}; t: number}) {
+export function Overlays({shot, t, ts = t}: {shot: {id: string; fx?: string[]; still: string}; t: number; ts?: number}) {
   return <>{(shot.fx ?? []).filter(f => FX[f] && R[shot.id]?.[f]).map(f =>
-    <React.Fragment key={f}>{FX[f]({id: shot.id, t, still: shot.still, r: R[shot.id][f]})}</React.Fragment>)}</>;
+    <React.Fragment key={f}>{FX[f]({id: shot.id, t, ts, still: shot.still, r: R[shot.id][f]})}</React.Fragment>)}</>;
 }

@@ -1,4 +1,5 @@
 import type {Choreo} from './types.ts';
+import {shot07} from './07.ts';
 import {shot13} from './13.ts';
 import {shot13b} from './13b.ts';
 import {SLEIGH_CHOREO} from './sleigh.ts';
@@ -10,6 +11,6 @@ import {shot10, shot24, shot25, shot26, shot27, shot39, shot63} from './ram-side
 /** Tier-A shots that have choreography; others still show their painted still. */
 export const CHOREO: Record<string, Choreo> = {
   ...SLEIGH_CHOREO, '58': shot58, '59': shot59, '40': shot40, '49': shot49, '61': shot61,
-  '08': shot08, '21': shot21, '22': shot22, '43': shot43,
+  '07': shot07, '08': shot08, '21': shot21, '22': shot22, '43': shot43,
   '10': shot10, '13': shot13, '13b': shot13b, '24': shot24, '25': shot25, '26': shot26, '27': shot27, '39': shot39, '63': shot63,
 };

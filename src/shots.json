@@ -299,11 +299,15 @@
    }
   ],
   "sfx": [],
-  "tier": "B",
+  "tier": "A",
   "fx": [
    "gpuHum"
   ],
-  "action": "monitors pulse on the beat"
+  "action": "Sam (cut-out layers) clicks around: the mouse darts on beats, clicks on snares, cursor follows on the big screen",
+  "plate": "plates/07.png",
+  "puppets": [
+   "layers-07"
+  ]
  },
  {
   "id": "08",
@@ -503,14 +507,14 @@
   "camera": {
    "from": {
     "x": 0.5,
-    "y": 0.4666666666666667,
-    "zoom": 1.2,
+    "y": 0.5,
+    "zoom": 1.05,
     "rot": 2
    },
    "to": {
     "x": 0.505,
-    "y": 0.46,
-    "zoom": 1.2195121951219512,
+    "y": 0.5,
+    "zoom": 1.06,
     "rot": -2
    }
   },
@@ -537,7 +541,8 @@
   "fx": [
    "fans"
   ],
-  "action": "fans spin with wind lines"
+  "action": "three animated fans blast frosty air (blur ghosts, ice-wind lines, snow crystals, frost rims) and boost on kicks",
+  "plate": "plates/12.png"
  },
  {
   "id": "13",

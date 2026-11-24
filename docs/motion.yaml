@@ -6,12 +6,12 @@
 4:  {tier: C, fx: [], action: "rack row; one light blinks"}
 5:  {tier: B, fx: [dust], action: "dust drifting in the moonbeam"}
 6:  {tier: B, fx: [tower], action: "low angle tower; bumps on kicks, smoke plume"}
-7:  {tier: B, fx: [gpuHum], action: "monitors pulse on the beat"}
+7:  {tier: A, puppets: [layers-07], fx: [gpuHum], action: "Sam (cut-out layers) clicks around: the mouse darts on beats, clicks on snares, cursor follows on the big screen"}
 8:  {tier: A, puppets: [sam-34], fx: [sparkles], action: "Sam turns 3/4, transforms into Ram; hat and scarf drop on"}
 9:  {tier: C, fx: [], action: "grin close-up push"}
 10: {tier: A, puppets: [ram-side], fx: [], action: "grabs RAM, a chip and a byte off the shelf, one per stressed word"}
 11: {tier: B, fx: [terminal], action: "terminal glyph blocks scroll"}
-12: {tier: B, fx: [fans], action: "fans spin with wind lines"}
+12: {tier: B, plate: true, fx: [fans], action: "three animated fans blast frosty air (blur ghosts, ice-wind lines, snow crystals, frost rims) and boost on kicks"}
 13: {tier: A, puppets: [ram-side], fx: [], action: "the approved rubber-hose sneak to the window, settle, peer at the town"}
 13b: {tier: B, plate: true, fx: [windowsDim], action: "back shot: Ram from behind at the window, scheming; bob and sway, evil-chuckle shoulder shake on 'down below'"}
 14: {tier: B, fx: [spinner], action: "laptop spinner turns"}
