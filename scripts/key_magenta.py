@@ -10,10 +10,10 @@ from collections import deque
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 
 
-def key_magenta(source, destination, width=None, margin=20, warm_glow=False):
+def key_magenta(source, destination, width=None, margin=20, warm_glow=False, preserve_purple=False):
     image = Image.open(source).convert("RGBA")
     pixels = np.asarray(image, dtype=np.float32) / 255.0
     rgb = pixels[:, :, :3]
@@ -25,7 +25,7 @@ def key_magenta(source, destination, width=None, margin=20, warm_glow=False):
     # Include these near-key colors so faint specks cannot enlarge the crop.
     backdrop = (red > 0.80) & (blue > 0.80) & (green < 0.22)
     small = np.asarray(image.convert("RGB").resize((160, 160)), dtype=np.float32) / 255
-    known = (np.minimum(small[:, :, 0], small[:, :, 2]) - small[:, :, 1]) < 0.04
+    known = (np.minimum(small[:, :, 0], small[:, :, 2]) - small[:, :, 1]) < (0.60 if preserve_purple else 0.04)
     if not known.any():
         raise ValueError("No non-magenta foreground colors found")
     queue = deque(zip(*np.nonzero(known)))
@@ -42,12 +42,15 @@ def key_magenta(source, destination, width=None, margin=20, warm_glow=False):
     estimated = np.clip(np.sum((rgb-key)*direction, axis=2) / np.maximum(np.sum(direction*direction, axis=2), 0.001), 0, 1)
     # Lavender snow/metal is real artwork. Only highly saturated magenta is
     # background contamination; do not unmix muted purple interior paint.
-    coverage = np.where(spill > 0.25, estimated, 1.0)
+    coverage = np.where(spill > (0.60 if preserve_purple else 0.25), estimated, 1.0)
+    if preserve_purple:
+        edge = np.asarray(Image.fromarray(backdrop.astype(np.uint8) * 255).filter(ImageFilter.MaxFilter(5))) > 0
+        coverage = np.where(edge & (spill > 0.12), estimated, coverage)
     coverage[backdrop] = 0.0
     rgb -= (1.0 - coverage[:, :, None]) * key
     rgb /= np.maximum(coverage[:, :, None], 1.0 / 255.0)
     residual = np.maximum(0, np.minimum(rgb[:, :, 0], rgb[:, :, 2]) - rgb[:, :, 1])
-    residual *= coverage < 0.98
+    residual *= ((coverage < 0.98) | edge) if preserve_purple else (coverage < 0.98)
     rgb[:, :, 0] -= residual
     rgb[:, :, 2] -= residual
     pixels[:, :, :3] = np.clip(rgb, 0.0, 1.0)
@@ -84,7 +87,8 @@ if __name__ == "__main__":
     parser.add_argument("--width", type=int)
     parser.add_argument("--margin", type=int, default=20)
     parser.add_argument("--warm-glow", action="store_true", help="Remove residual violet from gold/yellow glow rays")
+    parser.add_argument("--preserve-purple", action="store_true", help="Keep saturated purple cel paint while removing the magenta backdrop")
     args = parser.parse_args()
     if args.margin < 0:
         parser.error("--margin must be nonnegative")
-    key_magenta(args.input, args.output, args.width, args.margin, args.warm_glow)
+    key_magenta(args.input, args.output, args.width, args.margin, args.warm_glow, args.preserve_purple)
