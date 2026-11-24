@@ -95,8 +95,9 @@ def build():
         elif m.get('plate'): shots[-1]['plate'] = f"plates/{sid}.png"
         if m.get('towerCut'): shots[-1]['towerCut'] = True   # the tower is its own layer (layers/NN/tower) over a tower-free plate
         if m.get('indoor'): shots[-1]['indoor'] = True   # no falling snow inside
+        if m.get('towerBehind'): shots[-1]['towerBehind'] = True   # plates/NN-front.png (sky keyed out) redrawn over the tower
         if m.get('towerDy'): shots[-1]['towerDy'] = m['towerDy']   # nudge a cut-out tower down onto its hill (still px)
-        if m.get('mood'): shots[-1]['mood'] = {'dark': m['mood']}   # darken, lit by its own lights (make_lightmaps.py)
+        if 'mood' in m: shots[-1]['mood'] = {'dark': m['mood']}   # mood 0 = glow only   # darken, lit by its own lights (make_lightmaps.py)
         if 'push' in s:
             pt = imp[s['push']['t']] if isinstance(s['push']['t'], str) else s['push']['t']
             shots[-1]['camera']['push'] = {**dict(zip(('x', 'y', 'zoom', 'rot'), s['push']['to'])), 't': pt, 'dur': s['push'].get('dur', 0.3)}

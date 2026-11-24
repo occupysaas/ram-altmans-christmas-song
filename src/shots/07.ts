@@ -8,7 +8,9 @@ import {twos} from './kit.ts';
 import type {Choreo, Item} from './types.ts';
 
 const beats: number[] = audio.beats, snares: number[] = (audio.snares as number[][]).map(s => s[0]);
-const SHOULDER: P = [845, 730], WRIST: P = [950, 768], SEAT: P = [780, 900], SCREEN: P = [800, 336];
+// WRIST sits just inside the painted hand's wrist, so the cuff overlaps it
+// SHOULDER: on the sweater seam, where the arm leaves the body
+const SHOULDER: P = [835, 748], WRIST: P = [952, 835], SEAT: P = [780, 900], SCREEN: P = [800, 336];
 const DART = 0.1;
 
 const spot = (i: number): P => [Math.round(90 * (hash(i * 3.1) - 0.5)), Math.round(30 * (hash(i * 7.7) - 0.5))];
@@ -30,9 +32,9 @@ export const shot07: Choreo = (_t, frame) => {
   const wrist = add(WRIST, m), cursor = add(SCREEN, [m[0] * 4, m[1] * 5]);
   const items: Item[] = [
     {layer: m[0] < -15 ? '07/sam-head-left' : '07/sam', dy: bob, rot, pivot: SEAT},
-    // hand + mouse sit 50 px higher and are drawn first, so the sleeve's cuff overlaps the wrist
-    {layer: '07/hand', dx: m[0], dy: m[1] - 50 + 2 * press, sy: press ? 0.92 : 1, pivot: [1010, 810]},
-    {hose: {a: shoulder, b: wrist, L: 150, side: 1, width: 28, fill: '#9a9aa0', ink: '#17121c'}},
+    // hand + mouse stay on the desk where they're painted; the sleeve is drawn after, its cuff over the wrist
+    {layer: '07/hand', dx: m[0], dy: m[1] + 2 * press, sy: press ? 0.92 : 1, pivot: [1010, 860]},
+    {hose: {a: shoulder, b: wrist, L: 158, side: 1, width: 32, fill: '#9a9aa0', ink: '#17121c'}},
     {layer: '07/chair-back'},
     {draw: {kind: 'cursor', at: cursor, size: 46}},
   ];

@@ -136,7 +136,12 @@ export const shot25: Choreo = (_t, frame, shot) => {
     if (u > 0 && u < 1) items.push({draw: {kind: 'dot', at: [lerp(g.wandEnd[0], g.socket[0], u), lerp(g.wandEnd[1], g.socket[1], u) + 60 * Math.sin(Math.PI * u)], size: 46, color: '#7d6140', ink: '#17121c'}});
   }
   const ang = Math.atan2(g.mouth[1] - g.wandEnd[1], g.wandEnd[0] - g.mouth[0]) * 180 / Math.PI;
-  items.push({sprite: 'sprites/vacuum/nozzle', at: g.wandEnd, scale: NOZ_S, size: [360, 140], anchor: [12, 70], flip: true, rot: -ang});
+  // a leaf-blower tube: straight rigid red tube with brass bands, its round opening facing left at the shelf
+  items.push({draw: {kind: 'line', at: g.wandEnd, to: g.mouth, size: 78, color: '#17121c'}});
+  items.push({draw: {kind: 'line', at: g.wandEnd, to: g.mouth, size: 68, color: '#c8102e'}});
+  for (const u of [0.15, 0.55, 0.92]) items.push({draw: {kind: 'line', at: [lerp(g.wandEnd[0], g.mouth[0], u) - 7, lerp(g.wandEnd[1], g.mouth[1], u)], to: [lerp(g.wandEnd[0], g.mouth[0], u) + 7, lerp(g.wandEnd[1], g.mouth[1], u)], size: 74, color: '#e0b040'}});
+  items.push({draw: {kind: 'ellipse', at: g.mouth, size: 0, w: 46, h: 96, color: '#e0b040', rot: -ang}});
+  items.push({draw: {kind: 'ellipse', at: [g.mouth[0] - 4, g.mouth[1]], size: 0, w: 30, h: 76, color: '#1b0f08', rot: -ang, mouth: true}});
   for (let k = Math.max(0, g.n - 6); k < g.n; k++) {   // boxes whooshing off the shelf into the mouth
     const bx = BOXES[k], u = clamp01((t - grabTime(k, shot)) / 0.3);
     if (u >= 1) continue;

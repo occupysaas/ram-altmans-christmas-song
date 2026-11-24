@@ -64,6 +64,7 @@ export function Tower({shot, t}: {shot: {id: string; still: string; towerStage: 
       <svg width={STILL_W} height={STILL_H} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
         <Emitters top={top} stage={ex ? 5 + Math.round(3 * ex.glow) : stage} t={t} scale={Math.max(0.6, (spec.poly[2][1] - spec.poly[0][1]))} />
       </svg>
+      {(shot as {towerBehind?: boolean}).towerBehind && <Img src={staticFile(`plates/${shot.id}-front.png`)} style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H}} />}
     </>;
   }
   const mask = maskUrl(spec.poly);

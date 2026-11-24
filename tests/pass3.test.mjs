@@ -102,7 +102,7 @@ test('25: a giant bloated vacuum (5x) whose belly bumps on the beat; suction lin
   const b = audioJ.beats.find(x => x > s.start + 0.5);
   assert.ok((can(b + 0.13).sx ?? 1) > (can(b + 0.45).sx ?? 1) + 0.03, 'belly bumps on the beat');
   assert.ok(!at(s.start + 1).some(i => i.who === 'girl'), 'girl removed');
-  const g = vacuum25(twos(Math.round((s.start + 1) * 24)), s), lines = at(s.start + 1).filter(i => i.draw?.kind === 'line');
+  const g = vacuum25(twos(Math.round((s.start + 1) * 24)), s), lines = at(s.start + 1).filter(i => i.draw?.kind === 'line' && i.draw.size < 20);   // thin suction lines (not the tube)
   assert.ok(lines.length >= 10, `${lines.length} suction lines`);
   for (const l of lines) assert.ok(Math.hypot(l.draw.to[0] - g.mouth[0], l.draw.to[1] - g.mouth[1]) < Math.hypot(l.draw.at[0] - g.mouth[0], l.draw.at[1] - g.mouth[1]), 'lines point at the nozzle');
 });
@@ -283,7 +283,7 @@ const MOOD = ['07', '10', '18', '19', '24', '25', '26', '36', '51', '54', '60', 
 test('mood shots: darkened around their own lights, with a glow map per shot', () => {
   for (const id of MOOD) {
     const s = shot(id);
-    assert.ok(s.mood && s.mood.dark >= 0.3 && s.mood.dark <= 0.6, `shot ${id} mood ${JSON.stringify(s.mood)}`);
+    assert.ok(s.mood && s.mood.dark >= 0.2 && s.mood.dark <= 0.32, `shot ${id} mood ${JSON.stringify(s.mood)}`);   // pass 4: dialled back
     for (const f of [`public/light/${id}-glow.png`, `public/light/${id}-dark.png`]) assert.ok(fs.existsSync(f), `missing ${f}`);
   }
   assert.ok(!shot('56').mood, '56 has its own blackout, no glow map');

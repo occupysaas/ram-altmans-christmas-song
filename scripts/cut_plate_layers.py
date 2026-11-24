@@ -30,5 +30,19 @@ paper = ndimage.binary_fill_holes(lab == lab[665, 800])
 tag = ndimage.binary_dilation(paper, iterations=9)
 mask = np.asarray(Image.fromarray((tag * 255).astype('uint8')).filter(ImageFilter.GaussianBlur(1.0)))
 save('18/tag', pl, mask, 0, 0)
+# 54: the town with its sky keyed out (plates/54-front.png), redrawn over the cut-out tower so the mansion sits behind it
+pl = np.asarray(Image.open('public/plates/54.png').convert('RGB')).astype(np.float32) / 255
+r, g, b = pl[..., 0], pl[..., 1], pl[..., 2]
+lum = 0.3 * r + 0.59 * g + 0.11 * b
+sky = (b > r + 0.04) & (lum < 0.42) & (np.arange(pl.shape[0])[:, None] < pl.shape[0] * 0.8)
+sky = ndimage.binary_opening(sky, iterations=1)
+# the plate still has the old tower painted in: key out everything inside the cut-out tower's own silhouette
+# except the houses/trees in front of it (the bottom band below the tower's foot)
+T = idx['54/tower']; tw = np.asarray(Image.open('public/sprites/layers/54/tower.png').getchannel('A')) > 40
+tower = np.zeros(sky.shape, bool); tower[T['y']:T['y'] + T['h'], T['x']:T['x'] + T['w']] = tw
+tower = ndimage.binary_dilation(tower, iterations=6); tower[int(0.56 * pl.shape[0]):] = False
+sky |= tower
+alpha = np.asarray(Image.fromarray(((~sky) * 255).astype('uint8')).filter(ImageFilter.GaussianBlur(1.2)))
+Image.fromarray(np.dstack([(pl * 255).astype('uint8'), alpha]), 'RGBA').save('public/plates/54-front.png')
 idx_path.write_text(json.dumps(idx, indent=1) + '\n')
 print(idx['07/chair-back'], idx['18/tag'])

@@ -6,10 +6,10 @@
 4:  {tier: C, fx: [], action: "rack row; one light blinks"}
 5:  {tier: B, fx: [dust], action: "dust drifting in the moonbeam"}
 6:  {tier: B, fx: [tower], action: "low angle tower; bumps on kicks, smoke plume"}
-7:  {tier: A, indoor: true, mood: 0.45, puppets: [layers-07], fx: [gpuHum], action: "Sam (cut-out layers) clicks around: the mouse darts on beats, clicks on snares, cursor follows on the big screen"}
+7:  {tier: A, indoor: true, mood: 0.28, puppets: [layers-07], fx: [gpuHum], action: "Sam (cut-out layers) clicks around: the mouse darts on beats, clicks on snares, cursor follows on the big screen"}
 8:  {tier: A, puppets: [sam-34], fx: [sparkles], action: "Sam turns 3/4, transforms into Ram; hat and scarf drop on"}
 9: {tier: A, puppets: [layers-09], fx: [], action: "grin close-up push; on \"memory!\" he throws his head back cackling, HA!s pop"}
-10: {tier: A, indoor: true, mood: 0.45, puppets: [ram-side], fx: [], action: "grabs RAM, a chip and a byte off the shelf, one per stressed word"}
+10: {tier: A, indoor: true, mood: 0.28, puppets: [ram-side], fx: [], action: "grabs RAM, a chip and a byte off the shelf, one per stressed word"}
 11: {tier: B, indoor: true, fx: [terminal], action: "terminal glyph blocks scroll"}
 12: {tier: B, indoor: true, plate: true, fx: [fans], action: "three animated fans blast frosty air (blur ghosts, ice-wind lines, snow crystals, frost rims) and boost on kicks"}
 13: {tier: A, puppets: [ram-side], fx: [], action: "the approved rubber-hose sneak to the window, settle, peer at the town"}
@@ -18,25 +18,25 @@
 15: {tier: A, puppets: [reindeer, ram-sleigh], fx: [], action: "sleigh launches off the tower roof right-to-left"}
 16: {tier: A, puppets: [reindeer, ram-sleigh], fx: [ramStream], action: "rooftop pass; RAM sucked out of chimneys"}
 17: {tier: A, puppets: [layers-17], fx: [], action: "sky streams past the sleigh; Ram snaps the reins on every beat, whip-crack on snares, winks on \"wink\""}
-18: {tier: A, indoor: true, mood: 0.45, puppets: [layers-18], fx: [], action: "family (cut-out layers) sobs on alternating beats, tears fall and splash, blank tag drawn 2x for a big lyric; slow push-in"}
-19: {tier: A, mood: 0.45, puppets: [layers-19], fx: [], action: "shoppers bob up to the window, recoil in shock as the red price sticker flips higher on each beat"}
+18: {tier: A, indoor: true, mood: 0.28, puppets: [layers-18], fx: [], action: "family (cut-out layers) sobs on alternating beats, tears fall and splash, blank tag drawn 2x for a big lyric; slow push-in"}
+19: {tier: A, mood: 0.28, puppets: [layers-19], fx: [], action: "shoppers bob up to the window, recoil in shock as the red price sticker flips higher on each beat"}
 20: {tier: B, plate: true, towerCut: true, fx: [tower], action: "tower in the cyan cloud; bumps, smoke"}
 21: {tier: A, puppets: [sleigh], fx: [], action: "shopping spree: sleigh pass over the shop street pouring coins on each beat; shop signs flip to SOLD"}
 22: {tier: A, puppets: [sleigh], fx: [], action: "hovering sleigh over the sold-out street; Ram leans back cackling on snares, HA!s pop"}
 23: {tier: B, plate: true, towerCut: true, fx: [tower], action: "tower humming bright; marquee bulbs chase"}
-24: {tier: A, indoor: true, mood: 0.45, puppets: [ram-side], fx: [], action: "round vault door rolls across the doorway; Ram on its right shoves it on beats, kicks knock it back; RAM spills out of the gap and piles on the floor"}
-25: {tier: A, indoor: true, mood: 0.45, puppets: [ram-side, girl], fx: [], action: "generic electronics store: Ram sweeps RAM boxes off the shelf into a teetering armful; a girl behind him reaches and is left at a bare shelf"}
-26: {tier: A, mood: 0.45, puppets: [ram-side], fx: [stashFreeze], action: "shoves SSDs in the sack; freeze and squint at camera on 'umm, stash'"}
+24: {tier: A, indoor: true, mood: 0.28, puppets: [ram-side], fx: [], action: "round vault door rolls across the doorway; Ram on its right shoves it on beats, kicks knock it back; RAM spills out of the gap and piles on the floor"}
+25: {tier: A, indoor: true, mood: 0.28, puppets: [ram-side, girl], fx: [], action: "generic electronics store: Ram sweeps RAM boxes off the shelf into a teetering armful; a girl behind him reaches and is left at a bare shelf"}
+26: {tier: A, mood: 0.28, puppets: [ram-side], fx: [stashFreeze], action: "shoves SSDs in the sack; freeze and squint at camera on 'umm, stash'"}
 27: {tier: A, puppets: [ram-side], fx: [], action: "jabs at the chart on beats"}
 28: {tier: B, plate: true, towerCut: true, fx: [tower], action: "mega-tower banner; bumps, smoke and sparks"}
-29: {tier: B, fx: [receipt], action: "receipt paper scrolls down the stairs"}
+29: {tier: C, mood: 0, fx: [], action: "receipt paper scrolls down the stairs"}
 30: {tier: A, indoor: true, puppets: [topdown-elf], fx: [], action: "top-down workshop: 4 lanes of 4 same-job elves; a piston per lane slams them into one four-armed elf doing all four jobs"}
 31: {tier: A, puppets: [reindeer, ram-sleigh], fx: [buffering], action: "team freezes on 'buffering', pixelates, spinner"}
 32: {tier: B, fx: [star], action: "star spins to its pixelated back, falls, shatters with the glass break"}
 33: {tier: C, indoor: true, fx: [], action: "typewriter-register: keys clack per letter of each word, $ flags pop up on the tiles, dollar signs float up, DING! on \"year!\""}
 34: {tier: A, puppets: [reindeer, ram-sleigh], fx: [], action: "left-to-right pass under the moon"}
 35: {tier: A, indoor: true, puppets: [layers-35], fx: [], action: "the whole golden machine-creature snaps shut on every beat (squash) and springs open (stretch); bill crumbs puff out"}
-36: {tier: A, mood: 0.45, puppets: [layers-36], fx: [], action: "carolers (cut-out layers) sway on the bar, bob on the beat, open wide on every sung word; music notes float up"}
+36: {tier: A, mood: 0.28, puppets: [layers-36], fx: [], action: "carolers (cut-out layers) sway on the bar, bob on the beat, open wide on every sung word; music notes float up"}
 37: {tier: C, fx: [], action: "facts scroll"}
 38: {tier: B, indoor: true, fx: [beatBump], action: "throne of GPUs low angle; the whole picture bumps on every beat"}
 39: {tier: A, puppets: [ram-side, dad, mum, kid1, kid2, elf], fx: [], action: "Ram stamps every two beats; 14 townsfolk run about in panic, scatter from each slam, three get flattened and pop back"}
@@ -51,17 +51,17 @@
 48: {tier: A, puppets: [reindeer, ram-sleigh], fx: [ramFountain, vroll], action: "nose-dive crash; RAM fountain over Byteville"}
 49: {tier: A, towerCut: true, puppets: [dad, mum, kid1, kid2, elf], fx: [tower], action: "march up the hill with lanterns"}
 50: {tier: A, indoor: true, puppets: [layers-50], fx: [], action: "elves bob and sway; rope tug-of-war snaps on \"un-paywalled\", tokens burst"}
-51: {tier: A, indoor: true, mood: 0.45, puppets: [layers-51], fx: [], action: "watching elves bob along; the ladder elf slaps the band-aid on \"patched\" with sparks"}
+51: {tier: A, indoor: true, mood: 0.28, puppets: [layers-51], fx: [], action: "watching elves bob along; the ladder elf slaps the band-aid on \"patched\" with sparks"}
 52: {tier: B, plate: true, towerCut: true, fx: [tower], action: "bucket brigade: each beat the next carrier hoists a glowing box up the line; everyone bobs; tower bumps"}
 53: {tier: B, plate: true, fx: [confetti], action: "townsfolk watch the valuation balloon wobble; it bursts on \"popped\" and everyone jumps"}
-54: {tier: B, mood: 0.45, plate: true, towerCut: true, towerDy: 150, fx: [tower], action: "whole town sings; tower bumps"}
+54: {tier: B, mood: 0.28, plate: true, towerCut: true, towerDy: 150, towerBehind: true, fx: [tower], action: "whole town sings; tower bumps"}
 55: {tier: B, indoor: true, fx: [giftDrop], action: "gifts drop under trees"}
 56: {tier: B, plate: true, towerCut: true, fx: [tower, chimneySmoke], action: "water pours into the tank (streams, ripples, splashes); town windows flicker and black out one by one; tower bumps"}
 58: {tier: A, puppets: [girl, ram-34], fx: [], action: "girl asks (lip-sync); Ram's fake smile"}
 59: {tier: A, puppets: [girl, ram-34], fx: [], action: "hi-five; Ram says subscribe (lip-sync)"}
-60: {tier: B, mood: 0.45, plate: true, towerCut: true, fx: [tower], action: "pull back from the waving figure"}
+60: {tier: B, mood: 0.28, plate: true, towerCut: true, fx: [tower], action: "pull back from the waving figure"}
 61: {tier: A, indoor: true, puppets: [elf], fx: [], action: "elves pack boxes on the beat"}
-62: {tier: B, mood: 0.45, plate: true, towerCut: true, fx: [tower, marquee], action: "marquee bulbs chase; tower behind"}
+62: {tier: B, mood: 0.28, plate: true, towerCut: true, fx: [tower, marquee], action: "marquee bulbs chase; tower behind"}
 63: {tier: A, indoor: true, puppets: [ram-side], fx: [], action: "bow with hat tip in the spotlight"}
 64: {tier: C, indoor: true, fx: [vroll], action: "Ebenezer Scrooge smash cut; after \"Scrooge!\" Ram bursts out laughing, HA HA HA"}
 65: {tier: B, plate: true, towerCut: true, fx: [tower, explode], action: "victorious ending: the tower swells, glowing red and shaking, then explodes; RAM rains on Byteville and the townsfolk run in cheering to catch it"}
