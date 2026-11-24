@@ -9,7 +9,7 @@ shots:
    brief: "Title card: a snowy hill at night under huge stars, the modest glass-and-chrome data-center tower on the peak with one thin smoke plume, Byteville's lit cottages far below. Big empty starry sky in the upper half for the show title."}
 - {n: 2, name: crane-rooftops, anchor: {line: 0}, cam: craneDown, tower: 1, surf: [0.06, 0.04, 0.62, 0.26, 0], style: narration,
    brief: "High view from the starry sky down over Byteville's snowy crooked rooftops, chimneys smoking, warm windows; the small tower glows on the hill in the far background. Open sky across the top third."}
-- {n: 3, name: living-room, anchor: {line: 0, word: 5}, cam: panRight, tower: 1, surf: [0.235, 0.2, 0.28, 0.15, 0], style: narration,
+- {n: 3, name: living-room, anchor: {line: 0, word: 5}, cam: [[.5, .5, 1.04, 0], [.54, .5, 1.08, 0]], tower: 1, surf: [0.235, 0.2, 0.28, 0.15, 0], style: narration,
    brief: "Cosy Byteville living room at night: family asleep in armchairs, a decorated tree with NOTHING underneath it, a cat mid-stride crossing the rug left to right, an embroidered sampler frame hanging blank on the wall at upper left, the tiny tower visible on the hill through the window."}
 - {n: 4, name: rack-row, anchor: {line: 1}, cam: panLeft, tower: null, surf: [0.08, 0.36667, 0.78, 0.2, 0], lineGap: 0.8, style: tech,
    brief: "Inside the tower: a long dark row of tall curly-topped server racks receding in perspective, all lights dark except one tiny blinking light; a blank horizontal LED panel strip on the nearest rack at mid height."}
@@ -39,7 +39,7 @@ shots:
    brief: "Sleigh flying low over Byteville roofs: streams of glowing green RAM sticks being sucked up out of the chimneys into the sleigh like a vacuum."}
 - {n: 17, name: wink, anchor: {line: 11}, cam: punch, tower: null, surf: [0.11, 0.58, 0.69, 0.36, 0], style: narration,
    brief: "Close on Ram Altman at the sleigh's reins, winking at the viewer, scarf streaming, a curling vapour trail behind the sleigh."}
-- {n: 18, name: empty-tree, anchor: {line: 12}, cam: sadPush, tower: 2, surf: [0.25, 0.49, 0.39, 0.26, 0], style: narration,
+- {n: 18, name: empty-tree, anchor: {line: 12}, cam: sadPush, tower: 2, surf: [0.27, 0.575, 0.46, 0.145, 0], style: narration,
    brief: "A Byteville family (dad, mum, two kids) staring sadly at the empty space under their tree, a blank gift tag hanging from a branch at the middle; the tower glows through the window."}
 - {n: 19, name: shop-window, anchor: {line: 13}, cam: pushIn, tower: 2, surf: [0.275, 0.41833, 0.45, 0.27, 0], style: hook,
    brief: "Electronics shop window from the snowy street: a single RAM stick on a velvet cushion with a huge blank price tag; townsfolk with jaws dropped reflected in the glass."}

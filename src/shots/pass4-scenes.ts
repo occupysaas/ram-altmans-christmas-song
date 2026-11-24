@@ -34,16 +34,16 @@ export const shot03: Choreo = (_t, frame) => {
 };
 
 // 06 — two brass horns slide out from the tower's sides on "He lived in a tower" and blast on every beat
-const HORNS06: [P, number][] = [[[330, 470], -1], [[1270, 470], 1]];
+const HORNS06: [P, number][] = [[[455, 390], -1], [[1145, 390], 1]];   // mouthpieces at the dome's upper sides (view is x 133-1467)
 export const shot06: Choreo = (_t, frame) => {
   const t = twos(frame), t0 = lyrics[2].start, a = t - t0;
   if (a < 0) return [];
   const b = beat(t), blast = b.i >= 0 ? Math.exp(-b.since / 0.16) : 0, out = easeOutBack(clamp01(a / 0.45));
   const items: Item[] = [];
   HORNS06.forEach(([at, dir], i) => {
-    const pos: P = [at[0] + dir * lerp(-160, 60, out), at[1] - 20 * blast];
-    items.push({sprite: `sprites/horn/${blast > 0.4 ? 'horn-b' : 'horn'}`, at: pos, scale: 0.85 * (1 + 0.06 * blast), size: [520, 260], anchor: [40, 130], flip: dir < 0, rot: dir * (-14 - 6 * blast)});
-    const bell: P = [pos[0] + dir * 400, pos[1] - 110];
+    const pos: P = [at[0] + dir * lerp(-120, 0, out), at[1] - 14 * blast], ang = -(26 + 6 * blast), len = 470 * 0.56;
+    items.push({sprite: `sprites/horn/${blast > 0.4 ? 'horn-b' : 'horn'}`, at: pos, scale: 0.56 * (1 + 0.06 * blast) * out, size: [520, 260], anchor: [40, 130], flip: dir < 0, rot: dir * ang});
+    const bell: P = [pos[0] + dir * len * Math.cos(ang * Math.PI / 180), pos[1] + len * Math.sin(ang * Math.PI / 180)];
     for (let k = 0; k < 4; k++) {   // notes and blast lines out of the bell
       const {age} = cycle(i * 10 + k + 60, t, 0.8);
       items.push({draw: {kind: 'note', at: [bell[0] + dir * 160 * age, bell[1] - 140 * age + 20 * Math.sin(age * 9 + k)], size: 54, text: k % 2 ? '♪' : '♫', color: '#fff6d0', opacity: Math.sin(Math.PI * age)}});
@@ -62,7 +62,7 @@ export const shot14: Choreo = (_t, frame, shot) => {
 
 // 18 — the sad family, as before, but the lyric is on a parchment scroll hung between the tree and the people
 import {shot18 as sad18} from './sad-shots.ts';
-export const SCROLL18 = {x: 800, y: 760, scale: 0.6};
+export const SCROLL18 = {x: 800, y: 770, scale: 0.85};   // paper spans about x 400-1200, y 690-860
 export const shot18: Choreo = (t, frame, shot) => {
   const items = sad18(t, frame, shot).filter(i => (i as {layer?: string}).layer !== '18/tag');
   const sway = 1.2 * Math.sin(twos(frame) * 1.4);
