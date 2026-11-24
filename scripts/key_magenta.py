@@ -13,7 +13,7 @@ import numpy as np
 from PIL import Image, ImageFilter
 
 
-def key_magenta(source, destination, width=None, margin=20, warm_glow=False, preserve_purple=False):
+def key_magenta(source, destination, width=None, margin=20, warm_glow=False, preserve_purple=False, frame=False):
     image = Image.open(source).convert("RGBA")
     pixels = np.asarray(image, dtype=np.float32) / 255.0
     rgb = pixels[:, :, :3]
@@ -60,6 +60,10 @@ def key_magenta(source, destination, width=None, margin=20, warm_glow=False, pre
     bounds = keyed.getbbox()
     if bounds is None:
         raise ValueError("No foreground remains after magenta keying")
+    if frame:   # full-frame layer: save the tight crop and return where it sits in the frame
+        Path(destination).parent.mkdir(parents=True, exist_ok=True)
+        keyed.crop(bounds).save(destination, "PNG")
+        return bounds
     keyed = keyed.crop(bounds)
     if width is not None:
         if width <= 2 * margin:
