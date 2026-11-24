@@ -48,3 +48,19 @@ Plan: `docs/superpowers/plans/2026-11-24-cleanup-pass.md`.
 | 23 ending | 65 | tower swells, explodes (boom SFX), RAM rains, townsfolk cheer |
 
 Open for later: in 10 the grabbed item stays painted on the shelf; in 25 the armful is a simple column.
+
+## Pass 3 (render 2026-11-24)
+
+`out/ram-altman.mp4`: 1920x1080, 24 fps, AAC, 259.600 s. Preview 23.0 MB. Tests 102/102.
+Plan: `docs/superpowers/plans/2026-11-24-pass-3.md` (+ mid-run requests).
+
+- 0:14 line gap 0.8; 0:18 text 40 still px right; 0:34 hand+mouse 50 px up, under the cuff.
+- 0:40 laugh from "memory!" with HA!s; 0:42 stocked shelf taken item by item.
+- 1:10 wink sleigh: scrolling sky, rein snaps on beats, whip cracks, wink.
+- Towers: cut-out layers bump whole over tower-free plates (20, 23, 28, 49, 52, 54, 56, 60, 62, 65); 54 lowered 150 px.
+- 1:25 no coins, SOLD on beats; 1:38 giant bloated vacuum, suction lines, no girl; 1:42 RAM mountain + push-in, "umm, stash" below.
+- 2:10 typewriter-register: key clacks, $ flags, floating dollars, DING; drawer glitch removed.
+- 2:19 Ram shovels; stuffed mouth spills. 2:33 throne bumps. 2:35 packed square empties, fleeing + AAAH!, no slam bursts. 2:41 family runs off screen.
+- 2:58-3:05 RAM falls off the sleigh. 3:12-3:21 elves bob + rope snap / band-aid / box brigade / balloon pop. 3:25 ring around the RAM monument.
+- 3:34 windmills, water, calm blackout, chimney smoke. 3:38 door close-up removed. 4:10 HA HA HA. Ending: no dancers.
+- Look: game-style bloom on every light; mood darkening lit by each scene's own lights in 07, 10, 18, 19, 24, 25, 26, 36, 51, 54, 60, 62.
