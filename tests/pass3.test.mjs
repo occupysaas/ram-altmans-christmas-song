@@ -21,7 +21,7 @@ test('04: tighter line gap keeps "stirred..." inside the display box', () => {
 });
 
 test('05: the lyric box moved right so "not" clears the price tag', () => {
-  assert.ok(Math.abs(shot('05').lyrics[0].surface.x - (0.17 + 40 / 1600)) < 1e-6);
+  assert.ok(Math.abs(shot('05').lyrics[0].surface.x - (0.17 + 80 / 1600)) < 1e-6);   // pass 4: another 40 px right
 });
 
 test('40: the family keeps running until everyone is off the right edge', () => {

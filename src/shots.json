@@ -121,7 +121,8 @@
   "sfx": [],
   "tier": "C",
   "fx": [],
-  "action": "living room; cat already mid-stride (still)"
+  "action": "living room; cat already mid-stride (still)",
+  "indoor": true
  },
  {
   "id": "04",
@@ -153,7 +154,7 @@
     "to": 4,
     "surface": {
      "x": 0.08,
-     "y": 0.4,
+     "y": 0.36667,
      "w": 0.78,
      "h": 0.2,
      "rot": 0,
@@ -197,7 +198,7 @@
     "from": 4,
     "to": 8,
     "surface": {
-     "x": 0.195,
+     "x": 0.22,
      "y": 0.42,
      "w": 0.65,
      "h": 0.28,
@@ -230,7 +231,7 @@
    },
    "to": {
     "x": 0.5,
-    "y": 0.4233333333333333,
+    "y": 0.4233333333333334,
     "zoom": 1.2,
     "rot": 0
    }
@@ -243,10 +244,10 @@
     "from": 0,
     "to": 10,
     "surface": {
-     "x": 0.11,
-     "y": 0.59,
-     "w": 0.77,
-     "h": 0.25,
+     "x": 0.187,
+     "y": 0.64,
+     "w": 0.616,
+     "h": 0.2,
      "rot": 0
     },
     "style": "narration",
@@ -309,6 +310,7 @@
   "puppets": [
    "layers-07"
   ],
+  "indoor": true,
   "mood": {
    "dark": 0.45
   }
@@ -458,6 +460,7 @@
   "puppets": [
    "ram-side"
   ],
+  "indoor": true,
   "mood": {
    "dark": 0.45
   }
@@ -506,7 +509,8 @@
   "fx": [
    "terminal"
   ],
-  "action": "terminal glyph blocks scroll"
+  "action": "terminal glyph blocks scroll",
+  "indoor": true
  },
  {
   "id": "12",
@@ -538,7 +542,7 @@
     "to": 10,
     "surface": {
      "x": 0.11,
-     "y": 0.07,
+     "y": 0.17,
      "w": 0.79,
      "h": 0.35,
      "rot": 0
@@ -553,7 +557,8 @@
    "fans"
   ],
   "action": "three animated fans blast frosty air (blur ghosts, ice-wind lines, snow crystals, frost rims) and boost on kicks",
-  "plate": "plates/12.png"
+  "plate": "plates/12.png",
+  "indoor": true
  },
  {
   "id": "13",
@@ -648,7 +653,8 @@
    "windowsDim"
   ],
   "action": "back shot: Ram from behind at the window, scheming; bob and sway, evil-chuckle shoulder shake on 'down below'",
-  "plate": "plates/13b.png"
+  "plate": "plates/13b.png",
+  "indoor": true
  },
  {
   "id": "14",
@@ -694,7 +700,8 @@
   "fx": [
    "spinner"
   ],
-  "action": "laptop spinner turns"
+  "action": "laptop spinner turns",
+  "indoor": true
  },
  {
   "id": "15",
@@ -891,6 +898,7 @@
   "puppets": [
    "layers-18"
   ],
+  "indoor": true,
   "mood": {
    "dark": 0.45
   }
@@ -925,7 +933,7 @@
     "to": 10,
     "surface": {
      "x": 0.275,
-     "y": 0.385,
+     "y": 0.41833,
      "w": 0.45,
      "h": 0.27,
      "rot": 0
@@ -1185,6 +1193,7 @@
   "puppets": [
    "ram-side"
   ],
+  "indoor": true,
   "mood": {
    "dark": 0.45
   }
@@ -1237,6 +1246,7 @@
    "ram-side",
    "girl"
   ],
+  "indoor": true,
   "mood": {
    "dark": 0.45
   }
@@ -1423,13 +1433,13 @@
   "camera": {
    "from": {
     "x": 0.58,
-    "y": 0.4966666666666667,
+    "y": 0.5,
     "zoom": 1.2,
     "rot": 0
    },
    "to": {
     "x": 0.5783333333333334,
-    "y": 0.4966666666666667,
+    "y": 0.5,
     "zoom": 1.2,
     "rot": 0
    }
@@ -1443,7 +1453,7 @@
     "to": 9,
     "surface": {
      "x": 0.38,
-     "y": 0.1,
+     "y": 0.23333,
      "w": 0.6,
      "h": 0.42,
      "rot": 0
@@ -1475,7 +1485,7 @@
    },
    "to": {
     "x": 0.5,
-    "y": 0.4854368932038835,
+    "y": 0.5,
     "zoom": 1.03,
     "rot": 0
    }
@@ -1489,9 +1499,9 @@
     "to": 7,
     "surface": {
      "x": 0.03,
-     "y": 0.02,
+     "y": 0.46,
      "w": 0.94,
-     "h": 0.11,
+     "h": 0.115,
      "rot": 0
     },
     "style": "narration",
@@ -1505,7 +1515,8 @@
   "plate": "plates/30.png",
   "puppets": [
    "topdown-elf"
-  ]
+  ],
+  "indoor": true
  },
  {
   "id": "31",
@@ -1588,7 +1599,7 @@
     "to": 9,
     "surface": {
      "x": 0.2,
-     "y": 0.56,
+     "y": 0.49333,
      "w": 0.6,
      "h": 0.26,
      "rot": 0
@@ -1624,9 +1635,9 @@
     "rot": 0
    },
    "to": {
-    "x": 0.43000000000000005,
+    "x": 0.47,
     "y": 0.45,
-    "zoom": 1.36986301369863,
+    "zoom": 1.5,
     "rot": 0
    }
   },
@@ -1638,10 +1649,10 @@
     "from": 0,
     "to": 9,
     "surface": {
-     "x": 0.08,
-     "y": 0.28,
-     "w": 0.7,
-     "h": 0.22,
+     "x": 0.215,
+     "y": 0.285,
+     "w": 0.48,
+     "h": 0.17,
      "rot": 0
     },
     "style": "tech",
@@ -1656,7 +1667,8 @@
   ],
   "tier": "C",
   "fx": [],
-  "action": "typewriter-register: keys clack per letter of each word, $ flags pop up on the tiles, dollar signs float up, DING! on \"year!\""
+  "action": "typewriter-register: keys clack per letter of each word, $ flags pop up on the tiles, dollar signs float up, DING! on \"year!\"",
+  "indoor": true
  },
  {
   "id": "34",
@@ -1753,7 +1765,8 @@
   "plate": "plates/35.png",
   "puppets": [
    "layers-35"
-  ]
+  ],
+  "indoor": true
  },
  {
   "id": "36",
@@ -1894,7 +1907,8 @@
   "fx": [
    "beatBump"
   ],
-  "action": "throne of GPUs low angle; the whole picture bumps on every beat"
+  "action": "throne of GPUs low angle; the whole picture bumps on every beat",
+  "indoor": true
  },
  {
   "id": "39",
@@ -1998,7 +2012,8 @@
    "mum",
    "kid1",
    "kid2"
-  ]
+  ],
+  "indoor": true
  },
  {
   "id": "41",
@@ -2042,7 +2057,8 @@
   "sfx": [],
   "tier": "C",
   "fx": [],
-  "action": "overhead of the bare floor"
+  "action": "overhead of the bare floor",
+  "indoor": true
  },
  {
   "id": "42",
@@ -2086,7 +2102,8 @@
   "sfx": [],
   "tier": "C",
   "fx": [],
-  "action": "cookie crumbs"
+  "action": "cookie crumbs",
+  "indoor": true
  },
  {
   "id": "43",
@@ -2136,7 +2153,8 @@
   "plate": "plates/43.png",
   "puppets": [
    "ram-34"
-  ]
+  ],
+  "indoor": true
  },
  {
   "id": "44",
@@ -2182,7 +2200,8 @@
   "fx": [
    "panic"
   ],
-  "action": "panic screens flash on snares"
+  "action": "panic screens flash on snares",
+  "indoor": true
  },
  {
   "id": "45",
@@ -2228,7 +2247,8 @@
   "fx": [
    "lightsOut"
   ],
-  "action": "lights go out row by row toward camera"
+  "action": "lights go out row by row toward camera",
+  "indoor": true
  },
  {
   "id": "46",
@@ -2496,7 +2516,8 @@
   "plate": "plates/50.png",
   "puppets": [
    "layers-50"
-  ]
+  ],
+  "indoor": true
  },
  {
   "id": "51",
@@ -2545,6 +2566,7 @@
   "puppets": [
    "layers-51"
   ],
+  "indoor": true,
   "mood": {
    "dark": 0.45
   }
@@ -2740,7 +2762,8 @@
   "fx": [
    "giftDrop"
   ],
-  "action": "gifts drop under trees"
+  "action": "gifts drop under trees",
+  "indoor": true
  },
  {
   "id": "56",
@@ -3013,7 +3036,8 @@
   "plate": "plates/61.png",
   "puppets": [
    "elf"
-  ]
+  ],
+  "indoor": true
  },
  {
   "id": "62",
@@ -3113,7 +3137,8 @@
   "plate": "plates/63.png",
   "puppets": [
    "ram-side"
-  ]
+  ],
+  "indoor": true
  },
  {
   "id": "64",
@@ -3159,7 +3184,8 @@
   "fx": [
    "vroll"
   ],
-  "action": "Ebenezer Scrooge smash cut; after \"Scrooge!\" Ram bursts out laughing, HA HA HA"
+  "action": "Ebenezer Scrooge smash cut; after \"Scrooge!\" Ram bursts out laughing, HA HA HA",
+  "indoor": true
  },
  {
   "id": "65",

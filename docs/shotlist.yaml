@@ -11,11 +11,11 @@ shots:
    brief: "High view from the starry sky down over Byteville's snowy crooked rooftops, chimneys smoking, warm windows; the small tower glows on the hill in the far background. Open sky across the top third."}
 - {n: 3, name: living-room, anchor: {line: 0, word: 5}, cam: panRight, tower: 1, surf: [0.235, 0.2, 0.28, 0.15, 0], style: narration,
    brief: "Cosy Byteville living room at night: family asleep in armchairs, a decorated tree with NOTHING underneath it, a cat mid-stride crossing the rug left to right, an embroidered sampler frame hanging blank on the wall at upper left, the tiny tower visible on the hill through the window."}
-- {n: 4, name: rack-row, anchor: {line: 1}, cam: panLeft, tower: null, surf: [0.08, 0.4, 0.78, 0.2, 0], lineGap: 0.8, style: tech,
+- {n: 4, name: rack-row, anchor: {line: 1}, cam: panLeft, tower: null, surf: [0.08, 0.36667, 0.78, 0.2, 0], lineGap: 0.8, style: tech,
    brief: "Inside the tower: a long dark row of tall curly-topped server racks receding in perspective, all lights dark except one tiny blinking light; a blank horizontal LED panel strip on the nearest rack at mid height."}
-- {n: 5, name: empty-rack, anchor: {line: 1, word: 4}, cam: drift, tower: null, surf: [0.195, 0.42, 0.65, 0.28, 0], style: narration,
+- {n: 5, name: empty-rack, anchor: {line: 1, word: 4}, cam: drift, tower: null, surf: [0.22, 0.42, 0.65, 0.28, 0], style: narration,
    brief: "Close on a single completely empty server rack, dust drifting in a beam of moonlight, a blank paper price tag dangling on a string from an empty shelf."}
-- {n: 6, name: tower-low, anchor: {t: 24.5}, cam: tiltUp, tower: 1, surf: [0.11, 0.59, 0.77, 0.25, 0], style: narration,
+- {n: 6, name: tower-low, anchor: {t: 24.5}, cam: tiltUp, tower: 1, surf: [0.187, 0.64, 0.616, 0.2, 0], style: narration,
    brief: "Low angle looking up at the curly glass-and-chrome data-center tower on its snowy peak, one smoke plume, snow falling, starry sky; big smooth glass facade across the lower middle."}
 - {n: 7, name: sam-desk, anchor: {line: 3}, cam: pushRight, tower: null, surf: [0.23, 0.2, 0.55, 0.22, 0], style: tech,
    brief: "From behind: Sam (normal human version: healthy skin, round eyes, short messy brown hair, plain grey crewneck, no hat, no scarf) sits at a desk facing a curved wall of glowing monitors, GPUs humming in racks on both sides."}
@@ -27,7 +27,7 @@ shots:
    brief: "Electronics shop shelf, side view: Ram Altman's long bony green fingers snatching glowing green RAM sticks, a chip and a tiny glowing cube off the shelf left to right; blank price tags along the shelf edge; the tower visible bigger through the shop window."}
 - {n: 11, name: coding-montage, anchor: {line: 6}, cam: orbit, tower: null, surf: [0.12, 0.53, 0.76, 0.32, 0], style: tech,
    brief: "Over Ram Altman's shoulder typing furiously at a glowing terminal, moon in the window on the left, morning sun in another window on the right, racks multiplying around him; a blank black terminal pane low in frame."}
-- {n: 12, name: howling-fans, anchor: {line: 7}, cam: fanShake, tower: null, surf: [0.11, 0.07, 0.79, 0.35, 0], style: narration,
+- {n: 12, name: howling-fans, anchor: {line: 7}, cam: fanShake, tower: null, surf: [0.11, 0.17, 0.79, 0.35, 0], style: narration,
    brief: "Close on a wall of big server fans spinning wildly with cartoon wind-lines and snow blowing off them, the fan grilles shaped like howling mouths."}
 - {n: 13, name: window-sneak, anchor: {line: 8}, cam: panRight, tower: null, surf: [0.22, 0.12, 0.55, 0.29, 0], style: narration,
    brief: "The server hall with the big arched window over the snowy hill and Byteville below (as the spike background): Ram Altman sneaking on tiptoe left to right past the window."}
@@ -43,7 +43,7 @@ shots:
    brief: "Close on Ram Altman at the sleigh's reins, winking at the viewer, scarf streaming, a curling vapour trail behind the sleigh."}
 - {n: 18, name: empty-tree, anchor: {line: 12}, cam: sadPush, tower: 2, surf: [0.25, 0.49, 0.39, 0.26, 0], style: narration,
    brief: "A Byteville family (dad, mum, two kids) staring sadly at the empty space under their tree, a blank gift tag hanging from a branch at the middle; the tower glows through the window."}
-- {n: 19, name: shop-window, anchor: {line: 13}, cam: pushIn, tower: 2, surf: [0.275, 0.385, 0.45, 0.27, 0], style: hook,
+- {n: 19, name: shop-window, anchor: {line: 13}, cam: pushIn, tower: 2, surf: [0.275, 0.41833, 0.45, 0.27, 0], style: hook,
    brief: "Electronics shop window from the snowy street: a single RAM stick on a velvet cushion with a huge blank price tag; townsfolk with jaws dropped reflected in the glass."}
 - {n: 20, name: tower-cloud, anchor: {line: 14}, cam: tiltUp, tower: 2, surf: [0.06, 0.03, 0.64, 0.25, 0], style: hook,
    brief: "The data-center tower, now bigger with extra floors and side wings, its top piercing a glowing cyan cloud bank, smoke from two stacks."}
@@ -63,15 +63,15 @@ shots:
    brief: "Ram Altman pointing a long finger at a whiteboard with a hand-drawn chart line rocketing up and to the right (no numbers or words), top of the board left clear."}
 - {n: 28, name: banner, anchor: {line: 20, word: 7}, cam: tiltDown, tower: 3, surf: [0.23, 0.25, 0.52, 0.5, 0], style: hook,
    brief: "The sprawling top-heavy mega-tower with fans everywhere, thick smoke and spark showers, a giant blank vertical banner unrolling down its face; tiny Ram Altman on a podium at its base."}
-- {n: 29, name: receipt, anchor: {line: 21}, cam: panLeft, tower: 3, surf: [0.38, 0.1, 0.6, 0.42, 0], style: tech,
+- {n: 29, name: receipt, anchor: {line: 21}, cam: panLeft, tower: 3, surf: [0.38, 0.23333, 0.6, 0.42, 0], style: tech,
    brief: "A receipt printer spitting an endless blank paper invoice that tumbles down a staircase, out the tower door and across the snow towards Byteville."}
-- {n: 30, name: elves-jpg, anchor: {line: 22}, cam: [[.5, .5, 1.0, 0], [.5, .5, 1.03, 0]], tower: null, surf: [0.03, 0.02, 0.94, 0.11, 0], style: narration,
+- {n: 30, name: elves-jpg, anchor: {line: 22}, cam: [[.5, .5, 1.0, 0], [.5, .5, 1.03, 0]], tower: null, surf: [0.03, 0.46, 0.94, 0.115, 0], style: narration,
    brief: "Four little data-center elves in green hoodies with headsets in a row, a giant mechanical press stamping down on them, the right half of the image showing them squashed into one blocky, smeared, low-quality picture."}
 - {n: 31, name: reindeer-buffering, anchor: {line: 23}, cam: drift2, tower: 3, surf: [0.08, 0.42, 0.84, 0.36, 0], style: tech,
    brief: "Two reindeer frozen mid-leap in the night sky pulling the sleigh, with the mega-tower smoking in the background."}
-- {n: 32, name: star, anchor: {line: 24}, cam: starHold, tower: 3, surf: [0.2, 0.56, 0.6, 0.26, 0], style: narration,
+- {n: 32, name: star, anchor: {line: 24}, cam: starHold, tower: 3, surf: [0.2, 0.49333, 0.6, 0.26, 0], style: narration,
    brief: "Byteville's big town-square Christmas tree from below, camera rising to the shining gold star at the top, with a little blank velvet ribbon tied under the star; the mega-tower on the hill behind."}
-- {n: 33, name: register, anchor: {line: 25}, cam: punch, tower: null, surf: [0.08, 0.28, 0.7, 0.22, 0], style: tech,
+- {n: 33, name: register, anchor: {line: 25}, cam: punch, tower: null, surf: [0.215, 0.285, 0.48, 0.17, 0], style: tech,
    brief: "An ornate old brass cash register with its drawer springing open, a row of blank display tiles across its top."}
 - {n: 34, name: sleigh-pass, anchor: {line: 26}, cam: panRight, tower: 4, surf: [0.15, 0.08, 0.6, 0.5, 0], style: hook,
    brief: "Low angle: the sleigh passing left to right under a huge full moon, loot spilling, the grotesquely huge belching tower filling the sky behind."}

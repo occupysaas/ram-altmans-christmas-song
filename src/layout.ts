@@ -11,7 +11,7 @@ export const STILL_H = 1200;
 export const MIN_LEAD = 64;
 /** Small painted cards (the sampler, the gift tag) may go smaller so the text stays on the card. */
 export const MIN_LEAD_SMALL = 52;
-export const SMALL_CARDS = ['03', '18', '30'];   // 30: the top-down floor only has a thin band free above lane 1
+export const SMALL_CARDS = ['03', '18', '30', '33'];   // 30: the top-down floor only has a thin band free above lane 1
 const LEAD_MAX = 150;
 const IMPACT_RATIO = 1.5;
 const MIN_IMPACT_RATIO = 1.4; // tried before shrinking the lead words when one long impact word won't fit

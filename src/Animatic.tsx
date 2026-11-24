@@ -3,6 +3,7 @@ import {AbsoluteFill, Audio, staticFile, useCurrentFrame} from 'remotion';
 import shotsJson from './shots.json';
 import {loadFonts} from './fonts';
 import {Snow} from './Snow';
+import {snowDensity} from './fx/snowRule';
 import {Ident} from './fx/Ident';
 import {Title} from './fx/Title';
 import {PROG_H, PROG_W, Still, type Shot} from './Still';
@@ -41,7 +42,7 @@ export function Animatic() {
           {st >= 0 && st < 2 / 24 && <div style={{position: 'absolute', inset: 0, background: '#fff', opacity: 0.85}} />}
         </div>;
       })()}
-      <Snow frame={frame} w={PROG_W} h={PROG_H} density={shot.towerStage != null ? 1 : 0.25} />
+      {snowDensity(shot as {indoor?: boolean; towerStage?: number | null}) > 0 && <Snow frame={frame} w={PROG_W} h={PROG_H} density={snowDensity(shot as {indoor?: boolean; towerStage?: number | null})} />}
       <Title t={t} w={PROG_W} />
       <Ident t={t} frame={frame} w={PROG_W} h={PROG_H} />
       </AbsoluteFill>
