@@ -33,7 +33,7 @@
 30: {tier: A, puppets: [topdown-elf], fx: [], action: "top-down workshop: 4 lanes of 4 same-job elves; a piston per lane slams them into one four-armed elf doing all four jobs"}
 31: {tier: A, puppets: [reindeer, ram-sleigh], fx: [buffering], action: "team freezes on 'buffering', pixelates, spinner"}
 32: {tier: B, fx: [star], action: "star spins to its pixelated back, falls, shatters with the glass break"}
-33: {tier: B, fx: [register], action: "drawer jolts on each word"}
+33: {tier: C, fx: [], action: "typewriter-register: keys clack per letter of each word, $ flags pop up on the tiles, dollar signs float up, DING! on \"year!\""}
 34: {tier: A, puppets: [reindeer, ram-sleigh], fx: [], action: "left-to-right pass under the moon"}
 35: {tier: A, puppets: [layers-35], fx: [], action: "the whole golden machine-creature snaps shut on every beat (squash) and springs open (stretch); bill crumbs puff out"}
 36: {tier: A, mood: 0.45, puppets: [layers-36], fx: [], action: "carolers (cut-out layers) sway on the bar, bob on the beat, open wide on every sung word; music notes float up"}

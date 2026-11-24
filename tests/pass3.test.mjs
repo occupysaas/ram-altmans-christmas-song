@@ -298,3 +298,17 @@ test('finish: a highlights-only bloom runs on the programme before the CRT pass'
   assert.ok(bloom > 0 && bloom < crt, 'bloom before the CRT downscale');
   assert.match(f, /curves=all='0\/0 0\.6[0-9]*\/0/);
 });
+
+import {shot33} from '../src/shots/register33.ts';
+
+test('33: typewriter-register — keys clack as each word is sung, $ flags pop on the tiles, $ float up, ding on "year!"', () => {
+  const s = shot('33'), at = t => shot33(t, Math.round(t * 24), s), words = L()[25].words;
+  assert.ok(!s.fx.includes('register'), 'old drawer jolt (glitchy) removed');
+  const pressed = t => at(t).filter(i => i.draw?.kind === 'ellipse' && i.draw.pressed).length;
+  for (const w of words.slice(0, -1)) assert.ok(pressed(w.s + 0.07) >= 1, `no key down for "${w.w}"`);
+  const flags = t => at(t).filter(i => i.draw?.text === '$' && i.draw.tile).length;
+  assert.ok(flags(words[0].s + 0.15) >= 1 && flags(words[5].s + 0.15) > flags(words[1].s + 0.15), 'flags pop up word by word');
+  assert.ok(at(words[3].s + 0.2).some(i => i.draw?.text === '$' && !i.draw.tile), 'dollar signs float up');
+  const year = words.at(-1).s;
+  assert.ok(s.sfx.some(x => x.name === 'ding' && Math.abs(x.t - year) < 0.05), 'register ding on "year!"');
+});

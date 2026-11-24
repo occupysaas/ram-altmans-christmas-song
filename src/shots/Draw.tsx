@@ -21,6 +21,7 @@ export function Draw({p}: {p: DrawItem}) {
   switch (d.kind) {
     case 'cursor': return <path transform={`${T} scale(${s / 40})`} opacity={op} d="M0,0 L0,34 L9,26 L15,40 L21,37 L15,24 L27,24 Z" fill={d.color ?? '#fff'} stroke={ink} strokeWidth={3} strokeLinejoin="round" />;
     case 'ring': return <circle cx={x} cy={y} r={s} fill="none" stroke={d.color ?? '#fff'} strokeWidth={Math.max(2, s * 0.12)} opacity={op} />;
+    case 'ellipse': return <ellipse cx={x} cy={y} rx={(d.w ?? s) / 2} ry={(d.h ?? s) / 2} fill={d.color ?? '#f6e7c4'} stroke={ink} strokeWidth={3} opacity={op} />;
     case 'rect': return <rect x={x - (d.w ?? s) / 2} y={y - (d.h ?? s) / 2} width={d.w ?? s} height={d.h ?? s} rx={2} fill={d.color ?? '#141a33'} opacity={op} />;
     case 'dot': return <circle cx={x} cy={y} r={s} fill={d.color ?? '#fff'} opacity={op} />;
     case 'drop': return <path transform={`${T} scale(${s / 20})`} opacity={op} d="M0,-20 C6,-8 12,0 12,8 A12,12 0 0 1 -12,8 C-12,0 -6,-8 0,-20 Z" fill={d.color ?? '#9fe3ff'} stroke={ink} strokeWidth={2} />;

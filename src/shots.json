@@ -1648,12 +1648,15 @@
     "tone": "light"
    }
   ],
-  "sfx": [],
-  "tier": "B",
-  "fx": [
-   "register"
+  "sfx": [
+   {
+    "name": "ding",
+    "t": 134.034
+   }
   ],
-  "action": "drawer jolts on each word"
+  "tier": "C",
+  "fx": [],
+  "action": "typewriter-register: keys clack per letter of each word, $ flags pop up on the tiles, dollar signs float up, DING! on \"year!\""
  },
  {
   "id": "34",

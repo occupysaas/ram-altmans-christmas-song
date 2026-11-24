@@ -31,4 +31,8 @@ noise = rng.standard_normal(t.size)
 low = np.convolve(noise, np.ones(40) / 40, mode='same') * np.exp(-t * 1.6) * 3.0
 crack = noise * np.exp(-t * 18) * 0.6
 save('boom', np.tanh(1.6 * (sub * 1.1 + low + crack)) * 0.9)
+# ding: an old cash-register bell — two bright partials with a long shimmering decay
+t = np.arange(int(SR * 1.6)) / SR
+bell = np.sin(2 * np.pi * 1760 * t) * np.exp(-t * 3.2) + 0.5 * np.sin(2 * np.pi * 2640 * t) * np.exp(-t * 4.5) + 0.25 * np.sin(2 * np.pi * 4410 * t) * np.exp(-t * 8)
+save('ding', bell * 0.55)
 

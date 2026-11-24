@@ -119,6 +119,7 @@ def build():
 
     star = next(l for l in lyr if l['text'].startswith('The star on the tree'))
     next(x for x in shots if x['id'] == '32')['sfx'].append({'name': 'glass-break', 't': round(star['end'] + GLASS_DELAY, 3)})
+    reg = next(x for x in shots if x['id'] == '33'); reg['sfx'].append({'name': 'ding', 't': round(lyr[25]['words'][-1]['s'], 3)})   # register bell on "year!"
     next(x for x in shots if x['id'] == '65')['sfx'].append({'name': 'boom', 't': round(imp['silence'] + BOOM_DELAY, 3)})
     for sh in shots:
         del sh['_surf'], sh['_style'], sh['_tone']
