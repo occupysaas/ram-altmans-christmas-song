@@ -38,16 +38,6 @@ test('layout word widths cover the real font advances', () => {
   }
 });
 
-test('shot 10 hands land on the shelf items', () => {
-  const items = [[wordAt(5, 1), [440, 540]], [wordAt(5, 3), [718, 555]], [wordAt(5, 5), [950, 580]]];
-  for (const [at, tgt] of items) {
-    let best = 1e9;
-    for (let f = Math.floor((at - 0.2) * 24); f <= Math.ceil((at + 0.2) * 24); f++)
-      for (const it of shot10(f / 24, f, shot('10'))) if (it.hose) best = Math.min(best, Math.hypot(it.hose.b[0] - tgt[0], it.hose.b[1] - tgt[1]));
-    assert.ok(best < 20, `hand misses ${tgt} by ${best.toFixed(0)}px`);
-  }
-});
-
 test('bow hands stay below the shoulders', () => {
   const s = shot('63');
   for (let f = Math.round(s.start * 24); f < s.end * 24; f += 6) {

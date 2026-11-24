@@ -1,6 +1,7 @@
 /** Ram (side puppet) acting shots: 10, 24, 25, 26, 27, 39, 63. Positions in still px, sized from each still. */
 import {type P, add, easeOutBack, easeInOut, clamp01, lerp, followThrough, hoseEndAngle} from '../puppet/geom.ts';
 import {PARTS} from '../puppet/parts.ts';
+import {shoulders} from '../puppet/body.ts';
 import impact from '../timing/impact.json' with {type: 'json'};
 import audio from '../timing/audio.json' with {type: 'json'};
 import shots from '../shots.json' with {type: 'json'};
@@ -13,21 +14,30 @@ const W = 'ram-side';
 const rig = () => PARTS[W]._rig;
 const prop = (sprite: string, at: P, scale: number, rot = 0): Item => ({sprite: `sprites/props/${sprite}`, at, scale, rot});
 
-/** 10: "Every stick, every chip, every byte in the store!" — arms snake in from off-screen and snatch one item per word. */
+/** 10: "Every stick, every chip, every byte in the store!" — the shelf (plate 10, emptied) is stocked with RAM sticks, a
+ *  chip and a byte; rubber arms snake in from off-screen and take them one by one, each item leaving with the hand. */
+export const SHELF10: {sprite: string; pos: P; rot: number; scale: number; at: number}[] = [
+  {sprite: 'ram-stick', pos: [95, 612], rot: -72, scale: 0.62, at: wordAt(5, 1)},   // stick
+  {sprite: 'ram-stick', pos: [205, 612], rot: -72, scale: 0.62, at: wordAt(5, 3)},   // chip
+  {sprite: 'chip', pos: [718, 562], rot: 0, scale: 0.85, at: wordAt(5, 4)},
+  {sprite: 'byte', pos: [952, 570], rot: 0, scale: 0.7, at: wordAt(5, 5)},   // byte
+  {sprite: 'ram-stick', pos: [420, 612], rot: -72, scale: 0.62, at: wordAt(5, 6)},
+  {sprite: 'ram-stick', pos: [530, 612], rot: -72, scale: 0.62, at: wordAt(5, 8)},   // store
+];
 export const shot10: Choreo = (_t, frame) => {
   const t = twos(frame), S = 0.42, r = rig(), c = r.colors;
-  const targets: [number, P, string][] = [[wordAt(5, 1), [440, 540], 'ram-stick'], [wordAt(5, 3), [718, 555], 'chip'], [wordAt(5, 5), [950, 580], 'byte']]   // the painted shelf items;
   const items: Item[] = [];
-  targets.forEach(([at, tgt, what], i) => {
-    const near = i % 2 === 0, root: P = near ? [-60, 120] : [-60, 260];
-    const u = clamp01((t - (at - 0.35)) / 0.35), back = clamp01((t - at - 0.12) / 0.5);
-    if (t < at - 0.35 || back >= 1) return;
+  for (const it of SHELF10) if (t < it.at) items.push({...prop(it.sprite, it.pos, it.scale, it.rot), shelf: true} as Item);
+  SHELF10.forEach((it, i) => {
+    const near = i % 2 === 0, root: P = near ? [-60, 120] : [-60, 260], tgt = it.pos;
+    const u = clamp01((t - (it.at - 0.3)) / 0.3), back = clamp01((t - it.at - 0.08) / 0.4);
+    if (t < it.at - 0.3 || back >= 1) return;
     const out = easeOutBack(u), ret = easeInOut(back);
-    const hand: P = [lerp(root[0] + 120, tgt[0], out) + lerp(0, -tgt[0] - 200, ret), lerp(root[1] + 60, tgt[1], out) + lerp(0, -200, ret)];
+    const hand: P = [lerp(root[0] + 120, tgt[0], out) + lerp(0, -tgt[0] - 260, ret), lerp(root[1] + 60, tgt[1], out) + lerp(0, -200, ret)];
     const L = r.armLen * S * 2.6;
     items.push({hose: {a: root, b: hand, L, side: 1, width: r.armW * S, fill: near ? c.sleeve : c.sleeveFar, ink: c.ink}});
-    if (back > 0) items.push(prop(what, add(hand, [30, 10]), 0.5));
-    const hp = back > 0 ? 'hand-near-grab' : 'hand-near-open';
+    if (t >= it.at) items.push(prop(it.sprite, hand, it.scale, it.rot + 30 * back));
+    const hp = t >= it.at ? 'hand-near-grab' : 'hand-near-open';
     items.push({sprite: `puppets/ram-side/${hp}`, at: hand, scale: S, rot: hoseEndAngle(root, hand, L, 1), anchor: PARTS[W][hp].wrist, size: PARTS[W][hp].size});
   });
   return items;
@@ -89,28 +99,63 @@ function grabbed(t: number) {
 }
 export const shelfLeft = (t: number) => BOXES.length - Math.min(BOXES.length, grabbed(t));
 
-export const shot25: Choreo = (_t, frame) => {
-  const t = twos(frame), S = scaleFor(W, 640), floor = 1120, x = 1010, n = Math.min(BOXES.length, grabbed(t)), hit = beatHit(t);
+/** 25 geometry: Ram (facing left) wears the vacuum canister on his back; the hose runs from its top socket to the
+ *  wand end of the nozzle, which he aims at the shelf row being emptied. */
+const R25 = {x: 1010, floor: 1120}, CAN_S = 0.55, NOZ_S = 0.7;
+export function vacuum25(t: number, shot: {start: number; end: number}) {
+  const n = Math.min(BOXES.length, grabbed(t)), row = Math.min(3, Math.floor(n / 5)), hit = beatHit(t), S = scaleFor(W, 640);
+  const aimY = lerp(SHELVES[0] + 10, SHELVES[3] - 30, row / 3) + 6 * Math.sin(t * 9);
+  const wandEnd: P = [R25.x - 140, lerp(aimY, 700, 0.35)];
+  const grip: P = [wandEnd[0] - 60, wandEnd[1] + 4];
+  const mouth: P = [wandEnd[0] - 330 * NOZ_S, aimY];
+  const pose = stand(W, {t, x: R25.x, floor: R25.floor, S, flip: true, lean: 10 + 6 * hit, head: 'head-grin', headRot: -4 * hit, spread: 200,
+    hands: () => ({near: grip, far: add(wandEnd, [12, 14]), nearPart: 'hand-near-grab', farPart: 'hand-far-grab'})});
+  // strapped to his back: halfway down the spine, pushed out behind him (he faces left, so behind = +x)
+  const sh = shoulders(W, pose.hip, pose.lean, S, true), back: P = [(sh.neck[0] + pose.hip[0]) / 2 + 95 * S * 2, (sh.neck[1] + pose.hip[1]) / 2];
+  const socket: P = [back[0], back[1] - 380 * CAN_S * 0.42];
+  const b0 = beat(shot.start + 0.05).i, bN = beat(shot.end - 0.3).i;
+  return {socket, back, wandEnd, grip, mouth, aimY, pose, S, lastBeat: audio.beats[bN], b0, n};
+}
+
+export const shot25: Choreo = (_t, frame, shot) => {
+  const t = twos(frame), g = vacuum25(t, shot), S = g.S;
   const items: Item[] = [];
-  BOXES.slice(n).forEach(bx => items.push({sprite: 'sprites/store/ram-box', at: [bx.x, bx.y], scale: BOX_S, size: [220, 150], anchor: [110, 145]}));
-  // the girl, behind him: reaches for a box, then droops as the shelf empties
-  const gS = scaleFor('girl', 430), droop = clamp01(1 - shelfLeft(t) / BOXES.length);
-  const girl = stand('girl', {t, x: 1380, floor: 1040, S: gS, flip: true, lean: 6 + 14 * droop, head: droop > 0.7 ? 'head-X' : 'head-A', spread: 90,
-    hands: sh => ({near: add(sh.near, [lerp(-200, -60, droop) * gS, lerp(-20, 200, droop) * gS]), far: add(sh.far, [20 * gS, 230 * gS]), nearPart: 'hand-near-open', farPart: 'hand-far-open'})});
+  BOXES.slice(g.n).forEach(bx => items.push({sprite: 'sprites/store/ram-box', at: [bx.x, bx.y], scale: BOX_S, size: [220, 150], anchor: [110, 145]}));
+  // the girl, behind him, hugging the one box she picked — until the last beat sucks it away
+  const gS = scaleFor('girl', 430), sucked = clamp01((t - g.lastBeat) / 0.35), after = clamp01((t - g.lastBeat - 0.35) / 0.8);
+  const girl = stand('girl', {t, x: 1380, floor: 1040, S: gS, flip: true, lean: sucked > 0 ? lerp(-6, 16, after) : 2, head: after > 0.5 ? 'head-X' : 'head-A', spread: 90,
+    hands: sh => sucked <= 0
+      ? {near: add(sh.near, [-90 * gS, 190 * gS]), far: add(sh.far, [-60 * gS, 200 * gS]), nearPart: 'hand-near-open', farPart: 'hand-far-open'}
+      : {near: add(sh.near, [lerp(-120, -60, after) * gS, lerp(40, 230, after) * gS]), far: add(sh.far, [20 * gS, 230 * gS]), nearPart: 'hand-near-open', farPart: 'hand-far-open'}});
   items.push({who: 'girl', pose: girl, scale: gS});
-  // Ram: arms out to the shelf on each beat, then hugging the growing stack
-  const reach = hit, stackBase: P = [x - 70, floor - 470 * S * 1.15];
-  const pose = stand(W, {t, x, floor, S, flip: true, lean: 18 * reach - 6, head: 'head-grin', headRot: -8 * reach, spread: 200,
-    hands: () => ({near: [lerp(stackBase[0] - 40, 720, reach), lerp(stackBase[1] + 30, 640, reach)], far: [lerp(stackBase[0] + 40, 760, reach), lerp(stackBase[1] + 40, 700, reach)],
-      nearPart: reach > 0.4 ? 'hand-near-open' : 'hand-near-grab', farPart: reach > 0.4 ? 'hand-far-open' : 'hand-far-grab'})});
-  const shown = Math.min(n, 9);   // the armful is drawn behind him, so his face and arms read in front of it
-  for (let i = 0; i < shown; i++) {
-    const wob = Math.sin(t * 6 + i * 0.7) * i * 1.4;
-    items.push({sprite: 'sprites/store/ram-box', at: [stackBase[0] + wob, stackBase[1] - i * 52], scale: 0.5, size: [220, 150], anchor: [110, 145], rot: wob * 0.6});
+  if (sucked < 1) {
+    const from = add(girl.hands.near, [-10, -20]), at: P = [lerp(from[0], g.mouth[0], sucked * sucked), lerp(from[1], g.mouth[1], sucked) - 120 * Math.sin(Math.PI * sucked)];
+    items.push({sprite: 'sprites/store/ram-box', at, scale: 0.42 * (1 - 0.7 * sucked), size: [220, 150], anchor: [110, 75], rot: 400 * sucked});
   }
-  items.push({who: W, pose, scale: S});
+  // canister on his back, Ram aiming the nozzle, the hose between
+  items.push({sprite: 'sprites/vacuum/canister', at: g.back, scale: CAN_S, size: [300, 380], anchor: [150, 190], rot: g.pose.lean * 0.5});
+  items.push({who: W, pose: g.pose, scale: S});
+  const d = Math.hypot(g.wandEnd[0] - g.socket[0], g.wandEnd[1] - g.socket[1]);
+  items.push({hose: {a: g.socket, b: g.wandEnd, L: d * 1.25, side: -1, width: 26, fill: '#6e5536', ink: '#17121c'}});   // sags down under its own weight
+  const ang = Math.atan2(g.mouth[1] - g.wandEnd[1], g.wandEnd[0] - g.mouth[0]) * 180 / Math.PI;
+  items.push({sprite: 'sprites/vacuum/nozzle', at: g.wandEnd, scale: NOZ_S, size: [360, 140], anchor: [12, 70], flip: true, rot: -ang});
+  // boxes whooshing off the shelf into the nozzle (the last 0.3 s of grabs), with suction lines
+  for (let k = Math.max(0, g.n - 6); k < g.n; k++) {
+    const bx = BOXES[k], tk = grabTime(k, shot), u = clamp01((t - tk) / 0.3);
+    if (u >= 1) continue;
+    items.push({sprite: 'sprites/store/ram-box', at: [lerp(bx.x, g.mouth[0], u * u), lerp(bx.y - 70, g.mouth[1], u)], scale: BOX_S * (1 - 0.75 * u), size: [220, 150], anchor: [110, 75], rot: 300 * u});
+  }
+  for (let k = 0; k < 6; k++) {
+    const a = ((t * 3 + k / 6) % 1), y = g.mouth[1] + (k - 2.5) * 22;
+    items.push({draw: {kind: 'line', at: [g.mouth[0] - 260 * (1 - a), y + (k - 2.5) * 10 * (1 - a)], to: [g.mouth[0] - 260 * (1 - a) + 70, y], size: 4, color: '#fffbe6', opacity: a * 0.8}});
+  }
   return items;
 };
+/** When box k leaves the shelf. */
+function grabTime(k: number, shot: {start: number; end: number}): number {
+  const b0 = beat(shot.start + 0.05).i, bN = beat(shot.end - 0.3).i, per = Math.ceil(BOXES.length / Math.max(1, bN - b0));
+  return audio.beats[b0 + 1 + Math.floor(k / per)];
+}
 
 /** 26: shoves SSDs into the sack on the beats; on "umm, stash" he freezes and squints at the camera. */
 export const shot26: Choreo = (_t, frame) => {

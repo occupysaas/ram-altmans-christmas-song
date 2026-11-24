@@ -59,3 +59,42 @@ test('39: Ram stands in the middle and the crowd circles him without ever touchi
   assert.ok(spread(t1 + 0.25) > spread(t1 - 0.02) * 1.15, 'they burst outward on the slam');
   assert.ok(slamTimes(s).some(q => shot39crowd(q + 0.2, s).some(r => r.flat)), 'one gets flattened');
 });
+
+import {shot10, SHELF10} from '../src/shots/ram-side-shots.ts';
+
+test('10: the shelf starts full and loses exactly one item per grab, each grabbed by the hand', () => {
+  const s = shot('10'), onShelf = t => shot10(t, Math.round(t * 24), s).filter(i => i.sprite && i.shelf).length;
+  assert.equal(SHELF10.length, 6);
+  assert.equal(onShelf(s.start + 0.05), 6);
+  SHELF10.forEach((it, k) => {
+    assert.equal(onShelf(it.at - 0.12), 6 - k, `before grab ${k}`);   // held frames lag real time by up to 0.125 s
+    assert.equal(onShelf(it.at + 0.15), 5 - k, `after grab ${k}`);
+    let best = 1e9;
+    for (let f = Math.floor((it.at - 0.2) * 24); f <= Math.ceil((it.at + 0.2) * 24); f++)
+      for (const i of shot10(f / 24, f, s)) if (i.hose) best = Math.min(best, Math.hypot(i.hose.b[0] - it.pos[0], i.hose.b[1] - it.pos[1]));
+    assert.ok(best < 20, `hand misses item ${k} by ${best.toFixed(0)}`);
+  });
+});
+
+import {shot25, vacuum25, shelfLeft} from '../src/shots/ram-side-shots.ts';
+import {twos} from '../src/shots/kit.ts';
+
+test('25: the vacuum hose runs from the canister on his back to the nozzle in his hand, every frame', () => {
+  const s = shot('25');
+  for (let f = Math.round(s.start * 24); f < s.end * 24; f += 2) {
+    const items = shot25(f / 24, f, s), g = vacuum25(twos(f), s), hose = items.find(i => i.hose);   // the scene runs on held frames
+    assert.ok(hose, `no hose at frame ${f}`);
+    assert.ok(Math.hypot(hose.hose.a[0] - g.socket[0], hose.hose.a[1] - g.socket[1]) < 1 && Math.hypot(hose.hose.b[0] - g.wandEnd[0], hose.hose.b[1] - g.wandEnd[1]) < 1, `hose detached at ${f}`);
+    const ram = items.find(i => i.who === 'ram-side'), dh = Math.hypot(ram.pose.hands.near[0] - g.grip[0], ram.pose.hands.near[1] - g.grip[1]);
+    assert.ok(dh < 2, `hand off the wand by ${dh.toFixed(1)} at ${f}`);
+  }
+  assert.equal(shelfLeft(s.end - 0.05), 0);
+});
+
+test("25: the girl's box is sucked out of her hands on the last beat", () => {
+  const s = shot('25'), last = vacuum25(s.start, s).lastBeat;
+  const boxNearHer = t => { const it = shot25(t, Math.round(t * 24), s), g = it.find(i => i.who === 'girl');
+    return it.some(i => String(i.sprite ?? '').endsWith('ram-box') && Math.hypot(i.at[0] - g.pose.hands.near[0], i.at[1] - g.pose.hands.near[1]) < 90); };
+  assert.ok(boxNearHer(last - 0.3), 'she holds a box before');
+  assert.ok(!boxNearHer(last + 0.5), 'box gone after');
+});
