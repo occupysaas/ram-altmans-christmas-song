@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "soundFile": "/mnt/nvme2/code/musicvideos/Ram Altman's Christmas Song/stems/rhubarb/line46.wav",
+    "duration": 3.75
+  },
+  "mouthCues": [
+    { "start": 0.00, "end": 0.12, "value": "X" },
+    { "start": 0.12, "end": 0.92, "value": "B" },
+    { "start": 0.92, "end": 1.18, "value": "X" },
+    { "start": 1.18, "end": 1.42, "value": "C" },
+    { "start": 1.42, "end": 1.49, "value": "B" },
+    { "start": 1.49, "end": 1.93, "value": "X" },
+    { "start": 1.93, "end": 2.26, "value": "B" },
+    { "start": 2.26, "end": 2.34, "value": "F" },
+    { "start": 2.34, "end": 2.48, "value": "C" },
+    { "start": 2.48, "end": 2.62, "value": "B" },
+    { "start": 2.62, "end": 2.76, "value": "C" },
+    { "start": 2.76, "end": 2.83, "value": "B" },
+    { "start": 2.83, "end": 3.04, "value": "G" },
+    { "start": 3.04, "end": 3.74, "value": "C" },
+    { "start": 3.74, "end": 3.75, "value": "X" }
+  ]
+}

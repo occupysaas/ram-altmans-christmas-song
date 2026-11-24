@@ -103,7 +103,7 @@ test('collapse is complete before the TV switches off', () => {
 });
 
 import {CHOREO} from '../src/shots/index.ts';
-export const DONE_A = ['08', '10', '13', '15', '16', '21', '22', '24', '25', '26', '27', '31', '34', '39', '43', '46', '47', '48', '63'];
+export const DONE_A = ['08', '10', '13', '15', '16', '21', '22', '24', '25', '26', '27', '31', '34', '39', '43', '46', '47', '48', '58', '59', '63'];
 
 test('every tier-A shot has a plate, its puppets and a choreography module', () => {
   for (const id of DONE_A) {
@@ -130,4 +130,30 @@ test('sleigh teams face their direction of travel', () => {
       assert.equal(b.flip, dx < 0, `shot ${id} at ${t.toFixed(2)}: dx ${dx.toFixed(1)} flip ${b.flip}`);
     }
   }
+});
+
+import {mouthAt} from '../src/lipsync.ts';
+import {doorShake} from '../src/fx/door.ts';
+
+test('ending mouths are closed outside lines 46-48', () => {
+  const L = lyr();
+  for (const t of [L[46].start - 1, 223.4, L[48].end + 0.6, 150]) {
+    assert.equal(mouthAt('girl', t), 'X', `girl at ${t}`);
+    assert.equal(mouthAt('ram', t), 'X', `ram at ${t}`);
+  }
+});
+
+test('girl speaks lines 46-47, Ram speaks line 48', () => {
+  const L = lyr(), talking = (who, a, b) => { for (let t = a; t < b; t += 1 / 24) if (mouthAt(who, t) !== 'X') return true; return false; };
+  assert.ok(talking('girl', L[46].start, L[46].end) && talking('girl', L[47].start, L[47].end));
+  assert.ok(!talking('ram', L[46].start, L[47].end), 'Ram silent while the girl speaks');
+  assert.ok(talking('ram', L[48].start, L[48].end));
+  assert.ok(!talking('girl', L[48].start, L[48].end), 'girl silent while Ram speaks');
+});
+
+test('door shakes on each knock', () => {
+  const k = read('src/timing/impact.json').knocks;
+  for (const t of k) { assert.ok(Math.abs(doorShake(t + 0.03)) > 2, `knock ${t}`); }
+  assert.equal(doorShake(k[0] - 0.2), 0);
+  assert.ok(Math.abs(doorShake(k[2] + 0.6)) < 0.5);
 });

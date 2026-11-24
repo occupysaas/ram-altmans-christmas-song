@@ -629,8 +629,7 @@
   "sfx": [],
   "tier": "B",
   "fx": [
-   "windowsDim",
-   "ramChutes"
+   "windowsDim"
   ],
   "action": "back shot: Ram from behind at the window, scheming; bob and sway, evil-chuckle shoulder shake on 'down below'",
   "plate": "plates/13b.png"
@@ -2831,7 +2830,7 @@
   "plate": "plates/59.png",
   "puppets": [
    "girl",
-   "ram-side"
+   "ram-34"
   ]
  },
  {
