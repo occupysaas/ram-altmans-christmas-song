@@ -1689,11 +1689,13 @@
    }
   ],
   "sfx": [],
-  "tier": "B",
-  "fx": [
-   "clamChomp"
-  ],
-  "action": "clam machine chomps on beats"
+  "tier": "A",
+  "fx": [],
+  "action": "the whole golden machine-creature snaps shut on every beat (squash) and springs open (stretch); bill crumbs puff out",
+  "plate": "plates/35.png",
+  "puppets": [
+   "layers-35"
+  ]
  },
  {
   "id": "36",
@@ -1735,9 +1737,13 @@
    }
   ],
   "sfx": [],
-  "tier": "C",
+  "tier": "A",
   "fx": [],
-  "action": "carolers"
+  "action": "carolers (cut-out layers) sway on the bar, bob on the beat, open wide on every sung word; music notes float up",
+  "plate": "plates/36.png",
+  "puppets": [
+   "layers-36"
+  ]
  },
  {
   "id": "37",
@@ -1869,10 +1875,15 @@
   "sfx": [],
   "tier": "A",
   "fx": [],
-  "action": "stamp slams on 'Squashing'; little guys scatter",
+  "action": "Ram stamps every two beats; 14 townsfolk run about in panic, scatter from each slam, three get flattened and pop back",
   "plate": "plates/39.png",
   "puppets": [
-   "ram-side"
+   "ram-side",
+   "dad",
+   "mum",
+   "kid1",
+   "kid2",
+   "elf"
   ]
  },
  {
@@ -1885,13 +1896,13 @@
   "camera": {
    "from": {
     "x": 0.42,
-    "y": 0.4466666666666667,
+    "y": 0.58,
     "zoom": 1.2,
     "rot": 0
    },
    "to": {
-    "x": 0.45166666666666666,
-    "y": 0.4466666666666667,
+    "x": 0.47,
+    "y": 0.58,
     "zoom": 1.2,
     "rot": 0
    }
@@ -1904,9 +1915,9 @@
     "from": 0,
     "to": 6,
     "surface": {
-     "x": 0.05,
-     "y": 0.05,
-     "w": 0.75,
+     "x": 0.08,
+     "y": 0.22,
+     "w": 0.7,
      "h": 0.3,
      "rot": 0
     },

@@ -8,11 +8,11 @@ import type {Choreo, Item, Pose} from './types.ts';
 import {beat, beatHit, scaleFor, stand, twos} from './kit.ts';
 
 /** A walking/running figure along a (possibly sloped) floor: y = y0 + slope * (x - x0). */
-function walker(who: string, lt: number, o: {x0: number; dist: number; y0: number; slope?: number; S: number; steps: number; stepDur: number; lean?: number;
+function walker(who: string, lt: number, o: {x0: number; dist: number; y0: number; slope?: number; floorAt?: (x: number) => number; S: number; steps: number; stepDur: number; lean?: number;
   head?: string; hold?: string}): {pose: Pose; S: number} {
   const r = PARTS[who]._rig, slope = o.slope ?? 0;
   const w = walkCycle({t: lt, t0: 0, x0: o.x0, dist: o.dist, steps: o.steps, stepDur: o.stepDur, floor: 0, lift: r.lift * o.S});
-  const yAt = (x: number) => o.y0 + slope * (x - o.x0);
+  const yAt = o.floorAt ?? ((x: number) => o.y0 + slope * (x - o.x0));
   const feet = {near: [w.feet.near[0], yAt(w.feet.near[0]) + w.feet.near[1]] as P, far: [w.feet.far[0], yAt(w.feet.far[0]) + w.feet.far[1]] as P};
   const lean = (o.lean ?? 6) + (w.stopped ? followThrough(w.since, 8, 11, 4.5) : 0);
   const hip: P = [w.x + (w.stopped ? followThrough(w.since, 20, 11, 4.5) : 0), yAt(w.x) - r.hipHeight * o.S - 20 * o.S * w.hipDip];
@@ -22,12 +22,20 @@ function walker(who: string, lt: number, o: {x0: number; dist: number; y0: numbe
     hands: {near, far, nearPart: o.hold ? 'hand-near-grab' : 'hand-near-open', farPart: 'hand-far-open'}, flip: false}};
 }
 
-/** 40: Christmas morning — the family runs down the stairs left to right, one after another. */
+/** Plate 40's staircase: the top of each carpeted tread (still px), stepping down left to right. */
+const TREADS: [number, number][] = [[165, 900], [240, 932], [345, 968], [465, 1005], [585, 1040], [720, 1070], [900, 1105], [1045, 1140], [1165, 1170]];
+export function stairs40(x: number): number {
+  if (x < 100) return 900 - 0.33 * (100 - x);           // the flight continues up out of frame
+  for (const [xe, y] of TREADS) if (x < xe) return y;
+  return 1200;
+}
+
+/** 40: Christmas morning — the family runs down the stairs left to right, one after another, feet on the treads. */
 export const shot40: Choreo = (_t, frame, shot) => {
   const lt = twos(frame) - shot.start;
   const fam: [string, number, number][] = [['kid2', 0.0, 300], ['kid1', 0.2, 300], ['mum', 0.45, 560], ['dad', 0.7, 600]];
   return fam.map(([who, delay, h], i) => {
-    const w = walker(who, lt - delay, {x0: 60 - 120 * i, dist: 900, y0: 620 + 40 * i, slope: 0.42, S: scaleFor(who, h), steps: 8, stepDur: 0.17, lean: 12, head: 'head-happy'});
+    const w = walker(who, lt - delay, {x0: 60 - 120 * i, dist: 900, y0: 0, floorAt: stairs40, S: scaleFor(who, h), steps: 8, stepDur: 0.17, lean: 12, head: 'head-happy'});
     return {who, pose: w.pose, scale: w.S};
   }).reverse();
 };

@@ -85,7 +85,7 @@ shots:
    brief: "Ram Altman lounging on a towering throne built from stacked graphics cards with glowing fans, seen from a low angle."}
 - {n: 39, name: squash, anchor: {line: 31}, cam: shake, tower: null, surf: [0.03, 0.52, 0.8, 0.36, -3], style: narration,
    brief: "Ram Altman bringing down a giant rubber stamp on tiny townsfolk (a shopkeeper, kids with a garage workbench) scattering; a blank envelope fluttering in the foreground."}
-- {n: 40, name: christmas-morning, anchor: {line: 32}, cam: panRight, tower: 4, surf: [0.05, 0.05, 0.75, 0.3, 0], style: narration,
+- {n: 40, name: christmas-morning, anchor: {line: 32}, cam: [[.42, .58, 1.2, 0], [.47, .58, 1.2, 0]], tower: 4, surf: [0.08, 0.22, 0.7, 0.3, 0], style: narration,
    brief: "Christmas morning: the family running downstairs left to right in pyjamas, sunlight through the window where the monstrous tower smokes on the hill."}
 - {n: 41, name: overhead-floor, anchor: {line: 32, word: 7}, cam: rotate, tower: null, surf: [0.2, 0.35, 0.5, 0.3, 0], style: narration,
    brief: "Straight-down overhead view of the bare floor under the tree, four sad faces peering down from the edges of frame."}
