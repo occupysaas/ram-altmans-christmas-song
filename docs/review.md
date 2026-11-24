@@ -64,3 +64,16 @@ Plan: `docs/superpowers/plans/2026-11-24-pass-3.md` (+ mid-run requests).
 - 2:58-3:05 RAM falls off the sleigh. 3:12-3:21 elves bob + rope snap / band-aid / box brigade / balloon pop. 3:25 ring around the RAM monument.
 - 3:34 windmills, water, calm blackout, chimney smoke. 3:38 door close-up removed. 4:10 HA HA HA. Ending: no dancers.
 - Look: game-style bloom on every light; mood darkening lit by each scene's own lights in 07, 10, 18, 19, 24, 25, 26, 36, 51, 54, 60, 62.
+
+## Pass 4 (render 2026-11-24)
+
+`out/ram-altman.mp4`: 1920x1080, 24 fps, AAC, 259.600 s. Preview 23.1 MB. Tests 116/116.
+Plan: `docs/superpowers/plans/2026-11-24-pass-4.md`.
+
+- 0:10 cat asleep and breathing, snow only in the window, data center glowing and smoking out there; no indoor snow anywhere.
+- 0:14 text up, 0:18 text right, 0:24 horns blow from the tower + smaller/lower text.
+- 0:34 Sam's arm from shoulder to the hand on the desk. 0:46 coding: city bounces, eyes squint, hands type, words at the top.
+- 0:51 fan text down. 0:55 sideways walk removed: Ram rises into the back shot, slow zoom over both lines. 0:58 girl blinks.
+- 1:12 lyric on a twisted-end scroll. 1:17 text down. 1:38 leaf-blower tube opening left. 1:52 text down, lines removed, glow.
+- 1:57 elves text on the middle belts. 2:06 star text up. 2:10 register text smaller. 2:48 shock mouth + shaking. 2:53 panic mouth + shaking.
+- Mood darkness dialled back (0.28), every tree bulb glows. 3:25 mansion behind the town.
