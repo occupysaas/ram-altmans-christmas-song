@@ -10,6 +10,7 @@ import {isSprite, isHose, isShade, isTeam, isFront} from './shots/types';
 import {SleighTeam} from './puppet/Quadruped';
 import {Hose} from './puppet/Hose';
 import {doorShake} from './fx/door';
+import {Overlays} from './fx/Overlays';
 import props from '../public/sprites/props/props.json';
 
 export const PROG_W = 960, PROG_H = 720;
@@ -34,6 +35,7 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
       <Img style={{width: STILL_W, height: STILL_H, display: 'block', transform: shot.fx?.includes('doorKnock') ? `translateX(${doorShake(t)}px)` : undefined}} src={staticFile(image ?? (CHOREO[shot.id] && shot.plate ? shot.plate : shot.fx?.includes('star') ? 'plates/32.png' : shot.fx?.includes('collapse') ? 'plates/65.png' : shot.still))} />
       {shot.fx?.includes('tower') && <Tower shot={shot} t={t} />}
       {shot.fx?.includes('star') && <Star t={t} />}
+      <Overlays shot={shot} t={t} />
       {CHOREO[shot.id] && <svg width={STILL_W} height={STILL_H} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
         {CHOREO[shot.id](t, frame, shot).map((p, i) => {
           if (isFront(p)) return <g key={i}><clipPath id={`front-${shot.id}`}><rect x={0} y={p.front.y} width={STILL_W} height={STILL_H - p.front.y} /></clipPath>

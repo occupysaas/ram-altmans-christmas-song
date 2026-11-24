@@ -10,6 +10,7 @@ import {PROG_H, PROG_W, Still, type Shot} from './Still';
 export const FPS = 24;
 const shots = shotsJson as Shot[];
 import {TV_OFF} from './fx/fxMath';
+import impact from './timing/impact.json';
 
 /** Old-TV switch-off: squash to a bright horizontal line, then to a dot that fades. */
 function tvOff(t: number): {sx: number; sy: number; glow: number; dot: number} {
@@ -30,7 +31,16 @@ export function Animatic() {
       <Audio src={staticFile('song.wav')} />
       <AbsoluteFill style={{background: '#0b0d1a', transform: `scale(${off.sx}, ${off.sy})`,
         filter: `brightness(${1 + off.glow * 4})`}}>
-      <Still shot={shot} t={t} frame={frame} />
+      {(() => {
+        // CRT vertical-hold roll for 0.35 s at the start of shots tagged vroll; micro-shake + flash on the "stash" freeze
+        const vr = (shot as any).fx?.includes('vroll') ? Math.max(0, 1 - (t - shot.start) / 0.35) : 0;
+        const st = t - impact.stash, shake = st >= 0 && st < 0.15 ? Math.sin(st * 160) * 6 : 0;
+        return <div style={{position: 'absolute', inset: 0, transform: `translate(${shake}px, ${vr > 0 ? (1 - (1 - vr) ** 2) * PROG_H * 0.6 : 0}px)`}}>
+          <Still shot={shot} t={t} frame={frame} />
+          {vr > 0 && <div style={{position: 'absolute', left: 0, right: 0, top: -40, height: 40, background: '#000'}} />}
+          {st >= 0 && st < 2 / 24 && <div style={{position: 'absolute', inset: 0, background: '#fff', opacity: 0.85}} />}
+        </div>;
+      })()}
       <Snow frame={frame} w={PROG_W} h={PROG_H} density={shot.towerStage != null ? 1 : 0.25} />
       <Title t={t} w={PROG_W} />
       <Ident t={t} frame={frame} w={PROG_W} h={PROG_H} />

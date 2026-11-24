@@ -157,3 +157,13 @@ test('door shakes on each knock', () => {
   assert.equal(doorShake(k[0] - 0.2), 0);
   assert.ok(Math.abs(doorShake(k[2] + 0.6)) < 0.5);
 });
+
+import {FX_IMPL, NEEDS_REGION} from '../src/fx/registry.ts';
+
+test('every fx named in shots.json has an implementation and a region', () => {
+  const regions = read('docs/fx-regions.json');
+  for (const s of shots()) for (const f of s.fx) {
+    assert.ok(FX_IMPL.includes(f), `shot ${s.id}: no implementation for fx "${f}"`);
+    if (NEEDS_REGION.includes(f)) assert.ok(regions[s.id]?.[f], `shot ${s.id}: no region for fx "${f}"`);
+  }
+});
