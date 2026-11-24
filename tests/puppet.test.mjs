@@ -67,7 +67,7 @@ test('every part a choreography references exists in its parts.json', () => {
     const s = shots.find(x => x.id === id);
     for (let k = 0; k <= 12; k++) {
       const t = s.start + (s.end - s.start) * k / 12, frame = Math.floor(t * 24);
-      for (const p of choreo(t, frame, s)) {
+      for (const p of choreo(t, frame, s).filter(i => i.who)) {
         const sheet = PARTS[p.who];
         assert.ok(sheet, `shot ${id}: unknown puppet ${p.who}`);
         for (const name of ['torso', 'foot-near', 'foot-far', p.pose.head, p.pose.hands.nearPart, p.pose.hands.farPart])
@@ -76,4 +76,34 @@ test('every part a choreography references exists in its parts.json', () => {
       }
     }
   }
+});
+
+import {groove, DOWNBEAT_OFFSET} from '../src/puppet/groove.ts';
+const audioJ = JSON.parse(fs.readFileSync('src/timing/audio.json', 'utf8'));
+const sections = JSON.parse(fs.readFileSync('src/timing/sections.json', 'utf8'));
+
+test('bob peaks on each beat (tick) and is lowest just before the next', () => {
+  const v1 = sections.find(s => s.name === 'Verse 1');
+  const beats = audioJ.beats.filter(b => b > v1.start + 2 && b < v1.end - 2).slice(0, 8);
+  for (let i = 0; i < beats.length - 1; i++) {
+    const at = groove(beats[i] + 0.01).bob, before = groove(beats[i + 1] - 0.02).bob;
+    assert.ok(at > 0.8, `bob at beat ${beats[i]}: ${at}`);
+    assert.ok(before < 0.15, `bob before next beat: ${before}`);
+  }
+});
+
+test('sway changes direction every 4 beats, on the bar', () => {
+  const v1 = sections.find(s => s.name === 'Verse 1');
+  const idx = audioJ.beats.map((b, i) => [b, i]).filter(([b, i]) => b > v1.start + 2 && b < v1.end - 6 && (i - DOWNBEAT_OFFSET) % 4 === 0);
+  for (const [b] of idx.slice(0, 4)) {
+    const mid1 = groove(b + 0.9).sway, mid2 = groove(b + 0.9 + 4 * 0.535).sway;   // ~2 beats into this bar vs the next
+    assert.ok(Math.sign(mid1) !== Math.sign(mid2) && Math.abs(mid1) > 0.5, `bar at ${b}: ${mid1} vs ${mid2}`);
+  }
+});
+
+test('groove is on in verses and the bridge, off in the choruses', () => {
+  const mid = n => { const s = sections.find(x => x.name === n); return (s.start + s.end) / 2; };
+  for (const n of ['Verse 1', 'Verse 2', 'Bridge']) assert.ok(groove(mid(n)).active, n);
+  for (const n of ['Chorus 1', 'Chorus 2']) assert.ok(!groove(mid(n)).active, n);
+  assert.ok(groove(mid('Chorus 1'), true).active, 'per-shot override switches it on');
 });

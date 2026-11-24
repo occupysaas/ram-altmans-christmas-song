@@ -1,0 +1,194 @@
+{
+ "foot-far": {
+  "size": [
+   349,
+   210
+  ],
+  "ankle": [
+   79,
+   25
+  ]
+ },
+ "foot-near": {
+  "size": [
+   349,
+   195
+  ],
+  "ankle": [
+   78,
+   24
+  ]
+ },
+ "hand-far-fist": {
+  "size": [
+   272,
+   211
+  ],
+  "wrist": [
+   16,
+   121
+  ]
+ },
+ "hand-far-grab": {
+  "size": [
+   364,
+   312
+  ],
+  "wrist": [
+   16,
+   136
+  ]
+ },
+ "hand-far-open": {
+  "size": [
+   376,
+   237
+  ],
+  "wrist": [
+   16,
+   155
+  ]
+ },
+ "hand-near-fist": {
+  "size": [
+   265,
+   198
+  ],
+  "wrist": [
+   16,
+   108
+  ]
+ },
+ "hand-near-grab": {
+  "size": [
+   350,
+   319
+  ],
+  "wrist": [
+   16,
+   186
+  ]
+ },
+ "hand-near-open": {
+  "size": [
+   334,
+   274
+  ],
+  "wrist": [
+   16,
+   168
+  ]
+ },
+ "hand-near-point": {
+  "size": [
+   360,
+   180
+  ],
+  "wrist": [
+   16,
+   95
+  ]
+ },
+ "head-cackle": {
+  "size": [
+   498,
+   561
+  ],
+  "neck": [
+   228,
+   537
+  ]
+ },
+ "head-fake-smile": {
+  "size": [
+   498,
+   561
+  ],
+  "neck": [
+   228,
+   537
+  ]
+ },
+ "head-grin": {
+  "size": [
+   498,
+   561
+  ],
+  "neck": [
+   228,
+   537
+  ]
+ },
+ "head-panic": {
+  "size": [
+   498,
+   561
+  ],
+  "neck": [
+   228,
+   537
+  ]
+ },
+ "head-smirk": {
+  "size": [
+   498,
+   561
+  ],
+  "neck": [
+   228,
+   537
+  ]
+ },
+ "head-squint": {
+  "size": [
+   498,
+   561
+  ],
+  "neck": [
+   228,
+   537
+  ]
+ },
+ "torso": {
+  "size": [
+   385,
+   673
+  ],
+  "neck": [
+   293,
+   36
+  ],
+  "shoulderNear": [
+   177,
+   175
+  ],
+  "shoulderFar": [
+   335,
+   188
+  ],
+  "hipNear": [
+   293,
+   471
+  ],
+  "hipFar": [
+   189,
+   471
+  ]
+ },
+ "_rig": {
+  "armLen": 377,
+  "legLen": 591,
+  "armW": 56,
+  "legW": 66,
+  "reach": 328,
+  "hipHeight": 492,
+  "lift": 180,
+  "colors": {
+   "sleeve": "#8e8b93",
+   "sleeveFar": "#6f6c75",
+   "leg": "#2e2a33",
+   "legFar": "#211e26",
+   "ink": "#17121c"
+  }
+ }
+}

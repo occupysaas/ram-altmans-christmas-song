@@ -5,16 +5,18 @@ import fs from 'node:fs';
 const DUR = 259.6;
 const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 const shots = () => read('src/shots.json');
+const byId = id => shots().find(x => x.id === id);
 const lyr = () => read('src/timing/lyrics-aligned.json');
 const impact = () => read('src/timing/impact.json');
 
-test('65 shots tile 0..259.6 with no gaps', () => {
+test('65 shots plus sub-shot 13b tile 0..259.6 with no gaps', () => {
   const s = shots();
-  assert.equal(s.length, 65);
+  const expected = Array.from({length: 65}, (_, i) => String(i + 1).padStart(2, '0'));
+  expected.splice(13, 0, '13b');
+  assert.deepEqual(s.map(x => x.id), expected);
   assert.equal(s[0].start, 0);
   assert.equal(s.at(-1).end, DUR);
   s.forEach((x, i) => {
-    assert.equal(x.id, String(i + 1).padStart(2, '0'));
     assert.ok(x.end - x.start >= 0.5, `shot ${x.id} too short: ${x.end - x.start}`);
     if (i) assert.equal(x.start, s[i - 1].end);
   });
@@ -46,6 +48,7 @@ test('every lyric entry has a text tone matched to the art under it', () => {
 });
 
 test('no two consecutive shots share a still or an identical camera', () => {
+  // (13b is a new angle of shot 13 with its own plate)
   const s = shots();
   for (let i = 1; i < s.length; i++) {
     assert.notEqual(s[i].still, s[i - 1].still);
@@ -70,16 +73,16 @@ test('lyric surfaces are inside the still', () => {
 });
 
 test('star shot 32 has a glass-break sfx after its line ends', () => {
-  const s = shots()[31]; const star = lyr().find(l => l.text.startsWith('The star on the tree'));
+  const s = byId('32'); const star = lyr().find(l => l.text.startsWith('The star on the tree'));
   const g = s.sfx.find(x => x.name === 'glass-break');
   assert.ok(g && g.t > star.end && g.t < s.end, JSON.stringify(s.sfx));
 });
 
 test('shot 57 starts at the first knock and shot 65 at impact.silence', () => {
   const s = shots(); const i = impact();
-  assert.equal(s[56].start, i.knocks[0]);
-  assert.equal(s[64].start, i.silence);
-  assert.deepEqual(s[56].sfx.filter(x => x.name === 'knock').map(x => x.t), i.knocks);
+  assert.equal(byId('57').start, i.knocks[0]);
+  assert.equal(byId('65').start, i.silence);
+  assert.deepEqual(byId('57').sfx.filter(x => x.name === 'knock').map(x => x.t), i.knocks);
 });
 
 test('towerStage never decreases across shots that have one', () => {

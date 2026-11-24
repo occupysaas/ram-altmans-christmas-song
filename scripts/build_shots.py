@@ -71,15 +71,17 @@ def build():
     for i, s in enumerate(spec):
         st, en = starts[i], (starts[i + 1] if i + 1 < len(spec) else DUR)
         x, y, w, h, rot = s['surf']
-        shots.append({'id': f"{s['n']:02d}", 'name': s['name'],
+        sid = str(s['id']) if 'id' in s else f"{s['n']:02d}"
+        shots.append({'id': sid, 'name': s['name'],
                       'section': next(z['name'] for z in secs if z['start'] <= st < z['end']),
-                      'start': st, 'end': en, 'still': f"stills/{s['n']:02d}.png", 'camera': cam(s['cam'], s['surf']),
+                      'start': st, 'end': en, 'still': s.get('still', f"stills/{sid}.png"), 'camera': cam(s['cam'], s['surf']),
                       'towerStage': s['tower'], 'brief': s['brief'], 'lyrics': [], 'sfx': [],
                       '_surf': {'x': x, 'y': y, 'w': w, 'h': h, 'rot': rot}, '_style': s['style'],
-                      '_tone': tone(f"stills/{s['n']:02d}.png", s['surf'])})
-        m = motion[s['n']]
+                      '_tone': tone(s.get('still', f"stills/{sid}.png"), s['surf'])})
+        m = motion[sid if 'id' in s else s['n']]
         shots[-1].update({'tier': m['tier'], 'fx': m.get('fx', []), 'action': m.get('action', '')})
-        if m['tier'] == 'A': shots[-1].update({'plate': f"plates/{s['n']:02d}.png", 'puppets': m['puppets']})
+        if m['tier'] == 'A': shots[-1].update({'plate': f"plates/{sid}.png", 'puppets': m['puppets']})
+        elif m.get('plate'): shots[-1]['plate'] = f"plates/{sid}.png"
         if s.get('sfx') == 'knocks': shots[-1]['sfx'] += [{'name': 'knock', 't': t} for t in imp['knocks']]
 
     def entry(sh, li, frm, to):
@@ -92,7 +94,7 @@ def build():
             if ks: entry(sh, li, ks[0], ks[-1] + 1)
 
     star = next(l for l in lyr if l['text'].startswith('The star on the tree'))
-    shots[31]['sfx'].append({'name': 'glass-break', 't': round(star['end'] + GLASS_DELAY, 3)})
+    next(x for x in shots if x['id'] == '32')['sfx'].append({'name': 'glass-break', 't': round(star['end'] + GLASS_DELAY, 3)})
     for sh in shots: del sh['_surf'], sh['_style'], sh['_tone']
     return shots
 

@@ -19,6 +19,14 @@ test('every shot has a motion tier and tier-A shots name their puppets', () => {
   }
 });
 
+test('shot 13 cuts to the 13b back shot on "down below"', () => {
+  const s13 = shots().find(x => x.id === '13'), b = shots().find(x => x.id === '13b');
+  const down = lyr()[8].words.find(w => w.w === 'down');
+  assert.equal(s13.end, b.start);
+  assert.ok(Math.abs(b.start - (down.s - 0.25)) < 1e-6, `13b starts ${b.start}`);
+  assert.equal(b.plate, 'plates/13b.png');
+});
+
 test('ident then title play over shot 1 before the first sung word', () => {
   const s1 = shots()[0];
   assert.ok(IDENT.start >= s1.start && IDENT.end < TITLE.start, 'ident before title');
@@ -70,7 +78,7 @@ test('every tower shot has a polygon whose base is inside it', () => {
 import {starState, collapse, TV_OFF} from '../src/fx/fxMath.ts';
 
 test('star shatters on the glass-break frame', () => {
-  const s32 = shots()[31], g = s32.sfx.find(x => x.name === 'glass-break').t;
+  const s32 = shots().find(x => x.id === '32'), g = s32.sfx.find(x => x.name === 'glass-break').t;
   let first = null;
   for (let f = Math.round(s32.start * 24); f < Math.round(s32.end * 24); f++) if (starState(f / 24).phase === 'shatter') { first = f; break; }
   assert.ok(first !== null, 'never shatters');
@@ -92,4 +100,19 @@ test('collapse is complete before the TV switches off', () => {
   assert.ok(end.sy <= 0.12 + 1e-9 && end.rubble === 1, JSON.stringify(end));
   let last = 1;
   for (let t = sil; t < TV_OFF; t += 1 / 24) { const c = collapse(t); assert.ok(c.sy <= last + 1e-9); last = c.sy; }
+});
+
+import {CHOREO} from '../src/shots/index.ts';
+export const DONE_A = ['08', '10', '13', '21', '22', '24', '25', '26', '27', '39', '43', '63'];
+
+test('every tier-A shot has a plate, its puppets and a choreography module', () => {
+  for (const id of DONE_A) {
+    const s = shots().find(x => x.id === id);
+    assert.equal(s.tier, 'A', `shot ${id} should be tier A`);
+    assert.ok(fs.existsSync(`public/${s.plate}`), `shot ${id}: missing ${s.plate}`);
+    assert.ok(CHOREO[id], `shot ${id}: no choreography`);
+    const placed = CHOREO[id](s.start + 0.5, Math.round((s.start + 0.5) * 24), s);
+    // a puppet, or (arms-only shots like 10) that puppet's painted parts
+    assert.ok(placed.some(p => (p.who && s.puppets.includes(p.who)) || s.puppets.some(w => p.sprite?.startsWith(`puppets/${w}/`))), `shot ${id}: choreography draws none of ${s.puppets}`);
+  }
 });

@@ -8,3 +8,4 @@
 - **Only on-screen speech is the ending:** the little girl asking Ram Altman for help ("Merry Christmas, Mr Sam!" / "Please sir, I want to win my school's computer science prize.") and his reply ("Cool, hi-five! I will help, if you hit subscribe!"). Those lines get mouth movement.
 
 - **Rig fix (user, 2026-11-23):** in the spike, both arms were the same exterior right arm. Phase 2 rigs need true near/far limb pairs (mirrored hands, correct thumbs, far limbs darker and behind the torso), checked against the turnaround before animating. See design §6.
+- **No golden parachutes** anywhere (user, 2026-11-23). Shot 13b is just the back-of-head view of Ram scheming at the window, with the town lights dimming.

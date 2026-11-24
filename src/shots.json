@@ -544,7 +544,7 @@
   "name": "window-sneak",
   "section": "Verse 1",
   "start": 54.945,
-  "end": 58.769,
+  "end": 57.168,
   "still": "stills/13.png",
   "camera": {
    "from": {
@@ -566,7 +566,7 @@
    {
     "line": 8,
     "from": 0,
-    "to": 10,
+    "to": 8,
     "surface": {
      "x": 0.22,
      "y": 0.12,
@@ -586,6 +586,54 @@
   "puppets": [
    "ram-side"
   ]
+ },
+ {
+  "id": "13b",
+  "name": "window-back",
+  "section": "Verse 1",
+  "start": 57.168,
+  "end": 58.769,
+  "still": "plates/13b.png",
+  "camera": {
+   "from": {
+    "x": 0.5,
+    "y": 0.5192307692307693,
+    "zoom": 1.04,
+    "rot": 0
+   },
+   "to": {
+    "x": 0.5,
+    "y": 0.46,
+    "zoom": 1.2,
+    "rot": 0
+   }
+  },
+  "towerStage": null,
+  "brief": "Back shot (callback to the window scene in We Dug Our Own Grave): from behind Ram Altman, the back of his head and shoulders big in the foreground, looking head-on out of the arched window down at Byteville; he is scheming, hands clasped behind his back.",
+  "lyrics": [
+   {
+    "line": 8,
+    "from": 8,
+    "to": 10,
+    "surface": {
+     "x": 0.12,
+     "y": 0.05,
+     "w": 0.76,
+     "h": 0.26,
+     "rot": 0
+    },
+    "style": "narration",
+    "tone": "dark"
+   }
+  ],
+  "sfx": [],
+  "tier": "B",
+  "fx": [
+   "windowsDim",
+   "ramChutes"
+  ],
+  "action": "back shot: Ram from behind at the window, scheming; bob and sway, evil-chuckle shoulder shake on 'down below'",
+  "plate": "plates/13b.png"
  },
  {
   "id": "14",

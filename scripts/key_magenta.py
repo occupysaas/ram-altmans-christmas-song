@@ -21,7 +21,9 @@ def key_magenta(source, destination, width=None, margin=20, warm_glow=False):
     # Estimate nearby foreground colors on a small grid, then solve C=aF+(1-a)K.
     # This also recovers yellow rays mixed with magenta, without pink fringes.
     spill = np.maximum(0.0, np.minimum(red, blue) - green)
-    backdrop = (red > 0.90) & (blue > 0.90) & (green < 0.12)
+    # Generated flat keys can contain isolated compression/paint variations.
+    # Include these near-key colors so faint specks cannot enlarge the crop.
+    backdrop = (red > 0.80) & (blue > 0.80) & (green < 0.22)
     small = np.asarray(image.convert("RGB").resize((160, 160)), dtype=np.float32) / 255
     known = (np.minimum(small[:, :, 0], small[:, :, 2]) - small[:, :, 1]) < 0.04
     if not known.any():

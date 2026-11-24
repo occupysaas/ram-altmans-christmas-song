@@ -13,6 +13,7 @@
 11: {tier: B, fx: [terminal], action: "terminal glyph blocks scroll"}
 12: {tier: B, fx: [fans], action: "fans spin with wind lines"}
 13: {tier: A, puppets: [ram-side], fx: [], action: "the approved rubber-hose sneak to the window, settle, peer at the town"}
+13b: {tier: B, plate: true, fx: [windowsDim], action: "back shot: Ram from behind at the window, scheming; bob and sway, evil-chuckle shoulder shake on 'down below'"}
 14: {tier: B, fx: [spinner], action: "laptop spinner turns"}
 15: {tier: A, puppets: [reindeer, ram-sleigh], fx: [], action: "sleigh launches off the tower roof right-to-left"}
 16: {tier: A, puppets: [reindeer, ram-sleigh], fx: [ramStream], action: "rooftop pass; RAM sucked out of chimneys"}

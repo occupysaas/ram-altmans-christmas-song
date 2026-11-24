@@ -9,7 +9,7 @@ const line = lyrics[24];                          // "The star on the tree is a 
 const SPIN0 = line.words.find(w => w.w === 'premium')!.s;  // spins to its cheap back ON "premium tier"
 const SPIN = 0.35;
 const TIP0 = line.end, TIP = 0.16;
-const GLASS = (shots[31].sfx as {name: string; t: number}[]).find(x => x.name === 'glass-break')!.t;
+const GLASS = ((shots as {id: string; sfx: unknown}[]).find(x => x.id === '32')!.sfx as {name: string; t: number}[]).find(x => x.name === 'glass-break')!.t;
 const FALL0 = TIP0 + TIP, FALL_DROP = 640;         // px in still space: from the treetop onto the big snow mound (stays in view)
 const G = 2 * FALL_DROP / ((GLASS - FALL0) ** 2);  // gravity chosen so it leaves frame exactly on the glass break
 const SHATTER = 0.7;
