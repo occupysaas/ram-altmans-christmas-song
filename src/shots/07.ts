@@ -10,7 +10,7 @@ import type {Choreo, Item} from './types.ts';
 const beats: number[] = audio.beats, snares: number[] = (audio.snares as number[][]).map(s => s[0]);
 // WRIST sits just inside the painted hand's wrist, so the cuff overlaps it
 // SHOULDER: on the sweater seam, where the arm leaves the body
-const SHOULDER: P = [835, 748], WRIST: P = [952, 835], SEAT: P = [780, 900], SCREEN: P = [800, 336];
+const SHOULDER: P = [835, 748], WRIST: P = [946, 836], SEAT: P = [780, 900], SCREEN: P = [800, 336];
 const DART = 0.1;
 
 const spot = (i: number): P => [Math.round(90 * (hash(i * 3.1) - 0.5)), Math.round(30 * (hash(i * 7.7) - 0.5))];
@@ -32,10 +32,10 @@ export const shot07: Choreo = (_t, frame) => {
   const wrist = add(WRIST, m), cursor = add(SCREEN, [m[0] * 4, m[1] * 5]);
   const items: Item[] = [
     {layer: m[0] < -15 ? '07/sam-head-left' : '07/sam', dy: bob, rot, pivot: SEAT},
-    // hand + mouse stay on the desk where they're painted; the sleeve is drawn after, its cuff over the wrist
-    {layer: '07/hand', dx: m[0], dy: m[1] + 2 * press, sy: press ? 0.92 : 1, pivot: [1010, 860]},
-    // length = the actual reach (+2%) with the elbow bowing UP, so the sleeve never dips into the desk or keyboard
+    // the sleeve ends at the wrist; the hand is drawn over its end, then a cuff band hides the join
     {hose: {a: shoulder, b: wrist, L: Math.hypot(wrist[0] - shoulder[0], wrist[1] - shoulder[1]) * 1.02, side: -1, width: 32, fill: '#9a9aa0', ink: '#17121c'}},
+    {layer: '07/hand', dx: m[0], dy: m[1] + 2 * press, sy: press ? 0.92 : 1, pivot: [1010, 860]},
+    {draw: {kind: 'ellipse', at: add(wrist, [-6, 0]), size: 0, w: 22, h: 38, color: '#8a8a90', rot: Math.atan2(wrist[1] - shoulder[1], wrist[0] - shoulder[0]) * 180 / Math.PI, cuff: true}},
     {layer: '07/chair-back'},
     {draw: {kind: 'cursor', at: cursor, size: 46}},
   ];

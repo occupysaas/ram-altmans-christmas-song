@@ -4,7 +4,7 @@ export type Pose = {hip: P; lean: number; head: string; headRot: number;
 export type Placed = {who: string; pose: Pose; scale: number};
 /** A free sprite (prop in a hand, falling hat, coins…), drawn in array order with the puppets. */
 /** `sprite` is a path under public/ without .png, e.g. 'sprites/props/gpu'. */
-export type SpriteItem = {sprite: string; at: P; rot?: number; scale: number; opacity?: number; anchor?: P; flip?: boolean; size?: P; sx?: number; sy?: number};
+export type SpriteItem = {behind?: boolean; sprite: string; at: P; rot?: number; scale: number; opacity?: number; anchor?: P; flip?: boolean; size?: P; sx?: number; sy?: number};
 /** A free rubber-hose limb (e.g. arms reaching in from off-screen). */
 export type HoseItem = {hose: {a: P; b: P; L: number; side: 1 | -1; width: number; fill: string; ink: string}};
 /** A soft dark wash over a region (e.g. a town's lights dimming). */
@@ -17,7 +17,7 @@ export type FrontItem = {front: {y: number}};
 export type LayerItem = {layer: string; dx?: number; dy?: number; rot?: number; sx?: number; sy?: number; pivot?: P; opacity?: number};
 /** Small vector marks drawn in code: cursor, click ring, tear, music note, speed line, text, dot, snowflake. */
 export type DrawKind = 'cursor' | 'ring' | 'drop' | 'note' | 'line' | 'text' | 'dot' | 'flake' | 'rect' | 'ellipse';
-export type DrawItem = {draw: {kind: DrawKind; at: P; size: number; to?: P; w?: number; h?: number; pressed?: boolean; tile?: boolean; mouth?: boolean; snow?: boolean; gulp?: boolean; rot?: number; color?: string; ink?: string; opacity?: number; text?: string; font?: string}};
+export type DrawItem = {draw: {kind: DrawKind; at: P; size: number; to?: P; w?: number; h?: number; pressed?: boolean; tile?: boolean; mouth?: boolean; snow?: boolean; gulp?: boolean; cuff?: boolean; rot?: number; color?: string; ink?: string; opacity?: number; text?: string; font?: string}};
 export type Item = Placed | SpriteItem | HoseItem | ShadeItem | TeamItem | FrontItem | LayerItem | DrawItem;
 export const isLayer = (i: Item): i is LayerItem => (i as LayerItem).layer !== undefined;
 export const isDraw = (i: Item): i is DrawItem => (i as DrawItem).draw !== undefined;

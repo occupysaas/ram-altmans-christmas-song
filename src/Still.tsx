@@ -27,29 +27,8 @@ export type Shot = {id: string; start: number; end: number; still: string; camer
 /** A still under an eased camera move, with its in-world lyrics painted onto it. */
 export function Still({shot, t, frame, image, children}: {shot: Shot; t: number; frame: number; image?: string; children?: React.ReactNode}) {
   const {cx, cy, h, rot} = camAt(shot, t);
-  const scale = PROG_W / (2 * h * STILL_W) * (shot.fx?.includes('beatBump') ? beatBumpScale(holdFrame(frame) / 24) : 1);
-  const boom = shot.fx?.includes('explode') ? explode(t).shake : 0;   // the ending's camera shake (programme px)
-  const weave = {x: Math.sin(frame * 1.7) * 0.6 + boom * Math.sin(frame * 7.3), y: Math.cos(frame * 2.3) * 0.5 + boom * 0.7 * Math.cos(frame * 5.9)};
-  const inWorld = shot.lyrics;
-  const ta = holdFrame(frame) / 24;   // animation time on Cuphead-style holds; the camera and lyrics stay smooth
-  return (
-    <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, transformOrigin: '0 0',
-      transform: `translate(${PROG_W / 2 + weave.x}px, ${PROG_H / 2 + weave.y}px) rotate(${rot}deg) scale(${scale}) translate(${-cx * STILL_W}px, ${-cy * STILL_H}px)`}}>
-      <Img style={{width: STILL_W, height: STILL_H, display: 'block', transform: shot.fx?.includes('doorKnock') ? `translateX(${doorShake(t)}px)` : undefined}} src={staticFile(image ?? ((CHOREO[shot.id] || shot.tier === 'B') && shot.plate ? shot.plate : shot.fx?.includes('star') ? 'plates/32.png' : shot.fx?.includes('explode') ? 'plates/65.png' : shot.still))} />
-      {shot.fx?.includes('tower') && <Tower shot={shot} t={ta} />}
-      {shot.fx?.includes('star') && <Star t={ta} />}
-      <Overlays shot={shot} t={ta} ts={t} />
-      {(shot as {mood?: {dark: number}}).mood && <>
-        {/* mood: the scene darkened everywhere except around its own lights, then the lights bloom over it, flickering like candles.
-            The hidden <Img> makes Remotion wait for the mask image, which a CSS mask alone would not. */}
-        <Img src={staticFile(`light/${shot.id}-dark.png`)} style={{position: 'absolute', width: 1, height: 1, opacity: 0}} />
-        <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, background: `rgba(8, 10, 32, ${(shot as {mood?: {dark: number}}).mood!.dark})`,
-          WebkitMaskImage: `url(${staticFile(`light/${shot.id}-dark.png`)})`, maskImage: `url(${staticFile(`light/${shot.id}-dark.png`)})`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%'}} />
-        <Img src={staticFile(`light/${shot.id}-glow.png`)} style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, mixBlendMode: 'screen',
-          opacity: 0.55 + 0.08 * Math.sin(t * 13.1) + 0.05 * Math.sin(t * 31.7 + 1.3)}} />
-      </>}
-      {CHOREO[shot.id] && <svg width={STILL_W} height={STILL_H} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
-        {CHOREO[shot.id](t, frame, shot).map((p, i) => {
+  const items: Item[] = CHOREO[shot.id] ? CHOREO[shot.id](t, frame, shot) : [];
+  const renderItem = (p: Item, i: number): React.ReactNode => {
           if (isFront(p)) return <g key={i}><clipPath id={`front-${shot.id}`}><rect x={0} y={p.front.y} width={STILL_W} height={STILL_H - p.front.y} /></clipPath>
             <image href={staticFile(shot.plate!)} width={STILL_W} height={STILL_H} clipPath={`url(#front-${shot.id})`} /></g>;
           if (isLayer(p)) return <Layer key={i} p={p} />;
@@ -65,7 +44,35 @@ export function Still({shot, t, frame, image, children}: {shot: Shot; t: number;
           return <g key={i} opacity={p.opacity ?? 1} transform={`translate(${p.at[0]},${p.at[1]}) rotate(${p.rot ?? 0}) scale(${(p.flip ? -p.scale : p.scale) * (p.sx ?? 1)},${p.scale * (p.sy ?? 1)}) translate(${-an[0]},${-an[1]})`}>
             <image href={staticFile(`${p.sprite}.png`)} width={w} height={h} />
           </g>;
-        })}
+        };
+
+  const scale = PROG_W / (2 * h * STILL_W) * (shot.fx?.includes('beatBump') ? beatBumpScale(holdFrame(frame) / 24) : 1);
+  const boom = shot.fx?.includes('explode') ? explode(t).shake : 0;   // the ending's camera shake (programme px)
+  const weave = {x: Math.sin(frame * 1.7) * 0.6 + boom * Math.sin(frame * 7.3), y: Math.cos(frame * 2.3) * 0.5 + boom * 0.7 * Math.cos(frame * 5.9)};
+  const inWorld = shot.lyrics;
+  const ta = holdFrame(frame) / 24;   // animation time on Cuphead-style holds; the camera and lyrics stay smooth
+  return (
+    <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, transformOrigin: '0 0',
+      transform: `translate(${PROG_W / 2 + weave.x}px, ${PROG_H / 2 + weave.y}px) rotate(${rot}deg) scale(${scale}) translate(${-cx * STILL_W}px, ${-cy * STILL_H}px)`}}>
+      <Img style={{width: STILL_W, height: STILL_H, display: 'block', transform: shot.fx?.includes('doorKnock') ? `translateX(${doorShake(t)}px)` : undefined}} src={staticFile(image ?? ((CHOREO[shot.id] || shot.tier === 'B') && shot.plate ? shot.plate : shot.fx?.includes('star') ? 'plates/32.png' : shot.fx?.includes('explode') ? 'plates/65.png' : shot.still))} />
+      {/* items flagged `behind` (e.g. 06's horns) go behind the tower, so the building covers their ends */}
+      {CHOREO[shot.id] && items.some(i => (i as {behind?: boolean}).behind) && <svg width={STILL_W} height={STILL_H} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
+        {items.filter(i => (i as {behind?: boolean}).behind).map(renderItem)}
+      </svg>}
+      {shot.fx?.includes('tower') && <Tower shot={shot} t={ta} />}
+      {shot.fx?.includes('star') && <Star t={ta} />}
+      <Overlays shot={shot} t={ta} ts={t} />
+      {(shot as {mood?: {dark: number}}).mood && <>
+        {/* mood: the scene darkened everywhere except around its own lights, then the lights bloom over it, flickering like candles.
+            The hidden <Img> makes Remotion wait for the mask image, which a CSS mask alone would not. */}
+        <Img src={staticFile(`light/${shot.id}-dark.png`)} style={{position: 'absolute', width: 1, height: 1, opacity: 0}} />
+        <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, background: `rgba(8, 10, 32, ${(shot as {mood?: {dark: number}}).mood!.dark})`,
+          WebkitMaskImage: `url(${staticFile(`light/${shot.id}-dark.png`)})`, maskImage: `url(${staticFile(`light/${shot.id}-dark.png`)})`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%'}} />
+        <Img src={staticFile(`light/${shot.id}-glow.png`)} style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, mixBlendMode: 'screen',
+          opacity: 0.55 + 0.08 * Math.sin(t * 13.1) + 0.05 * Math.sin(t * 31.7 + 1.3)}} />
+      </>}
+      {CHOREO[shot.id] && <svg width={STILL_W} height={STILL_H} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
+        {items.filter(i => !(i as {behind?: boolean}).behind).map(renderItem)}
       </svg>}
       {children}
       {inWorld.map((e, i) => {

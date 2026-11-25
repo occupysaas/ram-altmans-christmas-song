@@ -263,6 +263,7 @@
   "fx": [
    "tower"
   ],
-  "action": "low angle tower; bumps on kicks, smoke plume"
+  "action": "low angle tower; bumps on kicks, smoke plume",
+  "towerMask": "plates/06-towermask.png"
  }
 ]

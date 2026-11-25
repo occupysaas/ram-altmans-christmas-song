@@ -68,7 +68,7 @@ export function Tower({shot, t}: {shot: {id: string; still: string; towerStage: 
       {(shot as {towerBehind?: boolean}).towerBehind && <Img src={staticFile(`plates/${shot.id}-front.png`)} style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H}} />}
     </>;
   }
-  const mask = maskUrl(spec.poly);
+  const tm = (shot as {towerMask?: string}).towerMask, mask = tm ? `url(${staticFile(tm)})` : maskUrl(spec.poly);
   return (
     <>
       <div style={{position: 'absolute', left: 0, top: 0, width: STILL_W, height: STILL_H, transformOrigin: `${bx}px ${by}px`,

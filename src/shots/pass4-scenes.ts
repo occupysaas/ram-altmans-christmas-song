@@ -52,7 +52,7 @@ export const shot06: Choreo = (_t, frame) => {
   HORNS06.forEach(([at, dir], i) => {
     const pos: P = [at[0] + dir * lerp(-120, 0, out), at[1] - 14 * blast], ang = -(26 + 6 * blast), len = 470 * 0.56;
     // the blast pose is held for at least one stop-motion hold, so no hit is skipped
-    items.push({sprite: `sprites/horn/${blast > 0.4 || (sinceHit < 0.15 && t < hits[hits.length - 1] + 0.3) ? 'horn-b' : 'horn'}`, at: pos, scale: 0.56 * (1 + 0.06 * blast) * out, size: [520, 260], anchor: [40, 130], flip: dir < 0, rot: dir * ang});
+    items.push({behind: true, sprite: `sprites/horn/${blast > 0.4 || (sinceHit < 0.15 && t < hits[hits.length - 1] + 0.3) ? 'horn-b' : 'horn'}`, at: pos, scale: 0.56 * (1 + 0.06 * blast) * out, size: [520, 260], anchor: [40, 130], flip: dir < 0, rot: dir * ang});
     const bell: P = [pos[0] + dir * len * Math.cos(ang * Math.PI / 180), pos[1] + len * Math.sin(ang * Math.PI / 180)];
     for (let k = 0; k < 4; k++) {   // notes and blast lines out of the bell
       const {age} = cycle(i * 10 + k + 60, t, 0.8);

@@ -63,7 +63,7 @@ test('21/22: the SOLD signs are drawn under the sleigh', () => {
 test('25: tank back to its original size; the blower tube is half as long and twice as thick', () => {
   const s = shot('25'), t = s.start + 1, f = Math.round(t * 24), it = shot25(t, f, s), g = vacuum25(twos(f), s);
   const can = it.find(i => String(i.sprite ?? '').includes('vacuum/canister'));
-  assert.ok(can.sprite.endsWith('vacuum/canister') && (can.sx ?? 1) >= 1, 'original tank');
+  assert.ok(can.sprite.includes('vacuum/canister') && (can.sx ?? 1) >= 1, 'original-size tank (strapless since pass 7)');
   const tube = it.filter(i => i.draw?.kind === 'line' && i.draw.size >= 100);
   assert.ok(tube.length, 'thick tube');
   const len = Math.abs(g.wandEnd[0] - g.mouth[0]);   // horizontal reach (the tube tilts toward the shelf row)

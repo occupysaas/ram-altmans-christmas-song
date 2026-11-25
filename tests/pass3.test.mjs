@@ -262,7 +262,7 @@ test('56: the windmill rotors turn; remaining tower shots use the cut-out tower'
   const s = shot('56'), rot = t => shot56(t, Math.round(t * 24), s).filter(i => String(i.sprite ?? '').endsWith('windmill/rotor'));
   assert.equal(rot(s.start + 1).length, 3);
   assert.notEqual(rot(s.start + 1)[0].rot, rot(s.start + 1.3)[0].rot);
-  for (const id of ['28', '49', '52', '56', '60', '62', '65']) assert.ok(shot(id).towerCut, `shot ${id} still on the old tower bump`);
+  for (const id of ['49', '52', '56', '60', '62', '65']) assert.ok(shot(id).towerCut   /* 28 reverted in pass 7 */, `shot ${id} still on the old tower bump`);
 });
 
 test('56: the outage is calm (only a few single blinks) and chimneys smoke', () => {

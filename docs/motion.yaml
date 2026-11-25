@@ -5,7 +5,7 @@
 3:  {tier: A, indoor: true, puppets: [layers-03], plate: true, fx: [], action: "living room; cat already mid-stride (still)"}
 4:  {tier: C, fx: [], action: "rack row; one light blinks"}
 5:  {tier: B, fx: [dust], action: "dust drifting in the moonbeam"}
-6:  {tier: B, fx: [tower], action: "low angle tower; bumps on kicks, smoke plume"}
+6:  {tier: B, towerMask: plates/06-towermask.png, fx: [tower], action: "low angle tower; bumps on kicks, smoke plume"}
 7:  {tier: A, indoor: true, mood: 0.28, puppets: [layers-07], fx: [gpuHum], action: "Sam (cut-out layers) clicks around: the mouse darts on beats, clicks on snares, cursor follows on the big screen"}
 8:  {tier: A, puppets: [sam-34], fx: [sparkles], action: "Sam turns 3/4, transforms into Ram; hat and scarf drop on"}
 9: {tier: A, puppets: [layers-09], fx: [], action: "grin close-up push; on \"memory!\" he throws his head back cackling, HA!s pop"}
@@ -22,12 +22,12 @@
 20: {tier: B, plate: true, towerCut: true, fx: [tower], action: "tower in the cyan cloud; bumps, smoke"}
 21: {tier: A, puppets: [sleigh], fx: [], action: "shopping spree: sleigh pass over the shop street pouring coins on each beat; shop signs flip to SOLD"}
 22: {tier: A, puppets: [sleigh], fx: [], action: "hovering sleigh over the sold-out street; Ram leans back cackling on snares, HA!s pop"}
-23: {tier: B, plate: true, towerCut: true, fx: [tower], action: "tower humming bright; marquee bulbs chase"}
+23: {tier: B, plate: true, towerCut: true, towerBehind: true, fx: [tower], action: "tower humming bright; marquee bulbs chase"}
 24: {tier: A, indoor: true, mood: 0.28, puppets: [ram-side], fx: [], action: "round vault door rolls across the doorway; Ram on its right shoves it on beats, kicks knock it back; RAM spills out of the gap and piles on the floor"}
 25: {tier: A, indoor: true, mood: 0.28, puppets: [ram-side, girl], fx: [], action: "generic electronics store: Ram sweeps RAM boxes off the shelf into a teetering armful; a girl behind him reaches and is left at a bare shelf"}
 26: {tier: A, mood: 0.28, puppets: [ram-side], fx: [stashFreeze], action: "shoves SSDs in the sack; freeze and squint at camera on 'umm, stash'"}
 27: {tier: A, puppets: [ram-side], fx: [], action: "jabs at the chart on beats"}
-28: {tier: B, plate: true, towerCut: true, fx: [tower], action: "mega-tower banner; bumps, smoke and sparks"}
+28: {tier: B, fx: [tower], action: "mega-tower banner; bumps, smoke and sparks"}
 29: {tier: C, mood: 0, fx: [], action: "receipt paper scrolls down the stairs"}
 30: {tier: A, indoor: true, puppets: [topdown-elf], fx: [], action: "top-down workshop: 4 lanes of 4 same-job elves; a piston per lane slams them into one four-armed elf doing all four jobs"}
 31: {tier: A, puppets: [reindeer, ram-sleigh], fx: [buffering], action: "team freezes on 'buffering', pixelates, spinner"}

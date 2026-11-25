@@ -44,7 +44,7 @@ test('07: hand and mouse stay on the desk (painted spot) and the sleeve ends on 
     assert.ok(Math.abs((hand.dy ?? 0) - m[1]) <= 2, `hand lifted off the desk (dy ${hand.dy})`);
     const wrist = [943 + (hand.dx ?? 0), 837 + (hand.dy ?? 0)];
     assert.ok(Math.hypot(hose.hose.b[0] - wrist[0], hose.hose.b[1] - wrist[1]) < 16, `sleeve misses the wrist by ${Math.hypot(hose.hose.b[0] - wrist[0], hose.hose.b[1] - wrist[1]).toFixed(0)}`);
-    assert.ok(items.indexOf(hose) > items.indexOf(hand), 'cuff drawn over the hand');
+    assert.ok(items.indexOf(hand) > items.indexOf(hose), 'pass 7: hand over the sleeve end (a cuff band covers the join)');
   }
 });
 

@@ -131,7 +131,7 @@ export const shot25: Choreo = (_t, frame, shot) => {
     items.push({draw: {kind: 'line', at: p, to: q, size: 9, color: '#ffffff', opacity: Math.min(1, 1.3 * Math.sin(Math.PI * u))}});
   }
   // the giant canister, bloated and bouncing, then Ram in front of it, the fat hose and the nozzle
-  items.push({sprite: 'sprites/vacuum/canister', at: CAN_AT, scale: CAN_S, size: [300, 380], anchor: [150, 380], sx: g.belly, sy: 2 - g.belly} as Item);
+  items.push({sprite: 'sprites/vacuum/canister-nostrap', at: CAN_AT, scale: CAN_S, size: [300, 380], anchor: [150, 380], sx: g.belly, sy: 2 - g.belly} as Item);
   items.push({who: W, pose: g.pose, scale: S});
   const d = Math.hypot(g.wandEnd[0] - g.socket[0], g.wandEnd[1] - g.socket[1]);
   items.push({hose: {a: g.socket, b: g.wandEnd, L: d * 1.06, side: 1, width: 64, fill: '#6e5536', ink: '#17121c'}});

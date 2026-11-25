@@ -44,5 +44,23 @@ tower = ndimage.binary_dilation(tower, iterations=6); tower[int(0.56 * pl.shape[
 sky |= tower
 alpha = np.asarray(Image.fromarray(((~sky) * 255).astype('uint8')).filter(ImageFilter.GaussianBlur(1.2)))
 Image.fromarray(np.dstack([(pl * 255).astype('uint8'), alpha]), 'RGBA').save('public/plates/54-front.png')
+# 23: the town with its sky keyed out (plates/23-front.png), redrawn over the cut-out factory so the houses stay in front
+pl = np.asarray(Image.open('public/plates/23.png').convert('RGB')).astype(np.float32) / 255
+r, g, b = pl[..., 0], pl[..., 1], pl[..., 2]
+lum = 0.3 * r + 0.59 * g + 0.11 * b
+sky = ndimage.binary_opening((b > r + 0.04) & (lum < 0.45) & (np.arange(pl.shape[0])[:, None] < pl.shape[0] * 0.8), iterations=1)
+alpha = np.asarray(Image.fromarray(((~sky) * 255).astype('uint8')).filter(ImageFilter.GaussianBlur(1.2)))
+Image.fromarray(np.dstack([(pl * 255).astype('uint8'), alpha]), 'RGBA').save('public/plates/23-front.png')
+# 06: a building-only mask for the bumping tower layer (its polygon ∩ not-sky), so the horns behind it show
+from PIL import ImageDraw
+st = np.asarray(Image.open('public/stills/06.png').convert('RGB')).astype(np.float32) / 255
+r, g, b = st[..., 0], st[..., 1], st[..., 2]
+lum = 0.3 * r + 0.59 * g + 0.11 * b
+sky = ndimage.binary_opening((b > r + 0.03) & (lum < 0.45), iterations=2)
+poly = json.loads(Path('docs/towers.json').read_text())['06']['poly']
+pm = Image.new('L', (st.shape[1], st.shape[0])); ImageDraw.Draw(pm).polygon([(x * st.shape[1], y * st.shape[0]) for x, y in poly], fill=255)
+keep = (np.asarray(pm) > 0) & ~sky
+a06 = Image.fromarray((keep * 255).astype('uint8')).filter(ImageFilter.GaussianBlur(1.5))   # CSS masks read ALPHA
+m06 = Image.new('RGBA', a06.size, (0, 0, 0, 0)); m06.putalpha(a06); m06.save('public/plates/06-towermask.png')
 idx_path.write_text(json.dumps(idx, indent=1) + '\n')
 print(idx['07/chair-back'], idx['18/tag'])

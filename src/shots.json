@@ -263,7 +263,8 @@
   "fx": [
    "tower"
   ],
-  "action": "low angle tower; bumps on kicks, smoke plume"
+  "action": "low angle tower; bumps on kicks, smoke plume",
+  "towerMask": "plates/06-towermask.png"
  },
  {
   "id": "07",
@@ -1102,7 +1103,8 @@
   ],
   "action": "tower humming bright; marquee bulbs chase",
   "plate": "plates/23.png",
-  "towerCut": true
+  "towerCut": true,
+  "towerBehind": true
  },
  {
   "id": "24",
@@ -1377,9 +1379,7 @@
   "fx": [
    "tower"
   ],
-  "action": "mega-tower banner; bumps, smoke and sparks",
-  "plate": "plates/28.png",
-  "towerCut": true
+  "action": "mega-tower banner; bumps, smoke and sparks"
  },
  {
   "id": "29",
