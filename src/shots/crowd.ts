@@ -59,7 +59,8 @@ export const shot61: Choreo = (_t, frame, shot) => {
   for (let i = 0; i < 4; i++) {
     const x = 270 + 360 * i, hit = beatHit(t + i * 0.13), b = beat(t);
     const pose = stand('elf', {t, x, floor: 1090, S, lean: 4 * hit, head: i % 2 ? 'head-focus' : 'head-happy', spread: 70,
-      hands: sh => ({near: add(sh.near, [70 * S, (330 - 120 * hit) * S]), far: add(sh.far, [-40 * S, (330 - 100 * hit) * S]),
+      // hands work in front of the chest, well above the belt (short bent arms, never reaching down behind it)
+      hands: sh => ({near: [sh.near[0] + 70 * S, Math.min(BELT - 70, sh.near[1] + (190 - 60 * hit) * S)], far: [sh.far[0] - 30 * S, Math.min(BELT - 70, sh.far[1] + (200 - 50 * hit) * S)],
         nearPart: (b.i + i) % 2 ? 'hand-near-box' : 'hand-near-open', farPart: 'hand-far-open'})});
     items.push({who: 'elf', pose, scale: S});
   }
