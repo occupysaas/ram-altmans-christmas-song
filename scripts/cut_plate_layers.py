@@ -65,6 +65,9 @@ sky = ndimage.binary_opening((b > r + 0.03) & (lum < 0.45), iterations=2)
 poly = json.loads(Path('docs/towers.json').read_text())['06']['poly']
 pm = Image.new('L', (st.shape[1], st.shape[0])); ImageDraw.Draw(pm).polygon([(x * st.shape[1], y * st.shape[0]) for x, y in poly], fill=255)
 keep = (np.asarray(pm) > 0) & ~sky
+# the tower's own teal glass and dark base also pass the sky test: fill every hole enclosed by the building so the
+# silhouette is solid (only open sky around it is cut away), else the horns behind show through the windows
+keep = ndimage.binary_fill_holes(ndimage.binary_closing(keep, iterations=3))
 a06 = Image.fromarray((keep * 255).astype('uint8')).filter(ImageFilter.GaussianBlur(1.5))   # CSS masks read ALPHA
 m06 = Image.new('RGBA', a06.size, (0, 0, 0, 0)); m06.putalpha(a06); m06.save('public/plates/06-towermask.png')
 idx_path.write_text(json.dumps(idx, indent=1) + '\n')

@@ -53,3 +53,16 @@ for (ya, yb, xa, xb) in [(738, 776, 237, 260), (823, 838, 226, 262)]:
 print(n)`]).toString().trim();
   assert.equal(Number(n), 0, `${n} eye-white pixels left above the squint`);
 });
+
+test('06: the tower mask is a solid silhouette — its glass windows are kept, so the horns behind never show through', async () => {
+  const {execFileSync} = await import('node:child_process');
+  const out = execFileSync('.venv/bin/python', ['-I', '-c', `
+import numpy as np
+from PIL import Image
+m = np.asarray(Image.open('public/plates/06-towermask.png').getchannel('A'))
+pts = {'left side glass': (470, 420), 'right side glass': (1150, 420)}
+print(' '.join(f"{k.replace(' ', '_')}={int(m[y * 2 if False else y, x])}" for k, (x, y) in pts.items()))
+print(int(m[200, 200]))`]).toString().trim().split('\n');
+  for (const kv of out[0].split(' ')) { const [k, v] = kv.split('='); assert.ok(Number(v) > 200, `${k} is cut out of the tower mask (${v})`); }
+  assert.ok(Number(out[1]) < 20, 'open sky is still cut away');
+});
