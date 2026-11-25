@@ -15,7 +15,12 @@ test('06: the horns are flagged to draw behind the tower', () => {
   assert.ok(fs.readFileSync('src/Still.tsx', 'utf8').includes('behind'), 'Still draws behind-items before the tower');
 });
 
-// pass 8: '07: the sleeve ends at the wrist…' removed — the code-drawn arm was replaced by painted arm layers (tests/pass8)
+test('07: the sleeve ends at the wrist, the hand covers its end, and a cuff band covers the join', () => {
+  const s = shot('07'), f = Math.round((s.start + 1) * 24), it = shot07(f / 24, f, s);
+  const hose = it.findIndex(i => i.hose), hand = it.findIndex(i => i.layer === '07/hand'), cuff = it.findIndex(i => i.draw?.cuff);
+  assert.ok(hose >= 0 && hand > hose && cuff > hand, `order hose ${hose} hand ${hand} cuff ${cuff}`);
+});
+
 test('13b: head drawn behind the body; bounce + chuckle never move the head more than 14 px', () => {
   const s = shot('13b'); let restY = null, low = -1e9;
   for (let f = Math.round((s.start + 1.8) * 24); f < s.end * 24; f++) {

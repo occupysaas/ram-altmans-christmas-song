@@ -7,16 +7,16 @@ import {shot61} from '../src/shots/crowd.ts';
 const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 const shot = id => read('src/shots.json').find(s => s.id === id);
 
-test('07: layered scene -> Sam -> his painted arm with the mouse -> chair back; no code-drawn arm tubes', () => {
-  const s = shot('07'); let clicks = 0; const rots = new Set();
+test('07: the arm is an upper arm down to an elbow at desk height, then a forearm lying flat along the desk', () => {
+  const s = shot('07');
   for (let f = Math.round(s.start * 24); f < s.end * 24; f += 2) {
-    const it = shot07(f / 24, f, s), idx = k => it.findIndex(i => String(i.layer ?? '').startsWith(k));
-    assert.ok(!it.some(i => i.hose), 'no tube arms');
-    assert.ok(idx('07/sam-noarms') >= 0 && idx('07/arm-left') > idx('07/sam-noarms') && idx('07/arm-mouse') > idx('07/sam-noarms') && idx('07/chair-back') > idx('07/arm-mouse') && idx('07/chair-back') > idx('07/arm-left'), `order at ${f}`);
-    const arm = it[idx('07/arm-mouse')]; rots.add(Math.round((arm.rot ?? 0) * 10)); if (arm.layer.endsWith('click')) clicks++;
+    const hoses = shot07(f / 24, f, s).filter(i => i.hose).map(i => i.hose);
+    assert.equal(hoses.length, 2, 'upper arm + forearm');
+    const [upper, fore] = hoses;
+    assert.ok(upper.b[1] - upper.a[1] >= 60, 'elbow well below the shoulder');
+    const ang = Math.abs(Math.atan2(fore.b[1] - fore.a[1], fore.b[0] - fore.a[0]) * 180 / Math.PI);
+    assert.ok(ang <= 20, `forearm tilted ${ang.toFixed(0)}°, not lying on the desk`);
   }
-  assert.ok(rots.size >= 3, 'the arm pivots with the mouse');
-  assert.ok(clicks >= 1, 'clicks shown');
 });
 
 test('61: the elves\' hands stay above the conveyor belt (nothing reaches behind it)', () => {

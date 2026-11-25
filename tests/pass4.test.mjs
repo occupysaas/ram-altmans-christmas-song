@@ -36,7 +36,18 @@ import {shot07, mouseOffset} from '../src/shots/07.ts';
 import {twos} from '../src/shots/kit.ts';
 import {execFileSync} from 'node:child_process';
 
-// pass 8: '07: hand and mouse stay…' removed — the code-drawn arm was replaced by painted arm layers (tests/pass8)
+test('07: hand and mouse stay on the desk (painted spot) and the sleeve ends on the wrist, over the hand', () => {
+  const s = shot('07');
+  for (let f = Math.round(s.start * 24); f < s.end * 24; f += 3) {
+    const items = shot07(f / 24, f, s), m = mouseOffset(twos(f));
+    const hand = items.find(i => i.layer === '07/hand'), hose = items.filter(i => i.hose).at(-1);   // pass 8: the forearm is the last segment
+    assert.ok(Math.abs((hand.dy ?? 0) - m[1]) <= 2, `hand lifted off the desk (dy ${hand.dy})`);
+    const wrist = [943 + (hand.dx ?? 0), 837 + (hand.dy ?? 0)];
+    assert.ok(Math.hypot(hose.hose.b[0] - wrist[0], hose.hose.b[1] - wrist[1]) < 16, `sleeve misses the wrist by ${Math.hypot(hose.hose.b[0] - wrist[0], hose.hose.b[1] - wrist[1]).toFixed(0)}`);
+    assert.ok(items.indexOf(hand) > items.indexOf(hose), 'pass 7: hand over the sleeve end (a cuff band covers the join)');
+  }
+});
+
 test('mood: darkness dialled back; tree bulbs of every colour glow; 29 glows without darkening', () => {
   for (const s of shots().filter(x => x.mood)) assert.ok(s.mood.dark >= 0 && s.mood.dark <= 0.32, `shot ${s.id} dark ${s.mood.dark}`);
   assert.equal(shot('29').mood.dark, 0);
