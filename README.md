@@ -4,7 +4,10 @@ A parody Christmas music video in the style of a 1960s made-for-TV holiday speci
 
 Made by **[Occupy Saas Inc](https://github.com/occupysaas)**. Everything here — the song, the art, the animation code and the pipeline — is open source under the [Apache License 2.0](LICENSE).
 
-- 🎬 **Watch:** see the [latest release](../../releases/latest) for the finished 1080p video (YouTube link coming).
+- 🎬 **Watch on YouTube:** https://www.youtube.com/watch?v=1pDum04a4V8
+- 💼 **LinkedIn post:** https://lnkd.in/p/ej6VhFw8
+- 🎧 **Listen:** coming to Spotify, Apple Music and other streaming services soon.
+- ⬇️ **Download:** the finished video is attached to the [latest release](../../releases/latest).
 - 🎵 **Song:** `Ram Altman's Christmas Song.mp3` (4:20).
 - 📝 **Lyrics:** [`docs/lyrics.txt`](docs/lyrics.txt).
 
