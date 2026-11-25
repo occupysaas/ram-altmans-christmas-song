@@ -30,14 +30,10 @@ export const shot07: Choreo = (_t, frame) => {
   const press = click < 0.08 ? 1 : 0, rot = 1.6 * g.sway * on, bob = 5 * g.bob * on;
   const shoulder = add(rotAbout(SHOULDER, SEAT, rot), [0, bob]);
   const wrist = add(WRIST, m), cursor = add(SCREEN, [m[0] * 4, m[1] * 5]);
-  // the elbow rests on the desk near his side and slides a little with the mouse
-  const elbow: P = [866 + 0.4 * m[0], wrist[1] + 2];
   const items: Item[] = [
     {layer: m[0] < -15 ? '07/sam-head-left' : '07/sam', dy: bob, rot, pivot: SEAT},
-    // the arm as in the painting: upper arm down to an elbow at desk height (tucked behind the chair back),
-    // then the forearm lying flat along the desk to the wrist; the hand over its end, a cuff band on the join
-    {hose: {a: shoulder, b: elbow, L: Math.hypot(elbow[0] - shoulder[0], elbow[1] - shoulder[1]) * 1.02, side: 1, width: 32, fill: '#9a9aa0', ink: '#17121c'}},
-    {hose: {a: elbow, b: wrist, L: Math.hypot(wrist[0] - elbow[0], wrist[1] - elbow[1]) * 1.01, side: 1, width: 30, fill: '#9a9aa0', ink: '#17121c'}},
+    // the sleeve ends at the wrist; the hand is drawn over its end, then a cuff band hides the join
+    {hose: {a: shoulder, b: wrist, L: Math.hypot(wrist[0] - shoulder[0], wrist[1] - shoulder[1]) * 1.02, side: -1, width: 32, fill: '#9a9aa0', ink: '#17121c'}},
     {layer: '07/hand', dx: m[0], dy: m[1] + 2 * press, sy: press ? 0.92 : 1, pivot: [1010, 860]},
     {draw: {kind: 'ellipse', at: add(wrist, [-6, 0]), size: 0, w: 22, h: 38, color: '#8a8a90', rot: Math.atan2(wrist[1] - shoulder[1], wrist[0] - shoulder[0]) * 180 / Math.PI, cuff: true}},
     {layer: '07/chair-back'},

@@ -7,18 +7,7 @@ import {shot61} from '../src/shots/crowd.ts';
 const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 const shot = id => read('src/shots.json').find(s => s.id === id);
 
-test('07: the arm is an upper arm down to an elbow at desk height, then a forearm lying flat along the desk', () => {
-  const s = shot('07');
-  for (let f = Math.round(s.start * 24); f < s.end * 24; f += 2) {
-    const hoses = shot07(f / 24, f, s).filter(i => i.hose).map(i => i.hose);
-    assert.equal(hoses.length, 2, 'upper arm + forearm');
-    const [upper, fore] = hoses;
-    assert.ok(upper.b[1] - upper.a[1] >= 60, 'elbow well below the shoulder');
-    const ang = Math.abs(Math.atan2(fore.b[1] - fore.a[1], fore.b[0] - fore.a[0]) * 180 / Math.PI);
-    assert.ok(ang <= 20, `forearm tilted ${ang.toFixed(0)}°, not lying on the desk`);
-  }
-});
-
+// the two-segment arm test was removed: the user asked for the original arm back once the chair cut-out turned out to be the cause
 test('61: the elves\' hands stay above the conveyor belt (nothing reaches behind it)', () => {
   const s = shot('61'), BELT = 860;   // the belt's top rail
   for (let f = Math.round(s.start * 24); f < s.end * 24; f += 3)
@@ -26,4 +15,17 @@ test('61: the elves\' hands stay above the conveyor belt (nothing reaches behind
       for (const h of [it.pose.hands.near, it.pose.hands.far]) assert.ok(h[1] <= BELT - 10, `elf hand at y ${h[1].toFixed(0)} behind the belt`);
   const front = shot61(s.start + 1, Math.round((s.start + 1) * 24), s).find(i => i.front);
   assert.ok(front.front.y <= BELT, 'belt redrawn from its top rail, so no legs show on it');
+});
+
+test('07: the chair-back cut-out is only the chair — no strip of desk pasted over the arms', () => {
+  const L = read('public/sprites/layers/layers.json')['07/chair-back'];
+  assert.ok(L.w <= 260, `chair-back is ${L.w} px wide — it includes the desk`);
+  assert.ok(L.x >= 650 && L.x + L.w <= 900, `chair-back spans x ${L.x}–${L.x + L.w}`);
+});
+
+test('07: the cuff band lines up with the forearm it sits on', () => {
+  const s = shot('07'), f = Math.round((s.start + 1) * 24), it = shot07(f / 24, f, s);
+  const fore = it.filter(i => i.hose).at(-1).hose, cuff = it.find(i => i.draw?.cuff).draw;
+  const ang = Math.atan2(fore.b[1] - fore.a[1], fore.b[0] - fore.a[0]) * 180 / Math.PI;
+  assert.ok(Math.abs(cuff.rot - ang) < 3, `cuff at ${cuff.rot.toFixed(0)}°, forearm at ${ang.toFixed(0)}°`);
 });

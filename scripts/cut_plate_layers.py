@@ -19,8 +19,13 @@ pl = np.asarray(Image.open('public/plates/07.png').convert('RGB')).astype(int)
 x0, y0, x1, y1 = 600, 720, 950, 1000
 c = pl[y0:y1, x0:x1]; r, g, b = c[..., 0], c[..., 1], c[..., 2]
 red = (r > g * 1.35) & (r > b * 1.3) & (r > 90)
-m = np.asarray(Image.fromarray((red * 255).astype('uint8')).filter(ImageFilter.MaxFilter(7)).filter(ImageFilter.MinFilter(3))) > 0
-m &= red | (c.mean(-1) < 90)
+# keep ONLY the chair: the biggest connected red blob (the desk's brown front edge also passes the colour test,
+# and drawing that strip last pasted the desk over Sam's arms), holes filled, grown a little over its ink outline
+lab, n = ndimage.label(ndimage.binary_opening(red, iterations=2))
+chair = lab == (1 + int(np.argmax(ndimage.sum(np.ones_like(lab), lab, range(1, n + 1)))))
+chair = ndimage.binary_fill_holes(ndimage.binary_closing(chair, iterations=4))
+m = ndimage.binary_dilation(chair, iterations=5) & (chair | (c.mean(-1) < 90))
+m = ndimage.binary_fill_holes(m)
 save('07/chair-back', c, np.asarray(Image.fromarray((m * 255).astype('uint8')).filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.GaussianBlur(0.8))), x0, y0)
 
 # 18: the tag (flood its paper colour from the centre, fill holes, grow over the ink outline)
