@@ -2305,7 +2305,9 @@
   ],
   "sfx": [],
   "tier": "A",
-  "fx": [],
+  "fx": [
+   "whipOut"
+  ],
   "action": "sleigh tips and sputters",
   "plate": "plates/47.png",
   "puppets": [
@@ -2368,6 +2370,7 @@
   "sfx": [],
   "tier": "A",
   "fx": [
+   "whipIn",
    "ramFountain"
   ],
   "action": "nose-dive crash; RAM fountain over Byteville",
@@ -3093,7 +3096,9 @@
   ],
   "sfx": [],
   "tier": "A",
-  "fx": [],
+  "fx": [
+   "whipOut"
+  ],
   "action": "bow with hat tip in the spotlight",
   "plate": "plates/63.png",
   "puppets": [
@@ -3143,7 +3148,7 @@
   "sfx": [],
   "tier": "C",
   "fx": [
-   "vroll"
+   "whipIn"
   ],
   "action": "Ebenezer Scrooge smash cut; after \"Scrooge!\" Ram bursts out laughing, HA HA HA",
   "plate": "plates/64.png",

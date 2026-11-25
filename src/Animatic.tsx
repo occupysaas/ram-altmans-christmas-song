@@ -4,6 +4,7 @@ import shotsJson from './shots.json';
 import {loadFonts} from './fonts';
 import {Snow} from './Snow';
 import {snowDensity} from './fx/snowRule';
+import {whipAt} from './fx/whip';
 import {Ident} from './fx/Ident';
 import {Title} from './fx/Title';
 import {PROG_H, PROG_W, Still, type Shot} from './Still';
@@ -36,7 +37,11 @@ export function Animatic() {
         // CRT vertical-hold roll for 0.35 s at the start of shots tagged vroll; micro-shake + flash on the "stash" freeze
         const vr = (shot as any).fx?.includes('vroll') ? Math.max(0, 1 - (t - shot.start) / 0.35) : 0;
         const st = t - impact.stash, shake = st >= 0 && st < 0.15 ? Math.sin(st * 160) * 6 : 0;
-        return <div style={{position: 'absolute', inset: 0, transform: `translate(${shake}px, ${vr > 0 ? (1 - (1 - vr) ** 2) * PROG_H * 0.6 : 0}px)`}}>
+        // whip-pan (47 -> 48): slide + scale + a vertical-only motion blur
+        const wp = whipAt(shot as {start: number; end: number; fx?: string[]}, t);
+        return <div style={{position: 'absolute', inset: 0, filter: wp.blur > 0 ? 'url(#whipblur)' : undefined,
+          transform: `translate(${shake}px, ${(vr > 0 ? (1 - (1 - vr) ** 2) * PROG_H * 0.6 : 0) + wp.dy * PROG_H}px) scale(${wp.scale})`}}>
+          {wp.blur > 0 && <svg width={0} height={0} style={{position: 'absolute'}}><filter id="whipblur" x="-5%" y="-30%" width="110%" height="160%"><feGaussianBlur stdDeviation={`0 ${wp.blur}`} /></filter></svg>}
           <Still shot={shot} t={t} frame={frame} />
           {vr > 0 && <div style={{position: 'absolute', left: 0, right: 0, top: -40, height: 40, background: '#000'}} />}
           {st >= 0 && st < 2 / 24 && <div style={{position: 'absolute', inset: 0, background: '#fff', opacity: 0.85}} />}

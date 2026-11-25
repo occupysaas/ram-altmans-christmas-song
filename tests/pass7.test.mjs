@@ -56,3 +56,21 @@ test('60: back to the original painting so Ram stays in the doorway (the cut-out
 test('48: no CRT roll on the cut into the crash (it read as a broken scene swap)', () => {
   assert.ok(!shot('48').fx.includes('vroll'));
 });
+
+import {whipAt} from '../src/fx/whip.ts';
+test('47→48: a whip-pan down — the old shot smears up and out, the crash rises in from below, never revealing an edge', () => {
+  const a = shot('47'), b = shot('48');
+  assert.ok(a.fx.includes('whipOut') && b.fx.includes('whipIn'));
+  const out = whipAt(a, a.end - 0.02), inn = whipAt(b, b.start + 0.02);
+  assert.ok(out.dy < -0.06 && out.blur > 10, `exit ${JSON.stringify(out)}`);
+  assert.ok(inn.dy > 0.06 && inn.blur > 10, `entry ${JSON.stringify(inn)}`);
+  for (const w of [out, inn]) assert.ok(w.scale >= 1 + 2 * Math.abs(w.dy) - 1e-9, 'scaled enough to hide the edges');
+  assert.deepEqual(whipAt(b, b.start + 0.4), {dy: 0, blur: 0, scale: 1});
+  assert.deepEqual(whipAt(a, (a.start + a.end) / 2), {dy: 0, blur: 0, scale: 1});
+});
+
+test('63→64: the Ebenezer Scrooge smash cut is a whip-pan too, with no CRT roll', () => {
+  const a = shot('63'), b = shot('64');
+  assert.ok(!b.fx.includes('vroll') && a.fx.includes('whipOut') && b.fx.includes('whipIn'));
+  assert.ok(whipAt(b, b.start + 0.02).blur > 10);
+});

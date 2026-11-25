@@ -46,8 +46,8 @@
 44: {tier: B, plate: true, indoor: true, fx: [panic], action: "panic screens flash on snares"}
 45: {tier: B, indoor: true, fx: [lightsOut], action: "lights go out row by row toward camera"}
 46: {tier: A, puppets: [reindeer, ram-sleigh], fx: [tower], action: "overloaded sleigh sags and struggles to lift"}
-47: {tier: A, puppets: [ram-sleigh], fx: [], action: "sleigh tips and sputters"}
-48: {tier: A, puppets: [reindeer, ram-sleigh], fx: [ramFountain], action: "nose-dive crash; RAM fountain over Byteville"}
+47: {tier: A, puppets: [ram-sleigh], fx: [whipOut], action: "sleigh tips and sputters"}
+48: {tier: A, puppets: [reindeer, ram-sleigh], fx: [whipIn, ramFountain], action: "nose-dive crash; RAM fountain over Byteville"}
 49: {tier: A, towerCut: true, puppets: [dad, mum, kid1, kid2, elf], fx: [tower], action: "march up the hill with lanterns"}
 50: {tier: A, indoor: true, puppets: [layers-50], fx: [], action: "elves bob and sway; rope tug-of-war snaps on \"un-paywalled\", tokens burst"}
 51: {tier: A, indoor: true, mood: 0.28, puppets: [layers-51], fx: [], action: "watching elves bob along; the ladder elf slaps the band-aid on \"patched\" with sparks"}
@@ -61,6 +61,6 @@
 60: {tier: B, mood: 0.28, fx: [tower], action: "pull back from the waving figure"}
 61: {tier: A, indoor: true, puppets: [elf], fx: [], action: "elves pack boxes on the beat"}
 62: {tier: B, mood: 0.28, plate: true, towerCut: true, fx: [tower, marquee], action: "marquee bulbs chase; tower behind"}
-63: {tier: A, indoor: true, puppets: [ram-side], fx: [], action: "bow with hat tip in the spotlight"}
-64: {tier: C, plate: true, indoor: true, fx: [vroll], action: "Ebenezer Scrooge smash cut; after \"Scrooge!\" Ram bursts out laughing, HA HA HA"}
+63: {tier: A, indoor: true, puppets: [ram-side], fx: [whipOut], action: "bow with hat tip in the spotlight"}
+64: {tier: C, plate: true, indoor: true, fx: [whipIn], action: "Ebenezer Scrooge smash cut; after \"Scrooge!\" Ram bursts out laughing, HA HA HA"}
 65: {tier: B, plate: true, towerCut: true, fx: [tower, explode], action: "victorious ending: the tower swells, glowing red and shaking, then explodes; RAM rains on Byteville and the townsfolk run in cheering to catch it"}
