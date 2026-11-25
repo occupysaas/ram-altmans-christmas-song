@@ -86,3 +86,11 @@ Plan: `docs/superpowers/plans/2026-11-24-pass-4.md`.
 - 1:38 tank 45% as wide, no straps; swallowed boxes ride on the curved hose from the spout.
 - 2:06 star text 15% smaller, centred on the snow. 3:12 background without painted coins.
 - 3:25 mansion on its painted spot at 1.12x (no doubling), behind the town. 4:10 laugh on a clean plate behind the card.
+
+## Pass 6 (render 2026-11-24)
+
+`out/ram-altman.mp4`: 1920x1080, 24 fps, AAC, 259.600 s. Preview 23.1 MB. Tests 128/128.
+- Horns on the real 8-hit horn bar (28.29-29.24 s, the bright onsets; 26.1-28.0 s is the violins), out until the tower shot ends.
+- 0:34 arm straight, never into the desk. 0:42 chip and byte grabbed level. 1:12 scroll 33% narrower, words between the family.
+- 1:28 SOLD signs under the sleigh. 1:38 tank restored; blower tube half as long, twice as thick.
+- 2:06 star text 25 px left, 10 px down, "is" starts line two. 3:05 sleigh keeps its RAM load in the crash.
