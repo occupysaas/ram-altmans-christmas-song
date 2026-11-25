@@ -94,3 +94,12 @@ Plan: `docs/superpowers/plans/2026-11-24-pass-4.md`.
 - 0:34 arm straight, never into the desk. 0:42 chip and byte grabbed level. 1:12 scroll 33% narrower, words between the family.
 - 1:28 SOLD signs under the sleigh. 1:38 tank restored; blower tube half as long, twice as thick.
 - 2:06 star text 25 px left, 10 px down, "is" starts line two. 3:05 sleigh keeps its RAM load in the crash.
+
+## Pass 7 (2026-11-24)
+- 06 horns drawn behind the factory, on the real horn hits; 07 mouse arm; 13b head height and layering; 23 houses in front of the factory; 25 strapless vacuum tank; 28 "bigger is best" back to the original still with Ram; 60 Ram back in the doorway.
+- Transitions: CRT roll removed; whip-pans 47→48 (3:04 crash) and 63→64 (4:10 Scrooge card). CRT snow bursts, mostly on calmer shots.
+
+## Pass 8 (2026-11-24)
+- 07: the arm "clipping" was the chair-back cut-out carrying a strip of desk drawn over the arms (`cut_plate_layers.py` now keeps only the chair). Bent-elbow arm kept, cuff aligned with the forearm.
+- 61: belt redrawn from its top rail; the elves' hands stay above it.
+- 11: the squint face (`11/ram-squint`) was a mis-pasted patch showing the open eye around it; repaired by the user in Photoshop.
