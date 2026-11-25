@@ -21,14 +21,7 @@ test('06: horns follow the 8-hit horn bar (28.3-29.3 s), not the violin run befo
   assert.equal(horns(s, s.end - 0.2), 2, 'still out at the end of the tower shot');
 });
 
-test('07: Sam\'s arm never dips below its two ends (no bowing down through the desk)', () => {
-  const s = shot('07');
-  for (let f = Math.round(s.start * 24); f < s.end * 24; f++) {
-    const h = shot07(f / 24, f, s).find(i => i.hose).hose, c = hoseControl(h.a, h.b, h.L, h.side);
-    assert.ok(c[1] <= Math.max(h.a[1], h.b[1]) + 4, `arm bows down to y ${c[1].toFixed(0)} at frame ${f}`);
-  }
-});
-
+// pass 8: the arm-dip test was removed — the code-drawn arm was replaced by painted arm layers (tests/pass8)
 test('10: the chip and the byte are grabbed at their own height; the sticks 80 px up', () => {
   const s = shot('10');
   for (const it of SHELF10) {

@@ -105,7 +105,7 @@ test('07: the mouse darts to a new spot on each beat and holds between beats', (
     assert.ok(Math.hypot(a[0] - b[0], a[1] - b[1]) > 8, `mouse did not move on beat ${i + 1}`);
   }
   const items = shot07(s.start + 1, Math.round((s.start + 1) * 24), s);
-  assert.ok(items.some(i => i.layer === '07/hand') && items.some(i => i.draw?.kind === 'cursor') && items.some(i => i.hose));
+  assert.ok(items.some(i => String(i.layer).startsWith('07/arm-mouse')) && items.some(i => i.draw?.kind === 'cursor'));   // pass 8: painted arm
 });
 
 test('12: fan blades spin faster just after a kick than between kicks', () => {
