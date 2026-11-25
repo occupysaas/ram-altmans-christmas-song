@@ -55,16 +55,17 @@ export const shot49: Choreo = (_t, frame, shot) => {
 
 /** 61: elves pack boxes on the beat behind the belt (the belt is redrawn in front of them); boxes slide along. */
 export const shot61: Choreo = (_t, frame, shot) => {
-  const t = twos(frame), lt = t - shot.start, items: Item[] = [], BELT = 930, S = scaleFor('elf', 560);
+  // BELT: where the boxes ride; RAIL: the belt's top edge — the plate is redrawn from there down, hiding the legs
+  const t = twos(frame), lt = t - shot.start, items: Item[] = [], BELT = 930, RAIL = 860, S = scaleFor('elf', 560);
   for (let i = 0; i < 4; i++) {
     const x = 270 + 360 * i, hit = beatHit(t + i * 0.13), b = beat(t);
     const pose = stand('elf', {t, x, floor: 1090, S, lean: 4 * hit, head: i % 2 ? 'head-focus' : 'head-happy', spread: 70,
       // hands work in front of the chest, well above the belt (short bent arms, never reaching down behind it)
-      hands: sh => ({near: [sh.near[0] + 70 * S, Math.min(BELT - 70, sh.near[1] + (190 - 60 * hit) * S)], far: [sh.far[0] - 30 * S, Math.min(BELT - 70, sh.far[1] + (200 - 50 * hit) * S)],
+      hands: sh => ({near: [sh.near[0] + 70 * S, Math.min(RAIL - 18, sh.near[1] + (190 - 60 * hit) * S)], far: [sh.far[0] - 30 * S, Math.min(RAIL - 18, sh.far[1] + (200 - 50 * hit) * S)],
         nearPart: (b.i + i) % 2 ? 'hand-near-box' : 'hand-near-open', farPart: 'hand-far-open'})});
     items.push({who: 'elf', pose, scale: S});
   }
-  items.push({front: {y: BELT}});
+  items.push({front: {y: RAIL}});
   for (let k = 0; k < 6; k++) {                                     // boxes slide right along the belt
     const x = ((lt * 160 + k * 300) % 1900) - 150;
     items.push({sprite: `sprites/props/${k % 2 ? 'box' : 'box-open'}`, at: [x, BELT + 10], scale: 0.42});

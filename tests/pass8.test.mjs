@@ -20,8 +20,10 @@ test('07: the arm is an upper arm down to an elbow at desk height, then a forear
 });
 
 test('61: the elves\' hands stay above the conveyor belt (nothing reaches behind it)', () => {
-  const s = shot('61'), BELT = 930;
+  const s = shot('61'), BELT = 860;   // the belt's top rail
   for (let f = Math.round(s.start * 24); f < s.end * 24; f += 3)
     for (const it of shot61(f / 24, f, s).filter(i => i.who === 'elf'))
       for (const h of [it.pose.hands.near, it.pose.hands.far]) assert.ok(h[1] <= BELT - 10, `elf hand at y ${h[1].toFixed(0)} behind the belt`);
+  const front = shot61(s.start + 1, Math.round((s.start + 1) * 24), s).find(i => i.front);
+  assert.ok(front.front.y <= BELT, 'belt redrawn from its top rail, so no legs show on it');
 });
