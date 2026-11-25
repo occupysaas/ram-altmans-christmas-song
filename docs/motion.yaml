@@ -58,7 +58,7 @@
 56: {tier: B, plate: true, towerCut: true, fx: [tower, chimneySmoke], action: "water pours into the tank (streams, ripples, splashes); town windows flicker and black out one by one; tower bumps"}
 58: {tier: A, puppets: [girl, ram-34], fx: [], action: "girl asks (lip-sync); Ram's fake smile"}
 59: {tier: A, puppets: [girl, ram-34], fx: [], action: "hi-five; Ram says subscribe (lip-sync)"}
-60: {tier: B, mood: 0.28, plate: true, towerCut: true, fx: [tower], action: "pull back from the waving figure"}
+60: {tier: B, mood: 0.28, fx: [tower], action: "pull back from the waving figure"}
 61: {tier: A, indoor: true, puppets: [elf], fx: [], action: "elves pack boxes on the beat"}
 62: {tier: B, mood: 0.28, plate: true, towerCut: true, fx: [tower, marquee], action: "marquee bulbs chase; tower behind"}
 63: {tier: A, indoor: true, puppets: [ram-side], fx: [], action: "bow with hat tip in the spotlight"}

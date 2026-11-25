@@ -2948,8 +2948,6 @@
    "tower"
   ],
   "action": "pull back from the waving figure",
-  "plate": "plates/60.png",
-  "towerCut": true,
   "mood": {
    "dark": 0.28
   }
