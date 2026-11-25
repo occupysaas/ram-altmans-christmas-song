@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Extract the reviewed ImageGen sheets, key magenta, and write rig metadata."""
+import os
 import json
 import shutil
 import tempfile
@@ -19,7 +20,7 @@ def save_json(destination, data):
     temporary.replace(destination)
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = Path('/home/thomas/.codex/generated_images/01a20bf4-e5f4-7d42-87fc-2a6575a2df4f')
+SOURCE = Path(os.environ.get('CODEX_IMAGES', str(Path.home() / '.codex/generated_images')))   
 SHEETS = ROOT / 'out/sheets'
 SHEETS.mkdir(parents=True, exist_ok=True)
 FILES = {

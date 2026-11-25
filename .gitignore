@@ -7,3 +7,9 @@ public/song.wav
 *.pt
 .superpowers
 tmp/
+
+# local tool state and logs (contain machine-specific paths)
+.codex/
+docs/codex/*.log
+spike/**/*.log
+spike/*.log
