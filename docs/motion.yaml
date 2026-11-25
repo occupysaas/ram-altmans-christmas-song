@@ -5,7 +5,7 @@
 3:  {tier: A, indoor: true, puppets: [layers-03], plate: true, fx: [], action: "living room; cat already mid-stride (still)"}
 4:  {tier: C, fx: [], action: "rack row; one light blinks"}
 5:  {tier: B, fx: [dust], action: "dust drifting in the moonbeam"}
-6:  {tier: B, towerMask: plates/06-towermask.png, fx: [tower], action: "low angle tower; bumps on kicks, smoke plume"}
+6:  {tier: B, plate: true, towerCut: true, fx: [tower], action: "low angle tower; bumps on kicks, smoke plume"}
 7:  {tier: A, indoor: true, mood: 0.28, puppets: [layers-07], fx: [gpuHum], action: "Sam (cut-out layers) clicks around: the mouse darts on beats, clicks on snares, cursor follows on the big screen"}
 8:  {tier: A, puppets: [sam-34], fx: [sparkles], action: "Sam turns 3/4, transforms into Ram; hat and scarf drop on"}
 9: {tier: A, puppets: [layers-09], fx: [], action: "grin close-up push; on \"memory!\" he throws his head back cackling, HA!s pop"}

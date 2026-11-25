@@ -44,11 +44,7 @@ test('28: back to the original painting (Ram pointing at the banner) with the ol
   const s = shot('28'); assert.ok(!s.towerCut && !s.plate, 'still on the cut-out tower');
 });
 
-test('06: the bumping tower layer is masked to the building only (no sky halo hiding the horns)', () => {
-  assert.equal(shot('06').towerMask, 'plates/06-towermask.png');
-  assert.ok(fs.existsSync('public/plates/06-towermask.png'));
-});
-
+// pass 8: the 06 mask test was removed — 06 is now a real cut-out (layers/06/tower over a building-free plate), tests/pass8
 test('60: back to the original painting so Ram stays in the doorway (the cut-out tower had painted him out)', () => {
   const s = shot('60'); assert.ok(!s.towerCut && !s.plate, '60 still on the cut-out tower');
 });

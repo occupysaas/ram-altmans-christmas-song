@@ -66,3 +66,10 @@ print(int(m[200, 200]))`]).toString().trim().split('\n');
   for (const kv of out[0].split(' ')) { const [k, v] = kv.split('='); assert.ok(Number(v) > 200, `${k} is cut out of the tower mask (${v})`); }
   assert.ok(Number(out[1]) < 20, 'open sky is still cut away');
 });
+
+test('06: the tower is a real cut-out over a building-free plate — the whole building down to the snow bumps as one piece', () => {
+  const s = shot('06'), L = read('public/sprites/layers/layers.json')['06/tower'];
+  assert.ok(s.plate && s.towerCut && !s.towerMask, `06 setup ${JSON.stringify({plate: s.plate, towerCut: s.towerCut, towerMask: s.towerMask})}`);
+  assert.ok(L && L.y + L.h >= 1000, `tower layer must reach down to the snow (bottom ${L && L.y + L.h})`);
+  assert.ok(L.y <= 160, 'and up to the antennas');
+});

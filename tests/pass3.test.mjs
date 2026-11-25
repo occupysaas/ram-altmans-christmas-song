@@ -182,7 +182,7 @@ test('tower shots with a cut-out tower draw it over a tower-free plate', () => {
   const layers = read('public/sprites/layers/layers.json'), towers = read('docs/towers.json');
   const cut = shots().filter(s => s.towerCut);
   assert.ok(['20', '23', '54'].every(id => cut.some(s => s.id === id)), `cut-out shots: ${cut.map(s => s.id)}`);   // 52 joins when its elf cut-outs exist
-  assert.ok(!cut.some(s => ['01', '02', '06'].includes(s.id)), 'intro towers untouched');
+  assert.ok(!cut.some(s => ['01', '02'].includes(s.id)), 'intro towers 01/02 untouched');   // pass 8: the user asked for 06 to become a real cut-out
   for (const s of cut) {
     assert.ok(layers[`${s.id}/tower`], `shot ${s.id} has no tower layer`);
     assert.equal(s.plate, `plates/${s.id}.png`, `shot ${s.id} has no tower-free plate`);

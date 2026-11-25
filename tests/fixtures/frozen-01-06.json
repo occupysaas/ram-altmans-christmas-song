@@ -264,6 +264,7 @@
    "tower"
   ],
   "action": "low angle tower; bumps on kicks, smoke plume",
-  "towerMask": "plates/06-towermask.png"
+  "plate": "plates/06.png",
+  "towerCut": true
  }
 ]
