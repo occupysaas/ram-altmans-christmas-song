@@ -74,3 +74,18 @@ test('63→64: the Ebenezer Scrooge smash cut is a whip-pan too, with no CRT rol
   assert.ok(!b.fx.includes('vroll') && a.fx.includes('whipOut') && b.fx.includes('whipIn'));
   assert.ok(whipAt(b, b.start + 0.02).blur > 10);
 });
+
+import {staticAt} from '../src/fx/crtStatic.ts';
+import {BOOM} from '../src/fx/fxMath.ts';
+test('CRT snow: short static bursts, frequent on the calmer shots, rare elsewhere, never on the title or the ending', () => {
+  const S = read('src/shots.json'), calm = s => s.tier === 'C' || (s.tier === 'B' && s.fx.every(f => f === 'tower'));
+  const bursts = (s) => { let n = 0, run = 0, prev = false;
+    for (let f = Math.ceil(s.start * 24); f < s.end * 24; f++) { const on = staticAt(s, f / 24).opacity > 0; if (on) { run++; assert.ok(run <= 4, `burst longer than 4 frames in ${s.id}`); } else run = 0; if (on && !prev) n++; prev = on; }
+    return n; };
+  let calmT = 0, calmN = 0, busyT = 0, busyN = 0;
+  for (const s of S) { const n = bursts(s), d = s.end - s.start; if (calm(s)) { calmT += d; calmN += n; } else { busyT += d; busyN += n; } }
+  assert.ok(calmN / calmT >= 1 / 5, `calm shots: ${calmN} bursts in ${calmT.toFixed(0)} s`);
+  assert.ok(busyN / busyT < calmN / calmT / 2, 'busier shots get fewer');
+  for (let t = 0; t < 8; t += 1 / 24) assert.equal(staticAt(S[0], t).opacity, 0, 'title/ident untouched');
+  const end = S.at(-1); for (let t = BOOM - 0.5; t < end.end; t += 1 / 24) assert.equal(staticAt(end, t).opacity, 0, 'ending untouched');
+});

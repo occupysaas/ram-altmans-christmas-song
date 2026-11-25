@@ -1,10 +1,11 @@
 import React from 'react';
-import {AbsoluteFill, Audio, staticFile, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, Img, Audio, staticFile, useCurrentFrame} from 'remotion';
 import shotsJson from './shots.json';
 import {loadFonts} from './fonts';
 import {Snow} from './Snow';
 import {snowDensity} from './fx/snowRule';
 import {whipAt} from './fx/whip';
+import {staticAt} from './fx/crtStatic';
 import {Ident} from './fx/Ident';
 import {Title} from './fx/Title';
 import {PROG_H, PROG_W, Still, type Shot} from './Still';
@@ -48,6 +49,15 @@ export function Animatic() {
         </div>;
       })()}
       {snowDensity(shot as {indoor?: boolean; towerStage?: number | null}) > 0 && <Snow frame={frame} w={PROG_W} h={PROG_H} density={snowDensity(shot as {indoor?: boolean; towerStage?: number | null})} />}
+      {(() => {   // CRT snow: brief static bursts with a flicker and sometimes a tear line
+        const cs = staticAt(shot as {id: string; tier?: string; fx?: string[]}, t);
+        if (cs.opacity <= 0) return null;
+        return <>
+          <Img src={staticFile(`fx/static-${cs.frame}.png`)} style={{position: 'absolute', inset: 0, width: PROG_W, height: PROG_H, mixBlendMode: 'screen', opacity: cs.opacity, imageRendering: 'pixelated'}} />
+          <div style={{position: 'absolute', inset: 0, background: '#fff', opacity: cs.opacity * 0.25}} />
+          {cs.tear >= 0 && <div style={{position: 'absolute', left: 0, right: 0, top: cs.tear * PROG_H, height: 10, background: 'rgba(255,255,255,0.35)', filter: 'blur(2px)'}} />}
+        </>;
+      })()}
       <Title t={t} w={PROG_W} />
       <Ident t={t} frame={frame} w={PROG_W} h={PROG_H} />
       </AbsoluteFill>
