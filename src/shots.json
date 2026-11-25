@@ -2368,8 +2368,7 @@
   "sfx": [],
   "tier": "A",
   "fx": [
-   "ramFountain",
-   "vroll"
+   "ramFountain"
   ],
   "action": "nose-dive crash; RAM fountain over Byteville",
   "plate": "plates/48.png",

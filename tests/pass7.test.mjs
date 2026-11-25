@@ -52,3 +52,7 @@ test('06: the bumping tower layer is masked to the building only (no sky halo hi
 test('60: back to the original painting so Ram stays in the doorway (the cut-out tower had painted him out)', () => {
   const s = shot('60'); assert.ok(!s.towerCut && !s.plate, '60 still on the cut-out tower');
 });
+
+test('48: no CRT roll on the cut into the crash (it read as a broken scene swap)', () => {
+  assert.ok(!shot('48').fx.includes('vroll'));
+});
