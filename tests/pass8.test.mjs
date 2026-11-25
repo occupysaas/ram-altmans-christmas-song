@@ -40,3 +40,16 @@ test('07: the cuff band lines up with the forearm it sits on', () => {
   const ang = Math.atan2(fore.b[1] - fore.a[1], fore.b[0] - fore.a[0]) * 180 / Math.PI;
   assert.ok(Math.abs(cuff.rot - ang) < 3, `cuff at ${cuff.rot.toFixed(0)}°, forearm at ${ang.toFixed(0)}°`);
 });
+
+test('11: the squint face has no leftover wide-open eye above or below the squint (no eye-white pixels there)', async () => {
+  const {execFileSync} = await import('node:child_process');
+  const n = execFileSync('.venv/bin/python', ['-I', '-c', `
+import numpy as np
+from PIL import Image
+a = np.asarray(Image.open('public/sprites/layers/11/ram-squint.png').convert('RGBA')).astype(int)
+n = 0
+for (ya, yb, xa, xb) in [(738, 776, 237, 260), (823, 838, 226, 262)]:
+    r = a[ya - 450:yb - 450, xa:xb]; n += int(((r[..., :3].min(-1) > 215) & (r[..., 3] > 200)).sum())
+print(n)`]).toString().trim();
+  assert.equal(Number(n), 0, `${n} eye-white pixels left above the squint`);
+});
